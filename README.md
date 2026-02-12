@@ -15,6 +15,12 @@ A collection of AI agent skills for generating social media and YouTube content.
 
 ## Installation
 
+Install all skills:
 ```sh
-curl -fsSL https://skills.sh | sh -s -- RichardBray/skills
+npx skills add https://github.com/RichardBray/skills
+```
+
+Or install individually:
+```sh
+npx skills add https://github.com/RichardBray/skills --skill tweet
 ```
