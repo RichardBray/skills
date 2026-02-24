@@ -2,6 +2,18 @@
 
 A skill for auditing and pruning bloated `CLAUDE.md` or `AGENTS.md` repository context files using evidence-based criteria.
 
+## Installation
+
+Install individually:
+```sh
+npx skills add https://github.com/RichardBray/skills --skill prune-context-file
+```
+
+Or install all skills:
+```sh
+npx skills add https://github.com/RichardBray/skills
+```
+
 ## What it does
 
 Analyses your context file section by section and recommends what to cut, keep, or rewrite — then rewrites it with your approval.
@@ -25,14 +37,3 @@ Key findings the skill applies:
 - Tooling instructions (specific commands and CLIs) are reliably followed and are the highest-value content
 - Context files are redundant with existing documentation — only add what agents can't discover themselves
 
-## Installation
-
-Install individually:
-```sh
-npx skills add https://github.com/RichardBray/skills --skill prune-context-file
-```
-
-Or install all skills:
-```sh
-npx skills add https://github.com/RichardBray/skills
-```

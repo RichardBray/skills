@@ -35,7 +35,7 @@ For every line or section, ask: *Would the agent write different code, run diffe
 - Project overview prose beyond one sentence
 
 ### Keep (high value)
-- **Specific commands**: build, test, migrate, seed, lint — especially non-obvious ones
+- **Specific commands**: build, test, migrate, seed, lint — only if non-obvious or not already expressed as `package.json` / `Makefile` / config scripts the agent can read directly
 - **Non-obvious tooling**: libraries or CLIs the agent wouldn't default to (e.g. Better Auth vs. Passport, `uv` vs. `pip`)
 - **Architectural constraints** that would cause wrong assumptions if missing (e.g. non-standard i18n strategy, monorepo layout quirks)
 - **Behavioral rules**: git workflow, PR requirements, test requirements — things that must be enforced, not inferred
