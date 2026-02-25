@@ -22,7 +22,8 @@ Audit and prune a CLAUDE.md or AGENTS.md file using findings from Gloaguen et al
 
 For every line or section, ask: *Would the agent write different code, run different commands, or make different assumptions without this?*
 
-- **Yes** → keep it
+- **Yes, always relevant** → keep in root
+- **Yes, but only when working in a specific subdirectory** → move to a nested `CLAUDE.md` in that directory
 - **No / agent can discover it from the codebase** → cut it
 
 ## Classification
@@ -34,12 +35,20 @@ For every line or section, ask: *Would the agent write different code, run diffe
 - General coding standards Claude already applies by default (e.g. "use descriptive variable names", "avoid magic numbers")
 - Project overview prose beyond one sentence
 
-### Keep (high value)
+### Keep in root (high value, always relevant)
 - **Specific commands**: build, test, migrate, seed, lint — only if non-obvious or not already expressed as `package.json` / `Makefile` / config scripts the agent can read directly
 - **Non-obvious tooling**: libraries or CLIs the agent wouldn't default to (e.g. Better Auth vs. Passport, `uv` vs. `pip`)
 - **Architectural constraints** that would cause wrong assumptions if missing (e.g. non-standard i18n strategy, monorepo layout quirks)
 - **Behavioral rules**: git workflow, PR requirements, test requirements — things that must be enforced, not inferred
 - **Project-specific conventions** the agent can't infer from code alone
+
+### Move to subdirectory `CLAUDE.md` (relevant only in specific contexts)
+Root `CLAUDE.md` loads every session regardless of task — content irrelevant to most work has a standing token cost. Subdirectory `CLAUDE.md` files (e.g. `/web/CLAUDE.md`, `/api/CLAUDE.md`) load **on-demand only** when the agent reads files in that subtree.
+
+Move content here when it only applies to a specific part of the codebase:
+- Frontend-only conventions (component patterns, CSS framework rules, specific UI libraries)
+- Backend-only conventions (ORM patterns, API design rules, service layer constraints)
+- Any subsystem with its own tooling, patterns, or non-obvious constraints
 
 ## Process
 
