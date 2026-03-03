@@ -9,6 +9,7 @@ A collection of AI agent skills for content creation and developer tooling. Comp
 | Tweet | `/tweet` | Generate 5 tweet options with character counts |
 | LinkedIn | `/linkedin` | Transform content into a LinkedIn post |
 | Podcast Tweet | `/podcast-tweet` | Generate a podcast episode promotion tweet |
+| Shorts Writer | `/shorts-writer` | Write short video scripts for developer-focused tech shorts |
 | Short Vid | `/short-vid` | Write a 30-35 second YouTube Shorts script |
 | Long Vid | `/long-vid` | Write a long-form YouTube script |
 | YT Titles | `/yt-titles` | Generate 10 clickbait YouTube title options |
