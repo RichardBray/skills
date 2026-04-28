@@ -17,7 +17,7 @@ scripts/score.py --json "Your Title Here"
 printf "Title one\nTitle two\nTitle three\n" | scripts/score.py -
 ```
 
-Output shows the final score, chars/words, and the per-factor sub-scores (length, word_count, number, power, sentiment, caps, punct, stopword, specificity).
+Output shows the final score, chars/words, and the per-factor sub-scores (length, word_count, number, power, sentiment, caps, punct, stopword, specificity, cliche).
 
 ## When the user asks to score titles
 
@@ -49,6 +49,7 @@ Aim to minimize mean absolute error across the calibration set. Don't overfit to
 | punct | `punct_score` | `:` and `?` help, `!!!` hurts |
 | stopword | `stopword_score` | high stopword ratio penalized |
 | specificity | `specificity_score` | proper-noun-ish capitalized tokens |
+| cliche | `cliche_score` | hits in `CLICHE_PHRASES` list (penalty) |
 
 To extend vocabulary (new power words, sentiment terms), edit the sets at the top of `scripts/score.py`.
 

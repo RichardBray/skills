@@ -150,8 +150,7 @@ def specificity_score(words: list) -> float:
     if proper == 0: return 35
     if proper == 1: return 65
     if proper == 2: return 85
-    if proper >= 3: return 95
-    return 50
+    return 95
 
 
 def cliche_score(title_lower: str) -> float:
@@ -163,7 +162,7 @@ def cliche_score(title_lower: str) -> float:
 
 def score_title(title: str) -> dict:
     title = title.strip()
-    words = re.findall(r"[A-Za-z0-9'×x\-]+", title)
+    words = re.findall(r"[A-Za-z0-9'×\-]+", title)
     words_lower = [w.lower() for w in words]
 
     components = {
