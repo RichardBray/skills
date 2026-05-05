@@ -16,6 +16,7 @@ A collection of AI agent skills for content creation and developer tooling. Comp
 | Prune Context File | `/prune-context-file` | Audit and prune CLAUDE.md/AGENTS.md using evidence-based criteria |
 | Docs Agent Audit | `/docs-agent-audit` | Audit a docs site from an AI agent's perspective and rank PR-sized fixes |
 | Title Score | `/title-score` | Score a YouTube title 0-100 with a vidIQ-style heuristic breakdown |
+| Newsletter Digest | `/newsletter-digest` | Fetch dev newsletter RSS feeds and pick the 10 best articles as YouTube video topic ideas |
 
 ## Installation
 
