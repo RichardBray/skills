@@ -19,6 +19,21 @@ printf "Title one\nTitle two\nTitle three\n" | scripts/score.py -
 
 Output shows the final score, chars/words, and the per-factor sub-scores (length, word_count, number, power, sentiment, caps, punct, stopword, specificity, cliche).
 
+## Refreshing trending data
+
+The scorer uses a `data/trends.json` file for up-to-date YouTube trending phrases and topics. To refresh it:
+
+1. Get a YouTube Data API key from [Google Cloud Console](https://console.cloud.google.com/) (enable YouTube Data API v3).
+2. Run:
+
+```bash
+YOUTUBE_API_KEY=your-key-here scripts/fetch_trends.py
+```
+
+This fetches ~150 trending video titles, extracts recurring phrases and topics, and writes `data/trends.json`. The scorer reads this file automatically.
+
+If `data/trends.json` is missing or older than 14 days, the scorer falls back to a built-in static phrase list. Refresh weekly for best results.
+
 ## When the user asks to score titles
 
 1. Run the script for each title.
@@ -50,6 +65,7 @@ Aim to minimize mean absolute error across the calibration set. Don't overfit to
 | stopword | `stopword_score` | high stopword ratio penalized |
 | specificity | `specificity_score` | proper-noun-ish capitalized tokens |
 | cliche | `cliche_score` | hits in `CLICHE_PHRASES` list (penalty) |
+| trending | `trending_score` | hits in `data/trends.json` phrases/topics (dynamic) or `FALLBACK_TRENDING_PHRASES` (static) |
 
 To extend vocabulary (new power words, sentiment terms), edit the sets at the top of `scripts/score.py`.
 
