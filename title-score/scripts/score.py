@@ -8,20 +8,24 @@ Usage: score.py "Your title here"     -> prints score + breakdown
 """
 import argparse
 import json
+import os
 import re
 import sys
+from datetime import datetime, timezone
+from functools import lru_cache
 
 WEIGHTS = {
     "length":       1.5,
     "word_count":   1.0,
     "number":       0.6,
-    "power":        1.0,
+    "power":        1.2,
     "sentiment":    0.9,
     "caps":         0.9,
     "punct":        0.7,
     "stopword":     0.7,
-    "specificity": 1.6,
-    "cliche":       0.9,
+    "specificity":  1.6,
+    "cliche":       1.8,
+    "trending":     1.0,
 }
 
 CLICHE_PHRASES = [
@@ -29,7 +33,27 @@ CLICHE_PHRASES = [
     "you need to know", "for beginners", "will blow your mind",
     "that will change", "you should know", "in 2026", "in 2025",
     "everything you", "the best way",
+    # clickbait clichés vidIQ punishes
+    "the terrifying", "the shocking", "just exposed", "just discovered",
+    "just revealed", "confessed this", "admitted this", "the secret",
+    "the truth", "terrifying truth", "terrifying secret", "shocking pattern",
+    "shocking truth", "nobody expected", "won't believe",
 ]
+
+CLICKBAIT_WORDS = {
+    "love", "confessed", "admitted", "exposed", "uncovered", "discovered",
+    "terrifying", "shocking", "insane", "crazy", "disturbing", "scary",
+}
+
+FALLBACK_TRENDING_PHRASES = [
+    "were not okay", "was not okay", "uncomfortable truth",
+    "nobody expected", "changes everything", "changed everything",
+    "is not what you think", "here's why", "and it worked",
+    "the real reason", "what happened next", "i was wrong",
+]
+
+TRENDS_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "trends.json")
+TRENDS_MAX_AGE_DAYS = 14
 
 POWER_WORDS = {
     # curiosity / surprise
@@ -86,11 +110,13 @@ def has_number(title: str) -> bool:
 
 def power_score(words_lower: list) -> float:
     hits = sum(1 for w in words_lower if w in POWER_WORDS)
+    clickbait_hits = sum(1 for w in words_lower if w in CLICKBAIT_WORDS)
     if hits == 0: return 55
-    if hits == 1: return 70
-    if hits == 2: return 80
-    if hits == 3: return 75
-    return 60  # diminishing / spammy
+    if hits == 1 and clickbait_hits <= 1: return 70
+    if hits == 1 and clickbait_hits > 1: return 50
+    if hits == 2: return 45  # stacking penalty
+    if hits == 3: return 30
+    return 20  # heavy stacking = spammy
 
 
 def sentiment_score(words_lower: list) -> float:
@@ -156,8 +182,57 @@ def specificity_score(words: list) -> float:
 def cliche_score(title_lower: str) -> float:
     hits = sum(1 for p in CLICHE_PHRASES if p in title_lower)
     if hits == 0: return 80
-    if hits == 1: return 35
-    return 15
+    if hits == 1: return 30
+    if hits == 2: return 10
+    return 0  # 3+ clichés = maximum penalty
+
+
+@lru_cache(maxsize=1)
+def _load_trends() -> dict | None:
+    """Load trends.json, returning None if missing or stale."""
+    try:
+        with open(TRENDS_PATH) as f:
+            data = json.load(f)
+        updated = datetime.fromisoformat(data["updated_at"])
+        age_days = (datetime.now(timezone.utc) - updated).days
+        if age_days > TRENDS_MAX_AGE_DAYS:
+            print(f"Warning: trends.json is {age_days} days old, falling back to static list", file=sys.stderr)
+            return None
+        return data
+    except (FileNotFoundError, KeyError, json.JSONDecodeError):
+        return None
+
+
+def trending_score(title_lower: str) -> float:
+    trends = _load_trends()
+
+    if trends is None:
+        hits = sum(1 for p in FALLBACK_TRENDING_PHRASES if p in title_lower)
+        if hits == 0: return 45
+        if hits == 1: return 75
+        return 85
+
+    phrase_hits = 0
+    for entry in trends.get("phrases", []):
+        if entry["phrase"] in title_lower:
+            if entry["count"] >= 7:
+                phrase_hits += 2
+            else:
+                phrase_hits += 1
+
+    topic_hits = sum(
+        1 for entry in trends.get("topics", [])
+        if entry["topic"].lower() in title_lower
+    )
+
+    if phrase_hits == 0 and topic_hits == 0:
+        return 45
+    base = 45
+    if phrase_hits >= 1:
+        base = 75 + min(phrase_hits - 1, 2) * 5
+    if topic_hits >= 1:
+        base += 10
+    return min(95, base)
 
 
 def score_title(title: str) -> dict:
@@ -176,6 +251,7 @@ def score_title(title: str) -> dict:
         "stopword":     stopword_score(words_lower),
         "specificity": specificity_score(words),
         "cliche":      cliche_score(title.lower()),
+        "trending":    trending_score(title.lower()),
     }
 
     total_w = sum(WEIGHTS.values())
