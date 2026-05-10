@@ -21,16 +21,29 @@ Output shows the final score, chars/words, and the per-factor sub-scores (length
 
 ## Refreshing trending data
 
-The scorer uses a `data/trends.json` file for up-to-date YouTube trending phrases and topics. To refresh it:
+The scorer uses a `data/trends.json` file for up-to-date YouTube trending phrases and topics.
 
-1. Get a YouTube Data API key from [Google Cloud Console](https://console.cloud.google.com/) (enable YouTube Data API v3).
-2. Run:
+### Setup (one-time)
+
+1. Go to [console.cloud.google.com](https://console.cloud.google.com/) and create a project (or select an existing one).
+2. Go to **APIs & Services > Library**, search for **YouTube Data API v3**, and enable it.
+3. Go to **APIs & Services > Credentials**, click **Create Credentials > API key**, and copy the key.
+4. Add it to your shell config:
 
 ```bash
-YOUTUBE_API_KEY=your-key-here scripts/fetch_trends.py
+# ~/.zshrc or ~/.bashrc
+export YOUTUBE_API_KEY=your-key-here
 ```
 
-This fetches ~150 trending video titles, extracts recurring phrases and topics, and writes `data/trends.json`. The scorer reads this file automatically.
+Then `source ~/.zshrc` (or open a new terminal).
+
+### Refreshing
+
+```bash
+python3 scripts/fetch_trends.py
+```
+
+This fetches ~150 trending video titles, extracts recurring phrases and topics, and writes `data/trends.json`. The scorer reads this file automatically. Each run uses ~700 YouTube API quota units (free tier allows 10,000/day).
 
 If `data/trends.json` is missing or older than 14 days, the scorer falls back to a built-in static phrase list. Refresh weekly for best results.
 
