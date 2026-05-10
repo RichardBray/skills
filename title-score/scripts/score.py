@@ -194,12 +194,14 @@ def _load_trends() -> dict | None:
         with open(TRENDS_PATH) as f:
             data = json.load(f)
         updated = datetime.fromisoformat(data["updated_at"])
+        if updated.tzinfo is None:
+            updated = updated.replace(tzinfo=timezone.utc)
         age_days = (datetime.now(timezone.utc) - updated).days
-        if age_days > TRENDS_MAX_AGE_DAYS:
+        if age_days >= TRENDS_MAX_AGE_DAYS:
             print(f"Warning: trends.json is {age_days} days old, falling back to static list", file=sys.stderr)
             return None
         return data
-    except (FileNotFoundError, KeyError, json.JSONDecodeError):
+    except (FileNotFoundError, KeyError, ValueError, json.JSONDecodeError):
         return None
 
 

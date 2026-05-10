@@ -55,3 +55,38 @@ def test_trending_score_topic_boost():
     finally:
         os.unlink(tmp_path)
         _load_trends.cache_clear()
+
+
+def test_trending_score_falls_back_when_file_is_stale():
+    from score import trending_score, _load_trends
+    stale_data = {
+        "updated_at": "2020-01-01T00:00:00+00:00",
+        "phrases": [{"phrase": "changes everything", "count": 9}],
+        "topics": [],
+    }
+    with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
+        json.dump(stale_data, f)
+        tmp_path = f.name
+    try:
+        with patch("score.TRENDS_PATH", tmp_path):
+            _load_trends.cache_clear()
+            score = trending_score("were not okay")
+            assert score >= 75
+    finally:
+        os.unlink(tmp_path)
+        _load_trends.cache_clear()
+
+
+def test_trending_score_falls_back_when_file_is_malformed():
+    from score import trending_score, _load_trends
+    with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
+        f.write("{ this is not valid json")
+        tmp_path = f.name
+    try:
+        with patch("score.TRENDS_PATH", tmp_path):
+            _load_trends.cache_clear()
+            score = trending_score("were not okay")
+            assert score >= 75
+    finally:
+        os.unlink(tmp_path)
+        _load_trends.cache_clear()
