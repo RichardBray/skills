@@ -9,9 +9,12 @@ import re
 import os
 import sys
 from collections import Counter
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
+from urllib.error import HTTPError, URLError
 from urllib.request import urlopen
 from urllib.parse import urlencode
+
+HTTP_TIMEOUT_SECONDS = 30
 
 STOPWORDS = {
     "a","an","the","of","in","on","at","to","for","with","and","or","but",
@@ -84,7 +87,6 @@ YT_API_BASE = "https://www.googleapis.com/youtube/v3"
 
 def _recent_date() -> str:
     """ISO date string for 7 days ago (for search recency filter)."""
-    from datetime import timedelta
     dt = datetime.now(timezone.utc) - timedelta(days=7)
     return dt.strftime("%Y-%m-%dT00:00:00Z")
 
@@ -119,7 +121,7 @@ def fetch_trending_titles(
             params["videoCategoryId"] = category_id
         url = f"{YT_API_BASE}/videos?{urlencode(params)}"
 
-    with urlopen(url) as resp:
+    with urlopen(url, timeout=HTTP_TIMEOUT_SECONDS) as resp:
         data = json.loads(resp.read())
     return [item["snippet"]["title"] for item in data.get("items", [])]
 
@@ -130,14 +132,26 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
 OUTPUT_PATH = os.path.join(DATA_DIR, "trends.json")
 
 
+def _safe_fetch(api_key: str, **kwargs) -> list[str]:
+    try:
+        return fetch_trending_titles(api_key, **kwargs)
+    except HTTPError as e:
+        body = e.read().decode("utf-8", errors="replace") if hasattr(e, "read") else ""
+        print(f"Warning: YouTube API HTTP {e.code} ({kwargs}): {body[:200]}", file=sys.stderr)
+        return []
+    except URLError as e:
+        print(f"Warning: YouTube API network error ({kwargs}): {e.reason}", file=sys.stderr)
+        return []
+
+
 def build_trends(api_key: str) -> dict:
     """Fetch trending titles and extract phrases + topics."""
     all_titles: list[str] = []
 
-    all_titles.extend(fetch_trending_titles(api_key, max_results=50))
-    all_titles.extend(fetch_trending_titles(api_key, max_results=50, category_id=TECH_CATEGORY_ID))
+    all_titles.extend(_safe_fetch(api_key, max_results=50))
+    all_titles.extend(_safe_fetch(api_key, max_results=50, category_id=TECH_CATEGORY_ID))
     for query in SEARCH_QUERIES:
-        all_titles.extend(fetch_trending_titles(api_key, max_results=25, search_query=query))
+        all_titles.extend(_safe_fetch(api_key, max_results=25, search_query=query))
 
     return {
         "updated_at": datetime.now(timezone.utc).isoformat(),
