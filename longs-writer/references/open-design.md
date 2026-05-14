@@ -1,100 +1,173 @@
-# Open Design — open source Claude Design alternative
 
 
 ## Intro
 
-This is Open Design
+  This is Open Design
 
-an open source local first alternative to Claude Design
+  an open source alternative to Claude Design
 
-that lets you use whatever coding agent you already have installed
+  that lets you use whatever coding agent or model you already have installed
 
-to generate full web prototypes mobile apps pitch decks and more
+  to generate full web prototypes mobile apps pitch decks and more
 
-with 72 brand grade design systems built in
+  with 72 brand grade design systems built in
 
-and every project stays on your machine so nothing touches the cloud
+  and every project stays on your machine so nothing touches the cloud
 
-but its still early and setup isnt as simple as just opening a browser tab
+  but its only been out for a month
 
-so is it actually worth switching from Claude Design
+  the docs are rough and you need to set up a local daemon
 
-hit subscribe and let's find out
+  so is it actually worth switching from Claude Design
+
+  hit subscribe and let's find out
 
 
 ## Exp
 
-Claude Design dropped on April 17th and it blew up
+  Claude Design was released on April 17th and was an instant hit
 
-but its proprietary cloud only and locked to one model at 20 dollars a month
+  but its proprietary cloud only and locked to one model at 20 dollars a month
 
-11 days later Tom Huang and the team at nexu shipped this as an open source alternative
+  which basiucally means it's not for everyone
 
-and it hit 39 thousand stars in under a month
+  so 11 days later Tom Huang and the team at nexu shipped this as an open source alternative
 
-but how is it able to produce such good designs
+  which was also really popular 
 
-well because of two things working together
+  and it hit 39 thousand stars in under a month
 
-the first is design systems
+  but how is this tool able to produce good designs just like claude design
 
-full brand specs with real typography spacing and colour tokens
+  well because of two things working together
 
-not vibes but actual values from brands like Linear and Stripe and Spotify
+  the first is design systems
 
-the second thing is skills
+  full brand specs with typography spacing and colour tokens
 
-structured rules for each output type
+ inspired from brands like Linear and Stripe and Spotify
 
-so a dashboard skill knows how to lay out charts and a deck skill knows how to structure slides
+  the second thing is skills, lots of skills
 
-theres even an anti ai slop checklist baked into every prompt
+  structured rules for each output type
 
-if youve seen my video on impeccable this might sound familiar
+  so a dashboard skill knows how to lay out charts and a deck skill knows how to structure slides
 
-but there are some key differences which ill get into later
+  theres even an anti ai slop checklist baked into every prompt
 
-and before it generates anything it asks you about your audience tone and brand context
+  and before it generates anything it asks you about your audience tone and brand context
 
-so its not guessing
+  if youve seen my video on impeccable this might sound familiar
 
-one thing to note if you want to use it with Claude you'll need an API key
+  but there are some key differences which ill get into later
 
-because Anthropic doesnt allow subscriptions to be used with third party tools
+  one thing to note if you want to use open design with Claude you'll need an API key
 
-but it works with 15 other agents so you have options
+  because Anthropic doesnt allow subscriptions to be used with third party tools
 
-lets go through a quick demo
+  but it works with 15 other agents so you have options
 
+  so let's use it to redesign a youtube channel searcher I've been working on
+
+  using a non claude model like, glm-5.1 to see if it can still produce amazing designs
+
+---
 
 ## Demo
 
-- use the yt-channels project as the base
-- walk through the discovery form to show how it locks down design parameters before generating
-- generate a redesigned UI using one of the 72 design systems to show brand-grade output
-- swap to a different design system with the same prompt to show how flexible the skill system is
+so to get started you can download the desktop app for mac or windows
+
+[https://github.com/nexu-io/open-design/releases]
+
+run it with docker, or build from source
+
+which is what I've done, so while it's running
+
+I can view the project on this url
+
+which looks super overwhelming for someone like me who hasn't used claude design before
+
+but we can click 
+
+[it has picked up on my installed agent harnesses]
+
+[go through execution and model, change to codex for reasoning effort, opencode for os models]
+
+[pick glm]
+
+[media providers, so openai for image genration, elevenlabs for text to speech or sound effects]
+
+[skills, external mcps]
+
+[orbit = which pulls data form connectors github linear gmail, gets data and uses ai to publish results into a single html page, once a day]
+
+[you can let a coding agent control open design through an mcp server]
+
+there's also pets whcih are from codex, basically there's a lot goin gon here
+
+but we're going to leave the defaults and prototype something
+
+[give it name]
+
+[riff, design systems and templates]
+
+[choose miro]
+
+[mention prototype tab, deck for html presentations, or use an existing template]
+
+[riff]
+
+
+  Demo
+
+  - use the yt-channels project as the base
+  - pick a design system and skill
+  - walk through the discovery form (audience, tone, brand context)
+  - generate a prototype from a prompt related to the project
+  - show the live preview in the sandboxed iframe
+  - show the output quality and how it doesn't look like generic ai
+  - export in a couple of formats
+  - swap design system and regenerate to show the difference
 
 
 ## Outro
 
-so is this worth using
+so that is a quick overview of open design
 
-if you already have a coding agent installed its a no brainer to try
+  is it worth using
 
-the design system and skills combo means the output actually looks professional
+  well if you already have a coding agent installed its a no brainer to try
 
-but how does it compare to impeccable
+  the design system and skills combo means the output actually looks pretty decent
 
-well impeccable gives you more control over iteration with things like live editing and critique
+  but how does it compare to impeccable
 
-but its a skill you add to your existing agent
+  personally I like how impeccable does the planning,
 
-open design gives you the full platform with 72 design systems and export options baked in
+  it asks you a series of question sfirst about the design you want
 
-so if you want a lightweight addition to your workflow impeccable is great
+  generates some mockups of the design, you pick the one you like and it goes from there
 
-but if you want an all in one design environment open design is worth trying
+  so you can have pretty much no idea of the design you want at the start
 
-if you want to catch bugs before your users do check out Better Stack for error handling its like Sentry but much much cheaper link in the description
+  and end up with somethnig impressive
 
-subscribe for more and ill see you in the next one
+  open design and also claude design is more for someone 
+
+  who already has some design knowledge because 
+
+  it get's you to pick a design syustem up front
+
+  but it does have a great ui for making comments and tweaks
+
+  and requires less prompts to design someting
+
+  but to be honest, it did a great job of desinging with glm
+
+  and this is a great tool if I wanted to design something relatively quickly
+
+  for not too much money
+
+  but if you do have the money, claude design is pretty good
+
+  I mean look at what it did with the same prompt
