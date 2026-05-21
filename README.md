@@ -7,14 +7,10 @@ A collection of AI agent skills for content creation and developer tooling. Comp
 | Skill | Command | Description |
 |-------|---------|-------------|
 | Tweet | `/tweet` | Generate 5 tweet options with character counts |
-| LinkedIn | `/linkedin` | Transform content into a LinkedIn post |
-| Podcast Tweet | `/podcast-tweet` | Generate a podcast episode promotion tweet |
 | Shorts Writer | `/shorts-writer` | Write short video scripts for developer-focused tech shorts |
-| Short Vid | `/short-vid` | Write a 30-35 second YouTube Shorts script |
-| Longs Writer | `/long-vid` | Write a long-form YouTube script with voice-driven workflow |
-| YT Titles | `/yt-titles` | Generate 10 clickbait YouTube title options |
+| Longs Writer | `/longs-writer` | Write a long-form YouTube script with voice-driven workflow |
+| Documentary Writer | `/documentary-writer` | Write documentary-style scripts about industry events and controversies |
 | Prune Context File | `/prune-context-file` | Audit and prune CLAUDE.md/AGENTS.md using evidence-based criteria |
-| Docs Agent Audit | `/docs-agent-audit` | Audit a docs site from an AI agent's perspective and rank PR-sized fixes |
 | Title Score | `/title-score` | Score a YouTube title 0-100 with a vidIQ-style heuristic breakdown |
 | Newsletter Digest | `/newsletter-digest` | Fetch dev newsletter RSS feeds and pick the 10 best articles as YouTube video topic ideas |
 
