@@ -15,6 +15,7 @@ Before writing, read all files in the `references/` directory inside this skill 
 - Give an honest take on any limitations or annoying things
 - End with "subscribe for more" and a short relevant sign-off
 - No section headers — one flowing script
+- Scripts must be no more than 30 lines (excluding blank lines)
 
 ## Output
 
