@@ -35,3 +35,14 @@ Say things like:
 
 The routing table assumes flat-rate subscriptions on all three providers.
 If your billing differs (e.g. per-token API keys), adjust the cost column in `SKILL.md` - it's a starting hypothesis, not gospel.
+
+## Calibrating the table
+
+The table self-corrects from real work: the workflow's last step proposes score changes when a model repeatedly fails or aces a task type.
+To deliberately benchmark a new model, run a bake-off:
+
+> Delegate this same task to glm, gpt, and \<new model\> in parallel.
+> Compare the outputs on correctness, completeness, and how much fixing each needed.
+> Report a comparison table and suggest routing-table score changes.
+
+Run it on two or three tasks representative of your actual work - that beats synthetic benchmarks for deciding your routing.
