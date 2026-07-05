@@ -11,12 +11,12 @@ Split the current task into self-contained subtasks, route each to the cheapest 
 
 Higher = better on every axis; a high cost score means cheap to use. All three providers are on flat subscriptions (Z.AI coding plan, ChatGPT plan via codex login, Claude subscription), so cost measures how fast a model burns its plan's usage limits, not dollars per token.
 
+Each row wins exactly one kind of work; if a model never wins a rule below, it doesn't get a row.
+
 | model     | cost | intelligence | taste |
 |-----------|------|--------------|-------|
 | glm-5.2   | 9    | 7            | 5     |
-| haiku-4.5 | 9    | 4            | 4     |
 | gpt-5.x   | 7    | 8            | 6     |
-| sonnet-5  | 7    | 6            | 7     |
 | opus-4.8  | 5    | 7            | 8     |
 | fable-5   | 3    | 9            | 9     |
 
@@ -24,9 +24,8 @@ Routing rules:
 
 - These are defaults, not limits. Standing permission to override: if a cheaper model's output doesn't meet the bar, rerun with a smarter model without asking. Judge the output, not the price tag.
 - Cost is a tie-breaker only; for anything that ships, intelligence > taste > cost.
-- Bulk/mechanical work (clear-spec implementation, data analysis, migrations): glm-5.2, or gpt when the spec is fuzzy enough to need more intelligence.
-- Trivial lookups and mechanical checks: haiku-4.5.
-- Anything user-facing (UI, copy, API design) needs taste >= 7: sonnet-5, opus-4.8, or fable-5.
+- Bulk/mechanical work (clear-spec implementation, data analysis, migrations) and trivial lookups: glm-5.2, or gpt when the spec is fuzzy enough to need more intelligence.
+- Anything user-facing (UI, copy, API design) needs taste >= 7: opus-4.8 or fable-5.
 - Reviews of plans/implementations: fable-5 or opus-4.8, plus gpt via codex as an independent perspective from a different model family.
 - Hard, single-threaded problems: keep them in the main agent (fable-5); delegation overhead beats the savings.
 
