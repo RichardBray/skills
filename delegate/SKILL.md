@@ -54,3 +54,4 @@ Add `--skip-git-repo-check` to codex outside a git repo. Answers: glm after the 
 4. Launch independent subtasks in parallel (multiple Bash/Agent calls in one block; `run_in_background` for long ones).
 5. Verify every result before integrating - run the code, check the claims. Escalate to a smarter model on failure rather than patching mediocre output.
 6. Integrate and report: which model did what, what was verified, anything escalated.
+7. When a model repeatedly fails at or aces a task type, propose an update to its scores in the routing table - real delegations are the eval.
