@@ -7,6 +7,17 @@ description: Route subtasks to other models - glm-5.2 (opencode), gpt (codex exe
 
 Split the current task into self-contained subtasks, route each to the cheapest model that meets the quality bar, run them (in parallel where independent), then verify and integrate the results.
 
+## Orchestrator check
+
+Before decomposing: check your own model (stated in your system prompt, e.g. "claude-sonnet-5").
+This skill's routing assumes a strong orchestrator (opus-4.8 or fable-5) doing decomposition and synthesis, with cheap models on leaf work - that split is what makes delegation a net win rather than just moving cost around.
+
+If you are not opus-4.8 or fable-5, warn the user once before proceeding:
+
+> You're running delegate on [model]. This skill assumes a strong orchestrator (Opus/Fable) for decomposition and synthesis - on a weaker model both layers end up similar strength, which weakens the payoff. Switch to Opus or Fable for better routing/synthesis quality, or continue if this task is simple enough not to matter.
+
+Then proceed regardless - this is a warning, not a block, unless the user says to stop.
+
 ## Model routing table
 
 Higher = better on every axis; a high cost score means cheap to use. All three providers are on flat subscriptions (Z.AI coding plan, ChatGPT plan via codex login, Claude subscription), so cost measures how fast a model burns its plan's usage limits, not dollars per token.
