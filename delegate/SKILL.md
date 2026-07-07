@@ -20,17 +20,17 @@ Then proceed regardless - this is a warning, not a block, unless the user says t
 
 ## Model routing table
 
-Higher = better on every axis; a high cost score means cheap to use. All three providers are on flat subscriptions (Z.AI coding plan, ChatGPT plan via codex login, Claude subscription), so cost measures how fast a model burns its plan's usage limits, not dollars per token.
+Intelligence and taste: higher = better. Cost: higher = more expensive (burns usage limit faster). All three providers are on flat subscriptions (Z.AI coding plan, ChatGPT plan via codex login, Claude subscription), so cost measures how fast a model burns its plan's usage limits, not dollars per token.
 
 Each row wins exactly one kind of work; if a model never wins a rule below, it doesn't get a row.
 
 | model     | cost | intelligence | taste |
 |-----------|------|--------------|-------|
-| glm-5.2      | 9    | 7            | 5     |
-| gpt-5.x      | 7    | 8            | 6     |
-| composer-2.5 | 9    | 8            | 5     |
+| glm-5.2      | 1    | 7            | 5     |
+| gpt-5.x      | 3    | 8            | 6     |
+| composer-2.5 | 1    | 8            | 5     |
 | opus-4.8  | 5    | 7            | 8     |
-| fable-5   | 3    | 9            | 9     |
+| fable-5   | 7    | 9            | 9     |
 
 Routing rules:
 
@@ -38,9 +38,9 @@ Routing rules:
 - Cost is a tie-breaker only; for anything that ships, intelligence > taste > cost.
 - Bulk/mechanical work (clear-spec implementation, data analysis, migrations) and trivial lookups: glm-5.2, or gpt when the spec is fuzzy enough to need more intelligence.
 - Fast agentic implementation with a decent spec (multi-file edits, terminal-heavy tasks): composer-2.5 - near-frontier agentic coding (Artificial Analysis Coding Agent Index 62 vs 65-66 for GPT-5.5/Opus-4.7 high effort, ~10-60x cheaper per task; May 2026) at glm-like cost. Intelligence and taste scores are provisional pending bake-off calibration.
-- Anything user-facing (UI, copy, API design) needs taste >= 7: opus-4.8 or fable-5.
-- Reviews of plans/implementations: fable-5 or opus-4.8, plus gpt via codex as an independent perspective from a different model family.
-- Hard, single-threaded problems: keep them in the main agent (fable-5); delegation overhead beats the savings.
+- Anything user-facing (UI, copy, API design) needs taste >= 7: opus-4.8.
+- Reviews of plans/implementations: opus-4.8, plus gpt via codex as an independent perspective from a different model family. Don't spawn a subagent on your own model to "review" your own work.
+- Hard, single-threaded problems: keep them in the main agent; delegation overhead beats the savings.
 
 ## Invocation mechanics
 
