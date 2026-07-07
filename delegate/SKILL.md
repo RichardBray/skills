@@ -30,7 +30,6 @@ Each row wins exactly one kind of work; if a model never wins a rule below, it d
 | gpt-5.x      | 3    | 8            | 6     |
 | composer-2.5 | 1    | 8            | 5     |
 | opus-4.8  | 5    | 7            | 8     |
-| fable-5   | 7    | 9            | 9     |
 
 Routing rules:
 
