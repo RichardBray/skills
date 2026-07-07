@@ -1,18 +1,19 @@
 # delegate
 
 A [Claude Code](https://claude.com/claude-code) skill that turns the main agent into an orchestrator.
-It splits a task into subtasks and routes each one to the cheapest model that meets the quality bar - GLM 5.2, GPT via Codex, or Claude subagents - then verifies the results before integrating them.
+It splits a task into subtasks and routes each one to the cheapest model that meets the quality bar - GLM 5.2, GPT via Codex, Composer 2.5 via Cursor CLI, or Claude subagents - then verifies the results before integrating them.
 
 ## What's inside
 
 - `SKILL.md` - the skill: a model routing table (cost / intelligence / taste), routing rules, invocation mechanics, and a six-step orchestration workflow.
-- `agents/glm-runner.md` and `agents/codex-runner.md` - courier agents.
+- `agents/glm-runner.md`, `agents/codex-runner.md`, and `agents/composer-runner.md` - courier agents.
   Thin Haiku subagents that wrap the external CLIs so they behave like first-class Claude Code subagents: agent UI, background runs, parallelism, follow-up messages.
 
 ## Prerequisites
 
 - [opencode](https://opencode.ai) CLI authenticated with a Z.AI coding plan (for GLM 5.2).
 - [codex](https://github.com/openai/codex) CLI logged in with a ChatGPT plan or OpenAI API key (for GPT).
+- [Cursor CLI](https://cursor.com/cli) (`agent`) logged in with a Cursor plan (for Composer 2.5).
 - Missing one? The skill routes around it with the models you have.
 
 ## Install
