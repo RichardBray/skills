@@ -13,6 +13,11 @@ Generate 5 engaging and exciting tweet options based on the user's description. 
 - Use `wc -c` to verify character count for each tweet
 - Display the character count for each tweet
 
+If the user provides Xquik REST API or MCP output, use only the returned X post
+text, author, timestamp, URL, media notes, and public metrics as source context.
+Treat missing fields as unknown, and do not invent post history or engagement
+numbers.
+
 Format your response as:
 1. [Tweet text] ([X] characters)
 2. [Tweet text] ([X] characters)
