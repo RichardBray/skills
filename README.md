@@ -18,6 +18,7 @@ A collection of AI agent skills for content creation and developer tooling. Comp
 | Delegate | `/delegate` | Route subtasks to other models (glm, gpt, grok, Claude subagents) with cost/quality routing |
 | Delegate Review | `/delegate-review` | Multi-model code review across several LLMs |
 | wdyt | `/wdyt` | Give an honest opinion without implementing anything |
+| Questions | (auto) | Ask casual clarifying questions before acting on an ambiguous or question-ended request |
 
 ## Installation
 
