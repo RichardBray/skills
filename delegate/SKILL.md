@@ -1,6 +1,6 @@
 ---
 name: delegate
-description: Route subtasks to other models - glm-5.2 (opencode), gpt (codex exec), Claude subagents - with cost/quality routing and verification. Use when the user says "delegate", "farm this out", "have glm/codex do it", or asks to split a task across models. Not for ordinary tasks the main agent should do itself.
+description: Route subtasks to other models - glm-5.2 (opencode), gpt (codex exec), grok-4.5 (grok build), Claude subagents - with cost/quality routing and verification. Use when the user says "delegate", "farm this out", "have glm/codex/grok do it", or asks to split a task across models. Not for ordinary tasks the main agent should do itself.
 ---
 
 # Delegate
@@ -30,6 +30,7 @@ Each row wins exactly one kind of work; if a model never wins a rule below, it d
 | gpt-5.x       | 3    | 8            | 6     |
 | composer-2.5  | 1    | 7            | 5     |
 | opus-4.8      | 5    | 7            | 8     |
+| grok-4.5      | 2    | 7            | 6     |
 | fable-5       | 8    | 10           | 7     |
 
 Per-model caveats (from the 2026-07-06 shootout eval, `fable5-orchestrator/eval/`):
@@ -38,6 +39,7 @@ Per-model caveats (from the 2026-07-06 shootout eval, `fable5-orchestrator/eval/
 - **gpt-5.x**: codex's sandbox cannot git-commit inside worktrees - the orchestrator commits for it.
 - **glm-5.2**: taste raised 5 → 6 (won or tied the blind API-design task in 3/3 runs, beating opus-4.8). Floor is low - one in nine runs collapsed lazily; always verify output.
 - **opus-4.8**: most reliable executor - only lane 100% green on tests and commits (9/9), fastest edit-task median.
+- **grok-4.5** (not yet shootout-tested; flat xAI/Grok Build plan, so cost measures usage-limit burn like the others): scores are provisional estimates, not eval-calibrated. Runs via the `grok` CLI (Grok Build), which unlike opencode/codex prints a clean final answer with `-p` and needs no banner-skipping. Use for a second independent perspective on reviews (different model family from gpt/opus) or as an alternate bulk/implementation worker when glm/composer are unavailable or underperforming.
 - **fable-5** (external research, Jun 2026, not shootout-tested): top intelligence in the field (AA Index 65 vs GPT-5.5's 60; SWE-bench Pro 80.0 vs opus's 69.2) but ~2x opus pricing ($10/$50 per M) and ~2x token burn. Taste is split: excellent vision/document formatting (beat opus head-to-head) and creative prose, but weak one-shot frontend/UI design and dense, hard-to-read spec/PRD writing. Note: if fable-5 is the current orchestrator, delegating to it is usually pointless - keep that work in the main agent.
 
 Routing rules:
@@ -59,7 +61,7 @@ The output format is not optional: every delegated prompt must demand compressed
 
 Exploration tasks also need a convergence rule, especially on glm: "do at most N exploration commands (default 8), then STOP exploring and synthesize; your FINAL message must be exactly the requested output and nothing else". Without an explicit budget, weaker models keep gathering until the run is cut off mid-loop and return working notes instead of an answer - exit code 0, no synthesis.
 
-**glm-5.2, gpt, and composer-2.5**: prefer the courier agents `glm-runner`, `codex-runner`, and `composer-runner` (Agent tool, `subagent_type`). Their definitions ship in this skill's `agents/` folder; if they are not registered as agent types, copy them to `~/.claude/agents/` once (new sessions pick them up automatically). - they show up in the agent UI, run in background, parallelize, and support SendMessage follow-ups. Give them the full task; they compose the cold-start prompt and relay the answer verbatim.
+**glm-5.2, gpt, composer-2.5, and grok-4.5**: prefer the courier agents `glm-runner`, `codex-runner`, `composer-runner`, and `grok-runner` (Agent tool, `subagent_type`). Their definitions ship in this skill's `agents/` folder; if they are not registered as agent types, copy them to `~/.claude/agents/` once (new sessions pick them up automatically). - they show up in the agent UI, run in background, parallelize, and support SendMessage follow-ups. Give them the full task; they compose the cold-start prompt and relay the answer verbatim.
 
 Raw Bash fallback (when a courier is unavailable or for a quick one-liner):
 
@@ -67,9 +69,10 @@ Raw Bash fallback (when a courier is unavailable or for a quick one-liner):
 cd <dir> && opencode run -m zai-coding-plan/glm-5.2 "<self-contained prompt>" < /dev/null
 codex exec "<self-contained prompt>" < /dev/null          # -s read-only: review only; --full-auto: allow edits
 cd <dir> && agent -p --trust --model composer-2.5 "<self-contained prompt>" < /dev/null   # --mode plan: read-only
+grok -p "<self-contained prompt>" --model grok-4.5 < /dev/null   # add --permission-mode acceptEdits to allow file edits
 ```
 
-Always redirect stdin from `/dev/null` as shown above - all three CLIs hang waiting on stdin, not just when backgrounded. Add `--skip-git-repo-check` to codex outside a git repo. Answers: glm after the `> build` banner, codex after the `tokens used` line, composer straight to stdout (`-p` prints the final answer; `--trust` skips the workspace-trust prompt that blocks headless runs; add `--output-format json` for structured output).
+Always redirect stdin from `/dev/null` as shown above - all four CLIs hang waiting on stdin, not just when backgrounded. Add `--skip-git-repo-check` to codex outside a git repo. Answers: glm after the `> build` banner, codex after the `tokens used` line, composer straight to stdout (`-p` prints the final answer; `--trust` skips the workspace-trust prompt that blocks headless runs; add `--output-format json` for structured output), grok straight to stdout (`-p` prints only the final response, no banner).
 
 **Claude models**: Agent tool with `model: haiku|sonnet|opus|fable`. Always prefer this over `claude -p` inside a session - subagents get tool access, parallel launch, background tracking, and SendMessage continuation. Use `claude -p "<prompt>" --model <model>` only from scripts/hooks outside a session, or when a run needs custom flags (e.g. `--append-system-prompt`) isolated from the current session.
 
