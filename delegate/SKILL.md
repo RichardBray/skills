@@ -64,12 +64,12 @@ Exploration tasks also need a convergence rule, especially on glm: "do at most N
 Raw Bash fallback (when a courier is unavailable or for a quick one-liner):
 
 ```bash
-cd <dir> && opencode run -m zai-coding-plan/glm-5.2 "<self-contained prompt>"
-codex exec "<self-contained prompt>"          # -s read-only: review only; --full-auto: allow edits
-cd <dir> && agent -p --trust --model composer-2.5 "<self-contained prompt>"   # --mode plan: read-only
+cd <dir> && opencode run -m zai-coding-plan/glm-5.2 "<self-contained prompt>" < /dev/null
+codex exec "<self-contained prompt>" < /dev/null          # -s read-only: review only; --full-auto: allow edits
+cd <dir> && agent -p --trust --model composer-2.5 "<self-contained prompt>" < /dev/null   # --mode plan: read-only
 ```
 
-Add `--skip-git-repo-check` to codex outside a git repo, and `< /dev/null` to any of them when run in background (they hang waiting on stdin otherwise). Answers: glm after the `> build` banner, codex after the `tokens used` line, composer straight to stdout (`-p` prints the final answer; `--trust` skips the workspace-trust prompt that blocks headless runs; add `--output-format json` for structured output).
+Always redirect stdin from `/dev/null` as shown above - all three CLIs hang waiting on stdin, not just when backgrounded. Add `--skip-git-repo-check` to codex outside a git repo. Answers: glm after the `> build` banner, codex after the `tokens used` line, composer straight to stdout (`-p` prints the final answer; `--trust` skips the workspace-trust prompt that blocks headless runs; add `--output-format json` for structured output).
 
 **Claude models**: Agent tool with `model: haiku|sonnet|opus|fable`. Always prefer this over `claude -p` inside a session - subagents get tool access, parallel launch, background tracking, and SendMessage continuation. Use `claude -p "<prompt>" --model <model>` only from scripts/hooks outside a session, or when a run needs custom flags (e.g. `--append-system-prompt`) isolated from the current session.
 
