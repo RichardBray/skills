@@ -5,7 +5,7 @@ description: Give an honest opinion without implementing anything, when a user m
 
 # wdyt
 
-Trigger: the user's message ends with "wdyt" or "what do you think" (any casing/punctuation).
+Trigger: the message ends with "wdyt" or "what do you think" (any casing/punctuation) used as the user's own sign-off asking for an opinion - not the phrase appearing as a mention, example, or quote inside an instruction. "should we do X? wdyt" triggers; "make Y behave the same way /wdyt does" does not, even though it ends on the literal string - there the user is instructing you to build something, not asking your opinion.
 
 When triggered:
 
