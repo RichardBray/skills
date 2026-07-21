@@ -52,6 +52,8 @@ wezterm cli split-pane --right --percent 40 -- opencode -m zai-coding-plan/glm-5
 
 The orchestrator can drive it (`send-text` to type, `get-text` to read the rendered pane back - this just reads wezterm's terminal buffer, it's not app-aware) or you can type into it directly. It stays open until you close it with `wezterm cli kill-pane --pane-id <id>`. See `SKILL.md` for the full mechanics and why this isn't the default.
 
+`get-text` works identically no matter what's running in the pane - `claude`, `opencode`, a plain shell. Wezterm's mux server keeps a screen buffer per pane: a grid of characters (plus color/style) that mirrors exactly what's currently drawn on screen, updated as the program inside writes to it. `get-text` just serializes that grid to plain text. It has no awareness of the app running inside - it's reading the terminal, not the process - so a Claude Code pane and a GLM pane are read the exact same way.
+
 Example prompt:
 
 > Open a live GLM 5.2 session in a wezterm pane, split to the right. Don't close it until I say so.
