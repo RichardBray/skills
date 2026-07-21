@@ -60,6 +60,8 @@ Example prompt:
 
 That's a request for the pane shape specifically - as opposed to "have glm do X," which stays a normal one-shot courier call.
 
+**Drawback:** `get-text` reads scrollback too (`--start-line`/`--end-line`, negative values reach backwards), so a whole session's history can be pulled in one call. But TUIs like `claude`/`opencode`/`codex` redraw the same screen rows each turn instead of appending linearly, so older turns in scrollback can come back partial or overwritten, and anything past wezterm's scrollback depth is gone for good. For a long-running session, trust the app's own history (`claude --resume`, `opencode session`) over the scraped buffer.
+
 ## Calibrating the table
 
 The table self-corrects from real work: the workflow's last step proposes score changes when a model repeatedly fails or aces a task type.
