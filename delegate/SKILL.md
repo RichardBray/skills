@@ -82,6 +82,25 @@ Always redirect stdin from `/dev/null` as shown above - all four CLIs hang waiti
 - A single quick lookup, or anything where you need to see the exact unfiltered CLI output (debugging the delegation itself, verifying a courier's claim, a one-off sanity check): raw Bash.
 - If a courier's result looks off (missing prefix, chatty, unbounded) - don't retry the same courier blind. Either tighten the prompt, or re-run the same task via raw Bash to see the ground truth and confirm whether the courier or the underlying model was at fault.
 
+**Courier/subagent vs live wezterm pane:** two different shapes for delegating to any model, pick based on who's driving. This is a supplementary mode, not a default - see verdict below.
+
+- Courier/subagent (`glm-runner`, `codex-runner`, `composer-runner`, `grok-runner`, `fable-runner`): fire-and-forget. The orchestrator sends one self-contained prompt, gets one bounded answer back, done. No persistent process, no back-and-forth; each invocation is a cold start unless resumed via SendMessage. Backgroundable and parallelizable - launch several at once. Use this when *you* (the orchestrator) are delegating a subtask as part of a larger task.
+- Live wezterm pane running the model's interactive CLI directly: a real, separate, long-lived terminal session - either the *user* talks to it directly, or the orchestrator drives it via `send-text`/`get-text`. Not cold-started per message; it keeps its own conversation state across turns like any interactive session, and stays open until explicitly closed. Works for any interactive CLI, not just Claude models:
+  ```bash
+  wezterm cli split-pane --right --percent 40 -- claude --model claude-fable-5     # Claude, any model
+  wezterm cli split-pane --right --percent 40 -- opencode -m zai-coding-plan/glm-5.2  # glm-5.2
+  wezterm cli spawn --new-window -- <same commands>   # separate window instead of split
+  ```
+  Drive it programmatically: `wezterm cli send-text --pane-id <id> --no-paste "<text>"` then a bare `\r` to submit (the text and the Enter must be sent as two separate calls - a trailing `\r` on the first call does not reliably submit), `wezterm cli get-text --pane-id <id>` to read the pane back. `get-text` isn't app-aware - it just dumps wezterm's mux-server copy of the pane's rendered terminal screen (like a scrollback capture); it works identically regardless of what CLI is running inside, and the app itself has no idea its output is being read. Close with `wezterm cli kill-pane --pane-id <id>` - only when the user says so; that's the entire point of this shape.
+
+**Verdict: not the default.** Keep courier/subagent as the default delegation path. The pane exists for a genuinely different job - a persistent, visible, human-in-the-loop session - not a faster or better version of delegation:
+
+- Couriers background and parallelize; N panes means N terminals to poll one `get-text` at a time, burning orchestrator turns.
+- Courier output is bounded at the source; a pane streams the full TUI (box-drawing, token/cost counters, MCP status), which is noisy to parse back into a usable answer.
+- Couriers work headless (CI, SSH, no GUI); panes need a real terminal mux running locally.
+
+Reach for a pane specifically when the user wants to watch or drive a model live themselves, or explicitly asks for a persistent session - not as a substitute for `glm-runner`/`codex-runner`/etc. in a normal delegation flow.
+
 ## Workflow
 
 1. Decompose the task into subtasks; note which are independent (parallelizable) and which are sequential.
