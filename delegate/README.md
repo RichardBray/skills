@@ -20,6 +20,14 @@ It splits a task into subtasks and routes each one to the cheapest model that me
 
 ## Install
 
+Via [skills.sh](https://skills.sh):
+
+```bash
+npx skills add https://github.com/RichardBray/skills --skill delegate
+```
+
+Or manually:
+
 ```bash
 git clone https://github.com/RichardBray/skills
 ln -s "$(pwd)/skills/delegate" ~/.claude/skills/delegate
