@@ -1,7 +1,6 @@
 ---
 name: delegate
 description: Route subtasks to other models via courier agents with cost/quality routing and verification, or open a live session with a model in a wezterm pane.
-disable-model-invocation: true
 argument-hint: [task to delegate]
 allowed-tools: Bash(opencode run *), Bash(codex exec *), Bash(grok *), Bash(agent *), Bash(wezterm cli *)
 ---
