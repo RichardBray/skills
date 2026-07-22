@@ -85,6 +85,8 @@ Always redirect stdin from `/dev/null` as shown above - all four CLIs hang waiti
 A live pane is a different job entirely: a persistent, visible session the user watches or drives turn-by-turn in the model's own interactive CLI.
 When the user asks for a persistent, visible, or live session ("open a live GLM session in a pane"), read `references/live-sessions.md` before touching wezterm - it has the spawn and drive mechanics, the scrollback caveat, and the never-close-a-pane rule.
 
+**PR review with two independent models:** for "review this PR"/"review my diff", read `references/pr-review.md` - parallel courier reviews from different model families, merged/verified/triaged before any fix lands. Not a live cross-model chat; that mechanic is deliberately rejected in the reference for groupthink/parallelism reasons.
+
 ## Workflow
 
 1. Decompose the task into subtasks; note which are independent (parallelizable) and which are sequential.
