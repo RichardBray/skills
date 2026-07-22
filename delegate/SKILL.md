@@ -2,7 +2,7 @@
 name: delegate
 description: Route subtasks to other models via courier agents with cost/quality routing and verification, or open a live session with a model in a wezterm pane.
 argument-hint: [task to delegate]
-allowed-tools: Bash(opencode run *), Bash(codex exec *), Bash(grok *), Bash(agent *), Bash(wezterm cli *)
+allowed-tools: Bash(opencode run *), Bash(codex exec *), Bash(grok *), Bash(wezterm cli *)
 ---
 
 # Delegate
@@ -30,7 +30,6 @@ Each row wins exactly one kind of work; if a model never wins a rule below, it d
 |---------------|------|--------------|-------|
 | glm-5.2       | 1    | 5            | 6     |
 | gpt-5.x       | 3    | 8            | 6     |
-| composer-2.5  | 1    | 7            | 5     |
 | opus-4.8      | 5    | 7            | 8     |
 | grok-4.5      | 2    | 7            | 6     |
 | fable-5       | 8    | 10           | 7     |
@@ -46,10 +45,10 @@ Routing rules:
 - Cost is a tie-breaker only; for anything that ships, intelligence > taste > cost.
 - Bulk/mechanical work (clear-spec implementation, data analysis, migrations) and trivial lookups: glm-5.2, or gpt when the spec is fuzzy enough to need more intelligence.
 - Bulk/high-volume writing (website copy, boilerplate marketing copy, first drafts across many pages): glm-5.2. Higher-stakes single pieces still need opus-4.8's taste.
-- Fast agentic implementation with a decent spec (multi-file edits, terminal-heavy tasks): composer-2.5 - near-frontier agentic coding (Artificial Analysis Coding Agent Index 62 vs 65-66 for GPT-5.5/Opus-4.7 high effort, ~10-60x cheaper per task; May 2026) at glm-like cost. Intelligence and taste scores are provisional pending bake-off calibration.
+- Fast agentic implementation with a decent spec (multi-file edits, terminal-heavy tasks): grok-4.5 - near-frontier agentic coding at low cost relative to gpt/opus.
 - Anything user-facing (UI, copy, API design) needs taste >= 7: opus-4.8.
 - Reviews of plans/implementations: opus-4.8, plus gpt via codex as an independent perspective from a different model family. Don't spawn a subagent on your own model to "review" your own work.
-- Second independent review perspective, or alternate bulk/implementation worker when glm/composer are unavailable or underperforming: grok-4.5 (scores provisional, not eval-calibrated).
+- Second independent review perspective, or alternate bulk/implementation worker when glm is unavailable or underperforming: grok-4.5 (scores provisional, not eval-calibrated).
 - Hard, single-threaded problems: keep them in the main agent; delegation overhead beats the savings. If the main agent is opus-4.8 and the problem is at the edge of its ability (deep debugging, gnarly algorithms, vision/document-formatting work), escalate that one subtask to fable-5 - but not for frontend design or long-form specs, where opus's taste wins despite fable's intelligence.
 
 ## Invocation mechanics
@@ -60,18 +59,17 @@ The output format is not optional: every delegated prompt must demand compressed
 
 Exploration tasks also need a convergence rule, especially on glm: "do at most N exploration commands (default 8), then STOP exploring and synthesize; your FINAL message must be exactly the requested output and nothing else". Without an explicit budget, weaker models keep gathering until the run is cut off mid-loop and return working notes instead of an answer - exit code 0, no synthesis.
 
-**glm-5.2, gpt, composer-2.5, and grok-4.5**: prefer the courier agents `glm-runner`, `codex-runner`, `composer-runner`, and `grok-runner` (Agent tool, `subagent_type`). Their definitions ship in this skill's `agents/` folder; if they are not registered as agent types, copy them to `~/.claude/agents/` once (new sessions pick them up automatically). Couriers are first-class subagents: agent UI, background runs, parallelism, SendMessage follow-ups. Give them the full task; they compose the cold-start prompt and relay the answer verbatim.
+**glm-5.2, gpt, and grok-4.5**: prefer the courier agents `glm-runner`, `codex-runner`, and `grok-runner` (Agent tool, `subagent_type`). Their definitions ship in this skill's `agents/` folder; if they are not registered as agent types, copy them to `~/.claude/agents/` once (new sessions pick them up automatically). Couriers are first-class subagents: agent UI, background runs, parallelism, SendMessage follow-ups. Give them the full task; they compose the cold-start prompt and relay the answer verbatim.
 
 Raw Bash fallback (when a courier is unavailable or for a quick one-liner):
 
 ```bash
 cd <dir> && opencode run -m zai-coding-plan/glm-5.2 "<self-contained prompt>" < /dev/null
 codex exec "<self-contained prompt>" < /dev/null          # -s read-only: review only; --full-auto: allow edits
-cd <dir> && agent -p --trust --model composer-2.5 "<self-contained prompt>" < /dev/null   # --mode plan: read-only
 grok -p "<self-contained prompt>" --model grok-4.5 < /dev/null   # add --permission-mode acceptEdits to allow file edits
 ```
 
-Always redirect stdin from `/dev/null` as shown above - all four CLIs hang waiting on stdin, not just when backgrounded. Add `--skip-git-repo-check` to codex outside a git repo. Answers: glm after the `> build` banner, codex after the `tokens used` line, composer straight to stdout (`-p` prints the final answer; `--trust` skips the workspace-trust prompt that blocks headless runs; add `--output-format json` for structured output), grok straight to stdout (`-p` prints only the final response, no banner).
+Always redirect stdin from `/dev/null` as shown above - all three CLIs hang waiting on stdin, not just when backgrounded. Add `--skip-git-repo-check` to codex outside a git repo. Answers: glm after the `> build` banner, codex after the `tokens used` line, grok straight to stdout (`-p` prints only the final response, no banner).
 
 **Claude models**: Agent tool with `model: haiku|sonnet|opus|fable`. For fable escalations prefer `subagent_type: fable-runner` - unlike the couriers it runs the task itself on fable-5, with cold-start framing, bounded output, and the `[fable-5 | <outcome>]` prefix baked in. Always prefer the Agent tool over `claude -p` inside a session - subagents get tool access, parallel launch, background tracking, and SendMessage continuation. Use `claude -p "<prompt>" --model <model>` only from scripts/hooks outside a session, or when a run needs custom flags (e.g. `--append-system-prompt`) isolated from the current session.
 

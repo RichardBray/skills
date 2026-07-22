@@ -1,12 +1,12 @@
 # delegate
 
 A [Claude Code](https://claude.com/claude-code) skill that turns the main agent into an orchestrator.
-It splits a task into subtasks and routes each one to the cheapest model that meets the quality bar - GLM 5.2, GPT via Codex, Composer 2.5 via Cursor CLI, Grok 4.5 via Grok Build, or Claude subagents (including Fable 5) - then verifies the results before integrating them.
+It splits a task into subtasks and routes each one to the cheapest model that meets the quality bar - GLM 5.2, GPT via Codex, Grok 4.5 via Grok Build, or Claude subagents (including Fable 5) - then verifies the results before integrating them.
 
 ## What's inside
 
 - `SKILL.md` - the skill: a model routing table (cost / intelligence / taste), routing rules, invocation mechanics, and a six-step orchestration workflow.
-- `agents/glm-runner.md`, `agents/codex-runner.md`, `agents/composer-runner.md`, `agents/grok-runner.md`, and `agents/fable-runner.md` - courier agents.
+- `agents/glm-runner.md`, `agents/codex-runner.md`, `agents/grok-runner.md`, and `agents/fable-runner.md` - courier agents.
   Thin Haiku subagents that wrap the external CLIs so they behave like first-class Claude Code subagents: agent UI, background runs, parallelism, follow-up messages.
   `fable-runner` is the exception - Fable 5 is a Claude model, so it runs the task directly via `model: fable` rather than relaying to an external CLI.
 
@@ -14,7 +14,6 @@ It splits a task into subtasks and routes each one to the cheapest model that me
 
 - [opencode](https://opencode.ai) CLI authenticated with a Z.AI coding plan (for GLM 5.2).
 - [codex](https://github.com/openai/codex) CLI logged in with a ChatGPT plan or OpenAI API key (for GPT).
-- [Cursor CLI](https://cursor.com/cli) (`agent`) logged in with a Cursor plan (for Composer 2.5).
 - [Grok Build](https://x.ai) CLI (`grok`) logged in with an xAI plan (for Grok 4.5).
 - Missing one? The skill routes around it with the models you have.
 
