@@ -1,296 +1,204 @@
 #!/usr/bin/env python3
-"""Heuristic reimplementation of vidIQ-style YouTube title score (0-100).
+"""vidIQ-style YouTube title score (0-100), fitted to real vidIQ scores.
 
-Not affiliated with vidIQ. Weights are tunable in WEIGHTS at the top.
-Usage: score.py "Your title here"     -> prints score + breakdown
+Feature-based linear model. Coefficients in COEF are produced by
+scripts/calibrate.py from data/calibration.json (title -> real vidIQ score).
+
+Usage: score.py "Your title here"     -> score + feature contributions
        score.py --json "Title"        -> JSON output
-       echo "Title" | score.py -      -> reads from stdin (one per line)
+       echo "Title" | score.py -      -> one title per line from stdin
 """
 import argparse
 import json
 import os
 import re
 import sys
-from datetime import datetime, timezone
 from functools import lru_cache
 
-WEIGHTS = {
-    "length":       1.5,
-    "word_count":   1.0,
-    "number":       0.6,
-    "power":        1.2,
-    "sentiment":    0.9,
-    "caps":         0.9,
-    "punct":        0.7,
-    "stopword":     0.7,
-    "specificity":  1.6,
-    "cliche":       1.8,
-    "trending":     1.0,
+# --- vocabularies -----------------------------------------------------------
+
+# Curiosity / stakes / emotion. vidIQ rewards these heavily.
+CURIOSITY = {
+    "secret", "secrets", "shocking", "insane", "crazy", "weird", "strange",
+    "hidden", "truth", "revealed", "reveal", "exposed", "mystery", "nobody",
+    "wrong", "stop", "quit", "destroys", "beats", "actually", "really",
+    "forever", "everything", "never", "always", "surprising", "brutal",
+    "dangerous", "broken", "dead", "killed", "worst", "best", "finally",
 }
 
-CLICHE_PHRASES = [
-    "ultimate guide", "change your life", "you must", "do this instead",
-    "you need to know", "for beginners", "will blow your mind",
-    "that will change", "you should know", "in 2026", "in 2025",
-    "everything you", "the best way",
-    # clickbait clichés vidIQ punishes
-    "the terrifying", "the shocking", "just exposed", "just discovered",
-    "just revealed", "confessed this", "admitted this", "the secret",
-    "the truth", "terrifying truth", "terrifying secret", "shocking pattern",
-    "shocking truth", "nobody expected", "won't believe",
-]
-
-CLICKBAIT_WORDS = {
-    "love", "confessed", "admitted", "exposed", "uncovered", "discovered",
-    "terrifying", "shocking", "insane", "crazy", "disturbing", "scary",
+# Framing verbs/nouns that signal a story or a result, not a lecture.
+NARRATIVE = {
+    "i", "my", "me", "we", "our", "built", "tested", "tried", "replaced",
+    "cut", "quit", "shipped", "rebuilt", "broke", "fixed", "made", "spent",
 }
 
-FALLBACK_TRENDING_PHRASES = [
-    "were not okay", "was not okay", "uncomfortable truth",
-    "nobody expected", "changes everything", "changed everything",
-    "is not what you think", "here's why", "and it worked",
-    "the real reason", "what happened next", "i was wrong",
-]
+# Direct address. Strong vidIQ signal.
+SECOND_PERSON = {"you", "your", "you're", "youre", "yours"}
 
-TRENDS_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "trends.json")
-TRENDS_MAX_AGE_DAYS = 14
-
-POWER_WORDS = {
-    # curiosity / surprise
-    "secret","secrets","shocking","insane","crazy","weird","strange","hidden",
-    "truth","revealed","reveal","exposed","mystery","why","how","what","this",
-    # superlatives / comparative
-    "best","worst","fastest","slowest","biggest","smallest","ultimate","top",
-    "perfect","powerful","amazing","incredible","essential","favorite",
-    # value / utility
-    "free","new","easy","simple","quick","instant","proven","guide","tutorial",
-    # emotional
-    "love","hate","fail","mistake","mistakes","wrong","never","stop","avoid",
-    # tech-flavored
-    "killer","destroys","beats","faster","better","vs","versus",
-    # narrative / curiosity-gap
-    "tried","happened","saved","quit","released",
+# Audience / promise words that widen the funnel.
+AUDIENCE = {
+    "beginners", "beginner", "tutorial", "guide", "explained", "learn",
+    "walkthrough", "course", "basics", "crash", "intro", "introduction",
 }
 
-STOPWORDS = {
-    "a","an","the","of","in","on","at","to","for","with","and","or","but",
-    "is","are","was","were","be","been","being","it","its","as","by","from",
-    "that","this","these","those","i","you","he","she","we","they",
+# Dry academic framing vidIQ punishes.
+DRY_OPENERS = (
+    "understanding ", "introduction to ", "an introduction", "overview of ",
+    "building a ", "building an ", "getting started with ", "working with ",
+    "exploring ", "a comprehensive",
+)
+
+DEPTH_PHRASES = ("deep dive", "from scratch", "full config", "walkthrough",
+                 "under the hood", "internals", "from zero")
+
+CONFLICT_PHRASES = ("gets wrong", "went badly", "ruins", "leaking", "is slow",
+                    "slower than", "don't know", "doesn't work", "is broken",
+                    "stopped using", "nobody talks about", "nobody told you")
+
+# vidIQ's own emotion taxonomy, taken from the "Emotion" selector in its title
+# SUGGESTION feature. vidIQ has never published the scorer's factors, so this is
+# the closest thing to its native vocabulary for titles -- worth encoding on the
+# theory that the generator and the scorer share a feature space.
+EMOTION_PATTERNS = {
+    "e_comparison": r"\b(vs|versus|compared|comparison|better than|instead of|"
+                    r"or)\b",
+    "e_credibility": r"\b(i|we|my|our|actually|really|honest|truth|proven|"
+                     r"tested|years?|experience|senior|staff|expert)\b",
+    "e_curiosity": r"\b(why|how|what|secret|hidden|nobody|surprising|weird|"
+                   r"reason|happens?|discovered)\b",
+    "e_desire": r"\b(best|fastest|easiest|perfect|ultimate|free|10x|faster|"
+                r"simple|clean|beautiful|dream)\b",
+    "e_extreme": r"\b(insane|crazy|never|always|every|everything|entire|"
+                 r"completely|totally|forever|100x|worst|destroys?)\b",
+    "e_list": r"^\s*\d+\b|\b\d+\s+(things|ways|tips|tricks|reasons|mistakes|"
+              r"signs|steps|lessons|patterns|tools|levers)\b",
+    "e_negativity": r"\b(wrong|broken|bad|fail\w*|slow|useless|stop|quit|"
+                    r"mistake|dead|worse|hate|regret\w*|badly|dangerous)\b",
+    "e_question": r"\?",
+    "e_time": r"\b(\d+\s*(seconds?|minutes?|hours?|days?|weeks?|months?|years?)|"
+              r"in 20\d\d|now|today|finally|still|already|before)\b",
 }
 
-POSITIVE = {"best","amazing","incredible","perfect","love","powerful","fast","faster",
-            "easy","simple","new","free","great","awesome","beautiful","beats","wins"}
-NEGATIVE = {"worst","hate","fail","wrong","stop","never","avoid","bad","slow","ugly",
-            "mistake","mistakes","destroys","killer","crazy","insane","shocking"}
+WORD_RE = re.compile(r"[A-Za-z0-9'%.\-]+")
 
 
-def length_score(title: str) -> float:
-    n = len(title)
-    if n < 20: return max(0, n * 2)             # 0-40
-    if n <= 40: return 60 + (n - 20)            # 60-80
-    if n <= 60: return 90 + (n - 40) * 0.5      # 90-100
-    if n <= 65: return 100 - (n - 60) * 1.0     # 100-95 (peak ~50-65)
-    if n <= 80: return 95 - (n - 65) * 2.5      # 95-57.5 (drop fast)
-    if n <= 100: return 57 - (n - 80) * 1.5     # 57-27
-    return max(10, 25 - (n - 100))
+def features(title: str) -> dict:
+    t = title.strip()
+    low = t.lower()
+    words = WORD_RE.findall(t)
+    wl = [w.lower() for w in words]
+    n = len(words) or 1
+    letters = [c for c in t if c.isalpha()]
+
+    return {
+        # Length in chars, scaled to ~0-1 over the useful range, saturating.
+        "len": min(len(t), 90) / 90.0,
+        # Very short titles are a distinct cliff, not just "less length".
+        "stub": 1.0 if len(words) <= 2 else 0.0,
+        "words": min(n, 16) / 16.0,
+        "number": 1.0 if re.search(r"\d", t) else 0.0,
+        "curiosity": min(sum(w in CURIOSITY for w in wl), 3) / 3.0,
+        "narrative": min(sum(w in NARRATIVE for w in wl), 3) / 3.0,
+        "second_person": min(sum(w in SECOND_PERSON for w in wl), 2) / 2.0,
+        "audience": min(sum(w in AUDIENCE for w in wl), 2) / 2.0,
+        "question": 1.0 if "?" in t else 0.0,
+        "colon": 1.0 if ":" in t else 0.0,
+        "parens": 1.0 if "(" in t else 0.0,
+        "bang": min(t.count("!"), 3) / 3.0,
+        "caps": (sum(c.isupper() for c in letters) / len(letters)) if letters else 0.0,
+        "dry": 1.0 if low.startswith(DRY_OPENERS) else 0.0,
+        "vs": 1.0 if re.search(r"\b(vs|versus)\b", low) else 0.0,
+        # Depth framing: signals a substantial video rather than a tip list.
+        "depth": 1.0 if any(p in low for p in DEPTH_PHRASES) else 0.0,
+        # Negative-outcome / conflict framing ("went badly", "gets wrong").
+        "conflict": min(sum(p in low for p in CONFLICT_PHRASES), 2) / 2.0,
+        # The three framings that minimal-pair testing showed actually move the
+        # score, holding the topic fixed. "X Explained" was measured to be
+        # roughly neutral, so it earns a feature mainly to absorb that bias.
+        "accusation": 1.0 if re.search(
+            r"\b(your|you're|youre|you)\b.{0,40}\b(wrong|broken|slow|useless|"
+            r"liability|too many|too much|worse|fail\w*|don't|probably)\b",
+            low) else 0.0,
+        "first_person_result": 1.0 if re.search(
+            r"\bi\b.{0,40}\b(cut|killed|took|built|made|rewrote|replaced|"
+            r"deleted|shipped|trained|spent|ran|got|fixed|broke)\b",
+            low) else 0.0,
+        "explained_suffix": 1.0 if low.rstrip(" ?!.").endswith("explained") else 0.0,
+        **{name: 1.0 if re.search(pat, low) else 0.0
+           for name, pat in EMOTION_PATTERNS.items()},
+    }
 
 
-def word_count_score(words: list) -> float:
-    n = len(words)
-    if n <= 2: return 20
-    if n <= 4: return 50 + (n - 2) * 10         # 50-70
-    if n <= 9: return 80 + (9 - abs(n - 7)) * 2 # peak ~7
-    if n <= 12: return 90 - (n - 9) * 5
-    return max(30, 75 - (n - 12) * 5)
+def ngrams(title: str) -> dict:
+    """Word uni/bigrams plus character 3-5 grams, as a presence map.
+
+    vidIQ's score turns out to be a learned text model, not a checklist: titles
+    with identical structure but different topic words score far apart. The
+    hand features above capture the structural part; these capture the rest.
+    Character grams measurably beat word grams alone -- they generalize across
+    morphology and to topic words never seen during calibration.
+    """
+    wl = [w.lower() for w in WORD_RE.findall(title)]
+    grams = {f"w:{w}": 1.0 for w in wl}
+    grams.update({f"b:{a} {b}": 1.0 for a, b in zip(wl, wl[1:])})
+
+    s = " " + title.lower().strip() + " "
+    for n in (3, 4, 5):
+        for i in range(len(s) - n + 1):
+            grams[f"c:{s[i:i + n]}"] = 1.0
+    return grams
 
 
-def has_number(title: str) -> bool:
-    return bool(re.search(r"\d", title))
-
-
-def power_score(words_lower: list) -> float:
-    hits = sum(1 for w in words_lower if w in POWER_WORDS)
-    clickbait_hits = sum(1 for w in words_lower if w in CLICKBAIT_WORDS)
-    if hits == 0: return 55
-    if hits == 1 and clickbait_hits <= 1: return 70
-    if hits == 1 and clickbait_hits > 1: return 50
-    if hits == 2: return 45  # stacking penalty
-    if hits == 3: return 30
-    return 20  # heavy stacking = spammy
-
-
-def sentiment_score(words_lower: list) -> float:
-    pos = sum(1 for w in words_lower if w in POSITIVE)
-    neg = sum(1 for w in words_lower if w in NEGATIVE)
-    polarity = pos + neg
-    if polarity == 0: return 50
-    if polarity == 1: return 80
-    if polarity == 2: return 95
-    return 85
-
-
-def caps_score(title: str, words: list) -> float:
-    letters = [c for c in title if c.isalpha()]
-    if not letters: return 50
-    upper_ratio = sum(1 for c in letters if c.isupper()) / len(letters)
-    if upper_ratio > 0.6: return 20  # SHOUTING
-    # Title Case-ish: most non-stopword words start uppercase
-    content = [w for w in words if w.lower() not in STOPWORDS and w.isalpha()]
-    if not content: return 60
-    titled = sum(1 for w in content if w[0].isupper())
-    ratio = titled / len(content)
-    return 55 + ratio * 45  # 55-100 (lowercase not punished as hard)
-
-
-def punct_score(title: str) -> float:
-    score = 60
-    if ":" in title: score += 15
-    if "?" in title: score += 10
-    if "—" in title or " - " in title: score += 5
-    bangs = title.count("!")
-    if bangs == 1: score += 5
-    elif bangs >= 2: score -= 15
-    if title.count("...") or title.count("…"): score -= 5
-    return max(0, min(100, score))
-
-
-def stopword_score(words_lower: list) -> float:
-    if not words_lower: return 50
-    ratio = sum(1 for w in words_lower if w in STOPWORDS) / len(words_lower)
-    if ratio < 0.15: return 95
-    if ratio < 0.3:  return 85
-    if ratio < 0.45: return 70
-    if ratio < 0.6:  return 50
-    return 25
-
-
-def specificity_score(words: list) -> float:
-    if not words: return 0
-    # proper-noun-ish: capitalized non-first non-stopword tokens
-    proper = 0
-    for i, w in enumerate(words):
-        if not w or not w[0].isalpha(): continue
-        if w.lower() in STOPWORDS: continue
-        if w[0].isupper() and (i > 0 or len(words) > 1):
-            proper += 1
-    if proper == 0: return 35
-    if proper == 1: return 65
-    if proper == 2: return 85
-    return 95
-
-
-def cliche_score(title_lower: str) -> float:
-    hits = sum(1 for p in CLICHE_PHRASES if p in title_lower)
-    if hits == 0: return 80
-    if hits == 1: return 30
-    if hits == 2: return 10
-    return 0  # 3+ clichés = maximum penalty
+MODEL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                          "..", "data", "model.json")
 
 
 @lru_cache(maxsize=1)
-def _load_trends() -> dict | None:
-    """Load trends.json, returning None if missing or stale."""
-    try:
-        with open(TRENDS_PATH) as f:
-            data = json.load(f)
-        updated = datetime.fromisoformat(data["updated_at"])
-        if updated.tzinfo is None:
-            updated = updated.replace(tzinfo=timezone.utc)
-        age_days = (datetime.now(timezone.utc) - updated).days
-        if age_days >= TRENDS_MAX_AGE_DAYS:
-            print(f"Warning: trends.json is {age_days} days old, falling back to static list", file=sys.stderr)
-            return None
-        return data
-    except (FileNotFoundError, KeyError, ValueError, json.JSONDecodeError):
-        return None
-
-
-def trending_score(title_lower: str) -> float:
-    trends = _load_trends()
-
-    if trends is None:
-        hits = sum(1 for p in FALLBACK_TRENDING_PHRASES if p in title_lower)
-        if hits == 0: return 45
-        if hits == 1: return 75
-        return 85
-
-    phrase_hits = 0
-    for entry in trends.get("phrases", []):
-        if entry["phrase"] in title_lower:
-            if entry["count"] >= 7:
-                phrase_hits += 2
-            else:
-                phrase_hits += 1
-
-    topic_hits = sum(
-        1 for entry in trends.get("topics", [])
-        if entry["topic"].lower() in title_lower
-    )
-
-    if phrase_hits == 0 and topic_hits == 0:
-        return 45
-    base = 45
-    if phrase_hits >= 1:
-        base = 75 + min(phrase_hits - 1, 2) * 5
-    if topic_hits >= 1:
-        base += 10
-    return min(95, base)
+def _model() -> dict:
+    with open(MODEL_PATH) as f:
+        return json.load(f)
 
 
 def score_title(title: str) -> dict:
-    title = title.strip()
-    words = re.findall(r"[A-Za-z0-9'×\-]+", title)
-    words_lower = [w.lower() for w in words]
+    m = _model()
+    coef = m["coef"]
+    f = features(title)
+    g = ngrams(title)
 
-    components = {
-        "length":       length_score(title),
-        "word_count":   word_count_score(words),
-        "number":       85 if has_number(title) else 45,
-        "power":        power_score(words_lower),
-        "sentiment":    sentiment_score(words_lower),
-        "caps":         caps_score(title, words),
-        "punct":        punct_score(title),
-        "stopword":     stopword_score(words_lower),
-        "specificity": specificity_score(words),
-        "cliche":      cliche_score(title.lower()),
-        "trending":    trending_score(title.lower()),
-    }
-
-    total_w = sum(WEIGHTS.values())
-    weighted = sum(components[k] * WEIGHTS[k] for k in components) / total_w
-    final = round(max(0, min(100, weighted)))
+    contrib = {k: coef[k] * v for k, v in f.items() if k in coef}
+    gram_total = sum(coef[k] * v for k, v in g.items() if k in coef)
+    raw = m["intercept"] + sum(contrib.values()) + gram_total
 
     return {
-        "title": title,
-        "score": final,
-        "chars": len(title),
-        "words": len(words),
-        "components": {k: round(v, 1) for k, v in components.items()},
-        "weights": WEIGHTS,
+        "title": title.strip(),
+        "score": round(max(0, min(100, raw))),
+        "chars": len(title.strip()),
+        "words": len(WORD_RE.findall(title)),
+        "features": {k: round(v, 3) for k, v in f.items()},
+        "contributions": {k: round(v, 2) for k, v in contrib.items()
+                          if abs(v) >= 0.5},
+        "vocab": round(gram_total, 2),
     }
 
 
-def fmt(result: dict) -> str:
-    out = [f"{result['score']}  {result['title']}"]
-    out.append(f"  chars={result['chars']} words={result['words']}")
-    parts = ", ".join(f"{k}={v}" for k, v in result["components"].items())
-    out.append(f"  {parts}")
-    return "\n".join(out)
+def fmt(r: dict) -> str:
+    top = sorted(r["contributions"].items(), key=lambda kv: -abs(kv[1]))
+    parts = ", ".join(f"{k}{v:+.1f}" for k, v in top)
+    return (f"{r['score']}  {r['title']}\n"
+            f"  chars={r['chars']} words={r['words']} vocab={r['vocab']:+.1f}\n"
+            f"  {parts}")
 
 
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("title", nargs="?", help="Title to score (or '-' for stdin)")
     p.add_argument("--json", action="store_true", help="JSON output")
-    args = p.parse_args()
+    a = p.parse_args()
 
-    if args.title == "-" or args.title is None:
-        titles = [line.strip() for line in sys.stdin if line.strip()]
-    else:
-        titles = [args.title]
-
+    titles = ([line.strip() for line in sys.stdin if line.strip()]
+              if a.title in (None, "-") else [a.title])
     results = [score_title(t) for t in titles]
-    if args.json:
+    if a.json:
         print(json.dumps(results if len(results) > 1 else results[0], indent=2))
     else:
         for r in results:

@@ -1,0 +1,1442 @@
+[
+  {
+    "title": "Claude Code Is Free Now (Here's How to Use It)",
+    "vidiq": 79
+  },
+  {
+    "title": "I Built an AI Agent That Writes My Tests",
+    "vidiq": 82
+  },
+  {
+    "title": "git rebase explained in 4 minutes",
+    "vidiq": 76
+  },
+  {
+    "title": "10 VS Code Extensions That Will Change Your Life",
+    "vidiq": 68
+  },
+  {
+    "title": "Rust",
+    "vidiq": 54
+  },
+  {
+    "title": "STOP USING REACT!!! THIS IS INSANE",
+    "vidiq": 89
+  },
+  {
+    "title": "The Ultimate Guide to Docker for Beginners in 2025",
+    "vidiq": 72
+  },
+  {
+    "title": "Why TypeScript Beats JavaScript for Large Codebases",
+    "vidiq": 64
+  },
+  {
+    "title": "This New AI Tool Destroys Cursor",
+    "vidiq": 80
+  },
+  {
+    "title": "Building a REST API with FastAPI and PostgreSQL",
+    "vidiq": 62
+  },
+  {
+    "title": "I Quit My Job to Build This",
+    "vidiq": 80
+  },
+  {
+    "title": "The Shocking Truth About AI Coding Assistants Nobody Expected",
+    "vidiq": 75
+  },
+  {
+    "title": "Kubernetes Tutorial",
+    "vidiq": 64
+  },
+  {
+    "title": "How to Deploy a Next.js App to Cloudflare Workers in 5 Minutes",
+    "vidiq": 62
+  },
+  {
+    "title": "Every Python Developer Should Know These 7 Tricks",
+    "vidiq": 73
+  },
+  {
+    "title": "a comprehensive walkthrough of the internal architecture of modern javascript bundlers and why they matter",
+    "vidiq": 65
+  },
+  {
+    "title": "Stop Using React",
+    "vidiq": 74
+  },
+  {
+    "title": "Stop Using React!!!",
+    "vidiq": 76
+  },
+  {
+    "title": "Kubernetes Tutorial for Beginners",
+    "vidiq": 77
+  },
+  {
+    "title": "Why Your Kubernetes Cluster Is Slower Than It Should Be",
+    "vidiq": 76
+  },
+  {
+    "title": "I Tested 5 AI Coding Agents So You Don't Have To",
+    "vidiq": 83
+  },
+  {
+    "title": "Learn Go in 100 Seconds",
+    "vidiq": 81
+  },
+  {
+    "title": "The Ultimate Guide to Docker",
+    "vidiq": 71
+  },
+  {
+    "title": "Docker",
+    "vidiq": 54
+  },
+  {
+    "title": "7 Docker Tricks",
+    "vidiq": 62
+  },
+  {
+    "title": "Docker Tricks",
+    "vidiq": 59
+  },
+  {
+    "title": "The Secret Docker Trick Nobody Told You About That Changes Everything Forever",
+    "vidiq": 80
+  },
+  {
+    "title": "How I Cut Our AWS Bill by 90% With One Config Change",
+    "vidiq": 84
+  },
+  {
+    "title": "Understanding Async Await in JavaScript",
+    "vidiq": 56
+  },
+  {
+    "title": "MCP Explained: The Protocol Every AI Developer Needs",
+    "vidiq": 89
+  },
+  {
+    "title": "Python Tips",
+    "vidiq": 52
+  },
+  {
+    "title": "This Is Why Your Tests Are Slow",
+    "vidiq": 83
+  },
+  {
+    "title": "Neovim Setup From Scratch (Full Config Walkthrough)",
+    "vidiq": 79
+  },
+  {
+    "title": "I Replaced My Entire Backend With One Postgres Function",
+    "vidiq": 75
+  },
+  {
+    "title": "Introduction to Machine Learning Concepts and Terminology",
+    "vidiq": 55
+  },
+  {
+    "title": "Claude Code vs Cursor: Which One Actually Wins?",
+    "vidiq": 83
+  },
+  {
+    "title": "You're Using Git Wrong",
+    "vidiq": 77
+  },
+  {
+    "title": "Setting Up a Monorepo With Turborepo, pnpm, and TypeScript for a Production Team Environment",
+    "vidiq": 84
+  },
+  {
+    "title": "The One Rust Feature That Ruins Everything",
+    "vidiq": 82
+  },
+  {
+    "title": "Postgres Indexes: What Every Backend Dev Gets Wrong",
+    "vidiq": 93
+  },
+  {
+    "title": "Async Rust Explained",
+    "vidiq": 67
+  },
+  {
+    "title": "We Migrated 2 Million Users to Rust and It Went Badly",
+    "vidiq": 95
+  },
+  {
+    "title": "Terraform Modules Deep Dive",
+    "vidiq": 85
+  },
+  {
+    "title": "Your AI Agent Is Leaking Secrets and You Don't Know It",
+    "vidiq": 81
+  },
+  {
+    "title": "How Vector Databases Actually Work",
+    "vidiq": 67
+  },
+  {
+    "title": "3 Prompt Patterns That Made My Agent 10x Better",
+    "vidiq": 81
+  },
+  {
+    "title": "Terraform Modules",
+    "vidiq": 73
+  },
+  {
+    "title": "Docker Deep Dive",
+    "vidiq": 73
+  },
+  {
+    "title": "Kubernetes Deep Dive",
+    "vidiq": 73
+  },
+  {
+    "title": "Rust Ownership Deep Dive",
+    "vidiq": 79
+  },
+  {
+    "title": "React Server Components Explained Simply",
+    "vidiq": 76
+  },
+  {
+    "title": "The Fastest Way to Learn SQL in 2026",
+    "vidiq": 73
+  },
+  {
+    "title": "I Let an AI Refactor 50,000 Lines of Legacy Code",
+    "vidiq": 79
+  },
+  {
+    "title": "Webpack Configuration Options and Their Tradeoffs",
+    "vidiq": 85
+  },
+  {
+    "title": "Understanding Webpack Configuration Options",
+    "vidiq": 67
+  },
+  {
+    "title": "Webpack Configuration Options",
+    "vidiq": 76
+  },
+  {
+    "title": "Async Await in JavaScript",
+    "vidiq": 56
+  },
+  {
+    "title": "Async Await in JavaScript and Why It Matters for Performance",
+    "vidiq": 56
+  },
+  {
+    "title": "Ollama Local LLM Setup on a Mac Mini",
+    "vidiq": 79
+  },
+  {
+    "title": "Nobody Talks About This Postgres Feature",
+    "vidiq": 78
+  },
+  {
+    "title": "Full Stack App With Supabase, Next.js and Tailwind From Zero to Deploy",
+    "vidiq": 72
+  },
+  {
+    "title": "why i stopped using typescript",
+    "vidiq": 78
+  },
+  {
+    "title": "RAG Explained",
+    "vidiq": 52
+  },
+  {
+    "title": "I Built an AI Coding Agent That Actually Ships Code",
+    "vidiq": 79
+  },
+  {
+    "title": "Your RAG Pipeline Is Broken",
+    "vidiq": 86
+  },
+  {
+    "title": "7 Prompt Engineering Tricks That Actually Work in 2026",
+    "vidiq": 79
+  },
+  {
+    "title": "MCP: The Protocol Every AI Developer Needs to Understand",
+    "vidiq": 90
+  },
+  {
+    "title": "Do You Even Need a Vector Database?",
+    "vidiq": 80
+  },
+  {
+    "title": "stop using langchain",
+    "vidiq": 60
+  },
+  {
+    "title": "THIS AI AGENT WROTE MY ENTIRE BACKEND",
+    "vidiq": 85
+  },
+  {
+    "title": "Claude vs GPT vs Gemini: Which One Actually Writes Better Code?",
+    "vidiq": 85
+  },
+  {
+    "title": "Vector Databases Compared",
+    "vidiq": 69
+  },
+  {
+    "title": "I Let an AI Agent Run My Terminal for 30 Days and Here Is Exactly What Broke",
+    "vidiq": 78
+  },
+  {
+    "title": "Why Your Prompts Fail",
+    "vidiq": 72
+  },
+  {
+    "title": "Build a RAG App in 10 Minutes",
+    "vidiq": 73
+  },
+  {
+    "title": "5 MCP Servers Every Developer Should Install Today",
+    "vidiq": 90
+  },
+  {
+    "title": "LLM Fine-Tuning Is Dead",
+    "vidiq": 72
+  },
+  {
+    "title": "how i use ai coding agents every single day",
+    "vidiq": 78
+  },
+  {
+    "title": "Embeddings, Chunking, and Retrieval: The Complete RAG Deep Dive for Working Software Engineers",
+    "vidiq": 80
+  },
+  {
+    "title": "Is Prompt Engineering Still a Real Skill?",
+    "vidiq": 86
+  },
+  {
+    "title": "AI Agents Explained Simply",
+    "vidiq": 69
+  },
+  {
+    "title": "I Replaced My Entire Dev Team With Agents (It Went Badly)",
+    "vidiq": 79
+  },
+  {
+    "title": "You're Chunking Your Documents Wrong",
+    "vidiq": 79
+  },
+  {
+    "title": "MCP in 60 Seconds!",
+    "vidiq": 80
+  },
+  {
+    "title": "Pinecone vs Qdrant vs pgvector",
+    "vidiq": 82
+  },
+  {
+    "title": "12 AI Tools I Actually Pay For as a Senior Engineer",
+    "vidiq": 62
+  },
+  {
+    "title": "Context Windows Are a Lie",
+    "vidiq": 78
+  },
+  {
+    "title": "How to Build an MCP Server From Scratch in TypeScript",
+    "vidiq": 83
+  },
+  {
+    "title": "WHY YOUR AI AGENT KEEPS HALLUCINATING!",
+    "vidiq": 81
+  },
+  {
+    "title": "Agentic RAG",
+    "vidiq": 70
+  },
+  {
+    "title": "I Spent $2,000 on LLM API Calls So You Don't Have To",
+    "vidiq": 94
+  },
+  {
+    "title": "the truth about ai coding agents nobody tells you",
+    "vidiq": 74
+  },
+  {
+    "title": "Open Source LLMs Finally Caught Up",
+    "vidiq": 79
+  },
+  {
+    "title": "Prompt Engineering: From Zero to Production in One Video",
+    "vidiq": 81
+  },
+  {
+    "title": "Should You Use RAG or Just a Bigger Context Window?",
+    "vidiq": 61
+  },
+  {
+    "title": "Fix Your Embeddings",
+    "vidiq": 65
+  },
+  {
+    "title": "3 Mistakes Killing Your AI Agent in Production",
+    "vidiq": 85
+  },
+  {
+    "title": "I Gave Claude Access to My Production Database and Watched What Happened Next",
+    "vidiq": 89
+  },
+  {
+    "title": "Local LLMs Are Good Now",
+    "vidiq": 79
+  },
+  {
+    "title": "What Is MCP?",
+    "vidiq": 41
+  },
+  {
+    "title": "10 Prompts That Turn Any LLM Into a Senior Engineer",
+    "vidiq": 81
+  },
+  {
+    "title": "Your AI Tooling Stack Is Way Too Complicated",
+    "vidiq": 79
+  },
+  {
+    "title": "Svelte Runes",
+    "vidiq": 64
+  },
+  {
+    "title": "You're Writing CSS Wrong",
+    "vidiq": 77
+  },
+  {
+    "title": "I Rewrote My Entire React App in Svelte and It Was a Mistake",
+    "vidiq": 89
+  },
+  {
+    "title": "7 TypeScript Tricks That Will Change How You Write Code",
+    "vidiq": 75
+  },
+  {
+    "title": "Is Rust Actually Worth Learning in 2026?",
+    "vidiq": 85
+  },
+  {
+    "title": "Neovim: The Complete Setup Guide for Web Developers",
+    "vidiq": 81
+  },
+  {
+    "title": "STOP USING USEEFFECT",
+    "vidiq": 59
+  },
+  {
+    "title": "go is boring and that's why i love it",
+    "vidiq": 81
+  },
+  {
+    "title": "Vite Killed Webpack",
+    "vidiq": 76
+  },
+  {
+    "title": "How I Cut My Build Time From 90 Seconds to 4 Seconds Using One Config Change",
+    "vidiq": 80
+  },
+  {
+    "title": "Python Type Hints: Everything You Actually Need",
+    "vidiq": 66
+  },
+  {
+    "title": "Why Your Tests Are Useless",
+    "vidiq": 70
+  },
+  {
+    "title": "CSS Grid In 10 Minutes",
+    "vidiq": 67
+  },
+  {
+    "title": "I Quit My $200k Dev Job",
+    "vidiq": 69
+  },
+  {
+    "title": "VS Code vs Neovim: I Used Both for a Year and Here's What Actually Won",
+    "vidiq": 82
+  },
+  {
+    "title": "12 JavaScript Features You Forgot Existed",
+    "vidiq": 63
+  },
+  {
+    "title": "Vue 3 Composition API Explained Properly",
+    "vidiq": 85
+  },
+  {
+    "title": "React Server Components",
+    "vidiq": 73
+  },
+  {
+    "title": "Your App Is Slow And It's Not React's Fault",
+    "vidiq": 80
+  },
+  {
+    "title": "Should You Learn Go or Rust First? An Honest Answer From Someone Who Shipped Both",
+    "vidiq": 85
+  },
+  {
+    "title": "i deleted 40,000 lines of code",
+    "vidiq": 75
+  },
+  {
+    "title": "TAILWIND IS FINE, ACTUALLY!",
+    "vidiq": 79
+  },
+  {
+    "title": "Testing in 2026: Vitest, Playwright, and What to Skip",
+    "vidiq": 85
+  },
+  {
+    "title": "Debugging Memory Leaks",
+    "vidiq": 83
+  },
+  {
+    "title": "The Truth About Senior Developer Interviews",
+    "vidiq": 83
+  },
+  {
+    "title": "Container Queries Changed Everything",
+    "vidiq": 78
+  },
+  {
+    "title": "5 Signs You're About to Get Laid Off as a Developer",
+    "vidiq": 93
+  },
+  {
+    "title": "What Is Bun?",
+    "vidiq": 54
+  },
+  {
+    "title": "I Built the Same App in React, Vue, and Svelte to See Which One I'd Actually Ship",
+    "vidiq": 82
+  },
+  {
+    "title": "typescript generics finally make sense",
+    "vidiq": 85
+  },
+  {
+    "title": "STOP Overengineering Your Frontend!",
+    "vidiq": 73
+  },
+  {
+    "title": "Web Performance: How to Actually Hit a 100 Lighthouse Score",
+    "vidiq": 81
+  },
+  {
+    "title": "Rust Ownership Explained",
+    "vidiq": 60
+  },
+  {
+    "title": "Why Do Developers Hate Standups?",
+    "vidiq": 76
+  },
+  {
+    "title": "10 VS Code Extensions I Install on Every Single Machine Before I Write One Line",
+    "vidiq": 84
+  },
+  {
+    "title": "Monorepos Are Not the Answer",
+    "vidiq": 80
+  },
+  {
+    "title": "Python Async Explained: asyncio, Threads, and When Each One Is the Wrong Choice",
+    "vidiq": 80
+  },
+  {
+    "title": "Zustand vs Redux",
+    "vidiq": 76
+  },
+  {
+    "title": "Are Junior Developer Jobs Gone Forever?",
+    "vidiq": 76
+  },
+  {
+    "title": "I Profiled 50 Popular Websites and the Results Were Embarrassing",
+    "vidiq": 77
+  },
+  {
+    "title": "THE ONLY GIT COMMANDS YOU NEED",
+    "vidiq": 78
+  },
+  {
+    "title": "Flexbox Gotchas",
+    "vidiq": 70
+  },
+  {
+    "title": "You Don't Need a State Management Library",
+    "vidiq": 80
+  },
+  {
+    "title": "Burnout: What Nobody Tells You About Year 5 of Being a Developer",
+    "vidiq": 87
+  },
+  {
+    "title": "3 Hours of Debugging, One Missing Semicolon",
+    "vidiq": 86
+  },
+  {
+    "title": "esbuild vs SWC vs Rolldown: Which Bundler Actually Wins in 2026?",
+    "vidiq": 83
+  },
+  {
+    "title": "how i learned vim in one week",
+    "vidiq": 82
+  },
+  {
+    "title": "Every JavaScript Framework Is Converging on the Same Ideas and Nobody Wants to Admit It",
+    "vidiq": 84
+  },
+  {
+    "title": "Clean Code Is Overrated",
+    "vidiq": 68
+  },
+  {
+    "title": "Docker for Frontend Devs",
+    "vidiq": 67
+  },
+  {
+    "title": "Can You Really Learn Web Development in 6 Months?",
+    "vidiq": 78
+  },
+  {
+    "title": "MY DEV SETUP IS INSANE NOW!",
+    "vidiq": 88
+  },
+  {
+    "title": "Redis Streams",
+    "vidiq": 64
+  },
+  {
+    "title": "Your Postgres Is Slow",
+    "vidiq": 75
+  },
+  {
+    "title": "I Migrated 400 Microservices To Kubernetes And Regretted Every Single Minute Of It",
+    "vidiq": 85
+  },
+  {
+    "title": "7 Postgres Indexes You're Using Wrong",
+    "vidiq": 81
+  },
+  {
+    "title": "Kafka Explained: Partitions, Offsets, and Consumer Groups",
+    "vidiq": 72
+  },
+  {
+    "title": "Do You Actually Need Kubernetes?",
+    "vidiq": 78
+  },
+  {
+    "title": "docker compose is all you need",
+    "vidiq": 72
+  },
+  {
+    "title": "STOP OVERPAYING FOR AWS!",
+    "vidiq": 62
+  },
+  {
+    "title": "Terraform State Explained",
+    "vidiq": 72
+  },
+  {
+    "title": "How I Cut Our Cloud Bill From $84,000 To $9,000 A Month Without Firing Anyone",
+    "vidiq": 84
+  },
+  {
+    "title": "Observability Is Not Monitoring",
+    "vidiq": 77
+  },
+  {
+    "title": "CI/CD Pipelines",
+    "vidiq": 68
+  },
+  {
+    "title": "Why Is Your Redis Cache Making Everything Slower?",
+    "vidiq": 73
+  },
+  {
+    "title": "5 Distributed Systems Mistakes That Cost Me My Job",
+    "vidiq": 59
+  },
+  {
+    "title": "postgres vs mysql in 2026",
+    "vidiq": 76
+  },
+  {
+    "title": "DELETE YOUR KUBERNETES CLUSTER RIGHT NOW",
+    "vidiq": 78
+  },
+  {
+    "title": "Docker Multi-Stage Builds: Cut Your Image Size By 90%",
+    "vidiq": 70
+  },
+  {
+    "title": "I Ran Postgres On A Raspberry Pi For A Year",
+    "vidiq": 84
+  },
+  {
+    "title": "Database Indexing Deep Dive",
+    "vidiq": 81
+  },
+  {
+    "title": "10 Terraform Patterns Every Platform Engineer Should Know Before Touching Production Infrastructure",
+    "vidiq": 93
+  },
+  {
+    "title": "Your CI Pipeline Is Costing You 3 Hours A Day",
+    "vidiq": 82
+  },
+  {
+    "title": "kafka is overkill for your startup",
+    "vidiq": 72
+  },
+  {
+    "title": "Event Driven Architecture",
+    "vidiq": 60
+  },
+  {
+    "title": "Is Serverless Finally Dead?",
+    "vidiq": 82
+  },
+  {
+    "title": "The Real Reason Your Kubernetes Pods Keep Getting OOMKilled In Production",
+    "vidiq": 94
+  },
+  {
+    "title": "Postgres Vacuum Explained",
+    "vidiq": 62
+  },
+  {
+    "title": "I Deleted Our Production Database (Here's What Happened)",
+    "vidiq": 85
+  },
+  {
+    "title": "You're Logging Too Much",
+    "vidiq": 78
+  },
+  {
+    "title": "AWS Cost Optimization: 12 Levers Nobody Tells You About",
+    "vidiq": 77
+  },
+  {
+    "title": "why your docker builds are so slow",
+    "vidiq": 77
+  },
+  {
+    "title": "CAP Theorem In 8 Minutes",
+    "vidiq": 65
+  },
+  {
+    "title": "STOP USING UUIDS AS PRIMARY KEYS!",
+    "vidiq": 59
+  },
+  {
+    "title": "Redis vs Memcached",
+    "vidiq": 79
+  },
+  {
+    "title": "How Netflix Handles 100 Million Kafka Events Per Second Without Losing A Single Message",
+    "vidiq": 66
+  },
+  {
+    "title": "Should You Self-Host Your Database?",
+    "vidiq": 57
+  },
+  {
+    "title": "Terraform Modules Done Right",
+    "vidiq": 84
+  },
+  {
+    "title": "I Replaced Kafka With Postgres And Nothing Broke",
+    "vidiq": 80
+  },
+  {
+    "title": "OpenTelemetry: The Only Observability Setup You Will Ever Need",
+    "vidiq": 87
+  },
+  {
+    "title": "3 Docker Mistakes",
+    "vidiq": 73
+  },
+  {
+    "title": "Your Database Connection Pool Is Wrong And It's Killing Your Backend Under Load",
+    "vidiq": 95
+  },
+  {
+    "title": "Rust Won",
+    "vidiq": 60
+  },
+  {
+    "title": "Stop Using ORMs",
+    "vidiq": 60
+  },
+  {
+    "title": "Prompt Injection",
+    "vidiq": 71
+  },
+  {
+    "title": "Databases Explained",
+    "vidiq": 57
+  },
+  {
+    "title": "WebAssembly",
+    "vidiq": 59
+  },
+  {
+    "title": "Quit FAANG",
+    "vidiq": 63
+  },
+  {
+    "title": "Vector Databases",
+    "vidiq": 68
+  },
+  {
+    "title": "Memory Leaks",
+    "vidiq": 73
+  },
+  {
+    "title": "Senior Dev Burnout",
+    "vidiq": 61
+  },
+  {
+    "title": "Edge Computing",
+    "vidiq": 53
+  },
+  {
+    "title": "I Built My Own Database Engine In One Weekend",
+    "vidiq": 84
+  },
+  {
+    "title": "Why Your RAG Pipeline Keeps Failing",
+    "vidiq": 77
+  },
+  {
+    "title": "The Truth About Serverless Cold Starts",
+    "vidiq": 88
+  },
+  {
+    "title": "Every Backend Developer Should Learn This",
+    "vidiq": 86
+  },
+  {
+    "title": "How Compilers Actually Optimize Your Code",
+    "vidiq": 56
+  },
+  {
+    "title": "I Replaced My Entire Team With Agents",
+    "vidiq": 74
+  },
+  {
+    "title": "Stop Writing Microservices Right Now",
+    "vidiq": 75
+  },
+  {
+    "title": "The Fastest Web Framework Nobody Uses",
+    "vidiq": 80
+  },
+  {
+    "title": "Landing A Staff Engineer Role In 2026",
+    "vidiq": 75
+  },
+  {
+    "title": "Linux Kernel Internals For Application Developers",
+    "vidiq": 78
+  },
+  {
+    "title": "I Spent Six Months Building An AI Agent That Actually Ships Production Code Every Single Day",
+    "vidiq": 96
+  },
+  {
+    "title": "The Complete Guide To Building A Search Engine From Scratch Without Any External Libraries At All",
+    "vidiq": 83
+  },
+  {
+    "title": "Everything I Learned Scaling A Postgres Database To Fifty Billion Rows On A Single Machine",
+    "vidiq": 88
+  },
+  {
+    "title": "Why Most Developers Will Never Reach Senior Level And The Three Habits That Change Everything",
+    "vidiq": 65
+  },
+  {
+    "title": "This Tiny Rust Web Server Handled More Traffic Than Our Entire Node Cluster Did Last Year",
+    "vidiq": 87
+  },
+  {
+    "title": "I Rewrote Our Whole Frontend Build Pipeline And Cut Deploy Times From Twenty Minutes To Nine Seconds",
+    "vidiq": 91
+  },
+  {
+    "title": "The Real Reason Your Machine Learning Model Works Perfectly In Testing And Fails Badly In Production",
+    "vidiq": 86
+  },
+  {
+    "title": "How I Learned Systems Programming In Ninety Days Without A Computer Science Degree Or Any Mentor",
+    "vidiq": 74
+  },
+  {
+    "title": "We Migrated Two Hundred Legacy Services To A New Runtime And Nothing Broke For Six Months",
+    "vidiq": 66
+  },
+  {
+    "title": "The Hidden Cost Of Every Abstraction Layer You Add To Your Backend Architecture Over Time",
+    "vidiq": 64
+  },
+  {
+    "title": "Observability: The Skill That Separates Good Engineers From Great Ones",
+    "vidiq": 84
+  },
+  {
+    "title": "Context Engineering: Why Your AI Agent Forgets Everything",
+    "vidiq": 76
+  },
+  {
+    "title": "SQLite: The Only Database Most Startups Actually Need",
+    "vidiq": 84
+  },
+  {
+    "title": "Zig Versus Go: I Built The Same Service Twice",
+    "vidiq": 87
+  },
+  {
+    "title": "Interview Prep: What Hiring Managers Never Tell Candidates",
+    "vidiq": 79
+  },
+  {
+    "title": "Caching Strategies Every Engineer Gets Wrong (And How To Fix Them)",
+    "vidiq": 81
+  },
+  {
+    "title": "Building A Compiler In Python (Full Walkthrough)",
+    "vidiq": 66
+  },
+  {
+    "title": "I Quit My Six Figure Job (Here Is What Happened)",
+    "vidiq": 74
+  },
+  {
+    "title": "Fine Tuning Small Models (Cheaper Than You Think)",
+    "vidiq": 77
+  },
+  {
+    "title": "HTMX In Production (One Year Later)",
+    "vidiq": 69
+  },
+  {
+    "title": "Is Prompt Engineering Already A Dead Skill?",
+    "vidiq": 85
+  },
+  {
+    "title": "Should You Still Learn Data Structures In 2026?",
+    "vidiq": 76
+  },
+  {
+    "title": "What Happens When You Type A URL?",
+    "vidiq": 84
+  },
+  {
+    "title": "Why Is Every Startup Suddenly Rewriting In Rust?",
+    "vidiq": 78
+  },
+  {
+    "title": "Can An AI Agent Really Run Your Backend?",
+    "vidiq": 81
+  },
+  {
+    "title": "Protobuf Schema Evolution",
+    "vidiq": 73
+  },
+  {
+    "title": "Introduction to Graph Databases",
+    "vidiq": 73
+  },
+  {
+    "title": "gRPC Streaming Modes",
+    "vidiq": 64
+  },
+  {
+    "title": "LLVM Intermediate Representation Basics",
+    "vidiq": 83
+  },
+  {
+    "title": "TCP Congestion Control Algorithms",
+    "vidiq": 76
+  },
+  {
+    "title": "OAuth 2.1 Authorization Code Flow with PKCE",
+    "vidiq": 66
+  },
+  {
+    "title": "WebAssembly Linear Memory Model",
+    "vidiq": 75
+  },
+  {
+    "title": "Monads and Applicative Functors in Haskell",
+    "vidiq": 83
+  },
+  {
+    "title": "Kafka Consumer Group Rebalancing",
+    "vidiq": 72
+  },
+  {
+    "title": "ARM Cortex-M Interrupt Vector Tables",
+    "vidiq": 81
+  },
+  {
+    "title": "Entity Component System Architecture",
+    "vidiq": 81
+  },
+  {
+    "title": "Gradient Accumulation and Mixed Precision Training",
+    "vidiq": 73
+  },
+  {
+    "title": "Idempotency Keys in REST API Design",
+    "vidiq": 62
+  },
+  {
+    "title": "Android Jetpack Compose Recomposition Internals",
+    "vidiq": 81
+  },
+  {
+    "title": "Columnar Storage Formats: Parquet and ORC",
+    "vidiq": 79
+  },
+  {
+    "title": "Static Single Assignment Form",
+    "vidiq": 75
+  },
+  {
+    "title": "Content Security Policy Directives",
+    "vidiq": 79
+  },
+  {
+    "title": "Rust Lifetime Elision Rules",
+    "vidiq": 83
+  },
+  {
+    "title": "Hash Table Collision Resolution Strategies",
+    "vidiq": 67
+  },
+  {
+    "title": "How to Build a REST API with FastAPI",
+    "vidiq": 74
+  },
+  {
+    "title": "Deploy a Next.js App to Cloudflare Workers in 15 Minutes",
+    "vidiq": 79
+  },
+  {
+    "title": "Setting Up JWT Authentication in Node.js",
+    "vidiq": 74
+  },
+  {
+    "title": "Getting Started with WebAssembly and Rust",
+    "vidiq": 81
+  },
+  {
+    "title": "Build Your First Multiplayer Game with Godot 4",
+    "vidiq": 78
+  },
+  {
+    "title": "Fine-Tuning a Small Language Model on Your Own Data",
+    "vidiq": 70
+  },
+  {
+    "title": "Docker Compose for Local Development Environments",
+    "vidiq": 69
+  },
+  {
+    "title": "Writing Your First Compiler in Go",
+    "vidiq": 85
+  },
+  {
+    "title": "A Practical Guide to Postgres Indexing",
+    "vidiq": 79
+  },
+  {
+    "title": "How I Structure Large React Codebases",
+    "vidiq": 79
+  },
+  {
+    "title": "Testing Embedded Firmware Without Hardware",
+    "vidiq": 81
+  },
+  {
+    "title": "Building a Real-Time Data Pipeline with Kafka and Flink",
+    "vidiq": 77
+  },
+  {
+    "title": "Understanding CORS Once and for All",
+    "vidiq": 63
+  },
+  {
+    "title": "Migrating a Monolith to Microservices Step by Step",
+    "vidiq": 82
+  },
+  {
+    "title": "Setting Up CI/CD with GitHub Actions",
+    "vidiq": 82
+  },
+  {
+    "title": "This One Line of Code Cost a Startup $50,000",
+    "vidiq": 77
+  },
+  {
+    "title": "I Rewrote It in Rust and Regretted Everything",
+    "vidiq": 93
+  },
+  {
+    "title": "Your Auth System Is Probably Broken. Here's Why.",
+    "vidiq": 92
+  },
+  {
+    "title": "Why Senior Engineers Are Quietly Abandoning Microservices",
+    "vidiq": 76
+  },
+  {
+    "title": "I Let an AI Agent Run My Production Database for a Week",
+    "vidiq": 81
+  },
+  {
+    "title": "The Security Bug Hiding in 90% of Login Forms",
+    "vidiq": 72
+  },
+  {
+    "title": "Stop Using JWTs for Sessions",
+    "vidiq": 66
+  },
+  {
+    "title": "I Made My API 100x Faster With One Weird Index",
+    "vidiq": 82
+  },
+  {
+    "title": "Nobody Talks About How Bad Game Engines Have Gotten",
+    "vidiq": 69
+  },
+  {
+    "title": "The Compiler Trick That Makes C 10x Faster Than You Expect",
+    "vidiq": 88
+  },
+  {
+    "title": "I Trained an LLM on a $200 GPU and It Actually Worked",
+    "vidiq": 75
+  },
+  {
+    "title": "This WebAssembly Demo Broke My Brain",
+    "vidiq": 77
+  },
+  {
+    "title": "Every Mobile Developer Gets This Wrong",
+    "vidiq": 94
+  },
+  {
+    "title": "We Deleted 200,000 Lines of Code and Nothing Broke",
+    "vidiq": 80
+  },
+  {
+    "title": "The Networking Bug That Took Down Half the Internet",
+    "vidiq": 86
+  },
+  {
+    "title": "Functional Programming Finally Clicked For Me",
+    "vidiq": 80
+  },
+  {
+    "title": "Redis Persistence",
+    "vidiq": 72
+  },
+  {
+    "title": "Redis Persistence Explained",
+    "vidiq": 74
+  },
+  {
+    "title": "Your Redis Persistence Config Is Wrong",
+    "vidiq": 92
+  },
+  {
+    "title": "WebAssembly Modules",
+    "vidiq": 68
+  },
+  {
+    "title": "How WebAssembly Modules Actually Work",
+    "vidiq": 72
+  },
+  {
+    "title": "I Rewrote My Hot Path in WebAssembly",
+    "vidiq": 87
+  },
+  {
+    "title": "Vector Databases Explained",
+    "vidiq": 69
+  },
+  {
+    "title": "DO YOU EVEN NEED A VECTOR DATABASE?",
+    "vidiq": 80
+  },
+  {
+    "title": "Postgres Query Planner",
+    "vidiq": 73
+  },
+  {
+    "title": "The Postgres Query Planner Explained",
+    "vidiq": 74
+  },
+  {
+    "title": "Why Is Your Postgres Query So Slow?",
+    "vidiq": 72
+  },
+  {
+    "title": "Rust Borrow Checker",
+    "vidiq": 71
+  },
+  {
+    "title": "How to Beat the Rust Borrow Checker",
+    "vidiq": 72
+  },
+  {
+    "title": "THE RUST BORROW CHECKER IS NOT YOUR ENEMY",
+    "vidiq": 74
+  },
+  {
+    "title": "Retrieval Augmented Generation",
+    "vidiq": 76
+  },
+  {
+    "title": "Retrieval Augmented Generation Explained",
+    "vidiq": 74
+  },
+  {
+    "title": "I Built a RAG Pipeline That Actually Works",
+    "vidiq": 82
+  },
+  {
+    "title": "GraphQL Schema Design",
+    "vidiq": 69
+  },
+  {
+    "title": "How to Design a GraphQL Schema",
+    "vidiq": 67
+  },
+  {
+    "title": "Your GraphQL Schema Is a Liability",
+    "vidiq": 79
+  },
+  {
+    "title": "CRDTs and Local-First Sync",
+    "vidiq": 67
+  },
+  {
+    "title": "CRDTs Explained",
+    "vidiq": 52
+  },
+  {
+    "title": "I Made My App Work Offline With CRDTs",
+    "vidiq": 79
+  },
+  {
+    "title": "JWT Authentication",
+    "vidiq": 65
+  },
+  {
+    "title": "JWT Authentication Explained",
+    "vidiq": 65
+  },
+  {
+    "title": "You're Storing JWTs in the Wrong Place",
+    "vidiq": 82
+  },
+  {
+    "title": "LLM Fine-Tuning on a Single GPU",
+    "vidiq": 79
+  },
+  {
+    "title": "How to Fine-Tune an LLM on a Single GPU",
+    "vidiq": 71
+  },
+  {
+    "title": "I FINE-TUNED AN LLM ON ONE GPU AND IT WORKED",
+    "vidiq": 76
+  },
+  {
+    "title": "CSS Container Queries",
+    "vidiq": 76
+  },
+  {
+    "title": "CSS Container Queries Explained",
+    "vidiq": 76
+  },
+  {
+    "title": "Should You Still Use Media Queries?",
+    "vidiq": 80
+  },
+  {
+    "title": "gRPC Streaming",
+    "vidiq": 52
+  },
+  {
+    "title": "gRPC Streaming Explained",
+    "vidiq": 50
+  },
+  {
+    "title": "I Replaced Our REST API With gRPC Streaming",
+    "vidiq": 72
+  },
+  {
+    "title": "Garbage Collection in the JVM",
+    "vidiq": 83
+  },
+  {
+    "title": "JVM Garbage Collection Explained",
+    "vidiq": 71
+  },
+  {
+    "title": "Your GC Tuning Flags Are Making Things Worse",
+    "vidiq": 87
+  },
+  {
+    "title": "Prompt Injection Attacks",
+    "vidiq": 79
+  },
+  {
+    "title": "Prompt Injection Attacks Explained",
+    "vidiq": 79
+  },
+  {
+    "title": "CAN YOUR AI AGENT BE HIJACKED BY A WEB PAGE?",
+    "vidiq": 79
+  },
+  {
+    "title": "Monorepo Build Caching",
+    "vidiq": 76
+  },
+  {
+    "title": "How to Set Up Monorepo Build Caching",
+    "vidiq": 72
+  },
+  {
+    "title": "I Cut Our CI Build From 40 Minutes to 4",
+    "vidiq": 90
+  },
+  {
+    "title": "Database Sharding",
+    "vidiq": 68
+  },
+  {
+    "title": "Database Sharding Explained",
+    "vidiq": 69
+  },
+  {
+    "title": "You Probably Don't Need to Shard Your Database",
+    "vidiq": 83
+  },
+  {
+    "title": "Zero Downtime Database Migrations",
+    "vidiq": 81
+  },
+  {
+    "title": "How to Run Zero Downtime Database Migrations",
+    "vidiq": 80
+  },
+  {
+    "title": "I Took Down Production With One Migration",
+    "vidiq": 90
+  },
+  {
+    "title": "Observability and Distributed Tracing",
+    "vidiq": 80
+  },
+  {
+    "title": "Distributed Tracing Explained",
+    "vidiq": 62
+  },
+  {
+    "title": "WHY ARE YOUR TRACES USELESS IN PRODUCTION?",
+    "vidiq": 80
+  },
+  {
+    "title": "Type Inference in TypeScript",
+    "vidiq": 79
+  },
+  {
+    "title": "TypeScript Type Inference Explained",
+    "vidiq": 73
+  },
+  {
+    "title": "You're Writing Way Too Many TypeScript Annotations",
+    "vidiq": 81
+  },
+  {
+    "title": "Serverless Cold Starts",
+    "vidiq": 82
+  },
+  {
+    "title": "Serverless Cold Starts Explained",
+    "vidiq": 79
+  },
+  {
+    "title": "I Killed Our Cold Starts in One Afternoon",
+    "vidiq": 92
+  },
+  {
+    "title": "Nix Flakes for Reproducible Dev Environments",
+    "vidiq": 83
+  },
+  {
+    "title": "Your Feature Flags Are Technical Debt",
+    "vidiq": 71
+  },
+  {
+    "title": "I Ported Our Whole Test Suite to Playwright in One Weekend",
+    "vidiq": 76
+  },
+  {
+    "title": "eBPF Tracing Fundamentals",
+    "vidiq": 66
+  },
+  {
+    "title": "Why Nobody Uses Elixir",
+    "vidiq": 69
+  },
+  {
+    "title": "HOW I FIXED OUR MEMORY LEAK IN 20 MINUTES",
+    "vidiq": 75
+  },
+  {
+    "title": "Service Mesh Explained",
+    "vidiq": 56
+  },
+  {
+    "title": "Should You Write Your Own ORM?",
+    "vidiq": 73
+  },
+  {
+    "title": "The Caching Bug That Cost Us Three Days",
+    "vidiq": 86
+  },
+  {
+    "title": "Building a Terminal UI in Go (Full Tutorial)",
+    "vidiq": 80
+  },
+  {
+    "title": "Protocol Buffers vs JSON: Which Should Your API Use in 2026?",
+    "vidiq": 81
+  },
+  {
+    "title": "Rate Limiting Algorithms",
+    "vidiq": 70
+  }
+]

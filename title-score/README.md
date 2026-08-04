@@ -1,6 +1,7 @@
 # title-score
 
-Score a YouTube title 0-100 using a heuristic vidIQ-style breakdown.
+Score a YouTube title 0-100 with a model fitted by regression against real
+vidIQ title scores, for the tech / AI / developer niche.
 
 ## Installation
 
@@ -14,7 +15,7 @@ npx skills add https://github.com/RichardBray/skills --skill title-score
 /title-score [title to score]
 ```
 
-Or run the script directly:
+Or run the script directly (standard library only, no dependencies):
 
 ```bash
 scripts/score.py "Your Title Here"
@@ -22,32 +23,39 @@ scripts/score.py --json "Your Title Here"
 printf "Title one\nTitle two\n" | scripts/score.py -
 ```
 
-Scores are based on 11 factors: length, word count, numbers, power words, sentiment, capitalisation, punctuation, stopwords, specificity, cliche penalty, and trending phrases.
+## How it works
 
-**This is an approximation, not the real vidIQ score.** Mean absolute error vs real vidIQ is ~5.6 points across a 30-title calibration set.
+A ridge regression over two blocks of features:
 
-## Trending data
+1. **Structural** - length, word count, digits, curiosity / narrative /
+   second-person vocabulary, punctuation, caps ratio, dry academic openers,
+   depth framing, conflict framing, accusation framing.
+2. **Text n-grams** - word uni/bigrams plus character 3-5 grams.
 
-The scorer can use live YouTube trending data for better results. This requires a YouTube Data API key.
+The n-gram block is there because vidIQ turned out to be a learned text model
+rather than a checklist: titles with identical structure but different topics
+score far apart, and some topics barely move no matter how they are reframed.
 
-### Setup (one-time)
-
-1. Go to [console.cloud.google.com](https://console.cloud.google.com/) and create a project (or select an existing one).
-2. Go to **APIs & Services > Library**, search for **YouTube Data API v3**, and enable it.
-3. Go to **APIs & Services > Credentials**, click **Create Credentials > API key**, and copy the key.
-4. Add it to your shell config:
-
-```bash
-# ~/.zshrc or ~/.bashrc
-export YOUTUBE_API_KEY=your-key-here
-```
-
-Then `source ~/.zshrc` (or open a new terminal).
-
-### Refreshing trends
+Weights live in `data/model.json`; the labeled corpus is
+`data/calibration.json` (~360 titles). Refit with:
 
 ```bash
-python3 scripts/fetch_trends.py
+uv run --with numpy python scripts/calibrate.py --write
 ```
 
-This fetches ~150 trending video titles and writes `data/trends.json`. Each run uses ~700 YouTube API quota units (free tier allows 10,000/day). If the file is missing or older than 14 days, the scorer falls back to a built-in static phrase list.
+## Accuracy
+
+**This is an approximation, not the real vidIQ score.**
+
+Held-out (K-fold) MAE is **5.3 points**, against a 7.3 baseline for always
+predicting the corpus mean. On a true holdout of 12 fresh titles scored before
+querying vidIQ, error was **7.3 points / 9.9% relative**.
+
+It does not match vidIQ to within 5%, and the learning curve is flat enough
+(5.74 at n=100 -> 5.21 at n=348) that more labeled data will not get it there.
+Use it to **rank** title variants, which it does well: 75.8% accurate on
+same-topic pairs against a 50% coin flip.
+
+Call the vidIQ API when the absolute number matters. See **`RESEARCH.md`** for
+the full reverse-engineering writeup - what vidIQ does and does not publish,
+every measured finding, ranking metrics, failed approaches, and next steps.
