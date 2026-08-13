@@ -16,7 +16,6 @@ A collection of AI agent skills for content creation and developer tooling. Comp
 | Sync Docs | `/sync-docs` | Update a docs site to reflect code changes on the current branch before opening a PR |
 | Finish Feature | `/finish-feature` | Ship a feature: lint, test, commit, push, PR, review loop, risk-rated PR description |
 | Delegate | `/delegate` | Route subtasks to other models (glm, gpt, grok, Claude subagents) with cost/quality routing |
-| Delegate Review | `/delegate-review` | Multi-model code review across several LLMs |
 | wdyt | `/wdyt` | Give an honest opinion without implementing anything |
 | Questions | (auto) | Ask casual clarifying questions before acting on an ambiguous or question-ended request |
 
