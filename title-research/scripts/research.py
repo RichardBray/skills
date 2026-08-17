@@ -27,11 +27,23 @@ SORT_FILTERS = {
 
 
 def run(cmd: list[str], timeout: int = 120) -> str:
+    """Run a command and return its stdout, or "" on any failure.
+
+    stderr is deliberately kept out of the return value: the parsers below
+    scan this text for titles, and error output mixed in becomes fake rows.
+    """
     try:
         r = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
-        return r.stdout + r.stderr
+    except FileNotFoundError:
+        sys.exit(f"{cmd[0]!r} not found on PATH. Install and authenticate the "
+                 "Firecrawl CLI: https://docs.firecrawl.dev/cli")
     except subprocess.TimeoutExpired:
         return ""
+    if r.returncode != 0:
+        print(f"{' '.join(cmd[:2])} failed (exit {r.returncode}): "
+              f"{r.stderr.strip()[:200]}", file=sys.stderr)
+        return ""
+    return r.stdout
 
 
 def scrape_youtube(query: str, sort: str) -> str:
@@ -71,12 +83,28 @@ def parse_lines(text: str) -> list[str]:
     for line in text.splitlines():
         line = line.strip().lstrip("*-• ").strip()
         # interact format: **Title** | Channel | 12K views  /  Title | Channel | views
-        m = re.match(r"^\**(.+?)\**\s*\|\s*(.+?)\s*\|\s*([\d.,KMB]+\s*views?)", line)
+        # Case-insensitive: real output varies ("12k views", "12K Views").
+        m = re.match(
+            r"^\**(.+?)\**\s*\|\s*(.+?)\s*\|\s*([\d.,]+\s*[KMB]?\s*views?)",
+            line, re.IGNORECASE)
         if m:
             title = re.sub(r"\*+", "", m.group(1)).strip()
             rows.append(f"{title} | {m.group(2).strip()} | {m.group(3).strip()}")
             continue
     return rows
+
+
+# Lines the Firecrawl CLI emits that are status/diagnostics, not results.
+# Without this the fallback turns "No results found." into a video title -
+# and the fallback runs precisely when things are already failing.
+NOT_A_TITLE = re.compile(
+    r"^(no results|error|warning|failed|usage:|traceback|job not found"
+    r"|unauthorized|forbidden|rate limit|timed? ?out|\W*$)",
+    re.IGNORECASE,
+)
+
+# Section separators / decorative rules the CLI prints between result blocks.
+BANNER = re.compile(r"^\s*[=\-_*#]{3,}")
 
 
 def parse_search_headings(text: str) -> list[str]:
@@ -85,10 +113,14 @@ def parse_search_headings(text: str) -> list[str]:
     for block in text.split("\n\n"):
         first = block.strip().splitlines()[0] if block.strip() else ""
         first = first.strip()
-        if first and not first.startswith(("http", "URL:", "Scrape")):
-            clean = re.sub(r"^[\d.\-*\s]+", "", first).strip()
-            if 10 < len(clean) < 120:
-                titles.append(clean)
+        if not first or first.startswith(("http", "URL:", "Scrape")):
+            continue
+        if BANNER.match(first):          # "=== Web Results ===", "--- 1 ---"
+            continue
+        clean = re.sub(r"^[\d.\-*\s]+", "", first).strip()
+        clean = re.sub(r"^[#>*\s]+", "", clean).strip()
+        if 10 < len(clean) < 120 and not NOT_A_TITLE.match(clean):
+            titles.append(clean)
     return titles
 
 

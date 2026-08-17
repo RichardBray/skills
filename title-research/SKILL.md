@@ -13,13 +13,23 @@ Pipeline: **research → extract patterns → generate → score → report**.
 
 Depends on:
 - `firecrawl` CLI (authenticated)
-- the `title-score` skill (`../title-score/scripts/score.py`, relative to this
-  skill's base directory - the two ship side by side)
+- the `title-score` skill, installed as a sibling directory of this one
+
+Paths below are relative to **this skill's base directory**, not the user's
+project. Resolve them from the SKILL.md you are reading, e.g.:
+
+```bash
+SKILL_DIR=<absolute path of the directory containing this SKILL.md>
+SCORE="$SKILL_DIR/../title-score/scripts/score.py"
+```
+
+If `$SCORE` does not exist, `title-score` is not installed: say so and stop
+before Step 4 rather than reporting unscored titles as ranked.
 
 ## Step 1 — Research top titles
 
 ```bash
-python3 scripts/research.py "web scraping AI" --sort views
+python3 "$SKILL_DIR/scripts/research.py" "web scraping AI" --sort views
 ```
 
 The script scrapes YouTube search results sorted by view count, uses
@@ -55,7 +65,7 @@ Apply the patterns to the user's video. Rules:
 ## Step 4 — Score and rank
 
 ```bash
-printf '%s\n' "Title 1" "Title 2" ... | python3 ../title-score/scripts/score.py -
+printf '%s\n' "Title 1" "Title 2" ... | python3 "$SCORE" -
 ```
 
 Iterate once: tweak the weakest sub-scores of the top half (add a digit, a
