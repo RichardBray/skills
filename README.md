@@ -12,6 +12,7 @@ A collection of AI agent skills for content creation and developer tooling. Comp
 | Documentary Writer | `/documentary-writer` | Write documentary-style scripts about industry events and controversies |
 | Prune Context File | `/prune-context-file` | Audit and prune CLAUDE.md/AGENTS.md using evidence-based criteria |
 | Title Score | `/title-score` | Score a YouTube title 0-100 with a vidIQ-style heuristic breakdown |
+| Title Research | `/title-research` | Mine real top-performing YouTube titles for a topic, then generate and rank candidates |
 | Newsletter Digest | `/newsletter-digest` | Fetch dev newsletter RSS feeds and pick the 10 best articles as YouTube video topic ideas |
 | Sync Docs | `/sync-docs` | Update a docs site to reflect code changes on the current branch before opening a PR |
 | Finish Feature | `/finish-feature` | Ship a feature: lint, test, commit, push, PR, review loop, risk-rated PR description |
