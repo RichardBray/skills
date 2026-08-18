@@ -1,7 +1,6 @@
 ---
 name: longs-writer
 description: Write long-form YouTube scripts (~8 min) for a dev-focused tech channel. Use when the user asks to write a long video script, create a YouTube script, or plan a video about a tool, technique, or concept.
-user-invocable: true
 argument-hint: "[topic]"
 ---
 

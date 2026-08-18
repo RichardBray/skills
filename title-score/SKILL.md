@@ -1,7 +1,6 @@
 ---
 name: title-score
 description: Score a YouTube title 0-100 using a model fitted to real vidIQ title scores, for tech/AI/developer titles. Use when the user asks to score, rate, grade, or evaluate a YouTube title, or wants to compare/iterate title options. Returns a numeric score with a per-factor breakdown and improvement suggestions. An approximation of vidIQ, not the real API.
-user-invocable: true
 argument-hint: "[title to score, or list of titles]"
 ---
 

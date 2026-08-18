@@ -1,7 +1,6 @@
 ---
 name: tweet
 description: Generate 5 engaging tweet options based on a topic or description
-user-invocable: true
 argument-hint: "[topic or description]"
 ---
 

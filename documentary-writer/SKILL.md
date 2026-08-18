@@ -1,7 +1,6 @@
 ---
 name: documentary-writer
 description: Write documentary-style long-form YouTube scripts (~8-10 min) for a dev-focused tech channel. Use when the user asks to write an investigative, opinion, or documentary video script about an industry event, controversy, policy change, or trend. NOT for tool reviews or tutorials — use longs-writer for those.
-user-invocable: true
 argument-hint: "[topic]"
 ---
 
