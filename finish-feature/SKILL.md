@@ -1,6 +1,7 @@
 ---
 name: finish-feature
 description: Ship a completed feature - lint, test, commit, push, PR, subagent review loop, risk-rated PR description. Use when the user says "finish this feature", "ship it", "wrap this up", or "create the PR".
+disable-model-invocation: true
 ---
 
 # Finish Feature
