@@ -1,6 +1,6 @@
 # Prepare a build prompt
 
-This mode turns a brief into a self-contained prompt for a new session. It stops before asset generation, implementation or deployment. Use build-prompt-template.md as the handoff structure, not a questionnaire to recite.
+This mode turns a brief into a self-contained prompt for a new session. It stops before asset generation, implementation or deployment. Use build-prompt-template.md as the handoff structure, not a questionnaire to recite. Read [motion requirements](motion-requirements.md) when specifying interactions, scrolling and page transitions; carry their acceptance criteria into the brief.
 
 ## Fill the brief through conversation
 
