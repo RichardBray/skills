@@ -3,7 +3,7 @@
 JSON is the canonical store: one site per library/sites/<id>.json. It supports nested elements and evidence, portable diffs, and selective reads. CSV is a derived browsing view. Consider SQLite only when scale, joins, or concurrent writes justify a migration; do not maintain two competing sources of truth.
 
 Each site record uses:
-- schema_version: 1; stable slug id; name; url (null only for unresolved discovery candidates).
+- schema_version: 1; stable slug id; name; url (required HTTP(S) URL for site records).
 - status: discovered | extracted | reviewed. Reviewed means the relevant visual evidence was actually inspected; it does not automatically certify mobile or interactions.
 - collected_at: ISO date; discovery_source; user_notes (verbatim preference or null).
 - tags: industry, personality, layout, typography, imagery, motion, technology arrays.
@@ -44,3 +44,13 @@ python3 <skill-dir>/scripts/catalog.py export-motion-csv --output <skill-dir>/li
 This includes visual candidates with unknown controls, explicitly labelled visual-pattern. It is derived from the canonical JSON and must not be edited directly.
 
 Site records may include scroll_control and technology_findings. Unknown must remain explicit until evidence establishes the mechanism or library. See page-transitions-scroll.md for the audit.
+
+## Discovery and seed coverage contract
+
+Unresolved candidates live in discovery.json, where url may be null only while status is discovered and no library_site_id is assigned. Site records always require an HTTP(S) URL. Linked candidates must have the same URL and status as their library_site_id record; the status refers to review of the linked current site, not verification of its historical award version. Collection/listing verification remains in notes.
+
+library/coverage.json declares the eight seed records that must each have durable branding JSON containing a nonempty branding object and a local inspected browser/video motion audit. Evidence IDs may vary (Ali uses navigation); kind and content determine coverage. Missing files or omitted evidence declarations fail validation. This contract is explicit rather than silently requiring every future discovery candidate to be fully researched.
+
+Screenshot evidence must have a durable local path, or an explicit unavailable_reason and inspected=false. Temporary signed URLs may be retained as historical provenance, never as the sole durable evidence. Store a SHA-256 checksum for local screenshots; the validator verifies it when present. Saving or viewing a still image does not establish motion or a fully settled page.
+
+Run offline regression checks with `python3 -m unittest discover -s <skill-dir>/tests -v`. These checks mutate temporary copies to verify missing evidence, stale discovery links, invalid URLs and screenshot durability failures.

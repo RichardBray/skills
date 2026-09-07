@@ -1,0 +1,112 @@
+{
+  "branding": {
+    "colorScheme": "light",
+    "fonts": [
+      {
+        "family": "Neue Haas Grotesk Display",
+        "role": "heading"
+      },
+      {
+        "family": "Schnyder Light",
+        "role": "body"
+      }
+    ],
+    "colors": {
+      "primary": "#1C2AFF",
+      "secondary": "#EF4444",
+      "accent": "#FDC700",
+      "background": "#FFFFFF",
+      "textPrimary": "#000000",
+      "link": "#FDC700"
+    },
+    "typography": {
+      "fontFamilies": {
+        "primary": "Schnyder Light",
+        "heading": "Neue Haas Grotesk Display"
+      },
+      "fontStacks": {
+        "heading": [
+          "neue-haas-grotesk-display"
+        ],
+        "body": [
+          "neue-haas-grotesk-display"
+        ],
+        "paragraph": [
+          "neue-haas-grotesk-display"
+        ]
+      },
+      "fontSizes": {
+        "h1": "10px",
+        "h2": "16px",
+        "body": "16px"
+      }
+    },
+    "spacing": {
+      "baseUnit": 4,
+      "borderRadius": "0px"
+    },
+    "components": {},
+    "images": {
+      "logo": "https://www.aquest.it/aq.svg",
+      "favicon": "https://www.aquest.it/favicon.ico",
+      "ogImage": null,
+      "logoHref": "/",
+      "logoAlt": "AQuest Logo"
+    },
+    "__llm_logo_reasoning": {
+      "selectedIndex": 0,
+      "reasoning": "Selected #0 because it is visible, medium-sized, located in the header, and links to the homepage, which strongly indicates it is the main brand logo for AQuest.",
+      "confidence": 0.9,
+      "source": "llm"
+    },
+    "personality": {
+      "tone": "modern",
+      "energy": "high",
+      "targetAudience": "businesses seeking digital innovation and creative solutions"
+    },
+    "designSystem": {
+      "framework": "custom",
+      "componentLibrary": ""
+    },
+    "confidence": {
+      "buttons": 0.5,
+      "colors": 0.95,
+      "overall": 0.725
+    },
+    "__llm_metadata": {
+      "logoSelection": {
+        "llmCalled": true,
+        "llmSucceeded": true,
+        "finalSource": "llm",
+        "rawLogoSelection": {
+          "selectedLogoIndex": 0,
+          "selectedLogoReasoning": "Selected #0 because it is visible, medium-sized, located in the header, and links to the homepage, which strongly indicates it is the main brand logo for AQuest.",
+          "confidence": 0.9
+        }
+      },
+      "buttonClassification": {
+        "llmCalled": false,
+        "llmSucceeded": true
+      }
+    },
+    "brandName": "Digital Innovation & Creative Experience Agency",
+    "logo": "https://www.aquest.it/aq.svg"
+  },
+  "metadata": {
+    "viewport": "width=device-width, initial-scale=1",
+    "description": "For over 25 years, we've been exploring and crafting high-impact digital experiences where creativity and technology blend seamlessly.",
+    "theme-color": "#ffffff",
+    "title": "Digital Innovation & Creative Experience Agency | AQuest",
+    "favicon": "https://www.aquest.it/favicon.ico",
+    "scrapeId": "01a07d5a-e68b-745d-84c1-db7ddc013642",
+    "sourceURL": "https://www.aquest.it/",
+    "url": "https://www.aquest.it/",
+    "statusCode": 200,
+    "contentType": "text/html;charset=utf-8",
+    "timezone": "America/New_York",
+    "proxyUsed": "basic",
+    "indexId": "d1c0dccc-3a78-4473-81bd-0c3ef519a168",
+    "creditsUsed": 1,
+    "concurrencyLimited": false
+  }
+}
