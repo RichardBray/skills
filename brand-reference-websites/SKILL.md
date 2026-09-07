@@ -1,6 +1,6 @@
 ---
 name: brand-reference-websites
-description: Design and build professional client websites by selecting and adapting specific elements from a tagged reference library, with required scroll animations and optional 3D. Also turn client briefs into self-contained build prompts for a fresh session and curate website and component references. Use for brand-specific marketing websites, redesigns, and reference-led landing pages.
+description: Prepare build prompts or create brand-specific client websites using curated design references. Also curate website and component references.
 ---
 
 # Brand reference websites
