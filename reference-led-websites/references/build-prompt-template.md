@@ -1,6 +1,9 @@
 # Reusable website build prompt
 
-Fill bracketed fields using [prompt preparation](prompt-preparation.md). Remove irrelevant sections and resolve supporting links to absolute skill paths before handing off; leave no unfilled brackets.
+- Fill bracketed fields using [prompt preparation](prompt-preparation.md).
+- Remove irrelevant sections.
+- Resolve supporting links to absolute skill paths before handing off.
+- Leave no unfilled brackets.
 
 ---
 
@@ -9,7 +12,10 @@ Read and use the website skill at:
 
 Shared library location: [resolved absolute curator root, or unavailable with project-local reference plan]. Read it through the skill’s library-access guidance; do not modify shared records.
 
-This is the build stage. Use the following completed brief without repeating answered questions. Work autonomously within its scope; ask only about a consequential unresolved issue. Inspect the project before choosing implementation tools.
+- This is the build stage.
+- Use the following completed brief without repeating answered questions.
+- Work autonomously within its scope; ask only about a consequential unresolved issue.
+- Inspect the project before choosing implementation tools.
 
 ## Project and outcome
 
@@ -40,7 +46,8 @@ Supporting references: [URL + section + element + role; omit if unnecessary].
 Evidence: [what has actually been inspected, capture/report paths and what needs live verification].
 Reference fidelity: [close match or selective adaptation, plus approved deviations].
 
-Inspect the selected references through [project research](library-access.md#project-research) and preserve their intended qualities using [build decisions](build-decisions.md#preserve-the-reference-direction).
+- Inspect the selected references through [project research](library-access.md#project-research).
+- Preserve their intended qualities using [build decisions](build-decisions.md#preserve-the-reference-direction).
 
 ## Pages and functionality
 
@@ -52,7 +59,11 @@ Content editing requirements: [CMS/management needs or none].
 ## Signature interaction and motion
 
 Chosen effects: [client-specific signature interaction, required scroll sequence, route transitions when multi-page, and supporting UI effects].
-Complete each effect using the canonical [motion contract](animation-patterns.md#motion-contract). Fill known decisions; explicitly delegate unresolved implementation details within the brief. Meet the [motion requirements](motion-requirements.md) and retain any user-authorized exceptions.
+
+- Complete each effect using the canonical [motion contract](animation-patterns.md#motion-contract).
+- Fill known decisions.
+- Explicitly delegate unresolved implementation details within the brief.
+- Meet the [motion requirements](motion-requirements.md) and retain any user-authorized exceptions.
 
 ## Imagery and 3D
 
@@ -61,7 +72,10 @@ Generation choices: [built-in image tool default; any explicitly requested API m
 3D role and route: [none, real interactive geometry, rendered imagery or video; supplied models, Blender or optional reconstruction as appropriate].
 Tools reported available: [relevant tools to verify in the new environment, never credentials].
 Paid API authorization: [exact authorized provider/scope/budget, or no authorization supplied, ask before paid generation].
-Preserve real product identity. Inspect generated assets and actual browser rendering. A 3D-looking image does not count as interactive geometry.
+
+- Preserve real product identity.
+- Inspect generated assets and actual browser rendering.
+- A 3D-looking image does not count as interactive geometry.
 
 ## Implementation constraints
 
@@ -72,9 +86,13 @@ Other constraints: [only relevant requirements].
 
 ## Build and verify
 
-Write DESIGN.md using [build decisions](build-decisions.md#make-decisions-concrete) and the linked motion contract. Prototype the defining interaction and anchor section with representative assets before extending the site. Follow the skill's research and implementation workflow.
+- Write DESIGN.md using [build decisions](build-decisions.md#make-decisions-concrete) and the linked motion contract.
+- Prototype the defining interaction and anchor section with representative assets before extending the site.
+- Follow the skill's research and implementation workflow.
 
-Apply [review criteria](review.md), fix observed weaknesses and recheck affected areas.
+- Apply [review criteria](review.md).
+- Fix observed weaknesses.
+- Recheck affected areas.
 
 Deliver [working local preview and project files, plus any specifically requested deliverables]. Report actual checks and material limitations. Distinguish demo functionality from production integrations. Do not publish or incur paid-provider costs beyond the authorization above.
 

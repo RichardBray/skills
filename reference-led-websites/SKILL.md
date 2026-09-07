@@ -9,7 +9,10 @@ Create brand-specific client websites by adapting identifiable elements from exi
 
 ## Ownership
 
-This skill prepares prompts and builds client websites. It reads the shared library owned by `website-reference-curator` but never updates that library, discovery records, CSVs or coverage contracts. Save research and design artifacts in the client project. For an explicit shared-library update, use the curator skill as a separate task phase; do not require curation before finishing a build.
+- This skill prepares prompts and builds client websites.
+- It reads the shared library owned by `website-reference-curator` but never updates that library, discovery records, CSVs or coverage contracts.
+- Save research and design artifacts in the client project.
+- For an explicit shared-library update, use the curator skill as a separate task phase; do not require curation before finishing a build.
 
 ## Choose the mode
 
@@ -46,7 +49,10 @@ python3 <curator-root>/scripts/catalog.py search --query 'editorial restrained h
 
 The search is a lexical shortlist. Judge brand fit, audience, content, conversion goals, assets, mobile suitability and effort; awards and industry alone do not determine fit. Select an anchor for composition/type and compatible references for specific elements.
 
-Inspect the relevant page sections at desktop and mobile widths, including intermediate and settled motion states. Keep observed facts separate from inferred implementation. For missing evidence or new references, follow [project research](references/library-access.md#project-research). Prefer Firecrawl and its design-clone workflow when available; use available browser/web tools or saved evidence otherwise and record provenance.
+- Inspect the relevant page sections at desktop and mobile widths, including intermediate and settled motion states.
+- Keep observed facts separate from inferred implementation.
+- For missing evidence or new references, follow [project research](references/library-access.md#project-research).
+- Prefer Firecrawl and its design-clone workflow when available; use available browser/web tools or saved evidence otherwise and record provenance.
 
 For close matches, preserve defining composition, scale, colour relationships and choreography while adapting identity and licensed assets. Read [build decisions](references/build-decisions.md) before planning; document necessary deviations instead of silently simplifying the design.
 
@@ -74,7 +80,11 @@ Compare reference and build at matching viewport sizes and scroll states. Fix th
 
 ## 5. Verify and deliver
 
-Read [review criteria](references/review.md) for every build. Inspect desktop, mobile and an intermediate width; exercise the primary flow, scrolling, route changes, keyboard/touch, overlays and reduced motion. Check computed font sizes and literal/encoded em dashes as well as layout, assets, loading and runtime errors.
+Read [review criteria](references/review.md) for every build.
+
+- Inspect desktop, mobile and an intermediate width.
+- Exercise the primary flow, scrolling, route changes, keyboard/touch, overlays and reduced motion.
+- Check computed font sizes and literal/encoded em dashes as well as layout, assets, loading and runtime errors.
 
 Fix observed issues and recheck affected areas. Completion requires the brief and motion acceptance criteria to be met in the rendered build, not merely a successful compilation. If browser verification is unavailable, report it as incomplete.
 
