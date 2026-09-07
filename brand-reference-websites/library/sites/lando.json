@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "id": "lando",
+  "name": "Lando Norris",
+  "url": "https://landonorris.com/",
+  "status": "reviewed",
+  "collected_at": "2026-09-07",
+  "discovery_source": "user",
+  "user_notes": "User described this site as amazing; specific preferred elements not yet supplied.",
+  "tags": {
+    "industry": [
+      "sports"
+    ],
+    "personality": [
+      "bold"
+    ],
+    "layout": [],
+    "typography": [
+      "sans-display"
+    ],
+    "imagery": [],
+    "motion": [
+      "menu-transition",
+      "staged-reveal"
+    ],
+    "technology": []
+  },
+  "tokens": {
+    "provenance": "Firecrawl branding; unverified extraction",
+    "colors": {
+      "primary": "#D2FF00",
+      "secondary": "#C5BDAD",
+      "accent": "#D2FF00",
+      "background": "#282C20",
+      "textPrimary": "#282C20",
+      "link": "#DDE1D2"
+    },
+    "fontFamilies": {
+      "primary": "Mona Sans Variable",
+      "heading": "Mona Sans Variable"
+    }
+  },
+  "evidence": [
+    {
+      "id": "branding",
+      "kind": "firecrawl-branding",
+      "source_url": "https://landonorris.com/",
+      "captured_at": "2026-09-07",
+      "path": "library/evidence/lando-branding.json",
+      "inspected": false
+    },
+    {
+      "id": "desktop-capture",
+      "kind": "screenshot",
+      "source_url": "https://landonorris.com/",
+      "captured_at": "2026-09-07",
+      "url": "https://storage.googleapis.com/firecrawl-scrape-media/screenshot-33be3314-bf0e-4edd-a5a8-6506aeeb984c.png?GoogleAccessId=scrape-bucket-accessor%40firecrawl.iam.gserviceaccount.com&Expires=1789395158&Signature=OwYLOM2rbAGTyJk3wfMp7ndfTl%2FMQR9I7W20j7SUIA53AxlgbOVinC1uE5GTFrYtKrNobCFwaPhZt%2BYRGtbk9MEpFCQIBZ2wx4pjaHVBx7sIXSxuQLU04c4Mj%2BI07AT3TYwj2qZOevY7Wo%2BuE2mVLtmPlz0iah4g2mF%2FzqstGMmTteFu3Cs4IiTCEsBcUnKVONzN%2BAril1xWEOz95Wpauxf13hjHFQXhBAL456Jc8AjSlpnwyAnvkP4xCTZln8In%2FS%2F5M5u8rxtH%2FQwi3QEct%2BxncSVQL4Z1cKcWIG2vpT7mUKmTFDcuWFUGoE77Q2WAhKqznFQqIHksopatk8Gusw%3D%3D",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "inspected": false
+    },
+    {
+      "id": "motion-audit",
+      "kind": "browser",
+      "source_url": "https://landonorris.com/",
+      "captured_at": "2026-09-07",
+      "path": "library/evidence/lando-motion-audit.md",
+      "inspected": true,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "method": "CUA action and screenshot comparisons"
+    }
+  ],
+  "elements": [
+    {
+      "id": "accent-cta",
+      "type": "button",
+      "location": "Extracted branding; live section inspection pending",
+      "description": "Primary button uses a lime background and dark text in the branding extraction.",
+      "tags": [
+        "sans-display"
+      ],
+      "evidence_ids": [
+        "branding"
+      ],
+      "verification": "extracted",
+      "brand_fit": "An energetic brand with a clear primary action.",
+      "adaptation": "Borrow strong CTA contrast and compact shape; substitute client colours after contrast testing.",
+      "effort": "unknown",
+      "mobile": "Not inspected",
+      "reduced_motion": "Not inspected"
+    },
+    {
+      "id": "full-screen-menu",
+      "type": "animation",
+      "location": "top-right menu control",
+      "description": "Light portrait hero with compact top-right menu button. A dark olive covering layer enters with a curved lower edge; image tiles and large navigation resolve into the full-screen menu.",
+      "tags": [
+        "menu-transition",
+        "staged-reveal",
+        "image-grid"
+      ],
+      "evidence_ids": [
+        "motion-audit"
+      ],
+      "verification": "observed",
+      "brand_fit": "Personality-led brands with a small number of primary destinations.",
+      "adaptation": "Stage the covering layer, imagery and links; preserve keyboard focus and instant reduced-motion navigation.",
+      "effort": "high",
+      "mobile": "not inspected",
+      "reduced_motion": "Source untested; choose an appropriate accessible fallback in the client build.",
+      "motion": {
+        "trigger": "click",
+        "start_state": "Light portrait hero with compact top-right menu button.",
+        "end_state": "A dark olive covering layer enters with a curved lower edge; image tiles and large navigation resolve into the full-screen menu.",
+        "scroll_relationship": "Click-driven; entry sequence includes an intermediate frame before text finishes appearing.",
+        "repeat_reverse": "Open tested; close action produced a transitional frame, final closed state not verified.",
+        "duration_ms": null,
+        "easing": null,
+        "rendering_technology": "unknown",
+        "implementation_status": "adaptation is a proposal, not verified source implementation",
+        "evidence_actions": "Loaded portrait hero; clicked menu; captured intermediate and settled menu; clicked close and captured an intermediate closing state."
+      }
+    },
+    {
+      "id": "portrait-helmet-composite",
+      "type": "visual-pattern",
+      "location": "homepage hero",
+      "description": "Portrait fills the hero; a horizontal visor/helmet band crosses the face. A depth-styled band and background shadow are visible, but controlling input was not isolated in this pass.",
+      "tags": [
+        "portrait",
+        "depth-effect"
+      ],
+      "evidence_ids": [
+        "motion-audit"
+      ],
+      "verification": "observed",
+      "brand_fit": "Athletes or personal brands with a signature physical object.",
+      "adaptation": "Revisit the interaction before implementing; use client-owned portraits and object assets.",
+      "effort": "high",
+      "mobile": "not inspected",
+      "reduced_motion": "Source untested; choose an appropriate accessible fallback in the client build.",
+      "motion": {
+        "trigger": "unknown",
+        "start_state": "Portrait fills the hero; a horizontal visor/helmet band crosses the face.",
+        "end_state": "A depth-styled band and background shadow are visible, but controlling input was not isolated in this pass.",
+        "scroll_relationship": "Unknown; do not label scroll-controlled or realtime 3D.",
+        "repeat_reverse": "Unverified.",
+        "duration_ms": null,
+        "easing": null,
+        "rendering_technology": "unknown",
+        "implementation_status": "adaptation is a proposal, not verified source implementation",
+        "evidence_actions": "Loaded portrait hero; clicked menu; captured intermediate and settled menu; clicked close and captured an intermediate closing state."
+      }
+    }
+  ],
+  "caveats": [
+    "Extracted background and textPrimary both #282C20: global colour roles are ambiguous.",
+    "3D and motion not yet observed; font sizes need viewport verification.",
+    "Screenshot URL is temporary; capture again if expired.",
+    "Only the listed homepage states were inspected. Exact durations/easing, full hover behaviour and reduced-motion behaviour remain unverified."
+  ],
+  "review_coverage": {
+    "desktop": "selected homepage states inspected",
+    "mobile": "not inspected",
+    "reduced_motion": "not inspected",
+    "hover": "not isolated",
+    "timing": "not measured",
+    "recording": "no video or persistent screenshots saved; browser action notes only"
+  },
+  "scroll_control": {
+    "mode": "unknown",
+    "verification": "not-assessed",
+    "notes": "Scroll-associated motion was sampled; interception of native wheel/touch/keyboard scrolling was not established."
+  },
+  "technology_findings": []
+}

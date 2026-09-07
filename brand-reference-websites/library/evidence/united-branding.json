@@ -1,0 +1,168 @@
+{
+  "branding": {
+    "colorScheme": "light",
+    "fonts": [
+      {
+        "family": "BT Steinhart",
+        "role": "heading"
+      },
+      {
+        "family": "BT Steinhart Mono",
+        "role": "monospace"
+      }
+    ],
+    "colors": {
+      "primary": "#FF2E12",
+      "secondary": "#FFDEDE",
+      "accent": "#3898EC",
+      "background": "#FFFFFF",
+      "textPrimary": "#111111",
+      "link": "#3898EC"
+    },
+    "typography": {
+      "fontFamilies": {
+        "primary": "BT Steinhart",
+        "heading": "BT Steinhart"
+      },
+      "fontStacks": {
+        "heading": [
+          "BT Steinhart",
+          "Arial",
+          "sans-serif"
+        ],
+        "body": [
+          "Helvetica Neue",
+          "Arial",
+          "sans-serif"
+        ],
+        "paragraph": [
+          "Helvetica Neue",
+          "Arial",
+          "sans-serif"
+        ]
+      },
+      "fontSizes": {
+        "h1": "106.667px",
+        "h2": "106.667px",
+        "body": "31.1111px"
+      }
+    },
+    "spacing": {
+      "baseUnit": 4,
+      "borderRadius": "3px"
+    },
+    "components": {
+      "buttonPrimary": {
+        "background": "#FFFFFF",
+        "textColor": "#111111",
+        "borderColor": "#FFFFFF",
+        "borderRadius": "100000px",
+        "borderRadiusCorners": {
+          "topLeft": "100000px",
+          "topRight": "100000px",
+          "bottomRight": "100000px",
+          "bottomLeft": "100000px"
+        },
+        "shadow": "none"
+      },
+      "buttonSecondary": {
+        "background": "#111111",
+        "textColor": "#FFFFFF",
+        "borderRadius": "0px",
+        "borderRadiusCorners": {
+          "topLeft": "0px",
+          "topRight": "0px",
+          "bottomRight": "0px",
+          "bottomLeft": "0px"
+        },
+        "shadow": "none"
+      }
+    },
+    "images": {
+      "logo": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2068%2016%22%20fill%3D%22none%22%20class%3D%22svg%22%20data-fc-idx%3D%220%22%3E%3Cpath%20d%3D%22M12.0078%200C11.5506%200%2011.1767%200.374039%2011.1767%200.831095V9.82025C11.1767%2010.2774%2010.9527%2010.352%2010.6787%209.9862L3.69869%200.665196C3.42471%200.299404%202.82636%200%202.36958%200H0.831096C0.374314%200%200%200.374039%200%200.831095V15.1689C0%2015.626%200.374314%2015.9998%200.831096%2015.9998H2.36958C2.82636%2015.9998%203.20068%2015.626%203.20068%2015.1689V6.15716C3.20068%205.7001%203.42426%205.62565%203.69778%205.99162L10.6792%2015.3343C10.9527%2015.7002%2011.5506%2015.9998%2012.0078%2015.9998H13.5225C13.9797%2015.9998%2014.3536%2015.626%2014.3536%2015.1689V0.831095C14.3536%200.374039%2013.9797%200%2013.5225%200H12.0078Z%22%20fill%3D%22currentColor%22%20style%3D%22fill%3A%20rgb(255%2C%20255%2C%20255)%20!important%3B%22%2F%3E%3Cpath%20d%3D%22M16.7056%2015.1689C16.7056%2015.626%2017.0799%2015.9998%2017.5367%2015.9998H19.0742C19.5315%2015.9998%2019.9053%2015.626%2019.9053%2015.1689V0.830911C19.9053%200.374038%2019.5315%201.72804e-07%2019.0742%201.72804e-07H17.5367C17.0799%201.72804e-07%2016.7056%200.374038%2016.7056%200.830911V15.1689Z%22%20fill%3D%22currentColor%22%20style%3D%22fill%3A%20rgb(255%2C%20255%2C%20255)%20!important%3B%22%2F%3E%3Cpath%20d%3D%22M22.4038%207.55763e-08C21.9471%207.55763e-08%2021.5728%200.374039%2021.5728%200.831096V2.36935C21.5728%202.82641%2021.9471%203.20027%2022.4038%203.20027H26.3412C26.7985%203.20027%2027.1723%203.5743%2027.1723%204.03141V15.1689C27.1723%2015.626%2027.5462%2015.9998%2028.0034%2015.9998H29.5419C29.9987%2015.9998%2030.3726%2015.626%2030.3726%2015.1689V4.03141C30.3726%203.5743%2030.7469%203.20027%2031.2036%203.20027H35.0948C35.552%203.20027%2035.9259%202.82641%2035.9259%202.36935V0.831096C35.9259%200.374039%2035.552%207.55763e-08%2035.0948%207.55763e-08H22.4038Z%22%20fill%3D%22currentColor%22%20style%3D%22fill%3A%20rgb(255%2C%20255%2C%20255)%20!important%3B%22%2F%3E%3Cpath%20d%3D%22M38.4239%207.55763e-08C37.9671%207.55763e-08%2037.5928%200.374039%2037.5928%200.831096V15.1689C37.5928%2015.626%2037.9671%2015.9998%2038.4239%2015.9998H50.3387C50.7955%2015.9998%2051.1698%2015.626%2051.1698%2015.1689V13.6314C51.1698%2013.1745%2050.7955%2012.8004%2050.3387%2012.8004H41.6236C41.1664%2012.8004%2040.7925%2012.4264%2040.7925%2011.9693V10.4537C40.7925%209.99655%2041.1664%209.62251%2041.6236%209.62251H49.5392C49.996%209.62251%2050.3703%209.24866%2050.3703%208.79156V7.25334C50.3703%206.79628%2049.996%206.4222%2049.5392%206.4222H41.6236C41.1664%206.4222%2040.7925%206.04816%2040.7925%205.59129V4.03141C40.7925%203.5743%2041.1664%203.20027%2041.6236%203.20027H50.3387C50.7955%203.20027%2051.1698%202.82641%2051.1698%202.36935V0.831096C51.1698%200.374039%2050.7955%207.55763e-08%2050.3387%207.55763e-08H38.4239Z%22%20fill%3D%22currentColor%22%20style%3D%22fill%3A%20rgb(255%2C%20255%2C%20255)%20!important%3B%22%2F%3E%3Cpath%20d%3D%22M56.4932%204.03141C56.4932%203.5743%2056.8671%203.20027%2057.3243%203.20027H60.4389C60.8961%203.20027%2061.5343%203.4648%2061.8578%203.7878L63.8824%205.81231C64.2058%206.13535%2064.4702%206.7737%2064.4702%207.2308V11.9693C64.4702%2012.4264%2064.0964%2012.8004%2063.6391%2012.8004H57.3243C56.8671%2012.8004%2056.4932%2012.4264%2056.4932%2011.9693V4.03141ZM54.1246%207.55763e-08C53.6678%207.55763e-08%2053.2939%200.374039%2053.2939%200.831096V15.1689C53.2939%2015.626%2053.6678%2015.9998%2054.1246%2015.9998H65.2399C65.6967%2015.9998%2066.3354%2015.7353%2066.6584%2015.4121L67.0597%2015.0103C67.3832%2014.6871%2067.6475%2014.0487%2067.6475%2013.5915V5.6312C67.6475%205.17391%2067.3836%204.53501%2067.0611%204.21109L63.4568%200.588959C63.1342%200.265042%2062.4965%207.55763e-08%2062.0397%207.55763e-08H54.1246Z%22%20fill%3D%22currentColor%22%20style%3D%22fill%3A%20rgb(255%2C%20255%2C%20255)%20!important%3B%22%2F%3E%3C%2Fsvg%3E",
+      "favicon": "https://cdn.prod.website-files.com/6a44eec1ed1af2c4c403df6b/6a631242ed3423f9f458466a_Favicon%20(1).png",
+      "ogImage": "https://cdn.prod.website-files.com/6a44eec1ed1af2c4c403df6b/6a44eec1ed1af2c4c403dfc4_e7dc5a3fbf83ec1ed6ee0b12fc4989e9_OG.jpg",
+      "logoHref": "/"
+    },
+    "__llm_logo_reasoning": {
+      "selectedIndex": 1,
+      "reasoning": "Selected #1 because it is visible, located in the header, and links to the homepage, matching the brand 'United Carriers'.",
+      "confidence": 0.85,
+      "source": "llm"
+    },
+    "__llm_button_reasoning": {
+      "primary": {
+        "index": 8,
+        "text": "Talk with us",
+        "reasoning": "Button #8 'Talk with us' is likely the primary CTA due to its action-oriented text and placement. It uses a contrasting white background, making it stand out."
+      },
+      "secondary": {
+        "index": 0,
+        "text": "Our Services",
+        "reasoning": "Button #0 'Our Services' is selected as secondary due to its dark background, which contrasts with the primary button's white background."
+      },
+      "confidence": 0.9
+    },
+    "personality": {
+      "tone": "professional",
+      "energy": "medium",
+      "targetAudience": "businesses seeking logistics solutions"
+    },
+    "designSystem": {
+      "framework": "custom",
+      "componentLibrary": ""
+    },
+    "confidence": {
+      "buttons": 0.9,
+      "colors": 0.9,
+      "overall": 0.9
+    },
+    "__llm_metadata": {
+      "logoSelection": {
+        "llmCalled": true,
+        "llmSucceeded": true,
+        "finalSource": "llm",
+        "rawLogoSelection": {
+          "selectedLogoIndex": 1,
+          "selectedLogoReasoning": "Selected #1 because it is visible, located in the header, and links to the homepage, matching the brand 'United Carriers'.",
+          "confidence": 0.85
+        }
+      },
+      "buttonClassification": {
+        "llmCalled": true,
+        "llmSucceeded": true
+      }
+    },
+    "brandName": "United Carriers",
+    "logo": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2068%2016%22%20fill%3D%22none%22%20class%3D%22svg%22%20data-fc-idx%3D%220%22%3E%3Cpath%20d%3D%22M12.0078%200C11.5506%200%2011.1767%200.374039%2011.1767%200.831095V9.82025C11.1767%2010.2774%2010.9527%2010.352%2010.6787%209.9862L3.69869%200.665196C3.42471%200.299404%202.82636%200%202.36958%200H0.831096C0.374314%200%200%200.374039%200%200.831095V15.1689C0%2015.626%200.374314%2015.9998%200.831096%2015.9998H2.36958C2.82636%2015.9998%203.20068%2015.626%203.20068%2015.1689V6.15716C3.20068%205.7001%203.42426%205.62565%203.69778%205.99162L10.6792%2015.3343C10.9527%2015.7002%2011.5506%2015.9998%2012.0078%2015.9998H13.5225C13.9797%2015.9998%2014.3536%2015.626%2014.3536%2015.1689V0.831095C14.3536%200.374039%2013.9797%200%2013.5225%200H12.0078Z%22%20fill%3D%22currentColor%22%20style%3D%22fill%3A%20rgb(255%2C%20255%2C%20255)%20!important%3B%22%2F%3E%3Cpath%20d%3D%22M16.7056%2015.1689C16.7056%2015.626%2017.0799%2015.9998%2017.5367%2015.9998H19.0742C19.5315%2015.9998%2019.9053%2015.626%2019.9053%2015.1689V0.830911C19.9053%200.374038%2019.5315%201.72804e-07%2019.0742%201.72804e-07H17.5367C17.0799%201.72804e-07%2016.7056%200.374038%2016.7056%200.830911V15.1689Z%22%20fill%3D%22currentColor%22%20style%3D%22fill%3A%20rgb(255%2C%20255%2C%20255)%20!important%3B%22%2F%3E%3Cpath%20d%3D%22M22.4038%207.55763e-08C21.9471%207.55763e-08%2021.5728%200.374039%2021.5728%200.831096V2.36935C21.5728%202.82641%2021.9471%203.20027%2022.4038%203.20027H26.3412C26.7985%203.20027%2027.1723%203.5743%2027.1723%204.03141V15.1689C27.1723%2015.626%2027.5462%2015.9998%2028.0034%2015.9998H29.5419C29.9987%2015.9998%2030.3726%2015.626%2030.3726%2015.1689V4.03141C30.3726%203.5743%2030.7469%203.20027%2031.2036%203.20027H35.0948C35.552%203.20027%2035.9259%202.82641%2035.9259%202.36935V0.831096C35.9259%200.374039%2035.552%207.55763e-08%2035.0948%207.55763e-08H22.4038Z%22%20fill%3D%22currentColor%22%20style%3D%22fill%3A%20rgb(255%2C%20255%2C%20255)%20!important%3B%22%2F%3E%3Cpath%20d%3D%22M38.4239%207.55763e-08C37.9671%207.55763e-08%2037.5928%200.374039%2037.5928%200.831096V15.1689C37.5928%2015.626%2037.9671%2015.9998%2038.4239%2015.9998H50.3387C50.7955%2015.9998%2051.1698%2015.626%2051.1698%2015.1689V13.6314C51.1698%2013.1745%2050.7955%2012.8004%2050.3387%2012.8004H41.6236C41.1664%2012.8004%2040.7925%2012.4264%2040.7925%2011.9693V10.4537C40.7925%209.99655%2041.1664%209.62251%2041.6236%209.62251H49.5392C49.996%209.62251%2050.3703%209.24866%2050.3703%208.79156V7.25334C50.3703%206.79628%2049.996%206.4222%2049.5392%206.4222H41.6236C41.1664%206.4222%2040.7925%206.04816%2040.7925%205.59129V4.03141C40.7925%203.5743%2041.1664%203.20027%2041.6236%203.20027H50.3387C50.7955%203.20027%2051.1698%202.82641%2051.1698%202.36935V0.831096C51.1698%200.374039%2050.7955%207.55763e-08%2050.3387%207.55763e-08H38.4239Z%22%20fill%3D%22currentColor%22%20style%3D%22fill%3A%20rgb(255%2C%20255%2C%20255)%20!important%3B%22%2F%3E%3Cpath%20d%3D%22M56.4932%204.03141C56.4932%203.5743%2056.8671%203.20027%2057.3243%203.20027H60.4389C60.8961%203.20027%2061.5343%203.4648%2061.8578%203.7878L63.8824%205.81231C64.2058%206.13535%2064.4702%206.7737%2064.4702%207.2308V11.9693C64.4702%2012.4264%2064.0964%2012.8004%2063.6391%2012.8004H57.3243C56.8671%2012.8004%2056.4932%2012.4264%2056.4932%2011.9693V4.03141ZM54.1246%207.55763e-08C53.6678%207.55763e-08%2053.2939%200.374039%2053.2939%200.831096V15.1689C53.2939%2015.626%2053.6678%2015.9998%2054.1246%2015.9998H65.2399C65.6967%2015.9998%2066.3354%2015.7353%2066.6584%2015.4121L67.0597%2015.0103C67.3832%2014.6871%2067.6475%2014.0487%2067.6475%2013.5915V5.6312C67.6475%205.17391%2067.3836%204.53501%2067.0611%204.21109L63.4568%200.588959C63.1342%200.265042%2062.4965%207.55763e-08%2062.0397%207.55763e-08H54.1246Z%22%20fill%3D%22currentColor%22%20style%3D%22fill%3A%20rgb(255%2C%20255%2C%20255)%20!important%3B%22%2F%3E%3C%2Fsvg%3E"
+  },
+  "metadata": {
+    "generator": "Webflow",
+    "og:title": "United Carriers | Global Freight Forwarding and Logistics",
+    "twitter:title": "United Carriers | Global Freight Forwarding and Logistics",
+    "google-site-verification": "_aWE7Sv-hV2nN3KNpOwVW4GViBWc91hYOFKC9LaEmMs",
+    "title": "United Carriers | Global Freight Forwarding and Logistics",
+    "language": "en",
+    "ogTitle": "United Carriers | Global Freight Forwarding and Logistics",
+    "og:image": "https://cdn.prod.website-files.com/6a44eec1ed1af2c4c403df6b/6a44eec1ed1af2c4c403dfc4_e7dc5a3fbf83ec1ed6ee0b12fc4989e9_OG.jpg",
+    "description": "Freight forwarding, land transport, and customs brokerage, unified across APAC under one accountable team.",
+    "twitter:description": "Freight forwarding, land transport, and customs brokerage, unified across APAC under one accountable team.",
+    "ogImage": "https://cdn.prod.website-files.com/6a44eec1ed1af2c4c403df6b/6a44eec1ed1af2c4c403dfc4_e7dc5a3fbf83ec1ed6ee0b12fc4989e9_OG.jpg",
+    "viewport": "width=device-width, initial-scale=1",
+    "og:description": "Freight forwarding, land transport, and customs brokerage, unified across APAC under one accountable team.",
+    "twitter:card": "summary_large_image",
+    "ogDescription": "Freight forwarding, land transport, and customs brokerage, unified across APAC under one accountable team.",
+    "og:type": "website",
+    "favicon": "https://cdn.prod.website-files.com/6a44eec1ed1af2c4c403df6b/6a631242ed3423f9f458466a_Favicon%20(1).png",
+    "scrapeId": "01a07c35-99cf-75aa-9aa8-0c5086f223d0",
+    "sourceURL": "https://unitedcarriers.com/",
+    "url": "https://unitedcarriers.com/",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "timezone": "America/New_York",
+    "proxyUsed": "basic",
+    "indexId": "351f0bd2-debd-4c76-8da5-35f428dcea35",
+    "creditsUsed": 1,
+    "concurrencyLimited": false
+  }
+}

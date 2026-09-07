@@ -1,0 +1,149 @@
+{
+  "branding": {
+    "colorScheme": "light",
+    "fonts": [
+      {
+        "family": "Aeonik",
+        "role": "unknown"
+      }
+    ],
+    "colors": {
+      "primary": "#2B2E3A",
+      "secondary": "#FF0000",
+      "accent": "#00FFFF",
+      "background": "#FFFFFF",
+      "textPrimary": "#000000",
+      "link": "#00FFFF"
+    },
+    "typography": {
+      "fontFamilies": {
+        "primary": "Aeonik",
+        "heading": "Aeonik"
+      },
+      "fontStacks": {
+        "heading": [
+          "Aeonik"
+        ],
+        "body": [
+          "Aeonik"
+        ],
+        "paragraph": [
+          "Aeonik"
+        ]
+      },
+      "fontSizes": {
+        "h1": "48px",
+        "h2": "28.8px",
+        "body": "16.8px"
+      }
+    },
+    "spacing": {
+      "baseUnit": 4,
+      "borderRadius": "15px"
+    },
+    "components": {
+      "input": {
+        "background": "#F0F1FA",
+        "textColor": "#000000",
+        "borderColor": null,
+        "borderRadius": "18px",
+        "borderRadiusCorners": {
+          "topLeft": "18px",
+          "topRight": "18px",
+          "bottomRight": "18px",
+          "bottomLeft": "18px"
+        },
+        "shadow": "none"
+      },
+      "buttonPrimary": {
+        "background": "#2B2E3A",
+        "textColor": "#FFFFFF",
+        "borderRadius": "105px",
+        "borderRadiusCorners": {
+          "topLeft": "105px",
+          "topRight": "105px",
+          "bottomRight": "105px",
+          "bottomLeft": "105px"
+        },
+        "shadow": "none"
+      },
+      "buttonSecondary": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "borderRadius": "102px",
+        "borderRadiusCorners": {
+          "topLeft": "102px",
+          "topRight": "102px",
+          "bottomRight": "102px",
+          "bottomLeft": "102px"
+        },
+        "shadow": "rgba(0, 0, 0, 0.04) 0px 6px 10px 0px, rgba(0, 0, 0, 0.04) 0px 2px 4px 0px"
+      }
+    },
+    "images": {
+      "logo": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22121%22%20height%3D%2224%22%20fill%3D%22none%22%20viewBox%3D%220%200%20121%2024%22%20data-fc-idx%3D%220%22%3E%3Cg%20fill%3D%22currentColor%22%20style%3D%22mix-blend-mode%3A%20exclusion%3B%20fill%3A%20rgb(0%2C%200%2C%200)%20!important%3B%22%3E%3Cpath%20d%3D%22M0%2023.781V.22h3.871v20.129h10.132v3.433H0ZM22.76.118v13.666c0%202.222.438%203.893%201.313%205.015.875%201.1%202.233%201.65%204.073%201.65%201.862%200%203.231-.55%204.106-1.65.898-1.122%201.347-2.793%201.347-5.015V.118h3.87v13.464c0%203.366-.796%205.924-2.39%207.675-1.57%201.75-3.881%202.625-6.933%202.625-3.03%200-5.33-.875-6.9-2.625-1.572-1.75-2.357-4.309-2.357-7.675V.118h3.871ZM46.16%2016.123c.112%201.392.673%202.514%201.683%203.366%201.032.83%202.367%201.246%204.005%201.246%201.436%200%202.592-.303%203.467-.909.898-.628%201.347-1.492%201.347-2.592%200-.785-.247-1.402-.74-1.851-.472-.471-1.123-.83-1.953-1.077-.83-.247-1.997-.505-3.5-.774-1.527-.27-2.84-.618-3.94-1.044a6.43%206.43%200%200%201-2.658-2.02c-.674-.897-1.01-2.075-1.01-3.534%200-1.346.348-2.547%201.043-3.602.718-1.054%201.706-1.873%202.962-2.457C48.146.292%2049.604%200%2051.242%200c1.683%200%203.187.314%204.51.942%201.325.629%202.368%201.493%203.131%202.592.763%201.1%201.178%202.357%201.246%203.77h-3.804c-.135-1.211-.662-2.188-1.582-2.928-.92-.74-2.087-1.11-3.5-1.11-1.37%200-2.47.302-3.3.908-.807.583-1.211%201.414-1.211%202.49%200%20.764.235%201.37.707%201.818.493.45%201.144.786%201.952%201.01.808.225%201.964.472%203.467.74%201.526.27%202.839.63%203.938%201.078%201.1.449%201.998%201.11%202.693%201.986.696.875%201.044%202.03%201.044%203.467%200%201.391-.37%202.637-1.111%203.736-.74%201.1-1.773%201.964-3.097%202.592-1.324.606-2.828.909-4.51.909-1.863%200-3.501-.337-4.915-1.01-1.414-.673-2.524-1.604-3.332-2.794-.786-1.211-1.19-2.591-1.212-4.14l3.803.067ZM65.419.219h3.87V23.78h-3.87V.22ZM97.065%2012c0%202.289-.482%204.342-1.447%206.16-.965%201.818-2.323%203.242-4.073%204.275-1.728%201.032-3.703%201.548-5.924%201.548-2.222%200-4.208-.516-5.958-1.548-1.728-1.032-3.075-2.457-4.04-4.275-.965-1.818-1.447-3.871-1.447-6.16s.483-4.342%201.447-6.16c.965-1.818%202.312-3.243%204.04-4.275C81.413.533%2083.399.017%2085.62.017c2.221%200%204.196.516%205.924%201.548%201.75%201.032%203.108%202.457%204.073%204.275.965%201.818%201.447%203.871%201.447%206.16Zm-18.917%200c0%201.638.314%203.12.943%204.443.628%201.302%201.503%202.323%202.625%203.063%201.144.718%202.446%201.078%203.905%201.078%201.458%200%202.749-.36%203.87-1.078%201.145-.74%202.031-1.761%202.66-3.063.628-1.324.942-2.805.942-4.443%200-1.638-.314-3.108-.942-4.41-.629-1.324-1.515-2.345-2.66-3.063-1.121-.74-2.412-1.11-3.87-1.11-1.459%200-2.76.37-3.905%201.11-1.122.718-1.997%201.74-2.625%203.063-.629%201.302-.943%202.772-.943%204.41ZM101.951%2023.781V.22h3.535l11.478%2016.695V.22h3.804V23.78h-3.535L105.755%207.086V23.78h-3.804Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E",
+      "favicon": "https://lusion.co/assets/meta/apple-touch-icon.png",
+      "ogImage": "https://lusion.co/assets/meta/social_sharing.jpg",
+      "logoHref": "/"
+    },
+    "__llm_logo_reasoning": {
+      "selectedIndex": 0,
+      "reasoning": "Selected #0 because it is visible, located in the header, links to the homepage, and matches the brand inferred from the page title and URL.",
+      "confidence": 0.95,
+      "source": "llm"
+    },
+    "__llm_button_reasoning": {
+      "primary": {
+        "index": 1,
+        "text": "Let's talk",
+        "reasoning": "Button #1 ('Let's talk') is likely the primary CTA due to its action-oriented text and distinct neutral color (#2B2E3A), which stands out against the light background."
+      },
+      "secondary": {
+        "index": 3,
+        "text": "See all projects",
+        "reasoning": "Button #3 ('See all projects') serves as a secondary action with a light background (#FFFFFF), providing a less prominent option compared to the primary CTA."
+      },
+      "confidence": 0.9
+    },
+    "personality": {
+      "tone": "modern",
+      "energy": "high",
+      "targetAudience": "creative professionals and businesses seeking interactive web solutions"
+    },
+    "designSystem": {
+      "framework": "custom",
+      "componentLibrary": ""
+    },
+    "confidence": {
+      "buttons": 0.9,
+      "colors": 0.9,
+      "overall": 0.9
+    },
+    "__llm_metadata": {
+      "logoSelection": {
+        "llmCalled": true,
+        "llmSucceeded": true,
+        "finalSource": "llm",
+        "rawLogoSelection": {
+          "selectedLogoIndex": 0,
+          "selectedLogoReasoning": "Selected #0 because it is visible, located in the header, links to the homepage, and matches the brand inferred from the page title and URL.",
+          "confidence": 0.95
+        }
+      },
+      "buttonClassification": {
+        "llmCalled": true,
+        "llmSucceeded": true
+      }
+    },
+    "brandName": "Lusion - Award Winning 3D and Interactive Web Studio",
+    "logo": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22121%22%20height%3D%2224%22%20fill%3D%22none%22%20viewBox%3D%220%200%20121%2024%22%20data-fc-idx%3D%220%22%3E%3Cg%20fill%3D%22currentColor%22%20style%3D%22mix-blend-mode%3A%20exclusion%3B%20fill%3A%20rgb(0%2C%200%2C%200)%20!important%3B%22%3E%3Cpath%20d%3D%22M0%2023.781V.22h3.871v20.129h10.132v3.433H0ZM22.76.118v13.666c0%202.222.438%203.893%201.313%205.015.875%201.1%202.233%201.65%204.073%201.65%201.862%200%203.231-.55%204.106-1.65.898-1.122%201.347-2.793%201.347-5.015V.118h3.87v13.464c0%203.366-.796%205.924-2.39%207.675-1.57%201.75-3.881%202.625-6.933%202.625-3.03%200-5.33-.875-6.9-2.625-1.572-1.75-2.357-4.309-2.357-7.675V.118h3.871ZM46.16%2016.123c.112%201.392.673%202.514%201.683%203.366%201.032.83%202.367%201.246%204.005%201.246%201.436%200%202.592-.303%203.467-.909.898-.628%201.347-1.492%201.347-2.592%200-.785-.247-1.402-.74-1.851-.472-.471-1.123-.83-1.953-1.077-.83-.247-1.997-.505-3.5-.774-1.527-.27-2.84-.618-3.94-1.044a6.43%206.43%200%200%201-2.658-2.02c-.674-.897-1.01-2.075-1.01-3.534%200-1.346.348-2.547%201.043-3.602.718-1.054%201.706-1.873%202.962-2.457C48.146.292%2049.604%200%2051.242%200c1.683%200%203.187.314%204.51.942%201.325.629%202.368%201.493%203.131%202.592.763%201.1%201.178%202.357%201.246%203.77h-3.804c-.135-1.211-.662-2.188-1.582-2.928-.92-.74-2.087-1.11-3.5-1.11-1.37%200-2.47.302-3.3.908-.807.583-1.211%201.414-1.211%202.49%200%20.764.235%201.37.707%201.818.493.45%201.144.786%201.952%201.01.808.225%201.964.472%203.467.74%201.526.27%202.839.63%203.938%201.078%201.1.449%201.998%201.11%202.693%201.986.696.875%201.044%202.03%201.044%203.467%200%201.391-.37%202.637-1.111%203.736-.74%201.1-1.773%201.964-3.097%202.592-1.324.606-2.828.909-4.51.909-1.863%200-3.501-.337-4.915-1.01-1.414-.673-2.524-1.604-3.332-2.794-.786-1.211-1.19-2.591-1.212-4.14l3.803.067ZM65.419.219h3.87V23.78h-3.87V.22ZM97.065%2012c0%202.289-.482%204.342-1.447%206.16-.965%201.818-2.323%203.242-4.073%204.275-1.728%201.032-3.703%201.548-5.924%201.548-2.222%200-4.208-.516-5.958-1.548-1.728-1.032-3.075-2.457-4.04-4.275-.965-1.818-1.447-3.871-1.447-6.16s.483-4.342%201.447-6.16c.965-1.818%202.312-3.243%204.04-4.275C81.413.533%2083.399.017%2085.62.017c2.221%200%204.196.516%205.924%201.548%201.75%201.032%203.108%202.457%204.073%204.275.965%201.818%201.447%203.871%201.447%206.16Zm-18.917%200c0%201.638.314%203.12.943%204.443.628%201.302%201.503%202.323%202.625%203.063%201.144.718%202.446%201.078%203.905%201.078%201.458%200%202.749-.36%203.87-1.078%201.145-.74%202.031-1.761%202.66-3.063.628-1.324.942-2.805.942-4.443%200-1.638-.314-3.108-.942-4.41-.629-1.324-1.515-2.345-2.66-3.063-1.121-.74-2.412-1.11-3.87-1.11-1.459%200-2.76.37-3.905%201.11-1.122.718-1.997%201.74-2.625%203.063-.629%201.302-.943%202.772-.943%204.41ZM101.951%2023.781V.22h3.535l11.478%2016.695V.22h3.804V23.78h-3.535L105.755%207.086V23.78h-3.804Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+  },
+  "metadata": {
+    "sourceURL": "https://lusion.co/",
+    "url": "https://lusion.co/",
+    "title": "Lusion - Award Winning 3D and Interactive Web Studio",
+    "scrapeId": "01a07c40-ee74-74ae-aa19-bbe56ec129e0",
+    "statusCode": 200
+  },
+  "markdown": "# We create 3D visual storytelling and interactive web experiences that help brands stand out\n\nscroll to explore\n\n#### Bold Ideas,    Brought to Life\n\n## We combine design, motion, 3D, and development to create digital experiences that feel visually striking and technically seamless. From campaign launches to immersive brand worlds, we build work that captures attention and invites interaction.\n\n[Our Approach](https://lusion.co/about)\n\nPlay Reel\n\n#### Featured Work\n\nA selection of immersive digital experiences created for ambitious brands and forward thinking teams.\n\n[concept • web • design • development • 3d • animation\\\\\n\\\\\nOOOO\\\\\n\\\\\nrrrr\\\\\n\\\\\nyyyy\\\\\n\\\\\nzzzz\\\\\n\\\\\noooo\\\\\n\\\\\nAAAA\\\\\n\\\\\nIIII](https://lusion.co/projects/oryzo_ai) [concept • web • design • development • 3d • animation\\\\\n\\\\\nAAAA\\\\\n\\\\\ntttt\\\\\n\\\\\nllll\\\\\n\\\\\naaaa\\\\\n\\\\\nssss\\\\\n\\\\\nMMMM\\\\\n\\\\\noooo\\\\\n\\\\\ntttt\\\\\n\\\\\niiii\\\\\n\\\\\noooo\\\\\n\\\\\nnnnn](https://lusion.co/projects/atlas_motion) [web • design • development • 3d\\\\\n\\\\\nDDDD\\\\\n\\\\\neeee\\\\\n\\\\\nvvvv\\\\\n\\\\\niiii\\\\\n\\\\\nnnnn\\\\\n\\\\\nAAAA\\\\\n\\\\\nIIII](https://lusion.co/projects/devin_ai) [web • design • development • 3d • animation\\\\\n\\\\\nOOOO\\\\\n\\\\\nffff\\\\\n\\\\\nTTTT\\\\\n\\\\\nhhhh\\\\\n\\\\\neeee\\\\\n\\\\\nOOOO\\\\\n\\\\\naaaa\\\\\n\\\\\nkkkk](https://lusion.co/projects/of_the_oak) [concept • web • design • development • 3d • animation\\\\\n\\\\\nEEEE\\\\\n\\\\\nvvvv\\\\\n\\\\\neeee\\\\\n\\\\\nrrrr\\\\\n\\\\\nssss\\\\\n\\\\\nwwww\\\\\n\\\\\naaaa\\\\\n\\\\\npppp](https://lusion.co/projects/everswap) [concept • 3D illustration • mograph • video\\\\\n\\\\\nPPPP\\\\\n\\\\\noooo\\\\\n\\\\\nrrrr\\\\\n\\\\\nssss\\\\\n\\\\\ncccc\\\\\n\\\\\nhhhh\\\\\n\\\\\neeee\\\\\n\\\\\n::::\\\\\n\\\\\nDDDD\\\\\n\\\\\nrrrr\\\\\n\\\\\neeee\\\\\n\\\\\naaaa\\\\\n\\\\\nmmmm\\\\\n\\\\\nMMMM\\\\\n\\\\\naaaa\\\\\n\\\\\ncccc\\\\\n\\\\\nhhhh\\\\\n\\\\\niiii\\\\\n\\\\\nnnnn\\\\\n\\\\\neeee](https://lusion.co/projects/porsche_dream_machine) [web • design • development • 3d\\\\\n\\\\\nSSSS\\\\\n\\\\\nyyyy\\\\\n\\\\\nnnnn\\\\\n\\\\\ntttt\\\\\n\\\\\nhhhh\\\\\n\\\\\neeee\\\\\n\\\\\ntttt\\\\\n\\\\\niiii\\\\\n\\\\\ncccc\\\\\n\\\\\nHHHH\\\\\n\\\\\nuuuu\\\\\n\\\\\nmmmm\\\\\n\\\\\naaaa\\\\\n\\\\\nnnnn](https://lusion.co/projects/synthetic_human) [web • design • development • 3d\\\\\n\\\\\nMMMM\\\\\n\\\\\neeee\\\\\n\\\\\ntttt\\\\\n\\\\\naaaa\\\\\n\\\\\n::::\\\\\n\\\\\nSSSS\\\\\n\\\\\npppp\\\\\n\\\\\naaaa\\\\\n\\\\\ntttt\\\\\n\\\\\niiii\\\\\n\\\\\naaaa\\\\\n\\\\\nllll\\\\\n\\\\\nFFFF\\\\\n\\\\\nuuuu\\\\\n\\\\\nssss\\\\\n\\\\\niiii\\\\\n\\\\\noooo\\\\\n\\\\\nnnnn](https://lusion.co/projects/spatial_fusion) [web • design • development • 3d • web3\\\\\n\\\\\nSSSS\\\\\n\\\\\npppp\\\\\n\\\\\naaaa\\\\\n\\\\\naaaa\\\\\n\\\\\ncccc\\\\\n\\\\\neeee\\\\\n\\\\\n----\\\\\n\\\\\nNNNN\\\\\n\\\\\nFFFF\\\\\n\\\\\nTTTT\\\\\n\\\\\nMMMM\\\\\n\\\\\naaaa\\\\\n\\\\\nrrrr\\\\\n\\\\\nkkkk\\\\\n\\\\\neeee\\\\\n\\\\\ntttt\\\\\n\\\\\npppp\\\\\n\\\\\nllll\\\\\n\\\\\naaaa\\\\\n\\\\\ncccc\\\\\n\\\\\neeee](https://lusion.co/projects/spaace) [web • design • development • 3d\\\\\n\\\\\nDDDD\\\\\n\\\\\nDDDD\\\\\n\\\\\nDDDD\\\\\n\\\\\n2222\\\\\n\\\\\n0000\\\\\n\\\\\n2222\\\\\n\\\\\n4444](https://lusion.co/projects/ddd_2024) [concept • web • game design • 3d\\\\\n\\\\\nCCCC\\\\\n\\\\\nhhhh\\\\\n\\\\\noooo\\\\\n\\\\\noooo\\\\\n\\\\\nCCCC\\\\\n\\\\\nhhhh\\\\\n\\\\\noooo\\\\\n\\\\\noooo\\\\\n\\\\\nWWWW\\\\\n\\\\\noooo\\\\\n\\\\\nrrrr\\\\\n\\\\\nllll\\\\\n\\\\\ndddd](https://lusion.co/projects/choo_choo_world) [AR • development • 3d\\\\\n\\\\\nSSSS\\\\\n\\\\\noooo\\\\\n\\\\\ndddd\\\\\n\\\\\naaaa\\\\\n\\\\\nEEEE\\\\\n\\\\\nxxxx\\\\\n\\\\\npppp\\\\\n\\\\\neeee\\\\\n\\\\\nrrrr\\\\\n\\\\\niiii\\\\\n\\\\\neeee\\\\\n\\\\\nnnnn\\\\\n\\\\\ncccc\\\\\n\\\\\neeee](https://lusion.co/projects/soda_experience)\n\n[See all projects](https://lusion.co/projects)\n\nWhere Creative Ideas Become Immersive Experiences\n\nWe do not chase trends or produce work that looks like everyone else. We focus on creating visually distinctive digital experiences that reflect your brand, engage your audience, and make people remember what they saw.\n\nOur process blends creative direction, 3D craft, and interactive development to build tailored digital journeys that feel original, polished, and built for impact.\n\nStepintoanewworld\n\nandletyour\n\nimaginationrunwild\n\nIs\n\nYour\n\nBig\n\nIdea\n\nReady\n\nto\n\nGo\n\nWild?\n\nL\n\nL\n\ne\n\ne\n\nt\n\nt\n\n'\n\n'\n\ns\n\ns\n\nw\n\nw\n\no\n\no\n\nr\n\nr\n\nk\n\nk\n\nt\n\nt\n\no\n\no\n\ng\n\ng\n\ne\n\ne\n\nt\n\nt\n\nh\n\nh\n\ne\n\ne\n\nr\n\nr\n\n!\n\n!\n\nCONTINUE TO SCROLL\n\nCONTINUE TO SCROLL\n\n[Suite\\\\\n\\\\\n2\\\\\n\\\\\n9\\\\\n\\\\\nMarsh\\\\\n\\\\\nStreet\\\\\n\\\\\nBristol,\\\\\n\\\\\nBS1\\\\\n\\\\\n4AA\\\\\n\\\\\nUnited\\\\\n\\\\\nKingdom](https://goo.gl/maps/x9evc1NxZocjrM947)\n\n[Twitter\\\\\n\\\\\n/\\\\\n\\\\\nX](https://twitter.com/lusionltd/)\n\n[Instagram](https://www.instagram.com/lusionltd/)\n\n[Linkedin](https://www.linkedin.com/company/lusionltd/)\n\nGeneral\n\nenquires\n\n[hello@lusion.co](mailto:hello@lusion.co)\n\nNew\n\nbusiness\n\n[business@lusion.co](mailto:business@lusion.co)\n\nSubscribe\n\nto\n\nour\n\nnewsletter\n\n©2026\n\nLUSION\n\nCreative\n\nStudio\n\n[R&D:\\\\\n\\\\\nlabs.lusion.co](https://labs.lusion.co/)\n\nBuilt\n\nby\n\nLusion\n\nwith\n\n❤️\n\nKeep Scrolling\n\nto Learn More\n\nAbout Us\n\nNext Page\n\nLusion Reel 2023 from Lusion on Vimeo\n\n![video thumbnail](https://i.vimeocdn.com/video/1529299672-f98fa04e999fec05f09d355d7c11a516b04709848a9c2920a3a5d7dadd1a81a6-d?mw=80&q=85)\n\nPlaying in picture-in-picture\n\nMore options\n\nLike\n\nAdd to Watch Later\n\nShare\n\nEmbed\n\nPlay\n\n00:00\n\n01:47\n\nCC/subtitles\n\nSettings\n\nSpeed\n\nTranscript\n\nPicture-in-Picture\n\nFullscreen\n\nShow controls\n\n[Watch on Vimeo](https://vimeo.com/761102167?fl=pl&fe=vl)\n\nQualityAuto\n\nCC/subtitlesOff\n\n2x\n\n1.5x\n\n1.25x\n\n1x\n\n0.75x\n\n0.5x\n\nPLAY\n\nMUTE\n\n1\n\n1\n\n0\n\n0\n\n0\n\n0\n\nrefing something..."
+}

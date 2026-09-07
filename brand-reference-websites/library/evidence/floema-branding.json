@@ -1,0 +1,149 @@
+{
+  "branding": {
+    "colorScheme": "light",
+    "fonts": [
+      {
+        "family": "Zimula",
+        "role": "heading"
+      }
+    ],
+    "colors": {
+      "primary": "#E9E778",
+      "secondary": "#E4DED3",
+      "accent": "#C73623",
+      "background": "#F2EFEA",
+      "textPrimary": "#241F21",
+      "link": "#C73623"
+    },
+    "typography": {
+      "fontFamilies": {
+        "primary": "Zimula",
+        "heading": "Zimula"
+      },
+      "fontStacks": {
+        "heading": [
+          "Zimula"
+        ],
+        "body": [
+          "sans-serif"
+        ],
+        "paragraph": [
+          "Zimula"
+        ]
+      },
+      "fontSizes": {
+        "h1": "64px",
+        "h2": "56px",
+        "body": "12px"
+      }
+    },
+    "spacing": {
+      "baseUnit": 4,
+      "borderRadius": "12px"
+    },
+    "components": {
+      "input": {
+        "background": "transparent",
+        "textColor": "#241F21",
+        "borderColor": null,
+        "borderRadius": "0px",
+        "borderRadiusCorners": {
+          "topLeft": "0px",
+          "topRight": "0px",
+          "bottomRight": "0px",
+          "bottomLeft": "0px"
+        },
+        "shadow": "none"
+      },
+      "buttonPrimary": {
+        "background": "#F2EFEA",
+        "textColor": "#241F21",
+        "borderRadius": "0px",
+        "borderRadiusCorners": {
+          "topLeft": "0px",
+          "topRight": "0px",
+          "bottomRight": "0px",
+          "bottomLeft": "0px"
+        },
+        "shadow": "none"
+      },
+      "buttonSecondary": {
+        "background": "#EBE7DF",
+        "textColor": "#241F21",
+        "borderRadius": "0px",
+        "borderRadiusCorners": {
+          "topLeft": "0px",
+          "topRight": "0px",
+          "bottomRight": "0px",
+          "bottomLeft": "0px"
+        },
+        "shadow": "none"
+      }
+    },
+    "images": {
+      "logo": "data:image/svg+xml;utf8,%3Csvg%20data-v-4c7ffceb%3D%22%22%20width%3D%22117%22%20height%3D%2225%22%20viewBox%3D%220%200%20117%2025%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20data-fc-idx%3D%220%22%3E%3Cpath%20data-v-4c7ffceb%3D%22%22%20d%3D%22M18.3799%20-0.0253906H22.195V24.675H18.3799V-0.0253906Z%22%20style%3D%22fill%3A%20rgb(36%2C%2031%2C%2033)%20!important%3B%22%2F%3E%3Cpath%20data-v-4c7ffceb%3D%22%22%20d%3D%22M42.0781%2016.1773C42.0781%2021.0168%2038.1678%2024.9727%2033.3032%2024.9727C28.4386%2024.9727%2024.5283%2021.0168%2024.5283%2016.1773C24.5283%2011.3378%2028.4386%207.38184%2033.3032%207.38184C38.1348%207.38184%2042.0781%2011.3378%2042.0781%2016.1773ZM28.3764%2016.1773C28.3764%2019.0538%2030.5706%2021.3445%2033.3032%2021.3445C36.0377%2021.3445%2038.23%2019.0557%2038.23%2016.1773C38.23%2013.3007%2036.0359%2011.0119%2033.3032%2011.0119C30.5687%2011.0119%2028.3764%2013.3007%2028.3764%2016.1773Z%22%20style%3D%22fill%3A%20rgb(36%2C%2031%2C%2033)%20!important%3B%22%2F%3E%3Cpath%20data-v-4c7ffceb%3D%22%22%20d%3D%22M60.3305%2016.1375C60.3305%2016.5632%2060.2993%2016.8571%2060.2664%2016.987H47.3907C47.7094%2019.6036%2049.7112%2021.3367%2052.6051%2021.3367C54.6399%2021.3367%2056.2297%2020.4532%2056.8963%2018.982L60.1711%2020.2893C58.9953%2023.2657%2056.1967%2024.9649%2052.541%2024.9649C47.2002%2024.9649%2043.4492%2021.3349%2043.4492%2016.1695C43.4492%2011.1021%2047.0409%207.37402%2051.9365%207.37402C56.8011%207.37402%2060.3286%2011.0682%2060.3286%2016.1375H60.3305ZM56.0703%2014.0785C55.5611%2012.2154%2053.9714%2011.0041%2051.9695%2011.0041C49.9658%2011.0041%2048.3779%2012.2135%2047.6782%2014.0785H56.0703Z%22%20style%3D%22fill%3A%20rgb(36%2C%2031%2C%2033)%20!important%3B%22%2F%3E%3Cpath%20data-v-4c7ffceb%3D%22%22%20d%3D%22M66.5024%207.67571V8.32939C66.5024%208.88511%2066.6618%209.11493%2067.0739%209.11493C67.3925%209.11493%2067.6783%208.95104%2068.0904%208.59123C68.9805%207.77367%2070.03%207.38184%2071.3651%207.38184C72.9238%207.38184%2074.1308%207.90553%2075.085%208.98495C75.4989%209.47474%2075.8158%209.63863%2076.2608%209.63863C76.6418%209.63863%2076.9293%209.50864%2077.3414%209.05088C78.3909%207.93944%2079.6931%207.38372%2081.3159%207.38372C84.717%207.38372%2086.6878%209.86845%2086.6878%2014.1202V24.6826H82.8727V14.6778C82.8727%2012.2251%2081.728%2010.6879%2079.9166%2010.6879C77.977%2010.6879%2076.7059%2012.389%2076.7059%2014.9057V24.6826H72.8908V14.6778C72.8908%2012.2251%2071.7461%2010.6879%2069.9017%2010.6879C67.9951%2010.6879%2066.6911%2012.421%2066.6911%2014.9717V24.6826H62.876V7.67571H66.5006H66.5024Z%22%20style%3D%22fill%3A%20rgb(36%2C%2031%2C%2033)%20!important%3B%22%2F%3E%3Cpath%20data-v-4c7ffceb%3D%22%22%20d%3D%22M103.613%2014.1805V24.677H100.021L100.053%2023.5655C100.053%2023.0098%2099.8621%2022.748%2099.3859%2022.748C99.0361%2022.748%2098.7504%2022.9119%2098.3053%2023.3696C97.2558%2024.449%2095.9848%2024.9727%2094.395%2024.9727C91.3107%2024.9727%2089.2447%2023.0758%2089.2447%2020.2651C89.2447%2017.3547%2091.4389%2015.3936%2095.4756%2014.706L99.8951%2013.9544C99.6735%2011.9934%2098.2742%2010.848%2096.0159%2010.848C94.1093%2010.848%2092.8363%2011.6656%2092.329%2013.2348L88.959%2012.1554C89.8491%209.17898%2092.4884%207.38184%2095.9848%207.38184C100.404%207.38184%20103.615%2010.2264%20103.615%2014.1823L103.613%2014.1805ZM96.2686%2017.7446C94.0745%2018.1364%2093.0268%2018.89%2093.0268%2020.0994C93.0268%2021.2767%2094.0122%2021.9963%2095.602%2021.9963C98.146%2021.9963%2099.798%2020.0994%2099.9262%2017.0589L96.2705%2017.7465L96.2686%2017.7446Z%22%20style%3D%22fill%3A%20rgb(36%2C%2031%2C%2033)%20!important%3B%22%2F%3E%3Cpath%20data-v-4c7ffceb%3D%22%22%20d%3D%22M16.4563%20-0.00878906H0V24.6784H3.94146V9.20675C3.94146%208.11226%205.2272%207.56596%205.97813%208.33832L12.3134%2014.8544L14.8171%2012.2792L8.53312%205.81403C7.78219%205.04167%208.31333%203.71925%209.37746%203.71925H16.4582V-0.00878906H16.4563Z%22%20style%3D%22fill%3A%20rgb(36%2C%2031%2C%2033)%20!important%3B%22%2F%3E%3Cpath%20data-v-4c7ffceb%3D%22%22%20d%3D%22M116.644%2019.8353C116.644%2022.7231%20114.395%2024.9705%20111.501%2024.9705C108.609%2024.9705%20106.358%2022.7231%20106.358%2019.8353C106.358%2016.9474%20108.609%2014.7227%20111.501%2014.7227C114.395%2014.7227%20116.644%2016.97%20116.644%2019.8353ZM107.43%2019.8353C107.43%2022.1712%20109.208%2023.9796%20111.501%2023.9796C113.794%2023.9796%20115.551%2022.1731%20115.551%2019.8353C115.551%2017.4994%20113.794%2015.7135%20111.501%2015.7135C109.208%2015.7135%20107.43%2017.4994%20107.43%2019.8353ZM112.573%2020.2102C112.402%2020.2761%20112.316%2020.3872%20112.316%2020.5624C112.316%2020.6717%20112.38%2020.8054%20112.445%2020.9147L113.644%2022.5894H112.359L110.88%2020.4513V22.5894H109.745V17.1019H111.738C112.831%2017.1019%20113.624%2017.8064%20113.624%2018.7766C113.624%2019.4604%20113.217%2019.9879%20112.575%2020.2083L112.573%2020.2102Z%22%20style%3D%22fill%3A%20rgb(36%2C%2031%2C%2033)%20!important%3B%22%2F%3E%3C%2Fsvg%3E",
+      "favicon": "https://floema.com/favicon-64x64.png",
+      "ogImage": "https://cdn.sanity.io/images/535lnz3g/production/79ecbe82f8ba6a05474c99b3e6317b4d95cc2974-2400x1260.jpg",
+      "logoHref": "/en"
+    },
+    "__llm_logo_reasoning": {
+      "selectedIndex": 0,
+      "reasoning": "Selected #0 because it is visible, located in the header, links to the homepage, and matches the brand name 'Floema'.",
+      "confidence": 0.95,
+      "source": "llm"
+    },
+    "__llm_button_reasoning": {
+      "primary": {
+        "index": 1,
+        "text": "Add to Enquiry List",
+        "reasoning": "The button 'Add to Enquiry List' is likely the primary CTA due to its action-oriented text, suggesting a key user interaction on the site."
+      },
+      "secondary": {
+        "index": 2,
+        "text": "Explore",
+        "reasoning": "The button 'Explore' is chosen as secondary because it has a different background color and offers a less direct action compared to the primary CTA."
+      },
+      "confidence": 0.9
+    },
+    "personality": {
+      "tone": "modern",
+      "energy": "medium",
+      "targetAudience": "design-conscious individuals and businesses"
+    },
+    "designSystem": {
+      "framework": "custom",
+      "componentLibrary": ""
+    },
+    "confidence": {
+      "buttons": 0.9,
+      "colors": 0.9,
+      "overall": 0.9
+    },
+    "__llm_metadata": {
+      "logoSelection": {
+        "llmCalled": true,
+        "llmSucceeded": true,
+        "finalSource": "llm",
+        "rawLogoSelection": {
+          "selectedLogoIndex": 0,
+          "selectedLogoReasoning": "Selected #0 because it is visible, located in the header, links to the homepage, and matches the brand name 'Floema'.",
+          "confidence": 0.95
+        }
+      },
+      "buttonClassification": {
+        "llmCalled": true,
+        "llmSucceeded": true
+      }
+    },
+    "brandName": "Floema",
+    "logo": "data:image/svg+xml;utf8,%3Csvg%20data-v-4c7ffceb%3D%22%22%20width%3D%22117%22%20height%3D%2225%22%20viewBox%3D%220%200%20117%2025%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20data-fc-idx%3D%220%22%3E%3Cpath%20data-v-4c7ffceb%3D%22%22%20d%3D%22M18.3799%20-0.0253906H22.195V24.675H18.3799V-0.0253906Z%22%20style%3D%22fill%3A%20rgb(36%2C%2031%2C%2033)%20!important%3B%22%2F%3E%3Cpath%20data-v-4c7ffceb%3D%22%22%20d%3D%22M42.0781%2016.1773C42.0781%2021.0168%2038.1678%2024.9727%2033.3032%2024.9727C28.4386%2024.9727%2024.5283%2021.0168%2024.5283%2016.1773C24.5283%2011.3378%2028.4386%207.38184%2033.3032%207.38184C38.1348%207.38184%2042.0781%2011.3378%2042.0781%2016.1773ZM28.3764%2016.1773C28.3764%2019.0538%2030.5706%2021.3445%2033.3032%2021.3445C36.0377%2021.3445%2038.23%2019.0557%2038.23%2016.1773C38.23%2013.3007%2036.0359%2011.0119%2033.3032%2011.0119C30.5687%2011.0119%2028.3764%2013.3007%2028.3764%2016.1773Z%22%20style%3D%22fill%3A%20rgb(36%2C%2031%2C%2033)%20!important%3B%22%2F%3E%3Cpath%20data-v-4c7ffceb%3D%22%22%20d%3D%22M60.3305%2016.1375C60.3305%2016.5632%2060.2993%2016.8571%2060.2664%2016.987H47.3907C47.7094%2019.6036%2049.7112%2021.3367%2052.6051%2021.3367C54.6399%2021.3367%2056.2297%2020.4532%2056.8963%2018.982L60.1711%2020.2893C58.9953%2023.2657%2056.1967%2024.9649%2052.541%2024.9649C47.2002%2024.9649%2043.4492%2021.3349%2043.4492%2016.1695C43.4492%2011.1021%2047.0409%207.37402%2051.9365%207.37402C56.8011%207.37402%2060.3286%2011.0682%2060.3286%2016.1375H60.3305ZM56.0703%2014.0785C55.5611%2012.2154%2053.9714%2011.0041%2051.9695%2011.0041C49.9658%2011.0041%2048.3779%2012.2135%2047.6782%2014.0785H56.0703Z%22%20style%3D%22fill%3A%20rgb(36%2C%2031%2C%2033)%20!important%3B%22%2F%3E%3Cpath%20data-v-4c7ffceb%3D%22%22%20d%3D%22M66.5024%207.67571V8.32939C66.5024%208.88511%2066.6618%209.11493%2067.0739%209.11493C67.3925%209.11493%2067.6783%208.95104%2068.0904%208.59123C68.9805%207.77367%2070.03%207.38184%2071.3651%207.38184C72.9238%207.38184%2074.1308%207.90553%2075.085%208.98495C75.4989%209.47474%2075.8158%209.63863%2076.2608%209.63863C76.6418%209.63863%2076.9293%209.50864%2077.3414%209.05088C78.3909%207.93944%2079.6931%207.38372%2081.3159%207.38372C84.717%207.38372%2086.6878%209.86845%2086.6878%2014.1202V24.6826H82.8727V14.6778C82.8727%2012.2251%2081.728%2010.6879%2079.9166%2010.6879C77.977%2010.6879%2076.7059%2012.389%2076.7059%2014.9057V24.6826H72.8908V14.6778C72.8908%2012.2251%2071.7461%2010.6879%2069.9017%2010.6879C67.9951%2010.6879%2066.6911%2012.421%2066.6911%2014.9717V24.6826H62.876V7.67571H66.5006H66.5024Z%22%20style%3D%22fill%3A%20rgb(36%2C%2031%2C%2033)%20!important%3B%22%2F%3E%3Cpath%20data-v-4c7ffceb%3D%22%22%20d%3D%22M103.613%2014.1805V24.677H100.021L100.053%2023.5655C100.053%2023.0098%2099.8621%2022.748%2099.3859%2022.748C99.0361%2022.748%2098.7504%2022.9119%2098.3053%2023.3696C97.2558%2024.449%2095.9848%2024.9727%2094.395%2024.9727C91.3107%2024.9727%2089.2447%2023.0758%2089.2447%2020.2651C89.2447%2017.3547%2091.4389%2015.3936%2095.4756%2014.706L99.8951%2013.9544C99.6735%2011.9934%2098.2742%2010.848%2096.0159%2010.848C94.1093%2010.848%2092.8363%2011.6656%2092.329%2013.2348L88.959%2012.1554C89.8491%209.17898%2092.4884%207.38184%2095.9848%207.38184C100.404%207.38184%20103.615%2010.2264%20103.615%2014.1823L103.613%2014.1805ZM96.2686%2017.7446C94.0745%2018.1364%2093.0268%2018.89%2093.0268%2020.0994C93.0268%2021.2767%2094.0122%2021.9963%2095.602%2021.9963C98.146%2021.9963%2099.798%2020.0994%2099.9262%2017.0589L96.2705%2017.7465L96.2686%2017.7446Z%22%20style%3D%22fill%3A%20rgb(36%2C%2031%2C%2033)%20!important%3B%22%2F%3E%3Cpath%20data-v-4c7ffceb%3D%22%22%20d%3D%22M16.4563%20-0.00878906H0V24.6784H3.94146V9.20675C3.94146%208.11226%205.2272%207.56596%205.97813%208.33832L12.3134%2014.8544L14.8171%2012.2792L8.53312%205.81403C7.78219%205.04167%208.31333%203.71925%209.37746%203.71925H16.4582V-0.00878906H16.4563Z%22%20style%3D%22fill%3A%20rgb(36%2C%2031%2C%2033)%20!important%3B%22%2F%3E%3Cpath%20data-v-4c7ffceb%3D%22%22%20d%3D%22M116.644%2019.8353C116.644%2022.7231%20114.395%2024.9705%20111.501%2024.9705C108.609%2024.9705%20106.358%2022.7231%20106.358%2019.8353C106.358%2016.9474%20108.609%2014.7227%20111.501%2014.7227C114.395%2014.7227%20116.644%2016.97%20116.644%2019.8353ZM107.43%2019.8353C107.43%2022.1712%20109.208%2023.9796%20111.501%2023.9796C113.794%2023.9796%20115.551%2022.1731%20115.551%2019.8353C115.551%2017.4994%20113.794%2015.7135%20111.501%2015.7135C109.208%2015.7135%20107.43%2017.4994%20107.43%2019.8353ZM112.573%2020.2102C112.402%2020.2761%20112.316%2020.3872%20112.316%2020.5624C112.316%2020.6717%20112.38%2020.8054%20112.445%2020.9147L113.644%2022.5894H112.359L110.88%2020.4513V22.5894H109.745V17.1019H111.738C112.831%2017.1019%20113.624%2017.8064%20113.624%2018.7766C113.624%2019.4604%20113.217%2019.9879%20112.575%2020.2083L112.573%2020.2102Z%22%20style%3D%22fill%3A%20rgb(36%2C%2031%2C%2033)%20!important%3B%22%2F%3E%3C%2Fsvg%3E"
+  },
+  "metadata": {
+    "sourceURL": "https://floema.com/en",
+    "url": "https://floema.com/en",
+    "title": "Floema® — Spaces for people, made for life.",
+    "scrapeId": "01a07c41-12b4-76e1-b075-9e1cdc1f7c7e",
+    "statusCode": 200
+  },
+  "markdown": "Made to Last\n\nScroll to Explore ↓\n\n![Restauradores Square](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F477a3c25c1ea90ea1552d90a928550a434c2d7c7-3400x2120.jpg&w=1699&q=100)\n\n01\n\nUrban\n\n#### Signage,    furniture,    and    equipment    for        welcoming    urban    spaces\n\n[See Urban Products](https://floema.com/en/products?collection=Urban)\n\n[Urban Catalogue\\\\\n\\\\\nDownload Now\\\\\n\\\\\n![Catalogue Golf Collection](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F3e60677687e86c07ac3f10fdfa3fc452ebfd1c04-1860x2790.png&w=1024&q=100)](https://cdn.sanity.io/files/535lnz3g/production/7f11e576362f770fe37c3cf50cec45d88d08944d.pdf)\n\n![Large ICNF Information Panel in Recycled Plastic](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2Fc1c668b1eb6e6648bcd52b9202a3ea0f91f7bc64-3400x2120.jpg&w=1699&q=100)\n\n02\n\nNature\n\n#### Signage    and    equipment    for    all    facets    of        the    great    outdoors\n\n[See Nature Products](https://floema.com/en/products?collection=Nature)\n\n![Paiva Walkways](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F25df657b91976f95bd5e0c6e2f0f3445175e09fc-3400x2120.png&w=1699&q=100)\n\n03\n\nRePlastic\n\n#### Custom    projects    and    furniture    crafted        out    of    100%    recyclable    plastic\n\n[See RePlastic Products](https://floema.com/en/products?collection=RePlastic)\n\n![Óbidos Golf Course](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F70e411b4618e84a57d0f87b713eb64bc25988f84-7084x4417.png&w=1699&q=100)\n\n04\n\nGolf\n\n#### Revamp    your    course    with    best        practices    golf    equipment    and    signage\n\n[See Golf Products](https://floema.com/en/products?collection=Golf)\n\n[Golf Catalogue\\\\\n\\\\\nDownload Now\\\\\n\\\\\n![Catalogue Golf Collection](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2Fd15eae5174b94ad28e9cff8cae77383706a8df79-312x464.png&w=1024&q=100)](https://cdn.sanity.io/files/535lnz3g/production/bd61aa9c8259e9983f12c7512cb7adaf3862ab39.pdf)\n\n![Floema Details outdoor signage totem for Palmares](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F5d7a10dea3ce01853711d82742b7921140d35884-14167x8833.jpg&w=1699&q=100)\n\n05\n\nDetails\n\n#### People    and    environment-friendly        custom    signage\n\n[See Details Products](https://floema.com/en/products?collection=Details)\n\n[Details Catalogue\\\\\n\\\\\nDownload Now\\\\\n\\\\\n![Catalogue Cover of the Details Collection](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F651231bae0010fe7d76ea6083009139cddfa1069-312x464.png&w=1024&q=100)](https://cdn.sanity.io/files/535lnz3g/production/b2eca10740fa09aa6e801769e13f9b82352c5ce1.pdf)\n\n#### Floema® Est. 2007\n\n![CNC milling machine carving a rectangular groove into dark wooden planks](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2Fb0b035e38fdba791021c56bb46ef95bd1b9468ae-364x504.jpg&w=1699&q=100)\n\n## Going    beyond    the    expected    is    our        calling.    True    sustainability    demands    creativity    to        be    aligned    with    strict    principles    and    answer    to        the    highest    standards.    It    keeps    us    on    a    journey        of    innovation,    meticulously    crafting    each    project        to    keep    the    environment    on    our    side.\n\nRecent News ↓\n\n[![Image](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F2633650c014c3153de936bdeb0b13cc4e13ac02c-1552x1200.jpg&w=1699&q=100)\\\\\n\\\\\nHow does ecotourism improve communities, traditions, spaces and territories?\\\\\n\\\\\nJune 2, 2025](https://floema.com/en/journal/casos-de-estudo/ecotourism-improves-communities)\n\n[![Mata Nacional do Bussaco Floema](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F6bf054454e973a0af6f6fa9ce8f00a095a90ff9a-2000x1333.jpg&w=1699&q=100)\\\\\n\\\\\nBussaco National Forest](https://floema.com/en/journal/case-studies/bussaco-national-forest)\n\nRecent Additions ↓\n\n[![Byside bench Plaza](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F2a0a9bc12bb5a939015e0bff85b86ddaaa34c223-775x698.png&w=1699&q=100)\\\\\n\\\\\nExplore\\\\\n\\\\\nColors\\\\\n\\\\\n![Color Image](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F3bccc2aad7eabbb8f0b9a13a0de7c95d6bba1971-740x740.png&w=1699&q=100)\\\\\n\\\\\n![Color Image](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2Fe56eecdd470d13c1d8fbead1f46792319ae1bd75-740x740.png&w=1699&q=100)\\\\\n\\\\\n+4](https://floema.com/en/products/urban/byside-bench-plaza)\n\n[![Palmer tee sign ](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2Fe1030ddaed7a5673f0b7d0dd8ba097b30f6b8e56-775x698.png&w=1699&q=100)\\\\\n\\\\\nExplore](https://floema.com/en/products/golf/palmer-tee-sign)\n\nThe Collections\n\n[**Urban**\\\\\n\\\\\n![Bike rack Frame](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2Fdef7bf5c4f063d1eccb3409ae9d931a49f97c448-500x288.jpg&w=1699&q=100)![Community Table Plaza](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2Fb2b1ef98e6bc9b855b7cd51b136482babca08afa-500x288.jpg&w=1699&q=100)![Water fountain Frame](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2Ff53ee6c134b43dd7d1c3c16ab66d5e3a3f7561bf-500x288.jpg&w=1699&q=100)![Directional sign frame](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F73712da4104affdfb864a174575fe0d1213c8083-500x288.jpg&w=1699&q=100)![E-bike charger Frame](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F7984dfa4aa28e513dd4dfae0248cabd2ac32402f-500x288.jpg&w=1699&q=100)![Ecoponto Frame](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2Fa9967dfbac88e53f7454ca4660bf7eb56ad9c909-500x288.jpg&w=1699&q=100)\\\\\n\\\\\n**(50)**](https://floema.com/en/products?collection=Urban) [![Trail recycled plastic trail marker](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F46ea035d2eebcd2c895d168904c91c2830073812-500x288.png&w=1699&q=100)![Information panel](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F53ba1e98b043604ceb2a252fcaa3b9dbfff0297a-500x288.png&w=1699&q=100)![Arrow directional sign](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2Fc163a093ea732ddc666c358b70c3173aa83c0c88-500x288.png&w=1699&q=100)![Entrance totem](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F6ad0a530a6258dd734ae38ecdf7abf9725210041-500x288.png&w=1699&q=100)![Cycling Route Directional Sign](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F73a792ef53d6bea526cb3657232d70a1e862aee9-500x288.png&w=1699&q=100)![Interpretive lectern panel](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F4ae48e3619c8f664d42ac0c3649a1eb4939ee551-500x288.png&w=1699&q=100)\\\\\n\\\\\n**Nature** **(38)**](https://floema.com/en/products?collection=Nature) [**Golf** **(62)**\\\\\n\\\\\n![Clock-on-spot](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2Ffed1070c0877e26c7d95dac8a6dbc4c64a35fc36-500x288.png&w=1699&q=100)![Royal ball pyramid](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F7d8ce08548ad30b358fc7aa5ab0db2169f912c61-500x288.jpg&w=1699&q=100)![Tee Cube](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F54f93370ace69268b44cfbccdf28ae590db7dc7a-500x288.png&w=1699&q=100)![Bag stand Palmer](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2Ff8dbdee6f09063cb6a454021c76d5e2822c860f2-500x288.png&w=1699&q=100)![Par 3 Beacon](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F47366e1a65835b9a2c9bb62c2dacefeff5200228-500x288.png&w=1699&q=100)![Water cooler Palmer](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2Fad6c6c70257889ecb7696911d86f0fdac55b58fb-500x288.png&w=1699&q=100)](https://floema.com/en/products?collection=Golf) [![Liatris planter](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2Fc90c5d7042a0261fb4ae679cc6227772e30bac3a-500x288.jpg&w=1699&q=100)![Belleville bench](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2Ff07de4d84a78ffa99d920739be13876b691e76b7-500x288.jpg&w=1699&q=100)![Plaza Paper](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F6e3c440daf2ff4cd60ea6b7a89914a7ca66cd032-500x288.jpg&w=1699&q=100)![Elevated walkway](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F5bfd6508dc65f64e1d14c90290b4c48bd4ecdced-500x288.jpg&w=1699&q=100)![Concealment fence](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F2a7348fba882c9c4e924ecb332295a560fa502b2-500x288.jpg&w=1699&q=100)![Oxalis Planter](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2Fa8580eebfea971aa1e4ef400bb5c02c0b8a5053e-500x288.jpg&w=1699&q=100)\\\\\n\\\\\n**RePlastic** **(01)**](https://floema.com/en/products?collection=RePlastic) [**Details**\\\\\n\\\\\n![Signage](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2Fed435e18d662e1b74c8a75bec50013194309fa49-500x288.jpg&w=1699&q=100)![Signage 02](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2Ff9ba3440e3625bcaba30f2149d44d261d9c919b3-500x288.jpg&w=1699&q=100)![Signage 03](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2Ffa2e623e6f315329b7e560c667bfd8eb5392c364-500x288.jpg&w=1699&q=100)![Signage 04](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F9174537af72978a3a824071feb71728bead46823-500x288.jpg&w=1699&q=100)![Signage 05](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2Fd383ecd49618ea4cd227885670077143b9d23f92-500x288.jpg&w=1699&q=100)![Signage 06](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F80478e0d6f3548a5147176c3e21554a91e30dc79-500x288.jpg&w=1699&q=100)\\\\\n\\\\\n**(00)**](https://floema.com/en/products?collection=Details)\n\n![Fernando Pinto — Managing Partner](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F7fe78002ddd32916abd015d3001832a88f749462-364x364.jpg&w=1699&q=100)\n\nFernando Pinto\n\nManaging Partner\n\nFloema® produces sustainable signage and equipment and offers durable, low maintenance solutions that integrate perfectly into the landscape, based on ecological raw materials.\n\nOur products are an important resource to enhance the heritage, urban environment, landscape and culture of any region.\n\n## \"We    think    outdoor    furniture    should        look    and    feel    good    while    doing    good        for    our    planet\"\n\n[More on sustainability](https://floema.com/en/sustainability)\n\n![Berlengas Island, Portugal](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2Ff4f6a9547e8e40bd32975ab1052e2c7428226353-1328x1386.jpg&w=1699&q=100)\n\nBerlengas Island, Portugal\n\n![We design](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F4c1a919b5e7601c1bf188b28c2cdf4aef3d228f2-1054x600.jpg&w=1699&q=100)\n\nWe design\n\nOur products are designed to guarantee functionality and viability\n\n![We build](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2Ffb095c31eb4ea6ce292e009ff8fd64ca958c8856-1054x600.jpg&w=1699&q=100)\n\nWe build\n\nEnsuring the technical and aesthetic aspects stay unaltered\n\n![We implement](https://floema.com/_vercel/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F535lnz3g%2Fproduction%2F6c9ebc51108f425c4888cf320e2698cf7a713f38-1054x600.jpg&w=1699&q=100)\n\nWe implement\n\nEvery solution is crafted to endure, with minimal environmental impact\n\n### Made to last, designed to endure.\n\nJoin our community\nSign up for news, updates and more.\n\nBy submitting your email you agree to our [Privacy Policy](https://floema.com/en/legal/privacy-policy).\n\nThis product does not have any personalisation.\n\nYou can add it to the Wishlist and continue.\n\nAdd to Enquiry List\n\nFirst Name\n\nLast Name\n\nEmail\n\nCountry\n\nMessage\n\nSend"
+}

@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "collections": [
+    {
+      "url": "https://www.awwwards.com/websites/sites_of_the_year/",
+      "collected_at": "2026-09-07",
+      "source": "web page extraction; Firecrawl rate-limited",
+      "scope": "Starter inventory of ten entries visible in collection; not a complete crawl",
+      "candidates": [
+        {
+          "name": "Lando Norris",
+          "status": "discovered",
+          "url": "https://landonorris.com/",
+          "notes": "Resolve listing and destination before enrichment; no visual tags inferred from title."
+        },
+        {
+          "name": "Messenger",
+          "status": "discovered",
+          "url": null,
+          "notes": "Resolve listing and destination before enrichment; no visual tags inferred from title."
+        },
+        {
+          "name": "Igloo Inc",
+          "status": "discovered",
+          "url": null,
+          "notes": "Resolve listing and destination before enrichment; no visual tags inferred from title."
+        },
+        {
+          "name": "Don't Board Me",
+          "status": "discovered",
+          "url": null,
+          "notes": "Resolve listing and destination before enrichment; no visual tags inferred from title."
+        },
+        {
+          "name": "Opal Tadpole",
+          "status": "discovered",
+          "url": null,
+          "notes": "Resolve listing and destination before enrichment; no visual tags inferred from title."
+        },
+        {
+          "name": "Lusion v3",
+          "status": "discovered",
+          "url": "https://lusion.co/",
+          "notes": "User supplied live URL. Current homepage inspected; correspondence to the awarded historical version is unverified.",
+          "library_site_id": "lusion"
+        },
+        {
+          "name": "Noomo Agency",
+          "status": "discovered",
+          "url": null,
+          "notes": "Resolve listing and destination before enrichment; no visual tags inferred from title."
+        },
+        {
+          "name": "Mana Yerba Mate",
+          "status": "discovered",
+          "url": "https://en.manayerbamate.com/",
+          "notes": "User supplied live URL. Current homepage inspected; correspondence to the awarded historical version is unverified.",
+          "library_site_id": "mana"
+        },
+        {
+          "name": "KPR",
+          "status": "discovered",
+          "url": null,
+          "notes": "Resolve listing and destination before enrichment; no visual tags inferred from title."
+        },
+        {
+          "name": "The Other Side of Truth",
+          "status": "discovered",
+          "url": null,
+          "notes": "Resolve listing and destination before enrichment; no visual tags inferred from title."
+        }
+      ]
+    }
+  ]
+}

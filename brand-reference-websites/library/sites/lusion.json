@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "id": "lusion",
+  "name": "Lusion",
+  "url": "https://lusion.co/",
+  "status": "reviewed",
+  "collected_at": "2026-09-07",
+  "discovery_source": "user",
+  "user_notes": "User supplied this reference and specifically requested animation analysis.",
+  "tags": {
+    "industry": [
+      "agency"
+    ],
+    "personality": [
+      "technical",
+      "expressive"
+    ],
+    "layout": [],
+    "typography": [
+      "sans-display"
+    ],
+    "imagery": [
+      "product-render"
+    ],
+    "motion": [
+      "ambient-motion",
+      "scroll-reveal"
+    ],
+    "technology": []
+  },
+  "tokens": {
+    "provenance": "Firecrawl branding; sampled values not a complete design specification",
+    "colors": {
+      "primary": "#2B2E3A",
+      "secondary": "#FF0000",
+      "accent": "#00FFFF",
+      "background": "#FFFFFF",
+      "textPrimary": "#000000",
+      "link": "#00FFFF"
+    },
+    "fontFamilies": {
+      "primary": "Aeonik",
+      "heading": "Aeonik"
+    }
+  },
+  "evidence": [
+    {
+      "id": "branding",
+      "kind": "firecrawl-branding",
+      "source_url": "https://lusion.co/",
+      "captured_at": "2026-09-07",
+      "path": "library/evidence/lusion-branding.json",
+      "inspected": false
+    },
+    {
+      "id": "motion-audit",
+      "kind": "browser",
+      "source_url": "https://lusion.co/",
+      "captured_at": "2026-09-07",
+      "path": "library/evidence/lusion-motion-audit.md",
+      "inspected": true,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "method": "CUA action and screenshot comparisons"
+    }
+  ],
+  "elements": [
+    {
+      "id": "sculptural-loop",
+      "type": "animation",
+      "location": "hero",
+      "description": "Rounded dark hero panel filled with glossy black, white and cobalt connector-like objects. Object orientations and overlap changed between captures without further scroll, while the panel stayed at the same location.",
+      "tags": [
+        "ambient-motion",
+        "sculptural-object",
+        "glossy",
+        "blue-accent"
+      ],
+      "evidence_ids": [
+        "motion-audit"
+      ],
+      "verification": "observed",
+      "brand_fit": "Expressive creative/technical brands able to support custom visual assets.",
+      "adaptation": "Use a client-relevant sculptural scene; test whether video suffices before choosing a live renderer.",
+      "effort": "high",
+      "mobile": "not inspected",
+      "reduced_motion": "Source untested; choose an appropriate accessible fallback in the client build.",
+      "motion": {
+        "trigger": "continuous-scene",
+        "start_state": "Rounded dark hero panel filled with glossy black, white and cobalt connector-like objects.",
+        "end_state": "Object orientations and overlap changed between captures without further scroll, while the panel stayed at the same location.",
+        "scroll_relationship": "Continues with no scroll input; pointer coupling not tested.",
+        "repeat_reverse": "Continuous progression observed; seamless loop boundary not established.",
+        "duration_ms": null,
+        "easing": null,
+        "rendering_technology": "unknown",
+        "implementation_status": "adaptation is a proposal, not verified source implementation",
+        "evidence_actions": "Loaded homepage; captured hero; scrolled down twice; captured again much later without further input to compare object orientation."
+      }
+    },
+    {
+      "id": "reel-heading-entry",
+      "type": "animation",
+      "location": "section after hero",
+      "description": "Hero panel and scroll cue dominate the viewport. Oversized two-line heading becomes visible beneath the hero as the page advances.",
+      "tags": [
+        "scroll-reveal",
+        "oversized-type"
+      ],
+      "evidence_ids": [
+        "motion-audit"
+      ],
+      "verification": "observed",
+      "brand_fit": "Agencies using a strong opening to lead into explanatory content.",
+      "adaptation": "Pair a restrained text section with the scene; avoid competing simultaneous motion.",
+      "effort": "medium",
+      "mobile": "not inspected",
+      "reduced_motion": "Source untested; choose an appropriate accessible fallback in the client build.",
+      "motion": {
+        "trigger": "scroll-entry",
+        "start_state": "Hero panel and scroll cue dominate the viewport.",
+        "end_state": "Oversized two-line heading becomes visible beneath the hero as the page advances.",
+        "scroll_relationship": "Entry during scroll observed; exact trigger range and easing unmeasured.",
+        "repeat_reverse": "Reverse not tested.",
+        "duration_ms": null,
+        "easing": null,
+        "rendering_technology": "unknown",
+        "implementation_status": "adaptation is a proposal, not verified source implementation",
+        "evidence_actions": "Loaded homepage; captured hero; scrolled down twice; captured again much later without further input to compare object orientation."
+      }
+    }
+  ],
+  "caveats": [
+    "Raw red/cyan accent extraction does not describe the blue/black/white hero observed in the browser.",
+    "Only the listed homepage states were inspected. Exact durations/easing, full hover behaviour and reduced-motion behaviour remain unverified."
+  ],
+  "review_coverage": {
+    "desktop": "selected homepage states inspected",
+    "mobile": "not inspected",
+    "reduced_motion": "not inspected",
+    "hover": "not isolated",
+    "timing": "not measured",
+    "recording": "no video or persistent screenshots saved; browser action notes only"
+  },
+  "scroll_control": {
+    "mode": "unknown",
+    "verification": "not-assessed",
+    "notes": "Scroll-associated motion was sampled; interception of native wheel/touch/keyboard scrolling was not established."
+  },
+  "technology_findings": []
+}

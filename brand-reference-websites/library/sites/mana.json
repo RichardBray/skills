@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "id": "mana",
+  "name": "MANA yerba mate",
+  "url": "https://en.manayerbamate.com/",
+  "status": "reviewed",
+  "collected_at": "2026-09-07",
+  "discovery_source": "user",
+  "user_notes": "User supplied this reference and specifically requested animation analysis.",
+  "tags": {
+    "industry": [
+      "product"
+    ],
+    "personality": [
+      "playful",
+      "expressive"
+    ],
+    "layout": [],
+    "typography": [
+      "sans-display"
+    ],
+    "imagery": [
+      "illustration",
+      "product-render"
+    ],
+    "motion": [
+      "ambient-motion",
+      "colour-transition",
+      "coordinated-transition"
+    ],
+    "technology": []
+  },
+  "tokens": {
+    "provenance": "Firecrawl branding; sampled values not a complete design specification",
+    "colors": {
+      "primary": "#FEF7E6",
+      "secondary": "#FFD372",
+      "accent": "#ACD084",
+      "background": "#FEF7E6",
+      "textPrimary": "#0E0E0E",
+      "link": "#ACD084"
+    },
+    "fontFamilies": {
+      "primary": "Neue Montreal",
+      "heading": "Neue Montreal"
+    }
+  },
+  "evidence": [
+    {
+      "id": "branding",
+      "kind": "firecrawl-branding",
+      "source_url": "https://en.manayerbamate.com/",
+      "captured_at": "2026-09-07",
+      "path": "library/evidence/mana-branding.json",
+      "inspected": false
+    },
+    {
+      "id": "motion-audit",
+      "kind": "browser",
+      "source_url": "https://en.manayerbamate.com/",
+      "captured_at": "2026-09-07",
+      "path": "library/evidence/mana-motion-audit.md",
+      "inspected": true,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "method": "CUA action and screenshot comparisons"
+    }
+  ],
+  "elements": [
+    {
+      "id": "flavour-world-switch",
+      "type": "animation",
+      "location": "homepage product carousel",
+      "description": "Green Melon & Mint can, green background, floral/surf illustrations and matching product label. After the right arrow, the can, scene, illustrations and CTA resolve to yellow/orange Grapefruit. An intermediate capture retained the old scene while the label cleared.",
+      "tags": [
+        "coordinated-transition",
+        "product-render",
+        "illustration",
+        "colour-transition"
+      ],
+      "evidence_ids": [
+        "motion-audit"
+      ],
+      "verification": "observed",
+      "brand_fit": "Consumer brands with distinct variants and strong packaging artwork.",
+      "adaptation": "Keep the product anchor and coordinate each variant's palette, artwork and label; use owned product visuals.",
+      "effort": "high",
+      "mobile": "not inspected",
+      "reduced_motion": "Source untested; choose an appropriate accessible fallback in the client build.",
+      "motion": {
+        "trigger": "click",
+        "start_state": "Green Melon & Mint can, green background, floral/surf illustrations and matching product label.",
+        "end_state": "After the right arrow, the can, scene, illustrations and CTA resolve to yellow/orange Grapefruit. An intermediate capture retained the old scene while the label cleared.",
+        "scroll_relationship": "Click-driven; not established as scroll-controlled.",
+        "repeat_reverse": "One forward change tested; reverse not tested.",
+        "duration_ms": null,
+        "easing": null,
+        "rendering_technology": "unknown",
+        "implementation_status": "adaptation is a proposal, not verified source implementation",
+        "evidence_actions": "Loaded homepage; rejected cookies; captured green flavour; clicked right arrow; captured intermediate and settled Grapefruit states; attempted scroll; compared subsequent can angle."
+      }
+    },
+    {
+      "id": "can-idle-motion",
+      "type": "animation",
+      "location": "homepage product carousel",
+      "description": "Can shown front-on with a slight tilt in the illustrated scene. Can angle and illustration positions differ in later captures, including after transition completion.",
+      "tags": [
+        "ambient-motion",
+        "product-render"
+      ],
+      "evidence_ids": [
+        "motion-audit"
+      ],
+      "verification": "observed",
+      "brand_fit": "Playful packaging and flavour-led product brands.",
+      "adaptation": "Use subtle product rotation plus independent artwork layers without moving controls.",
+      "effort": "high",
+      "mobile": "not inspected",
+      "reduced_motion": "Source untested; choose an appropriate accessible fallback in the client build.",
+      "motion": {
+        "trigger": "idle",
+        "start_state": "Can shown front-on with a slight tilt in the illustrated scene.",
+        "end_state": "Can angle and illustration positions differ in later captures, including after transition completion.",
+        "scroll_relationship": "Progresses while stationary; pointer contribution not isolated.",
+        "repeat_reverse": "Loop boundary unmeasured.",
+        "duration_ms": null,
+        "easing": null,
+        "rendering_technology": "unknown",
+        "implementation_status": "adaptation is a proposal, not verified source implementation",
+        "evidence_actions": "Loaded homepage; rejected cookies; captured green flavour; clicked right arrow; captured intermediate and settled Grapefruit states; attempted scroll; compared subsequent can angle."
+      }
+    }
+  ],
+  "caveats": [
+    "Extracted 311.04px body size is not a usable global body-text token; verify per element.",
+    "Only the listed homepage states were inspected. Exact durations/easing, full hover behaviour and reduced-motion behaviour remain unverified."
+  ],
+  "review_coverage": {
+    "desktop": "selected homepage states inspected",
+    "mobile": "not inspected",
+    "reduced_motion": "not inspected",
+    "hover": "not isolated",
+    "timing": "not measured",
+    "recording": "no video or persistent screenshots saved; browser action notes only"
+  },
+  "scroll_control": {
+    "mode": "unknown",
+    "verification": "not-assessed",
+    "notes": "Scroll-associated motion was sampled; interception of native wheel/touch/keyboard scrolling was not established."
+  },
+  "technology_findings": []
+}
