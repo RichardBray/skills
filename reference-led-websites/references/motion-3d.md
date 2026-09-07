@@ -1,17 +1,13 @@
 # Motion and 3D decisions
 
-Choose intensity for the brand and content: conventional with subtle motion; one signature scene; or an immersive sequence. These are choices, not quality tiers.
-
-- Reference each selected effect to a verified source element.
+Choose intensity for the brand and content: conventional with subtle motion; one signature scene; or an immersive sequence. These are choices, not quality tiers. Reference each selected effect to a verified source element.
 
 - Before implementation:
   - complete the [motion contract](animation-patterns.md#motion-contract), including its 3D extension;
   - link the [asset plan](build-decisions.md#asset-plan-and-provenance).
 - Choose the cheapest implementation that reproduces the needed behaviour.
 
-- Use the project's compatible tools.
-
-CSS suits simple transforms. A motion library may suit coordinated DOM animation. A WebGL renderer may suit spatial scenes.
+Use the project's compatible tools. CSS suits simple transforms. A motion library may suit coordinated DOM animation. A WebGL renderer may suit spatial scenes.
 
 - Verify current official APIs before adding a new dependency.
 - Don't add a heavyweight renderer merely because the brief says premium.

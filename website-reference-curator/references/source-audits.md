@@ -57,9 +57,7 @@ Describe the source mechanism without prescribing that future client builds must
 
 ## Library identification
 
-- Store technology_findings with library name, version if verified, evidence IDs, and scope.
-
-A bundle banner or import confirms presence. Effect-specific calls are stronger evidence of use.
+Store technology_findings with library name, version if verified, evidence IDs, and scope. A bundle banner or import confirms presence. Effect-specific calls are stronger evidence of use.
 
 - A smooth-looking interaction is not evidence of GSAP, ScrollTrigger, Lenis or any other package.
 - A GSAP core bundle alone does not establish ScrollTrigger usage.

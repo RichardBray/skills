@@ -14,11 +14,7 @@ Search read-only:
 python3 <curator-root>/scripts/catalog.py search --query 'editorial restrained hospitality' --limit 8
 ```
 
-- Read matching `library/sites/<id>.json`, their linked evidence, and `library/components.json` for suitable suppliers such as ThreeUI.
-
-Evidence paths are relative to the curator root. The schema is at `<curator-root>/references/library-model.md`.
-
-- A reviewed record covers only its documented observations; unknown timing, 3D and mobile behaviour remain unknown.
+Read matching `library/sites/<id>.json`, their linked evidence, and `library/components.json` for suitable suppliers such as ThreeUI. Evidence paths are relative to the curator root. The schema is at `<curator-root>/references/library-model.md`. A reviewed record covers only its documented observations; unknown timing, 3D and mobile behaviour remain unknown.
 
 Sibling-installation shortcuts: [schema](../../website-reference-curator/references/library-model.md), [source audits](../../website-reference-curator/references/source-audits.md), [pattern examples](../../website-reference-curator/references/pattern-examples.md).
 
