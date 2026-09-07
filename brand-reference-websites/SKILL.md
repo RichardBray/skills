@@ -1,6 +1,6 @@
 ---
 name: brand-reference-websites
-description: Prepare build prompts or create brand-specific client websites using curated design references. Also curate website and component references.
+description: Turn a client brief into a website build prompt, then use that prompt in a fresh session to build a brand-specific site from curated design references.
 ---
 
 # Brand reference websites
@@ -9,8 +9,8 @@ Create brand-specific client websites by adapting identifiable elements from exi
 
 ## Choose the mode
 
-- **Prepare a prompt:** read [prompt preparation](references/prompt-preparation.md), fill [the build prompt template](references/build-prompt-template.md), and stop before implementation. Produce a self-contained handoff for a fresh session.
-- **Build or redesign:** follow the workflow below. A completed build prompt supplies the brief; do not repeat answered questions or force a separate preparation session.
+- **Prepare a prompt:** read [prompt preparation](references/prompt-preparation.md), fill [the build prompt template](references/build-prompt-template.md), and stop before implementation. Stage 1 produces a self-contained prompt for the user to paste into a NEW session to start build mode.
+- **Build or redesign:** follow the workflow below. Stage 2 starts when the user pastes the Stage 1 prompt into a NEW session; that prompt supplies the brief; do not repeat answered questions or force a separate preparation session.
 - **Curate references:** read [ingestion](references/ingestion.md), update canonical JSON and validate. Do not build unless requested.
 - **Evaluate:** give advice; read [evaluation](references/evaluation.md) for trials or quality comparisons.
 

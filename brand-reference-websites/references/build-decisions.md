@@ -4,7 +4,7 @@ Read before writing DESIGN.md or selecting new implementation tools.
 
 ## Available tools and portability
 
-This repository provides the workflow, reference library and catalog script. Firecrawl, Developer Index, image generation and Blender are optional host capabilities, not bundled dependencies. Discover available tools before invoking them. Prefer Firecrawl for extraction when available; otherwise use accessible browser tools, official pages or existing saved evidence and record the actual source. For missing image tools, use suitable supplied/licensed assets or report the specific asset gap. Do not silently install companion skills or block unrelated work because one is absent.
+This repository provides the workflow, reference library and catalog script. Firecrawl, Developer Index, image generation and Blender are optional host capabilities, not bundled dependencies. Discover available tools before invoking them. Prefer Firecrawl for extraction when available; otherwise use accessible browser tools, official pages or existing saved evidence and record the actual source. For image-tool availability and generation routes, follow [image generation](image-generation.md#generation-route). Do not silently install companion skills or block unrelated work because one is absent.
 
 ## Preserve the reference direction
 
@@ -28,5 +28,9 @@ Write DESIGN.md in the project containing the brief, page structure, brand token
 | --- | --- | --- | --- | --- |
 
 Describe composition, proportions, type treatment, image framing and interaction behaviour concretely. Explain why the combination fits this client. Keep the client's existing identity unless a redesign includes changing it. Translate reference elements into one local type scale, spacing system, shape language and motion vocabulary. Do not transplant unrelated brand colours or distinctive identity assets just because they look attractive.
+
+## Asset plan and provenance
+
+Keep one asset inventory in DESIGN.md. For each asset, record its target page/section and purpose, source/input references and usage rights, required treatment or constraints, final project path and unresolved gaps. For generated assets also retain the prompt/inputs, actual provider/model/version when known, and job/prediction ID when returned. Link motion contracts to these entries rather than duplicating provenance. Image-specific crop and composition decisions are covered in [image generation](image-generation.md#choose-assets-for-the-actual-composition); scene-specific decisions belong to the [motion contract](animation-patterns.md#motion-contract).
 
 Use licensed/user-owned assets or separately sourced replacements; a reference asset URL is evidence, not reuse permission. Track source-code, font and asset licences independently. Match replacements to the framing, lighting and visual weight needed by the composition. Avoid leaving placeholder imagery in a result described as finished.

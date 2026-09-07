@@ -1,6 +1,6 @@
 # Reusable website build prompt
 
-Fill bracketed fields using the interview and existing context. Remove irrelevant sections. The final handoff must contain no unfilled brackets.
+Fill bracketed fields using [prompt preparation](prompt-preparation.md). Remove irrelevant sections and resolve supporting links to absolute skill paths before handing off; leave no unfilled brackets.
 
 ---
 
@@ -27,7 +27,7 @@ Missing assets/content: [what to source, generate, draft or request].
 Avoid: [specific dislikes or brand constraints].
 Claims and data: [verified facts and demo-content boundaries; do not fabricate reviews, certifications or product specifications].
 
-Typography and copy: Keep all readable website copy at least 16 CSS px, including mobile, navigation, controls and footer; aim for 18px or larger body paragraphs. Do not use em dashes in authored copy or visible text in generated assets. Follow the skill’s rendered typography and copy checks.
+Apply the skill’s essential typography/copy requirements and [detailed checks](review.md#typography-and-copy-checks).
 
 ## Reference-led art direction
 
@@ -38,7 +38,7 @@ Supporting references: [URL + section + element + role; omit if unnecessary].
 Evidence: [what has actually been inspected, capture/report paths and what needs live verification].
 Reference fidelity: [close match or selective adaptation, plus approved deviations].
 
-Use the library and relevant Firecrawl design extraction workflow to inspect selected references. Keep source design reports separate from this project's DESIGN.md. Verify motion in live interaction rather than inferring it from still images. Preserve the defining reference qualities when adapting them to the brand.
+Inspect the selected references through [ingestion](ingestion.md) and preserve their intended qualities using [build decisions](build-decisions.md#preserve-the-reference-direction).
 
 ## Pages and functionality
 
@@ -49,14 +49,8 @@ Content editing requirements: [CMS/management needs or none].
 
 ## Signature interaction and motion
 
-Signature interaction: [purpose, reference section, trigger, before/after states and effect on exploration; or a later explicit user override].
-Required assets: [cutouts, models, image sequences or other inputs].
-Multi-page requirement: If the site has multiple pages/routes, deliver reference-backed page transitions meeting the skill’s explicit acceptance criteria with deliberate exit/entry choreography and shared-element continuity where appropriate. Consider View Transitions when suitable; verify compatibility and provide functional fallbacks and reduced-motion behaviour. Test real route changes, back/forward, focus, scroll restoration and interrupted navigation.
-
-Supporting motion: [navigation/page transitions, product changes, drawers/dialogs, cart/forms and closing states relevant to the scope].
-Required scroll animations: [reference-backed effects, affected sections, trigger/start/end states and replay or reversal behaviour]. Every site must have a deliberate scroll animation sequence appropriate to its brand. Smooth scrolling alone, page-load entrances and hover effects do not fulfil this requirement. Preserve usable native scrolling unless a verified design requires otherwise.
-Mobile/touch adaptation: [intended alternative or delegate within usability constraints].
-Reduced-motion alternative: [static/simpler treatment preserving access and meaning].
+Chosen effects: [client-specific signature interaction, required scroll sequence, route transitions when multi-page, and supporting UI effects].
+Complete each effect using the canonical [motion contract](animation-patterns.md#motion-contract). Fill known decisions; explicitly delegate unresolved implementation details within the brief. Meet the [motion requirements](motion-requirements.md) and retain any user-authorized exceptions.
 
 ## Imagery and 3D
 
@@ -76,9 +70,9 @@ Other constraints: [only relevant requirements].
 
 ## Build and verify
 
-Write DESIGN.md with the brief, reference-to-element mapping, asset provenance, technical decisions and motion contracts. Prototype the defining interaction and anchor section with representative assets before extending the site. Follow the skill's research and implementation workflow.
+Write DESIGN.md using [build decisions](build-decisions.md#make-decisions-concrete) and the linked motion contract. Prototype the defining interaction and anchor section with representative assets before extending the site. Follow the skill's research and implementation workflow.
 
-Inspect the rendered result on desktop, mobile and an intermediate width. Scroll down and back up, inspect intermediate animation states and reduced-motion fallbacks, and exercise the full primary flow, opening/closing transitions, touch/keyboard alternatives and reduced motion. Check visual fidelity, type, spacing, crops, loading, overflow and runtime errors. Fix observed weaknesses and recheck affected areas.
+Apply [review criteria](review.md), fix observed weaknesses and recheck affected areas.
 
 Deliver [working local preview and project files, plus any specifically requested deliverables]. Report actual checks and material limitations. Distinguish demo functionality from production integrations. Do not publish or incur paid-provider costs beyond the authorization above.
 

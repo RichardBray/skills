@@ -4,7 +4,7 @@
 
 Prefer suitable supplied client assets. Generate missing decorative or conceptual imagery when it improves the reference-led design. Adapt the reference's framing, lighting, visual weight and material treatment to the client. Preserve actual product details and logos using supplied references; do not fabricate documentary images of the client's real team, premises or completed work.
 
-Record each planned image's page/section, purpose, aspect ratio, focal point, desktop/mobile crop, palette and any space needed for live text in DESIGN.md. Keep headings and calls to action as accessible HTML rather than baking them into artwork.
+Use the canonical [asset inventory](build-decisions.md#asset-plan-and-provenance). For each image, add aspect ratio, focal point, desktop/mobile crop, palette and space needed for live text. Keep headings and calls to action as accessible HTML rather than baking them into artwork.
 
 ## Generation route
 
@@ -14,11 +14,11 @@ When the user explicitly requests the API/CLI route, use an available supported 
 
 ## Generate, inspect and integrate
 
-Prompt for the specific asset: subject, brand palette, composition, lighting, materials, intended placement, cropping and preserved details. Use supplied images for edits where identity matters. Inspect existing local images before editing them. Generate actual bitmap assets through the image tool; use native vector assets for logos and interface icons when appropriate.
+Build the prompt from the asset plan’s composition constraints, adding subject, lighting, materials and details to preserve. Use supplied images for edits where identity matters. Inspect existing local images before editing them. Generate actual bitmap assets through the image tool; use native vector assets for logos and interface icons when appropriate.
 
 Inspect outputs, then inspect them in the rendered desktop and mobile layout. Check crop, focal point, text contrast, unwanted lettering, visual artifacts and consistency with the client's identity. Iterate on observed problems. Copy chosen outputs into the project's asset directory, create suitably sized web derivatives, preserve needed transparency, and provide appropriate alt text (empty for decorative images). Do not leave production references pointing to temporary or Codex generation folders.
 
-Record final paths, prompts, input asset provenance and the actual generation route/model when known in DESIGN.md. Do not describe an unverified model as confirmed.
+Update the [asset inventory](build-decisions.md#asset-plan-and-provenance) with the chosen output and generation provenance; leave unverified model identity unknown.
 
 ## Relationship to 3D
 
