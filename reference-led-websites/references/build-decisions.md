@@ -4,7 +4,7 @@ Read before writing DESIGN.md or selecting new implementation tools.
 
 ## Available tools and portability
 
-This repository provides the workflow, reference library and catalog script. Firecrawl, Developer Index, image generation and Blender are optional host capabilities, not bundled dependencies. Discover available tools before invoking them. Prefer Firecrawl for extraction when available; otherwise use accessible browser tools, official pages or existing saved evidence and record the actual source. For image-tool availability and generation routes, follow [image generation](image-generation.md#generation-route). Do not silently install companion skills or block unrelated work because one is absent.
+This skill provides the build workflow; the companion curator owns the reference library and catalog script. Read [library access](library-access.md) for read-only access and project-local research. Firecrawl, Developer Index, image generation and Blender are optional host capabilities, not bundled dependencies. Discover available tools before invoking them. Prefer Firecrawl for extraction when available; otherwise use accessible browser tools, official pages or existing saved evidence and record the actual source. For image-tool availability and generation routes, follow [image generation](image-generation.md#generation-route). Do not silently install companion skills or block unrelated work because one is absent.
 
 ## Preserve the reference direction
 

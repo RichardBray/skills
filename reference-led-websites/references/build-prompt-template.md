@@ -5,7 +5,9 @@ Fill bracketed fields using [prompt preparation](prompt-preparation.md). Remove 
 ---
 
 Read and use the website skill at:
-[Absolute path to brand-reference-websites/SKILL.md]
+[Absolute path to reference-led-websites/SKILL.md]
+
+Shared library location: [resolved absolute curator root, or unavailable with project-local reference plan]. Read it through the skill’s library-access guidance; do not modify shared records.
 
 This is the build stage. Use the following completed brief without repeating answered questions. Work autonomously within its scope; ask only about a consequential unresolved issue. Inspect the project before choosing implementation tools.
 
@@ -38,7 +40,7 @@ Supporting references: [URL + section + element + role; omit if unnecessary].
 Evidence: [what has actually been inspected, capture/report paths and what needs live verification].
 Reference fidelity: [close match or selective adaptation, plus approved deviations].
 
-Inspect the selected references through [ingestion](ingestion.md) and preserve their intended qualities using [build decisions](build-decisions.md#preserve-the-reference-direction).
+Inspect the selected references through [project research](library-access.md#project-research) and preserve their intended qualities using [build decisions](build-decisions.md#preserve-the-reference-direction).
 
 ## Pages and functionality
 

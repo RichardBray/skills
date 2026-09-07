@@ -1,4 +1,0 @@
-interface:
-  display_name: "Brand Reference Websites"
-  short_description: "Build client websites from curated design references"
-  default_prompt: "Use $brand-reference-websites to build a website tailored to my client's brand using selected design references."

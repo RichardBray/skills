@@ -1,0 +1,4 @@
+interface:
+  display_name: "Website Reference Curator"
+  short_description: "Collect, audit and maintain website design references"
+  default_prompt: "Use $website-reference-curator to inspect my reference URLs, update their evidence and catalog records, and validate the library."
