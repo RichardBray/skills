@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "id": "ali",
+  "name": "Ali Two Times",
+  "url": "https://alitwotimes.com/",
+  "status": "reviewed",
+  "collected_at": "2026-09-07",
+  "discovery_source": "user",
+  "user_notes": "User specifically requested page-transition notes.",
+  "tags": {
+    "industry": [
+      "film"
+    ],
+    "personality": [
+      "editorial",
+      "expressive"
+    ],
+    "layout": [
+      "asymmetric"
+    ],
+    "typography": [
+      "oversized-type",
+      "sans-display"
+    ],
+    "imagery": [
+      "photography"
+    ],
+    "motion": [
+      "page-transition",
+      "masked-reveal",
+      "stagger",
+      "custom-scroll"
+    ],
+    "technology": [
+      "gsap"
+    ]
+  },
+  "tokens": {
+    "provenance": "Firecrawl branding; sampled values",
+    "colors": {
+      "primary": "#000000",
+      "accent": "#000000",
+      "background": "#FCF6F4",
+      "textPrimary": "#100F0F",
+      "link": "#000000"
+    },
+    "fontFamilies": {
+      "primary": "Monument Grotesk",
+      "heading": "Monument Grotesk"
+    }
+  },
+  "evidence": [
+    {
+      "id": "branding",
+      "kind": "firecrawl-branding",
+      "source_url": "https://alitwotimes.com/",
+      "captured_at": "2026-09-07",
+      "path": "library/evidence/ali-branding.json",
+      "inspected": false
+    },
+    {
+      "id": "navigation",
+      "kind": "browser",
+      "source_url": "https://alitwotimes.com/",
+      "captured_at": "2026-09-07",
+      "path": "library/evidence/ali-motion-audit.md",
+      "inspected": true
+    },
+    {
+      "id": "source",
+      "kind": "source-code",
+      "source_url": "https://alitwotimes.com/wp-content/themes/aliali/public/main-bundle.js",
+      "captured_at": "2026-09-07",
+      "path": "library/evidence/ali-source-analysis.json",
+      "inspected": true
+    }
+  ],
+  "elements": [
+    {
+      "id": "header-page-wipe",
+      "type": "animation",
+      "location": "Work / Bio header navigation",
+      "description": "Light Work page with name aligned right. Dark Bio page with name left and portrait right; outgoing page clipped horizontally, heading and image mask counter-move.",
+      "tags": [
+        "page-transition",
+        "masked-reveal",
+        "stagger"
+      ],
+      "evidence_ids": [
+        "source",
+        "navigation"
+      ],
+      "verification": "extracted",
+      "brand_fit": "Strong personal/creative portfolios with persistent identity across pages.",
+      "adaptation": "Recreate the sequencing with client-specific composition and a compatible current animation system; preserve focus, history and scroll restoration.",
+      "effort": "high",
+      "mobile": "source branch exists; not tested",
+      "reduced_motion": "not tested; client build should have immediate route changes",
+      "motion": {
+        "trigger": "click-navigation",
+        "start_state": "Light Work page with name aligned right.",
+        "end_state": "Dark Bio page with name left and portrait right; outgoing page clipped horizontally, heading and image mask counter-move.",
+        "scroll_relationship": "Route change, not a scroll-section transition.",
+        "repeat_reverse": "Header transition branch supports both directions; browser tested Work to Bio only.",
+        "duration_ms": 1500,
+        "easing": "expo.inOut",
+        "timing_basis": "source-defined outgoing wipe only; incoming text has a separate timeline",
+        "measurement_evidence": {
+          "kind": "source-code",
+          "evidence_id": "source",
+          "source_url": "https://alitwotimes.com/wp-content/themes/aliali/public/main-bundle.js",
+          "locator": "class Xr",
+          "runtime_measured": false
+        },
+        "rendering_technology": "GSAP with DOM clipping/transforms",
+        "evidence_actions": "Work \u2192 Bio \u2192 Contact clicked and destinations inspected; public bundle inspected for transition code.",
+        "implementation_status": "Source facts above; adaptation proposal is not source code reuse."
+      }
+    },
+    {
+      "id": "contact-page-wipe",
+      "type": "animation",
+      "location": "Bio / Contact navigation",
+      "description": "Dark biography page. Light Contact page; outgoing content clipped upward and incoming heading/links rise in a staggered entrance.",
+      "tags": [
+        "page-transition",
+        "masked-reveal",
+        "stagger"
+      ],
+      "evidence_ids": [
+        "source",
+        "navigation"
+      ],
+      "verification": "extracted",
+      "brand_fit": "Portfolios whose contact page should feel part of the same visual experience.",
+      "adaptation": "Recreate the sequencing with client-specific composition and a compatible current animation system; preserve focus, history and scroll restoration.",
+      "effort": "high",
+      "mobile": "source branch exists; not tested",
+      "reduced_motion": "not tested; client build should have immediate route changes",
+      "motion": {
+        "trigger": "click-navigation",
+        "start_state": "Dark biography page.",
+        "end_state": "Light Contact page; outgoing content clipped upward and incoming heading/links rise in a staggered entrance.",
+        "scroll_relationship": "Route change, not a scroll-section transition.",
+        "repeat_reverse": "Forward route tested; reverse behaviour source branches only.",
+        "duration_ms": 1500,
+        "easing": "expo.inOut",
+        "timing_basis": "source-defined outgoing wipe only; incoming text has a separate timeline",
+        "measurement_evidence": {
+          "kind": "source-code",
+          "evidence_id": "source",
+          "source_url": "https://alitwotimes.com/wp-content/themes/aliali/public/main-bundle.js",
+          "locator": "class Hr",
+          "runtime_measured": false
+        },
+        "rendering_technology": "GSAP with DOM clipping/transforms",
+        "evidence_actions": "Work \u2192 Bio \u2192 Contact clicked and destinations inspected; public bundle inspected for transition code.",
+        "implementation_status": "Source facts above; adaptation proposal is not source code reuse."
+      }
+    },
+    {
+      "id": "project-page-wipe",
+      "type": "animation",
+      "location": "Work / project / back navigation",
+      "description": "Selected work listing. Source defines upward clipping of outgoing page, menu exit and saved listing offset on return.",
+      "tags": [
+        "page-transition",
+        "masked-reveal",
+        "stagger"
+      ],
+      "evidence_ids": [
+        "source"
+      ],
+      "verification": "extracted",
+      "brand_fit": "Media portfolios with frequent entry into project details and return to browsing.",
+      "adaptation": "Recreate the sequencing with client-specific composition and a compatible current animation system; preserve focus, history and scroll restoration.",
+      "effort": "high",
+      "mobile": "source branch exists; not tested",
+      "reduced_motion": "not tested; client build should have immediate route changes",
+      "motion": {
+        "trigger": "click-navigation",
+        "start_state": "Selected work listing.",
+        "end_state": "Source defines upward clipping of outgoing page, menu exit and saved listing offset on return.",
+        "scroll_relationship": "Route change, not a scroll-section transition.",
+        "repeat_reverse": "Project/back branches source-inspected only.",
+        "duration_ms": 1500,
+        "easing": "expo.inOut",
+        "timing_basis": "source-defined outgoing wipe only; incoming text has a separate timeline",
+        "measurement_evidence": {
+          "kind": "source-code",
+          "evidence_id": "source",
+          "source_url": "https://alitwotimes.com/wp-content/themes/aliali/public/main-bundle.js",
+          "locator": "class Ur / class Ir",
+          "runtime_measured": false
+        },
+        "rendering_technology": "GSAP with DOM clipping/transforms",
+        "evidence_actions": "Work \u2192 Bio \u2192 Contact clicked and destinations inspected; public bundle inspected for transition code.",
+        "implementation_status": "Source facts above; adaptation proposal is not source code reuse."
+      }
+    }
+  ],
+  "caveats": [
+    "Transition parameters are extracted from the public bundle, not measured in browser playback.",
+    "No source code, assets or historical GSAP version should be copied into a client build without current dependency/licence checks.",
+    "Project/back transitions source-inspected only; keyboard, touch and reduced motion untested."
+  ],
+  "review_coverage": {
+    "desktop": "Work to Bio to Contact destinations visually checked; source inspected for choreography",
+    "page_transitions": "header/contact route endpoints checked; source-defined intermediate choreography",
+    "mobile": "native branch in source, not device-tested",
+    "reduced_motion": "unknown",
+    "timing": "source-defined; not runtime-measured"
+  },
+  "technology_findings": [
+    {
+      "name": "GSAP",
+      "version_in_capture": "3.3.3",
+      "verification": "source-confirmed",
+      "evidence_ids": [
+        "source"
+      ],
+      "scope": "public bundle; do not prescribe this old version for new builds"
+    }
+  ],
+  "scroll_control": {
+    "mode": "custom-wheel-transform",
+    "verification": "source-confirmed",
+    "input": "wheel delta updates a clamped target",
+    "smoothing": "ticker-driven interpolation coefficient 0.1",
+    "mobile": "source branches to native scrolling for devices/iPad; not device-tested",
+    "keyboard": "unknown",
+    "scroll_trap": "not assessed",
+    "evidence_ids": [
+      "source"
+    ]
+  }
+}

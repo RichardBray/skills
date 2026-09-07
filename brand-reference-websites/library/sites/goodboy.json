@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "id": "goodboy",
+  "name": "Goodboy",
+  "url": "https://goodboyagency.com/",
+  "status": "reviewed",
+  "collected_at": "2026-09-07",
+  "discovery_source": "user",
+  "user_notes": "User described this site as amazing; specific preferred elements not yet supplied.",
+  "tags": {
+    "industry": [
+      "agency"
+    ],
+    "personality": [
+      "modern"
+    ],
+    "layout": [],
+    "typography": [
+      "serif-display"
+    ],
+    "imagery": [],
+    "motion": [
+      "ambient-motion",
+      "marquee"
+    ],
+    "technology": []
+  },
+  "tokens": {
+    "provenance": "Firecrawl branding; unverified extraction",
+    "colors": {
+      "primary": "#1FE285",
+      "accent": "#1FE285",
+      "background": "#F3F2EF",
+      "textPrimary": "#1D1D1F",
+      "link": "#FFF473"
+    },
+    "fontFamilies": {
+      "primary": "Inter",
+      "heading": "Publico"
+    }
+  },
+  "evidence": [
+    {
+      "id": "branding",
+      "kind": "firecrawl-branding",
+      "source_url": "https://goodboyagency.com/",
+      "captured_at": "2026-09-07",
+      "path": "library/evidence/goodboy-branding.json",
+      "inspected": false
+    },
+    {
+      "id": "motion-audit",
+      "kind": "browser",
+      "source_url": "https://goodboyagency.com/",
+      "captured_at": "2026-09-07",
+      "path": "library/evidence/goodboy-motion-audit.md",
+      "inspected": true,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "method": "CUA action and screenshot comparisons"
+    }
+  ],
+  "elements": [
+    {
+      "id": "display-type",
+      "type": "typography",
+      "location": "Extracted branding; live section inspection pending",
+      "description": "Publico headings paired with Inter text.",
+      "tags": [
+        "serif-display"
+      ],
+      "evidence_ids": [
+        "branding"
+      ],
+      "verification": "extracted",
+      "brand_fit": "A service brand needing editorial character with readable supporting copy.",
+      "adaptation": "Use the pairing principle with client-appropriate licensed fonts, then verify sizes at target widths.",
+      "effort": "unknown",
+      "mobile": "Not inspected",
+      "reduced_motion": "Not inspected"
+    },
+    {
+      "id": "client-logo-marquee",
+      "type": "animation",
+      "location": "Brands we have worked with strip",
+      "description": "Disney, Marvel and Chicago Cutlery visible near the left/middle of the strip. Without another scroll, Chicago Cutlery, Nautica and Louis Garneau occupy later positions as logos travel left.",
+      "tags": [
+        "marquee",
+        "ambient-motion"
+      ],
+      "evidence_ids": [
+        "motion-audit"
+      ],
+      "verification": "observed",
+      "brand_fit": "Service brands needing compact social proof.",
+      "adaptation": "Use real client logos with permission; keep a readable static list for reduced motion.",
+      "effort": "low",
+      "mobile": "not inspected",
+      "reduced_motion": "Source untested; choose an appropriate accessible fallback in the client build.",
+      "motion": {
+        "trigger": "idle",
+        "start_state": "Disney, Marvel and Chicago Cutlery visible near the left/middle of the strip.",
+        "end_state": "Without another scroll, Chicago Cutlery, Nautica and Louis Garneau occupy later positions as logos travel left.",
+        "scroll_relationship": "Time-driven movement independent of scroll at sampled position.",
+        "repeat_reverse": "Continuous movement observed; wrap boundary not tested.",
+        "duration_ms": null,
+        "easing": null,
+        "rendering_technology": "unknown",
+        "implementation_status": "adaptation is a proposal, not verified source implementation",
+        "evidence_actions": "Loaded homepage; scrolled to logo strip; captured twice with no intervening scroll and compared logo positions."
+      }
+    }
+  ],
+  "caveats": [
+    "Raw 11px body size may be microcopy; verify.",
+    "Very large extracted button radius represents a pill, not a literal design token.",
+    "Only the listed homepage states were inspected. Exact durations/easing, full hover behaviour and reduced-motion behaviour remain unverified."
+  ],
+  "review_coverage": {
+    "desktop": "selected homepage states inspected",
+    "mobile": "not inspected",
+    "reduced_motion": "not inspected",
+    "hover": "not isolated",
+    "timing": "not measured",
+    "recording": "no video or persistent screenshots saved; browser action notes only"
+  },
+  "scroll_control": {
+    "mode": "unknown",
+    "verification": "not-assessed",
+    "notes": "Scroll-associated motion was sampled; interception of native wheel/touch/keyboard scrolling was not established."
+  },
+  "technology_findings": []
+}

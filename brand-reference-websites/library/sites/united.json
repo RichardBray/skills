@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "id": "united",
+  "name": "United Carriers",
+  "url": "https://unitedcarriers.com/",
+  "status": "reviewed",
+  "collected_at": "2026-09-07",
+  "discovery_source": "user",
+  "user_notes": "User described this site as amazing; specific preferred elements not yet supplied.",
+  "tags": {
+    "industry": [
+      "logistics"
+    ],
+    "personality": [
+      "professional"
+    ],
+    "layout": [],
+    "typography": [
+      "monospace-details"
+    ],
+    "imagery": [],
+    "motion": [
+      "count-up",
+      "scroll-reveal",
+      "scroll-storytelling"
+    ],
+    "technology": []
+  },
+  "tokens": {
+    "provenance": "Firecrawl branding; unverified extraction",
+    "colors": {
+      "primary": "#FF2E12",
+      "secondary": "#FFDEDE",
+      "accent": "#3898EC",
+      "background": "#FFFFFF",
+      "textPrimary": "#111111",
+      "link": "#3898EC"
+    },
+    "fontFamilies": {
+      "primary": "BT Steinhart",
+      "heading": "BT Steinhart"
+    }
+  },
+  "evidence": [
+    {
+      "id": "branding",
+      "kind": "firecrawl-branding",
+      "source_url": "https://unitedcarriers.com/",
+      "captured_at": "2026-09-07",
+      "path": "library/evidence/united-branding.json",
+      "inspected": false
+    },
+    {
+      "id": "motion-audit",
+      "kind": "browser",
+      "source_url": "https://unitedcarriers.com/",
+      "captured_at": "2026-09-07",
+      "path": "library/evidence/united-motion-audit.md",
+      "inspected": true,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "method": "CUA action and screenshot comparisons"
+    }
+  ],
+  "elements": [
+    {
+      "id": "type-pairing",
+      "type": "typography",
+      "location": "Extracted branding; live section inspection pending",
+      "description": "BT Steinhart and BT Steinhart Mono appear in the font extraction.",
+      "tags": [
+        "monospace-details"
+      ],
+      "evidence_ids": [
+        "branding"
+      ],
+      "verification": "extracted",
+      "brand_fit": "A technical service brand needing display text and supporting labels.",
+      "adaptation": "Borrow the display/monospace contrast with licensed client-compatible fonts.",
+      "effort": "unknown",
+      "mobile": "Not inspected",
+      "reduced_motion": "Not inspected"
+    },
+    {
+      "id": "metric-count-up",
+      "type": "animation",
+      "location": "introductory statistics section",
+      "description": "An early frame after scroll shows intermediate values, including 38.9% and 2+. At the same resting section the values settle at 98.2% and 8+, with labels visible.",
+      "tags": [
+        "count-up",
+        "scroll-reveal"
+      ],
+      "evidence_ids": [
+        "motion-audit"
+      ],
+      "verification": "observed",
+      "brand_fit": "Service businesses with real, substantiated performance figures.",
+      "adaptation": "Animate from a starting value to client-approved figures; show final values immediately for reduced motion.",
+      "effort": "low",
+      "mobile": "attempted but scene not established at 390x844",
+      "reduced_motion": "Source untested; choose an appropriate accessible fallback in the client build.",
+      "motion": {
+        "trigger": "scroll-entry",
+        "start_state": "An early frame after scroll shows intermediate values, including 38.9% and 2+.",
+        "end_state": "At the same resting section the values settle at 98.2% and 8+, with labels visible.",
+        "scroll_relationship": "Continues after scroll stops; appears time-triggered on entry, exact threshold unknown.",
+        "repeat_reverse": "Replay/reverse not tested.",
+        "duration_ms": null,
+        "easing": null,
+        "rendering_technology": "unknown",
+        "implementation_status": "adaptation is a proposal, not verified source implementation",
+        "evidence_actions": "Loaded globe hero; scrolled to statistics; compared intermediate/final numbers; scrolled to reach stacker, then further to raised container. Attempted 390x844 resize and reload; only dark circular background visible in sampled mobile state."
+      }
+    },
+    {
+      "id": "container-lift",
+      "type": "animation",
+      "location": "freight scene below company introduction",
+      "description": "Reach stacker boom and spreader sit above a grey container stacked on blue/orange containers. A further downward scroll shows the grey container raised clear of the stack, with its visible angle changed.",
+      "tags": [
+        "scroll-storytelling",
+        "layered-assets",
+        "industrial"
+      ],
+      "evidence_ids": [
+        "motion-audit"
+      ],
+      "verification": "observed",
+      "brand_fit": "Logistics/manufacturing brands with a process to explain.",
+      "adaptation": "Build a storyboard of cargo handling; the DOM exposes image parts, so do not assume every depth effect requires live 3D.",
+      "effort": "high",
+      "mobile": "attempted but scene not established at 390x844",
+      "reduced_motion": "Source untested; choose an appropriate accessible fallback in the client build.",
+      "motion": {
+        "trigger": "scroll",
+        "start_state": "Reach stacker boom and spreader sit above a grey container stacked on blue/orange containers.",
+        "end_state": "A further downward scroll shows the grey container raised clear of the stack, with its visible angle changed.",
+        "scroll_relationship": "State change follows scroll; continuous scrub and reverse need further sampling.",
+        "repeat_reverse": "Reverse not tested.",
+        "duration_ms": null,
+        "easing": null,
+        "rendering_technology": "unknown",
+        "implementation_status": "adaptation is a proposal, not verified source implementation",
+        "evidence_actions": "Loaded globe hero; scrolled to statistics; compared intermediate/final numbers; scrolled to reach stacker, then further to raised container. Attempted 390x844 resize and reload; only dark circular background visible in sampled mobile state."
+      }
+    },
+    {
+      "id": "globe-hero",
+      "type": "visual-pattern",
+      "location": "homepage hero",
+      "description": "Glowing globe with point-like land texture, country labels and orange route lines beside the headline. Single settled globe state inspected; motion control and renderer were not verified.",
+      "tags": [
+        "globe",
+        "route-map",
+        "depth-effect"
+      ],
+      "evidence_ids": [
+        "motion-audit"
+      ],
+      "verification": "observed",
+      "brand_fit": "Brands whose network coverage is core to the story.",
+      "adaptation": "Choose a globe treatment only if it clarifies coverage; inspect animation before reusing.",
+      "effort": "high",
+      "mobile": "attempted but scene not established at 390x844",
+      "reduced_motion": "Source untested; choose an appropriate accessible fallback in the client build.",
+      "motion": {
+        "trigger": "unknown",
+        "start_state": "Glowing globe with point-like land texture, country labels and orange route lines beside the headline.",
+        "end_state": "Single settled globe state inspected; motion control and renderer were not verified.",
+        "scroll_relationship": "Unknown.",
+        "repeat_reverse": "Unverified.",
+        "duration_ms": null,
+        "easing": null,
+        "rendering_technology": "unknown",
+        "implementation_status": "adaptation is a proposal, not verified source implementation",
+        "evidence_actions": "Loaded globe hero; scrolled to statistics; compared intermediate/final numbers; scrolled to reach stacker, then further to raised container. Attempted 390x844 resize and reload; only dark circular background visible in sampled mobile state."
+      }
+    }
+  ],
+  "caveats": [
+    "Extracted blue accent may represent a default link style; visually verify.",
+    "Body sizes and button roles are unverified samples.",
+    "Only the listed homepage states were inspected. Exact durations/easing, full hover behaviour and reduced-motion behaviour remain unverified.",
+    "Narrow viewport showed only a dark circular background in sampled frames; mobile rendering needs a fresh device/session check. This does not establish a general site failure."
+  ],
+  "review_coverage": {
+    "desktop": "selected homepage states inspected",
+    "mobile": "attempted but scene not established at 390x844",
+    "reduced_motion": "not inspected",
+    "hover": "not isolated",
+    "timing": "not measured",
+    "recording": "no video or persistent screenshots saved; browser action notes only"
+  },
+  "scroll_control": {
+    "mode": "unknown",
+    "verification": "not-assessed",
+    "notes": "Scroll-associated motion was sampled; interception of native wheel/touch/keyboard scrolling was not established."
+  },
+  "technology_findings": []
+}

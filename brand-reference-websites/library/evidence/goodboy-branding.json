@@ -1,0 +1,205 @@
+{
+  "branding": {
+    "colorScheme": "light",
+    "fonts": [
+      {
+        "family": "Inter",
+        "role": "body"
+      },
+      {
+        "family": "Publico",
+        "role": "heading"
+      }
+    ],
+    "colors": {
+      "primary": "#1FE285",
+      "accent": "#1FE285",
+      "background": "#F3F2EF",
+      "textPrimary": "#1D1D1F",
+      "link": "#FFF473"
+    },
+    "typography": {
+      "fontFamilies": {
+        "primary": "Inter",
+        "heading": "Publico"
+      },
+      "fontStacks": {
+        "heading": [
+          "Publico",
+          "Iowan Old Style",
+          "Apple Garamond",
+          "Georgia",
+          "Times New Roman",
+          "serif"
+        ],
+        "body": [
+          "Inter",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Helvetica Neue",
+          "Helvetica",
+          "Arial",
+          "sans-serif"
+        ],
+        "paragraph": [
+          "Inter",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Helvetica Neue",
+          "Helvetica",
+          "Arial",
+          "sans-serif"
+        ]
+      },
+      "fontSizes": {
+        "h1": "100px",
+        "h2": "64px",
+        "body": "11px"
+      }
+    },
+    "spacing": {
+      "baseUnit": 8,
+      "borderRadius": "0px"
+    },
+    "components": {
+      "input": {
+        "background": "transparent",
+        "textColor": "#1D1D1F",
+        "borderColor": null,
+        "borderRadius": "0px",
+        "borderRadiusCorners": {
+          "topLeft": "0px",
+          "topRight": "0px",
+          "bottomRight": "0px",
+          "bottomLeft": "0px"
+        },
+        "shadow": "none"
+      },
+      "buttonPrimary": {
+        "background": "#1FE285",
+        "textColor": "#0A0A0A",
+        "borderRadius": "33554400px",
+        "borderRadiusCorners": {
+          "topLeft": "33554400px",
+          "topRight": "33554400px",
+          "bottomRight": "33554400px",
+          "bottomLeft": "33554400px"
+        },
+        "shadow": "none"
+      },
+      "buttonSecondary": {
+        "background": "#F3F2EF",
+        "textColor": "#1D1D1F",
+        "borderRadius": "33554400px",
+        "borderRadiusCorners": {
+          "topLeft": "33554400px",
+          "topRight": "33554400px",
+          "bottomRight": "33554400px",
+          "bottomLeft": "33554400px"
+        },
+        "shadow": "none"
+      }
+    },
+    "images": {
+      "logo": "https://goodboyagency.com/_next/image?url=%2Fgoodboy.webp&w=640&q=75",
+      "favicon": "https://goodboyagency.com/icon.png?icon.0y9w5je8p_-ir.png",
+      "ogImage": "https://goodboyagency.com/opengraph-image.png?opengraph-image.0wmn54ox~ygpy.png",
+      "logoHref": "/",
+      "logoAlt": "Goodboy"
+    },
+    "__llm_logo_reasoning": {
+      "selectedIndex": 0,
+      "reasoning": "Selected #0 because it is visible, located in the header, links to the homepage, and the alt text matches the brand name 'Goodboy'.",
+      "confidence": 0.95,
+      "source": "llm"
+    },
+    "__llm_button_reasoning": {
+      "primary": {
+        "index": 1,
+        "text": "Talk to us",
+        "reasoning": "Button #4 with text 'Talk to us' uses the vibrant brand color #1FE285, making it the most prominent CTA on the page."
+      },
+      "secondary": {
+        "index": 0,
+        "text": "See the work",
+        "reasoning": "Button #6 with text 'See the work' has a different background color #F3F2EF, making it suitable as a secondary CTA."
+      },
+      "confidence": 0.95
+    },
+    "personality": {
+      "tone": "modern",
+      "energy": "high",
+      "targetAudience": "creative professionals"
+    },
+    "designSystem": {
+      "framework": "tailwind",
+      "componentLibrary": ""
+    },
+    "confidence": {
+      "buttons": 0.95,
+      "colors": 0.9,
+      "overall": 0.925
+    },
+    "__llm_metadata": {
+      "logoSelection": {
+        "llmCalled": true,
+        "llmSucceeded": true,
+        "finalSource": "llm",
+        "rawLogoSelection": {
+          "selectedLogoIndex": 0,
+          "selectedLogoReasoning": "Selected #0 because it is visible, located in the header, links to the homepage, and the alt text matches the brand name 'Goodboy'.",
+          "confidence": 0.95
+        }
+      },
+      "buttonClassification": {
+        "llmCalled": true,
+        "llmSucceeded": true
+      }
+    },
+    "brandName": "Goodboy",
+    "logo": "https://goodboyagency.com/_next/image?url=%2Fgoodboy.webp&w=640&q=75"
+  },
+  "metadata": {
+    "og:image:height": "630",
+    "twitter:image:height": "630",
+    "ogUrl": "https://goodboyagency.com",
+    "og:type": "website",
+    "og:image:width": "1200",
+    "twitter:title": "Goodboy — Creative, strategy, and performance under one roof.",
+    "twitter:card": "summary_large_image",
+    "title": "Goodboy — Creative, strategy, and performance under one roof.",
+    "og:locale": "en_US",
+    "ogLocale": "en_US",
+    "twitter:image:width": "1200",
+    "viewport": "width=device-width, initial-scale=1",
+    "googlebot": "index, follow, max-image-preview:large, max-snippet:-1",
+    "twitter:description": "A small senior studio in Montreal and Los Angeles. Twelve years. 132 brands. Three disciplines under one roof: creative, strategy, and performance.",
+    "og:url": "https://goodboyagency.com",
+    "twitter:image:type": "image/png",
+    "ogDescription": "A small senior studio in Montreal and Los Angeles. Twelve years. 132 brands. Three disciplines under one roof: creative, strategy, and performance.",
+    "language": "en-US",
+    "next-size-adjust": "",
+    "ogTitle": "Goodboy — Creative, strategy, and performance under one roof.",
+    "ogSiteName": "Goodboy",
+    "description": "A small senior studio in Montreal and Los Angeles. Twelve years. 132 brands. Three disciplines under one roof: creative, strategy, and performance.",
+    "robots": "index, follow",
+    "og:description": "A small senior studio in Montreal and Los Angeles. Twelve years. 132 brands. Three disciplines under one roof: creative, strategy, and performance.",
+    "og:title": "Goodboy — Creative, strategy, and performance under one roof.",
+    "og:site_name": "Goodboy",
+    "ogImage": "https://goodboyagency.com/opengraph-image.png?opengraph-image.0wmn54ox~ygpy.png",
+    "twitter:image": "https://goodboyagency.com/twitter-image.png?twitter-image.0wmn54ox~ygpy.png",
+    "og:image:type": "image/png",
+    "og:image": "https://goodboyagency.com/opengraph-image.png?opengraph-image.0wmn54ox~ygpy.png",
+    "favicon": "https://goodboyagency.com/icon.png?icon.0y9w5je8p_-ir.png",
+    "scrapeId": "01a07c35-67f4-73ff-9074-3a57bb8ec0ef",
+    "sourceURL": "https://goodboyagency.com/",
+    "url": "https://goodboyagency.com/",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "timezone": "America/New_York",
+    "proxyUsed": "basic",
+    "indexId": "15e8ef01-ece5-41b5-aa11-59a9f6d80d0d",
+    "creditsUsed": 1,
+    "concurrencyLimited": false
+  }
+}

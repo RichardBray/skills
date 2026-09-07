@@ -1,0 +1,94 @@
+{
+  "branding": {
+    "colorScheme": "light",
+    "fonts": [
+      {
+        "family": "Monument Grotesk",
+        "role": "unknown"
+      }
+    ],
+    "colors": {
+      "primary": "#000000",
+      "accent": "#000000",
+      "background": "#FCF6F4",
+      "textPrimary": "#100F0F",
+      "link": "#000000"
+    },
+    "typography": {
+      "fontFamilies": {
+        "primary": "Monument Grotesk",
+        "heading": "Monument Grotesk"
+      },
+      "fontStacks": {
+        "heading": [
+          "Monument Grotesk"
+        ],
+        "body": [
+          "Monument Grotesk"
+        ],
+        "paragraph": [
+          "Monument Grotesk"
+        ]
+      },
+      "fontSizes": {
+        "h1": "37.3248px",
+        "h2": "63.3408px",
+        "body": "18.6624px"
+      }
+    },
+    "spacing": {
+      "baseUnit": 6,
+      "borderRadius": "0px"
+    },
+    "components": {},
+    "images": {
+      "logo": "https://alitwotimes.com/wp-content/themes/aliali/src/assets/favicon/apple-touch-icon.png",
+      "favicon": "https://alitwotimes.com/wp-content/themes/aliali/src/assets/favicon/apple-touch-icon.png",
+      "ogImage": "https://alitwotimes.com/wp-content/themes/aliali/src/assets/img/og-image.jpg",
+      "logoAlt": "Ali Ali"
+    },
+    "__llm_logo_reasoning": {
+      "selectedIndex": 1,
+      "reasoning": "Selected #1 because it is visible, located in the header, and matches the favicon. It represents the brand 'Ali Ali' effectively.",
+      "confidence": 0.9,
+      "source": "llm"
+    },
+    "personality": {
+      "tone": "professional",
+      "energy": "medium",
+      "targetAudience": "creative professionals"
+    },
+    "designSystem": {
+      "framework": "custom",
+      "componentLibrary": ""
+    },
+    "confidence": {
+      "buttons": 0,
+      "colors": 0.9,
+      "overall": 0.45
+    },
+    "__llm_metadata": {
+      "logoSelection": {
+        "llmCalled": true,
+        "llmSucceeded": true,
+        "finalSource": "llm",
+        "rawLogoSelection": {
+          "selectedLogoIndex": 1,
+          "selectedLogoReasoning": "Selected #1 because it is visible, located in the header, and matches the favicon. It represents the brand 'Ali Ali' effectively.",
+          "confidence": 0.9
+        }
+      },
+      "buttonClassification": {
+        "llmCalled": false,
+        "llmSucceeded": false
+      }
+    },
+    "brandName": "Ali Ali",
+    "logo": "https://alitwotimes.com/wp-content/themes/aliali/src/assets/favicon/apple-touch-icon.png"
+  },
+  "metadata": {
+    "sourceURL": "https://alitwotimes.com/",
+    "title": "Ali Ali — Director's Showreel / Alitwotimes / Director from Cairo",
+    "scrapeId": "01a07c4c-9df2-7748-94de-d4e011b011a9"
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "branding": {
+    "colorScheme": "dark",
+    "fonts": [
+      {
+        "family": "Mona Sans Variable",
+        "role": "body"
+      },
+      {
+        "family": "Brier",
+        "role": "unknown"
+      }
+    ],
+    "colors": {
+      "primary": "#D2FF00",
+      "secondary": "#C5BDAD",
+      "accent": "#D2FF00",
+      "background": "#282C20",
+      "textPrimary": "#282C20",
+      "link": "#DDE1D2"
+    },
+    "typography": {
+      "fontFamilies": {
+        "primary": "Mona Sans Variable",
+        "heading": "Mona Sans Variable"
+      },
+      "fontStacks": {
+        "heading": [
+          "Mona Sans Variable",
+          "Arial",
+          "sans-serif"
+        ],
+        "body": [
+          "Mona Sans Variable",
+          "Arial",
+          "sans-serif"
+        ],
+        "paragraph": [
+          "Mona Sans Variable",
+          "Arial",
+          "sans-serif"
+        ]
+      },
+      "fontSizes": {
+        "h1": "38px",
+        "h2": "32px",
+        "body": "22.2222px"
+      }
+    },
+    "spacing": {
+      "baseUnit": 4,
+      "borderRadius": "0px"
+    },
+    "components": {
+      "buttonPrimary": {
+        "background": "#D2FF00",
+        "textColor": "#282C20",
+        "borderColor": "#D2FF00",
+        "borderRadius": "9.6px",
+        "borderRadiusCorners": {
+          "topLeft": "9.6px",
+          "topRight": "9.6px",
+          "bottomRight": "9.6px",
+          "bottomLeft": "9.6px"
+        },
+        "shadow": "none"
+      },
+      "buttonSecondary": {
+        "background": "#282C20",
+        "textColor": "#F4F4ED",
+        "borderRadius": "0px",
+        "borderRadiusCorners": {
+          "topLeft": "0px",
+          "topRight": "0px",
+          "bottomRight": "0px",
+          "bottomLeft": "0px"
+        },
+        "shadow": "none"
+      }
+    },
+    "images": {
+      "logo": "https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67b5a098cbef46b41e40dfd2_ln-webclip.png",
+      "favicon": "https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67b5a0969616f526f020ec0e_ln-favicon.png",
+      "ogImage": "https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68eb91477bcf3ee7d055ab45_lando-OpenGraph.webp",
+      "logoAlt": "McLaren Formula 1 Driver"
+    },
+    "__llm_logo_reasoning": {
+      "selectedIndex": 31,
+      "reasoning": "Selected #0 because it is visible, located in the header, and matches the brand name 'McLaren Formula 1 Driver'.",
+      "confidence": 0.9,
+      "source": "llm"
+    },
+    "__llm_button_reasoning": {
+      "primary": {
+        "index": 2,
+        "text": "Visit the storeVisit the store",
+        "reasoning": "Button #2 ('Visit the store') uses the vibrant brand color #D2FF00, making it a strong candidate for the primary CTA due to its visibility and action-oriented text."
+      },
+      "secondary": {
+        "index": 0,
+        "text": "business enquiriesbusiness enquiries",
+        "reasoning": "Button #0 ('business enquiries') has a different background color (#282C20) and serves a secondary function, making it suitable as the secondary CTA."
+      },
+      "confidence": 0.95
+    },
+    "personality": {
+      "tone": "bold",
+      "energy": "high",
+      "targetAudience": "Formula 1 fans and motorsport enthusiasts"
+    },
+    "designSystem": {
+      "framework": "custom",
+      "componentLibrary": ""
+    },
+    "confidence": {
+      "buttons": 0.95,
+      "colors": 0.9,
+      "overall": 0.925
+    },
+    "__llm_metadata": {
+      "logoSelection": {
+        "llmCalled": true,
+        "llmSucceeded": true,
+        "finalSource": "llm",
+        "rawLogoSelection": {
+          "selectedLogoIndex": 0,
+          "selectedLogoReasoning": "Selected #0 because it is visible, located in the header, and matches the brand name 'McLaren Formula 1 Driver'.",
+          "confidence": 0.9
+        }
+      },
+      "buttonClassification": {
+        "llmCalled": true,
+        "llmSucceeded": true
+      }
+    },
+    "brandName": "McLaren Formula 1 Driver",
+    "logo": "https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67b5a098cbef46b41e40dfd2_ln-webclip.png"
+  },
+  "metadata": {
+    "twitter:title": "McLaren Formula 1 Driver — Lando Norris",
+    "og:title": "McLaren Formula 1 Driver — Lando Norris",
+    "title": "McLaren Formula 1 Driver — Lando Norris",
+    "og:image": "https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68eb91477bcf3ee7d055ab45_lando-OpenGraph.webp",
+    "twitter:image": "https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68eb91477bcf3ee7d055ab45_lando-OpenGraph.webp",
+    "twitter:description": "Official hub for British racing star Lando Norris: breaking news, 2025 race wins, exclusive merch, videos and behind-the-scenes access.",
+    "ogDescription": "Official hub for British racing star Lando Norris: breaking news, 2025 race wins, exclusive merch, videos and behind-the-scenes access.",
+    "viewport": [
+      "width=device-width, initial-scale=1",
+      "width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5"
+    ],
+    "description": "Official hub for British racing star Lando Norris: breaking news, 2025 race wins, exclusive merch, videos and behind-the-scenes access.",
+    "og:description": "Official hub for British racing star Lando Norris: breaking news, 2025 race wins, exclusive merch, videos and behind-the-scenes access.",
+    "language": "en",
+    "twitter:card": "summary_large_image",
+    "ogTitle": "McLaren Formula 1 Driver — Lando Norris",
+    "ogImage": "https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68eb91477bcf3ee7d055ab45_lando-OpenGraph.webp",
+    "og:type": "website",
+    "favicon": "https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67b5a0969616f526f020ec0e_ln-favicon.png",
+    "scrapeId": "01a07c35-1be1-73ef-ad74-83d1e3cd245a",
+    "sourceURL": "https://landonorris.com/",
+    "url": "https://landonorris.com/",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "timezone": "America/New_York",
+    "proxyUsed": "basic",
+    "indexId": "234ccc19-ae76-4de3-b36c-7fa76f98758f",
+    "creditsUsed": 1,
+    "concurrencyLimited": false
+  }
+}

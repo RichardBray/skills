@@ -1,0 +1,32 @@
+{
+  "source_url": "https://alitwotimes.com/wp-content/themes/aliali/public/main-bundle.js",
+  "captured_at": "2026-09-07",
+  "sha256": "f8b51d5edb38a78ef383e74046776bc0a5f6c83d8699cc997b3820403dceaef6",
+  "method": "Static inspection of public bundle; not executed locally. Values below are source-defined, not runtime measurements.",
+  "facts": [
+    {
+      "fact": "Bundled GSAP banner identifies version 3.3.3; animation code uses its ticker/tween API.",
+      "locator": "GSAP 3.3.3"
+    },
+    {
+      "fact": "Desktop non-iPad branch uses body wheel input to update a clamped target and a ticker to interpolate .a-scroll translate3d with coefficient 0.1. Device branch uses a native path.",
+      "locator": "class Br"
+    },
+    {
+      "fact": "Header Work/Bio transition clips the outgoing page horizontally over 1.5s expo.inOut; heading moves half a viewport width and mask moves one-third in the opposite direction. Supporting lines start after 0.5s, run 2s with 0.1s stagger and expo.out.",
+      "locator": "class Xr"
+    },
+    {
+      "fact": "Contact transition collapses outgoing clip height over 1.5s expo.inOut. Contact heading rises from yPercent 100 after 0.75s, for 1.5s expo.out. Links enter after 0.8s for 2s with 0.1s stagger.",
+      "locator": "class Hr"
+    },
+    {
+      "fact": "Project transition collapses outgoing clip height over 1.5s expo.inOut and moves menu links out; back branch restores saved work scroll offset.",
+      "locator": "class Ur; class Ir"
+    },
+    {
+      "fact": "Router registers default and contextual work, back, header, contact and campaign transitions; precise router package not established.",
+      "locator": "transitions:{default:Vr,contextual:"
+    }
+  ]
+}

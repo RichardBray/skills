@@ -1,0 +1,136 @@
+{
+  "branding": {
+    "colorScheme": "light",
+    "fonts": [
+      {
+        "family": "Neue Montreal",
+        "role": "body"
+      }
+    ],
+    "colors": {
+      "primary": "#FEF7E6",
+      "secondary": "#FFD372",
+      "accent": "#ACD084",
+      "background": "#FEF7E6",
+      "textPrimary": "#0E0E0E",
+      "link": "#ACD084"
+    },
+    "typography": {
+      "fontFamilies": {
+        "primary": "Neue Montreal",
+        "heading": "Neue Montreal"
+      },
+      "fontStacks": {
+        "heading": [
+          "Neue Montreal"
+        ],
+        "body": [
+          "Neue Montreal"
+        ],
+        "paragraph": [
+          "Neue Montreal"
+        ]
+      },
+      "fontSizes": {
+        "h1": "76px",
+        "h2": "107.904px",
+        "body": "311.04px"
+      }
+    },
+    "spacing": {
+      "baseUnit": 4,
+      "borderRadius": "0px"
+    },
+    "components": {
+      "buttonPrimary": {
+        "background": "#FEF7E6",
+        "textColor": "#0E0E0E",
+        "borderRadius": "50px",
+        "borderRadiusCorners": {
+          "topLeft": "50px",
+          "topRight": "50px",
+          "bottomRight": "50px",
+          "bottomLeft": "50px"
+        },
+        "shadow": "none"
+      },
+      "buttonSecondary": {
+        "background": "#FFFFFF",
+        "textColor": "#0E0E0E",
+        "borderRadius": "50px",
+        "borderRadiusCorners": {
+          "topLeft": "50px",
+          "topRight": "50px",
+          "bottomRight": "50px",
+          "bottomLeft": "50px"
+        },
+        "shadow": "none"
+      }
+    },
+    "images": {
+      "logo": "data:image/svg+xml;utf8,%3Csvg%20class%3D%22logo%22%20width%3D%22133%22%20height%3D%2250%22%20viewBox%3D%220%200%20133%2050%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20data-fc-idx%3D%220%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M112.279%206.69161L106.91%2049.2856L115.005%2049.2856L116.444%2037.8657L123.471%2037.8657L124.91%2049.2856L133.005%2049.2856L127.636%206.70133C127.338%204.03343%20125.017%200.024298%20119.96%200.0242982C114.903%200.0242984%20112.577%204.02857%20112.279%206.69647L112.279%206.69161ZM118.068%2024.9733L118.068%2024.9927L121.847%2024.9927L121.847%2024.9733L122.467%2029.8814L117.448%2029.8814L118.068%2024.9733ZM44.4845%206.68189C44.187%204.014%2041.8658%200.00486191%2036.8087%200.00486213C31.7517%200.00486235%2029.4255%204.01886%2029.128%206.68675L26.8214%2024.9927L23.0371%2024.9927L20.7256%206.6819C20.4282%204.014%2018.1069%200.00486295%2013.0498%200.00486317C7.99278%200.00486339%205.66663%204.01886%205.36915%206.68676L-3.12255e-08%2049.2856L8.09519%2049.2856L11.1577%2024.9927L14.942%2024.9927L17.2486%2043.3181C17.5461%2045.986%2019.8673%2050%2024.9244%2050C29.9814%2050%2032.3076%2045.986%2032.6051%2043.3181L34.9166%2024.9927L38.7008%2024.9927L41.0075%2043.3181C41.3001%2045.986%2043.6262%2050%2048.6833%2050C53.7403%2050%2056.0665%2045.9909%2056.364%2043.3181L57.0467%2037.8851L64.0788%2037.8851L64.7615%2043.3084C65.059%2045.9763%2067.3851%2050%2072.4422%2050C77.4992%2050%2079.8254%2045.9714%2080.1228%2043.2987L82.4295%2024.9927L86.2137%2024.9927L88.5204%2043.3035C88.8179%2045.9714%2091.1391%2049.9806%2096.1962%2049.9806C101.253%2049.9806%20103.579%2045.9666%20103.877%2043.2987L109.241%200.719211L101.146%200.719211L98.0883%2024.9927L94.304%2024.9927L91.9974%206.67703C91.6999%204.00914%2089.3738%200.00485983%2084.3167%200.00486005C79.2597%200.00486027%2076.9335%204.00914%2076.6361%206.67703L72.7055%2037.8851L72.1691%2037.8851L68.2385%206.68189C67.941%204.014%2065.6198%200.00486087%2060.5627%200.00486109C55.5057%200.00486131%2053.1795%204.01886%2052.882%206.68675L48.9515%2037.8851L48.4151%2037.8851L44.4796%206.68189L44.4845%206.68189ZM58.0513%2029.9009L58.6706%2024.9927L62.4549%2024.9927L63.0742%2029.9009L58.0513%2029.9009Z%22%20style%3D%22fill%3A%20rgb(255%2C%20255%2C%20255)%20!important%3B%22%2F%3E%0A%20%20%20%20%3C%2Fsvg%3E",
+      "favicon": "https://manayerbamate.com/cdn/shop/files/favicon-32x32.png?crop=center&height=32&v=1671186681&width=32",
+      "ogImage": "http://manayerbamate.com/cdn/shop/files/MANA_2024_3d_visuel_2_1920x1080_-_150dpi.jpg?v=1717796035",
+      "logoHref": "/"
+    },
+    "__llm_logo_reasoning": {
+      "selectedIndex": 0,
+      "reasoning": "Selected #0 because it is visible, located in the header, links to the homepage, and matches the brand inferred from the URL and page title.",
+      "confidence": 0.95,
+      "source": "llm"
+    },
+    "__llm_button_reasoning": {
+      "primary": {
+        "index": 2,
+        "text": "Subscription",
+        "reasoning": "Button #2 'Subscription' has a vibrant background color (#FEF7E6) and action-oriented text, making it the primary CTA."
+      },
+      "secondary": {
+        "index": 4,
+        "text": "Discover this product",
+        "reasoning": "Button #4 'Discover this product' has a different background color (#FFFFFF) and serves as a secondary action, complementing the primary CTA."
+      },
+      "confidence": 0.9
+    },
+    "personality": {
+      "tone": "playful",
+      "energy": "medium",
+      "targetAudience": "young adults interested in natural energy drinks"
+    },
+    "designSystem": {
+      "framework": "custom",
+      "componentLibrary": ""
+    },
+    "confidence": {
+      "buttons": 0.9,
+      "colors": 0.9,
+      "overall": 0.9
+    },
+    "__llm_metadata": {
+      "logoSelection": {
+        "llmCalled": true,
+        "llmSucceeded": true,
+        "finalSource": "llm",
+        "rawLogoSelection": {
+          "selectedLogoIndex": 0,
+          "selectedLogoReasoning": "Selected #0 because it is visible, located in the header, links to the homepage, and matches the brand inferred from the URL and page title.",
+          "confidence": 0.95
+        }
+      },
+      "buttonClassification": {
+        "llmCalled": true,
+        "llmSucceeded": true
+      }
+    },
+    "brandName": "MANA yerba mate",
+    "logo": "data:image/svg+xml;utf8,%3Csvg%20class%3D%22logo%22%20width%3D%22133%22%20height%3D%2250%22%20viewBox%3D%220%200%20133%2050%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20data-fc-idx%3D%220%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M112.279%206.69161L106.91%2049.2856L115.005%2049.2856L116.444%2037.8657L123.471%2037.8657L124.91%2049.2856L133.005%2049.2856L127.636%206.70133C127.338%204.03343%20125.017%200.024298%20119.96%200.0242982C114.903%200.0242984%20112.577%204.02857%20112.279%206.69647L112.279%206.69161ZM118.068%2024.9733L118.068%2024.9927L121.847%2024.9927L121.847%2024.9733L122.467%2029.8814L117.448%2029.8814L118.068%2024.9733ZM44.4845%206.68189C44.187%204.014%2041.8658%200.00486191%2036.8087%200.00486213C31.7517%200.00486235%2029.4255%204.01886%2029.128%206.68675L26.8214%2024.9927L23.0371%2024.9927L20.7256%206.6819C20.4282%204.014%2018.1069%200.00486295%2013.0498%200.00486317C7.99278%200.00486339%205.66663%204.01886%205.36915%206.68676L-3.12255e-08%2049.2856L8.09519%2049.2856L11.1577%2024.9927L14.942%2024.9927L17.2486%2043.3181C17.5461%2045.986%2019.8673%2050%2024.9244%2050C29.9814%2050%2032.3076%2045.986%2032.6051%2043.3181L34.9166%2024.9927L38.7008%2024.9927L41.0075%2043.3181C41.3001%2045.986%2043.6262%2050%2048.6833%2050C53.7403%2050%2056.0665%2045.9909%2056.364%2043.3181L57.0467%2037.8851L64.0788%2037.8851L64.7615%2043.3084C65.059%2045.9763%2067.3851%2050%2072.4422%2050C77.4992%2050%2079.8254%2045.9714%2080.1228%2043.2987L82.4295%2024.9927L86.2137%2024.9927L88.5204%2043.3035C88.8179%2045.9714%2091.1391%2049.9806%2096.1962%2049.9806C101.253%2049.9806%20103.579%2045.9666%20103.877%2043.2987L109.241%200.719211L101.146%200.719211L98.0883%2024.9927L94.304%2024.9927L91.9974%206.67703C91.6999%204.00914%2089.3738%200.00485983%2084.3167%200.00486005C79.2597%200.00486027%2076.9335%204.00914%2076.6361%206.67703L72.7055%2037.8851L72.1691%2037.8851L68.2385%206.68189C67.941%204.014%2065.6198%200.00486087%2060.5627%200.00486109C55.5057%200.00486131%2053.1795%204.01886%2052.882%206.68675L48.9515%2037.8851L48.4151%2037.8851L44.4796%206.68189L44.4845%206.68189ZM58.0513%2029.9009L58.6706%2024.9927L62.4549%2024.9927L63.0742%2029.9009L58.0513%2029.9009Z%22%20style%3D%22fill%3A%20rgb(255%2C%20255%2C%20255)%20!important%3B%22%2F%3E%0A%20%20%20%20%3C%2Fsvg%3E"
+  },
+  "metadata": {
+    "sourceURL": "https://en.manayerbamate.com/",
+    "url": "https://en.manayerbamate.com/",
+    "title": "\n      MANA yerba mate | Energizing infusion | Made in Quebec\n - MANA yerba mate",
+    "scrapeId": "01a07c40-a62e-76da-aa9b-b887e7fd33a0",
+    "statusCode": 200
+  },
+  "markdown": "Infused\n\nofBio\n\nenergy\n\nYerbaMate\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/etoile.svg?v=158195823969694826041671187959)![](https://manayerbamate.com/cdn/shop/t/18/assets/etoile.svg?v=158195823969694826041671187959)![](https://manayerbamate.com/cdn/shop/t/18/assets/etoile.svg?v=158195823969694826041671187959)![](https://manayerbamate.com/cdn/shop/t/18/assets/etoile.svg?v=158195823969694826041671187959)![](https://manayerbamate.com/cdn/shop/t/18/assets/etoile.svg?v=158195823969694826041671187959)![](https://manayerbamate.com/cdn/shop/t/18/assets/etoile.svg?v=158195823969694826041671187959)![](https://manayerbamate.com/cdn/shop/t/18/assets/etoile.svg?v=158195823969694826041671187959)![](https://manayerbamate.com/cdn/shop/t/18/assets/etoile.svg?v=158195823969694826041671187959)![](https://manayerbamate.com/cdn/shop/t/18/assets/etoile.svg?v=158195823969694826041671187959)\n\nFree shipping on all purchases of $35 or more Quebec and Ontario\n\n# Mana - Drinking tea\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/fond1.png?v=149618323740220866231671187960)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/home_bulles.svg?v=72037103063440429561671187963)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/woman.svg?v=91715481647345174191671187973)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/fond2.png?v=41305183148587079751671440160)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/home_star.svg?v=8304272578825160451671187964)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/home_star.svg?v=8304272578825160451671187964)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/home_planet.svg?v=54849484887763892781671187964)![](https://manayerbamate.com/cdn/shop/t/18/assets/home_star.svg?v=8304272578825160451671187964)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/fond3.png?v=175780116538271127791671187961)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/home_eau.svg?v=98947984976318104491671187963)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/mangue.svg?v=79688881911116548501671187970)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/fond4.png?v=179275072314952925911717784947)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/home_fleur.svg?v=5991018211529823811717768806)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/fond1.png?v=149618323740220866231671187960)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/home_bulles.svg?v=72037103063440429561671187963)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/woman.svg?v=91715481647345174191671187973)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/fond2.png?v=41305183148587079751671440160)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/home_star.svg?v=8304272578825160451671187964)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/home_star.svg?v=8304272578825160451671187964)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/home_planet.svg?v=54849484887763892781671187964)![](https://manayerbamate.com/cdn/shop/t/18/assets/home_star.svg?v=8304272578825160451671187964)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/fond3.png?v=175780116538271127791671187961)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/home_eau.svg?v=98947984976318104491671187963)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/mangue.svg?v=79688881911116548501671187970)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/fond4.png?v=179275072314952925911717784947)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/home_fleur.svg?v=5991018211529823811717768806)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/i_arrow.svg?v=94421465667069253611658072966)\n\n[GrapefruitGrapefruit](https://en.manayerbamate.com/products/pamplemousse) [Blackberry & HibiscusBlackberry & Hibiscus](https://en.manayerbamate.com/products/mure-et-hibiscus) [Tropical  Tropical](https://en.manayerbamate.com/products/punch-tropical) [Melon & MintMelon & Mint](https://en.manayerbamate.com/products/melon-et-menthe)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/i_arrow.svg?v=94421465667069253611658072966)\n\n## Mana ? Yerba Maté ?  What are we talking about?\n\n(we're going to tell each other the real things)\n\nWithout the crash\n\n\nA gentle wave of energy. To get you going without the crash.\n\nNatural caffeine\n\n\nThis certified organic caffeine comes from the plant. A gift from Mother Nature.\n\nAntioxidant\n\n\nRicher in antioxidants than tea. Not bad.\n\nVegan\n\n\nA plant-based drink that tastes like heaven. Who could ask for more?\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/bulle.svg?v=58686890748238671401671187957)![](https://manayerbamate.com/cdn/shop/t/18/assets/bulle.svg?v=58686890748238671401671187957)![](https://manayerbamate.com/cdn/shop/t/18/assets/bulle.svg?v=58686890748238671401671187957)![](https://manayerbamate.com/cdn/shop/t/18/assets/bulle.svg?v=58686890748238671401671187957)![](https://manayerbamate.com/cdn/shop/t/18/assets/bulle.svg?v=58686890748238671401671187957)![](https://manayerbamate.com/cdn/shop/t/18/assets/bulle.svg?v=58686890748238671401671187957)\n\n![](https://manayerbamate.com/cdn/shop/files/left_5a17133c-fc16-4907-af73-f964dc926e47_700x750_crop_center.jpg?v=1672091045)![](https://manayerbamate.com/cdn/shop/files/right_f9e5bdd5-3bee-41c9-996c-ee432de1bd0a_700x750_crop_center.jpg?v=1672091066)\n\n## Flavors\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/etoile.svg?v=158195823969694826041671187959)![](https://manayerbamate.com/cdn/shop/t/18/assets/etoile.svg?v=158195823969694826041671187959)![](https://manayerbamate.com/cdn/shop/t/18/assets/etoile.svg?v=158195823969694826041671187959)![](https://manayerbamate.com/cdn/shop/t/18/assets/etoile.svg?v=158195823969694826041671187959)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/etoile.svg?v=158195823969694826041671187959)![](https://manayerbamate.com/cdn/shop/t/18/assets/etoile.svg?v=158195823969694826041671187959)![](https://manayerbamate.com/cdn/shop/t/18/assets/etoile.svg?v=158195823969694826041671187959)\n\nFresh, fruity, sparkling, beautiful colours, awaken your taste buds.\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/i_arrow.svg?v=94421465667069253611658072966)![](https://manayerbamate.com/cdn/shop/t/18/assets/i_arrow.svg?v=94421465667069253611658072966)\n\n## Recommended products\n\n[See all our products](https://en.manayerbamate.com/collections/all)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/i_arrow.svg?v=94421465667069253611658072966)![](https://manayerbamate.com/cdn/shop/t/18/assets/i_arrow.svg?v=94421465667069253611658072966)\n\n[Melon & Mint![](https://manayerbamate.com/cdn/shop/files/1-1eie_827x980.jpg?v=1717773433)![](https://manayerbamate.com/cdn/shop/files/2-1eie_827x980.jpg?v=1717773433)Discover this product](https://en.manayerbamate.com/products/melon-et-menthe)[Grapefruit![](https://manayerbamate.com/cdn/shop/files/pamplemousse-01_827x980.jpg?v=1658150775)![](https://manayerbamate.com/cdn/shop/files/pamplemousse-02_827x980.jpg?v=1658150775)Discover this product](https://en.manayerbamate.com/products/pamplemousse)[Blackberry & Hibiscus![](https://manayerbamate.com/cdn/shop/files/mures-01_1f205ae0-9697-4285-bb1b-88a2d02ce70d_827x980.jpg?v=1658150775)![](https://manayerbamate.com/cdn/shop/files/mures-02_827x980.jpg?v=1658150775)Discover this product](https://en.manayerbamate.com/products/mure-et-hibiscus)[Tropical![](https://manayerbamate.com/cdn/shop/files/tropical-01_827x980.jpg?v=1658150775)![](https://manayerbamate.com/cdn/shop/files/tropical-02_827x980.jpg?v=1658150775)Discover this product](https://en.manayerbamate.com/products/punch-tropical)[Discovery box![](https://manayerbamate.com/cdn/shop/files/tropical-01_600x490_crop_center_2x-_2_937b035e-e510-48a2-8a8d-fbeab24afbc7_827x980.jpg?v=1717776651)![](https://manayerbamate.com/cdn/shop/files/boite_827x980.jpg?v=1717776624)Discover this product](https://en.manayerbamate.com/products/boite-decouverte)\n\nSign up for automatic delivery\\* and save 10%.\n\n[Subscribe](https://en.manayerbamate.com/pages/abonnement)\n\n![](https://manayerbamate.com/cdn/shop/t/18/assets/fleur.png?v=52118480355285910701659712886)\n\nWe have\n\nwhat\n\nyou need\n\n\\\\* We don't deliver in space yet, but who knows...\n\n![](https://manayerbamate.com/cdn/shop/files/Mana6064_250x250_crop_center.jpg?v=1661177117)![](https://manayerbamate.com/cdn/shop/files/Mana6031_250x250_crop_center.jpg?v=1661177198)![](https://manayerbamate.com/cdn/shop/files/Mana6004_250x250_crop_center.jpg?v=1661177127)![](https://manayerbamate.com/cdn/shop/files/Mana5969_250x250_crop_center.jpg?v=1661177108)\n\n@manayerbamate\n\n## For a dose of energy in your feed.\n\n[![](https://manayerbamate.com/cdn/shop/t/18/assets/i_ig.svg?v=10282452835697765731658072964)](https://www.instagram.com/manayerbamate/)\n\nThis website uses cookies.Okay\n\nshop.app\n\n# shop.app is blocked\n\nThis page has been blocked by an extension\n\n- Try disabling your extensions.\n\nERR\\_BLOCKED\\_BY\\_CLIENT\n\nReload\n\n\nThis page has been blocked by an extension\n\n![](<Base64-Image-Removed>)![](<Base64-Image-Removed>)\n\nen.manayerbamate.com\n\n# en.manayerbamate.com is blocked\n\nThis page has been blocked by an extension\n\n- Try disabling your extensions.\n\nERR\\_BLOCKED\\_BY\\_CLIENT\n\nReload\n\n\nThis page has been blocked by an extension\n\n![](<Base64-Image-Removed>)![](<Base64-Image-Removed>)"
+}

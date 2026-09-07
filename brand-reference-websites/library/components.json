@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "suppliers": [
+    {
+      "id": "threeui",
+      "name": "ThreeUI Community",
+      "url": "https://github.com/MengTo/threeui",
+      "collected_at": "2026-09-07",
+      "status": "documentation-reviewed",
+      "scope": "Community interactive component catalog, source and React package; individual components not yet tested.",
+      "tags": [
+        "react",
+        "webgl",
+        "shaders"
+      ],
+      "licence_notes": "Community application/component code MIT; fonts and bundled dependencies have separate notices. Pro source is excluded from public repository. Verify licences of chosen component/assets.",
+      "integration_notes": "Official README documents @designcodeio/threeui plus shared styles. Some full-document components need runtime assets in public or sourceUrl/assetBaseUrl configuration. Check current docs and project compatibility.",
+      "elements": []
+    }
+  ]
+}

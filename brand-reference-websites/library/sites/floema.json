@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "id": "floema",
+  "name": "Floema",
+  "url": "https://floema.com/en",
+  "status": "reviewed",
+  "collected_at": "2026-09-07",
+  "discovery_source": "user",
+  "user_notes": "User supplied this reference and specifically requested animation analysis.",
+  "tags": {
+    "industry": [
+      "product"
+    ],
+    "personality": [
+      "warm",
+      "restrained"
+    ],
+    "layout": [],
+    "typography": [
+      "sans-display"
+    ],
+    "imagery": [
+      "photography",
+      "collage"
+    ],
+    "motion": [
+      "scroll-transition"
+    ],
+    "technology": []
+  },
+  "tokens": {
+    "provenance": "Firecrawl branding; sampled values not a complete design specification",
+    "colors": {
+      "primary": "#E9E778",
+      "secondary": "#E4DED3",
+      "accent": "#C73623",
+      "background": "#F2EFEA",
+      "textPrimary": "#241F21",
+      "link": "#C73623"
+    },
+    "fontFamilies": {
+      "primary": "Zimula",
+      "heading": "Zimula"
+    }
+  },
+  "evidence": [
+    {
+      "id": "branding",
+      "kind": "firecrawl-branding",
+      "source_url": "https://floema.com/en",
+      "captured_at": "2026-09-07",
+      "path": "library/evidence/floema-branding.json",
+      "inspected": false
+    },
+    {
+      "id": "motion-audit",
+      "kind": "browser",
+      "source_url": "https://floema.com/en",
+      "captured_at": "2026-09-07",
+      "path": "library/evidence/floema-motion-audit.md",
+      "inspected": true,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "method": "CUA action and screenshot comparisons"
+    }
+  ],
+  "elements": [
+    {
+      "id": "collage-opening",
+      "type": "animation",
+      "location": "homepage hero",
+      "description": "Small product/scene image tiles surround the central brand statement on a warm neutral field. Scrolling leaves the collage and brings a full-width urban project photograph and collection details into view.",
+      "tags": [
+        "collage",
+        "scroll-transition",
+        "product-imagery"
+      ],
+      "evidence_ids": [
+        "motion-audit"
+      ],
+      "verification": "observed",
+      "brand_fit": "Design-led product brands with a broad catalogue and environmental context.",
+      "adaptation": "Keep central text clear, vary tile scale, then give each collection room in a large photographic section.",
+      "effort": "high",
+      "mobile": "not inspected",
+      "reduced_motion": "Source untested; choose an appropriate accessible fallback in the client build.",
+      "motion": {
+        "trigger": "load-and-scroll",
+        "start_state": "Small product/scene image tiles surround the central brand statement on a warm neutral field.",
+        "end_state": "Scrolling leaves the collage and brings a full-width urban project photograph and collection details into view.",
+        "scroll_relationship": "Scroll handoff observed; exact tile depth/pointer interaction not isolated.",
+        "repeat_reverse": "Scrolling up returned to the collage.",
+        "duration_ms": null,
+        "easing": null,
+        "rendering_technology": "unknown",
+        "implementation_status": "adaptation is a proposal, not verified source implementation",
+        "evidence_actions": "Loaded homepage; denied cookies; scrolled back to collage; scrolled down to Urban and emerging Nature image; compared settled states."
+      }
+    },
+    {
+      "id": "collection-image-handoff",
+      "type": "animation",
+      "location": "Urban to Nature collection sections",
+      "description": "Urban city photograph with collection label, descriptive copy and catalogue card. Outdoor landscape imagery rises beneath/overlaps the city image while the Urban information remains visible during the sampled handoff.",
+      "tags": [
+        "layered-images",
+        "scroll-transition",
+        "full-bleed"
+      ],
+      "evidence_ids": [
+        "motion-audit"
+      ],
+      "verification": "observed",
+      "brand_fit": "Outdoor, architecture and place-based product brands.",
+      "adaptation": "Coordinate the image mask and text handoff explicitly; verify all intermediate states avoid unintended overlap.",
+      "effort": "high",
+      "mobile": "not inspected",
+      "reduced_motion": "Source untested; choose an appropriate accessible fallback in the client build.",
+      "motion": {
+        "trigger": "scroll",
+        "start_state": "Urban city photograph with collection label, descriptive copy and catalogue card.",
+        "end_state": "Outdoor landscape imagery rises beneath/overlaps the city image while the Urban information remains visible during the sampled handoff.",
+        "scroll_relationship": "Layered transition visible after downward scroll; pin/scrub boundaries unmeasured.",
+        "repeat_reverse": "Reverse for this handoff not tested.",
+        "duration_ms": null,
+        "easing": null,
+        "rendering_technology": "unknown",
+        "implementation_status": "adaptation is a proposal, not verified source implementation",
+        "evidence_actions": "Loaded homepage; denied cookies; scrolled back to collage; scrolled down to Urban and emerging Nature image; compared settled states."
+      }
+    }
+  ],
+  "caveats": [
+    "Only the listed homepage states were inspected. Exact durations/easing, full hover behaviour and reduced-motion behaviour remain unverified."
+  ],
+  "review_coverage": {
+    "desktop": "selected homepage states inspected",
+    "mobile": "not inspected",
+    "reduced_motion": "not inspected",
+    "hover": "not isolated",
+    "timing": "not measured",
+    "recording": "no video or persistent screenshots saved; browser action notes only"
+  },
+  "scroll_control": {
+    "mode": "unknown",
+    "verification": "not-assessed",
+    "notes": "Scroll-associated motion was sampled; interception of native wheel/touch/keyboard scrolling was not established."
+  },
+  "technology_findings": []
+}
