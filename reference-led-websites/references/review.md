@@ -3,13 +3,7 @@
 - Compare reference and implementation with their different brands and content in mind.
 - Record specific observations and fixes rather than an invented quality score.
 
-- Brand fit:
-  - the visual direction suits:
-    - the audience;
-    - positioning;
-    - assets;
-    - desired action.
-  - The site has its own client identity.
+- Brand fit: the visual direction suits the audience, positioning, assets and desired action. The site has its own client identity.
 - Reference fidelity:
   - compare reference/build at:
     - matching viewport sizes;
@@ -42,11 +36,10 @@
   - rights/source notes for used assets.
 - Motion: apply [motion verification](#motion-verification) against the documented contracts and required effects.
 - Client functionality:
-  - the following required items work:
-    - links;
-    - menus;
-    - forms;
-    - error/success states.
+  - Required links work.
+  - Required menus work.
+  - Required forms work.
+  - Required error/success states work.
   - Do not send a live form submission or message merely to test without authorization.
   - Use a test endpoint or safe local verification.
 - Mobile: the following are intentionally adapted:
@@ -56,11 +49,7 @@
   - scene fallback;
   - text readability.
 - Delivery:
-  - the following are recorded:
-    - appropriate build checks;
-    - actual visual checks;
-    - observed loading/runtime issues;
-    - remaining limitations.
+  - appropriate build checks, actual visual checks, observed loading/runtime issues and remaining limitations are recorded.
   - Do not claim production readiness for untested integrations.
 
 - If the output feels generic, identify the cause: weak assets, unrelated typography, default component styles, repetitive section structure, or failure to implement a chosen source element.
@@ -124,8 +113,8 @@
 
 ## Typography and copy checks
 
-- Use the font-size defaults in [Essential requirements](../SKILL.md#essential-requirements).
-- These are project preferences, not a claim of an accessibility standard.
+Use the font-size defaults in [Essential requirements](../SKILL.md#essential-requirements). These are project preferences, not a claim of an accessibility standard.
+
 - Adapt layout and wrapping instead of shrinking text.
 - A reference's tiny utility type does not override them.
 - Check:
@@ -135,13 +124,7 @@
   - wrapping;
   - spacing.
 
-- Do not use em dash characters (U+2014) in any authored website copy, including:
-  - metadata;
-  - alt text;
-  - labels;
-  - errors;
-  - generated packaging text;
-  - image prompts containing visible text.
+- Do not use em dash characters (U+2014) in any authored website copy, including metadata, alt text, labels, errors, generated packaging text, and image prompts containing visible text.
 - Rewrite the sentence with a full stop, comma, colon or parentheses as appropriate.
 - Do not mechanically replace them with double hyphens.
 - Preserve factual meaning when editing supplied copy.

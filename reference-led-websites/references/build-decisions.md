@@ -4,8 +4,8 @@ Read before writing DESIGN.md or selecting new implementation tools.
 
 ## Available tools and portability
 
-- This skill provides the build workflow.
-- The companion curator owns the reference library and catalog script.
+This skill provides the build workflow. The companion curator owns the reference library and catalog script.
+
 - Read [library access](library-access.md) for read-only access and project-local research.
 - Firecrawl, Developer Index, image generation and Blender are optional host capabilities, not bundled dependencies.
 - Discover available tools before invoking them.
@@ -47,24 +47,16 @@ Read before writing DESIGN.md or selecting new implementation tools.
 
 - Prefer Firecrawl Developer Index when available during initial technical planning, before selecting a new stack or committing to the signature interaction.
 - If installed, read the firecrawl-developer-index skill; otherwise use the research fallback below.
-- Research the specific requirements that affect the approach:
-  - rendering;
-  - scroll;
-  - 3D;
-  - accessibility;
-  - routing.
+- Research the specific requirements that affect the approach: rendering, scroll, 3D, accessibility, and routing.
 - Prefer official documentation, repository READMEs and released fixes.
 - Check:
   - version compatibility;
   - maintenance status;
   - experimental warnings;
   - licences.
-- Record in DESIGN.md:
-  - the selected approach;
-  - relevant source URLs;
-  - material tradeoffs.
-- Visual references decide what to build.
-- Developer Index informs how to build it.
+- Record in DESIGN.md: the selected approach, relevant source URLs, and material tradeoffs.
+
+Visual references decide what to build. Developer Index informs how to build it.
 
 - Preserve a suitable existing stack.
 - For a fresh project, prefer established, supported tools and the simplest architecture that meets the actual brief.
@@ -83,47 +75,22 @@ Read before writing DESIGN.md or selecting new implementation tools.
 
 ## Make decisions concrete
 
-Write DESIGN.md in the project containing:
-
-- the brief;
-- page structure;
-- brand tokens;
-- assets;
-- a source-to-element table:
+Write DESIGN.md in the project containing the brief, page structure, brand tokens, assets, and a source-to-element table:
 
 | Target element | Source URL / record / section | What to borrow | Brand adaptation | Evidence / open issue |
 | --- | --- | --- | --- | --- |
 
-- Describe concretely:
-  - composition;
-  - proportions;
-  - type treatment;
-  - image framing;
-  - interaction behaviour.
+- Describe concretely: composition, proportions, type treatment, image framing, and interaction behaviour.
 - Explain why the combination fits this client.
 - Keep the client's existing identity unless a redesign includes changing it.
-- Translate reference elements into one local:
-  - type scale;
-  - spacing system;
-  - shape language;
-  - motion vocabulary.
+- Translate reference elements into one local type scale, spacing system, shape language, and motion vocabulary.
 - Do not transplant unrelated brand colours or distinctive identity assets just because they look attractive.
 
 ## Asset plan and provenance
 
 - Keep one asset inventory in DESIGN.md.
-- For each asset, record:
-  - its target page/section;
-  - purpose;
-  - source/input references;
-  - usage rights;
-  - required treatment or constraints;
-  - final project path;
-  - unresolved gaps.
-- For generated assets also retain:
-  - the prompt/inputs;
-  - actual provider/model/version when known;
-  - job/prediction ID when returned.
+- For each asset, record its target page/section, purpose, source/input references, usage rights, required treatment or constraints, final project path, and unresolved gaps.
+- For generated assets also retain the prompt/inputs, actual provider/model/version when known, and job/prediction ID when returned.
 - Link motion contracts to these entries rather than duplicating provenance.
 - Image-specific crop and composition decisions are covered in [image generation](image-generation.md#choose-assets-for-the-actual-composition).
 - Scene-specific decisions belong to the [motion contract](animation-patterns.md#motion-contract).

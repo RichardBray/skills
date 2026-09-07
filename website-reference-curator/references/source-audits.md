@@ -6,9 +6,7 @@ Treat these as separate dimensions:
 - Scroll-linked animation: visual progress follows scroll position; this alone does not establish scroll jacking.
 - Pinned scene: part of the composition stays fixed for a scroll interval; it may still use native scrolling.
 - Smooth/custom scrolling: scroll position or content translation is interpolated by code.
-- Scroll interception/jacking:
-  - normal wheel/touch/key behaviour is overridden or remapped.
-  - Record the actual mechanism rather than applying a subjective label.
+- Scroll interception/jacking: normal wheel/touch/key behaviour is overridden or remapped. Record the actual mechanism rather than applying a subjective label.
 
 ## Page-transition audit
 
@@ -25,11 +23,7 @@ Treat these as separate dimensions:
   - focus/scroll restoration;
   - mobile;
   - reduced-motion behaviour.
-- Record:
-  - exit/intermediate/entry states;
-  - shared elements;
-  - masks;
-  - when input unlocks.
+- Record: exit/intermediate/entry states, shared elements, masks, and when input unlocks.
 - Mark untested paths explicitly.
 - Record source-code timing evidence according to the [library schema](library-model.md#animation-fields-and-browsing) when screenshot sampling misses intermediate frames.
 - Do not conclude a transition is absent because screenshots show only endpoints.
@@ -55,13 +49,7 @@ Treat these as separate dimensions:
   - anchors;
   - page back.
 - Compare viewport scroll position with transformed content if read-only DOM inspection permits.
-- Record:
-  - input capture;
-  - smoothing;
-  - pinned ranges;
-  - horizontal remapping;
-  - snapping;
-  - whether the user can leave a scene.
+- Record input capture, smoothing, pinned ranges, horizontal remapping, snapping, and whether the user can leave a scene.
 - Identify mobile differences independently.
 - Identify reduced-motion behaviour independently.
 
@@ -69,13 +57,10 @@ Describe the source mechanism without prescribing that future client builds must
 
 ## Library identification
 
-- Store technology_findings with:
-  - library name;
-  - version if verified;
-  - evidence IDs;
-  - scope.
-- A bundle banner or import confirms presence.
-- Effect-specific calls are stronger evidence of use.
+- Store technology_findings with library name, version if verified, evidence IDs, and scope.
+
+A bundle banner or import confirms presence. Effect-specific calls are stronger evidence of use.
+
 - A smooth-looking interaction is not evidence of GSAP, ScrollTrigger, Lenis or any other package.
 - A GSAP core bundle alone does not establish ScrollTrigger usage.
 - Do not turn the absence of an unminified name into proof a package is absent.
@@ -88,6 +73,4 @@ Describe the source mechanism without prescribing that future client builds must
 - Router transitions, scroll smoothing, DOM animation and 3D rendering solve different problems.
 - Do not treat them as interchangeable libraries.
 
-- The Ali capture verifies GSAP 3.3.3 plus custom wheel/transform scrolling.
-- It does not establish Lenis or ScrollTrigger.
-- Other current records retain unknown technology/scroll-control fields until inspected.
+The Ali capture verifies GSAP 3.3.3 plus custom wheel/transform scrolling. It does not establish Lenis or ScrollTrigger. Other current records retain unknown technology/scroll-control fields until inspected.

@@ -9,9 +9,8 @@ Own the reusable website reference library. Turn source websites and component s
 
 ## Scope and storage
 
-- Resolve paths relative to this skill directory. `library/` is the single canonical dataset: site records, evidence, discovery, component suppliers and seed coverage.
-- CSVs are derived views.
-- This skill owns `scripts/catalog.py` and its regression tests.
+Resolve paths relative to this skill directory. `library/` is the single canonical dataset: site records, evidence, discovery, component suppliers and seed coverage. CSVs are derived views. This skill owns `scripts/catalog.py` and its regression tests.
+
 - Do not duplicate the library into the builder or copy client-specific preferences into universal defaults.
 
 Accept URLs, award collections, component sources, existing record corrections or a request to audit library health. Clarify only missing scope that affects collection size or the requested result. Preserve existing verified captures and record version/date differences.
@@ -52,7 +51,7 @@ Read [library quality](references/library-quality.md) when auditing coverage or 
 - Only a request to maintain the shared library triggers promotion of that evidence here.
 - Recheck provenance, rights, evidence links and client confidentiality before promotion; keep private client assets out of the reusable catalog unless explicitly authorized.
 
-- The two skills normally live as sibling directories.
-- If installed elsewhere, use the supplied location rather than a machine-specific path.
+The two skills normally live as sibling directories. If installed elsewhere, use the supplied location rather than a machine-specific path.
+
 - A combined build-and-curate request may use both skills in one session with distinct output locations.
 - Website-build evaluation belongs to the builder; library evaluation belongs here.

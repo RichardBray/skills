@@ -9,12 +9,7 @@
 - Do not fabricate documentary images of the client's real team, premises or completed work.
 
 - Use the canonical [asset inventory](build-decisions.md#asset-plan-and-provenance).
-- For each image, add:
-  - aspect ratio;
-  - focal point;
-  - desktop/mobile crop;
-  - palette;
-  - space needed for live text.
+- For each image, add aspect ratio, focal point, desktop/mobile crop, palette, and space needed for live text.
 - Keep headings and calls to action as accessible HTML rather than baking them into artwork.
 
 ## Generation route

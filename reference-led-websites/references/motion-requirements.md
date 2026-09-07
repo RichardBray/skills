@@ -50,10 +50,8 @@ Read for every build and when specifying motion in a build prompt.
 - All destinations must remain reachable with no stuck overlay, duplicated content or navigation lock.
 - Visual QA must compare these states with the chosen reference and record deviations.
 
-- The three motion requirements have different purposes:
-  - the signature interaction changes content exploration;
-  - scroll animation responds to scroll;
-  - page transitions connect routes.
+The three motion requirements have different purposes: the signature interaction changes content exploration; scroll animation responds to scroll; page transitions connect routes.
+
 - One implementation may satisfy multiple requirements only when its observed behaviour meets each criterion.
 - Do not add redundant effects merely to count three features.
 

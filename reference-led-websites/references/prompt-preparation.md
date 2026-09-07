@@ -1,7 +1,7 @@
 # Prepare a build prompt
 
-- This mode turns a brief into a self-contained prompt for a new session.
-- It stops before asset generation, implementation or deployment.
+This mode turns a brief into a self-contained prompt for a new session. It stops before asset generation, implementation or deployment.
+
 - Use build-prompt-template.md as the handoff structure, not a questionnaire to recite.
 - Read [motion requirements](motion-requirements.md) when specifying interactions, scrolling and page transitions; carry their acceptance criteria into the brief.
 
@@ -12,8 +12,8 @@
 - Offer concrete choices when useful.
 - Do not ask the user to supply technical details the build agent can determine from the project.
 
-- Bracketed fields describe what to fill, and may contain a question to guide the interview.
-- They are editorial placeholders, not mandatory user questions.
+Bracketed fields describe what to fill, and may contain a question to guide the interview. They are editorial placeholders, not mandatory user questions.
+
 - Fill them with supplied facts, explicitly delegated choices or clearly labelled provisional assumptions.
 - Remove irrelevant sections.
 - For low-impact decisions use judgement.
