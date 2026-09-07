@@ -9,9 +9,10 @@
       "candidates": [
         {
           "name": "Lando Norris",
-          "status": "discovered",
+          "status": "reviewed",
           "url": "https://landonorris.com/",
-          "notes": "Resolve listing and destination before enrichment; no visual tags inferred from title."
+          "notes": "Linked current live site is reviewed. Correspondence to the historical award version and listing details remains unverified.",
+          "library_site_id": "lando"
         },
         {
           "name": "Messenger",
@@ -39,9 +40,9 @@
         },
         {
           "name": "Lusion v3",
-          "status": "discovered",
+          "status": "reviewed",
           "url": "https://lusion.co/",
-          "notes": "User supplied live URL. Current homepage inspected; correspondence to the awarded historical version is unverified.",
+          "notes": "Linked current live site is reviewed. Correspondence to the historical award version and listing details remains unverified.",
           "library_site_id": "lusion"
         },
         {
@@ -52,9 +53,9 @@
         },
         {
           "name": "Mana Yerba Mate",
-          "status": "discovered",
+          "status": "reviewed",
           "url": "https://en.manayerbamate.com/",
-          "notes": "User supplied live URL. Current homepage inspected; correspondence to the awarded historical version is unverified.",
+          "notes": "Linked current live site is reviewed. Correspondence to the historical award version and listing details remains unverified.",
           "library_site_id": "mana"
         },
         {

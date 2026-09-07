@@ -8,9 +8,9 @@ Record each planned image's page/section, purpose, aspect ratio, focal point, de
 
 ## Generation route
 
-Read the available imagegen skill for execution details. Default to the built-in image-generation tool when available; it does not require OPENAI_API_KEY. Its model may be managed by the host: do not claim it used GPT-Image-2 unless the tool reports that model.
+If the host provides an imagegen skill, follow its execution details; it is optional and not bundled here. Default to the built-in image-generation tool when available; it does not require OPENAI_API_KEY. Its model may be managed by the host: do not claim it used GPT-Image-2 unless the tool reports that model.
 
-When the user explicitly requests the API/CLI route, use the imagegen skill's bundled CLI with model `gpt-image-2`. Verify current official model support and options before execution; do not silently substitute another model. Use the existing environment key without printing it or asking the user to paste it. API usage is billed separately from the ChatGPT subscription. If the built-in tool is unavailable or fails, honour any existing authorization for API use; otherwise ask before switching to the paid API route. A key being present alone is not a request to switch routes.
+When the user explicitly requests the API/CLI route, use an available supported SDK/API client, or a host-provided CLI if present. Preserve an explicitly requested model such as `gpt-image-2`; otherwise select a supported model from current official documentation. This repository does not require a particular external CLI. Verify current official model support and options before execution; do not silently substitute another model. Check whether the selected provider is configured; use an authorized environment key without printing it or asking the user to paste it. API usage is billed separately from the ChatGPT subscription. If the built-in tool is unavailable or fails, honour any existing authorization for API use; otherwise ask before switching to the paid API route. A key being present alone is not a request to switch routes.
 
 ## Generate, inspect and integrate
 
@@ -28,3 +28,5 @@ Official references (checked 2026-09-07):
 - [GPT-Image-2 model](https://developers.openai.com/api/docs/models/gpt-image-2)
 - [Image generation guide](https://developers.openai.com/api/docs/guides/image-generation)
 - [Separate ChatGPT and API billing](https://help.openai.com/en/articles/9039756-managing-billing-settings-on-chatgpt-web-and-platform)
+
+If neither a built-in tool nor an authorized API route is available, use suitable supplied/licensed imagery or report the missing asset. Do not claim imagery was generated or change the intended composition silently.

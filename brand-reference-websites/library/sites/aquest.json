@@ -29,8 +29,30 @@
     ],
     "technology": []
   },
-  "tokens": {},
+  "tokens": {
+    "provenance": "Firecrawl branding; unverified extraction",
+    "colors": {
+      "primary": "#1C2AFF",
+      "secondary": "#EF4444",
+      "accent": "#FDC700",
+      "background": "#FFFFFF",
+      "textPrimary": "#000000",
+      "link": "#FDC700"
+    },
+    "fontFamilies": {
+      "primary": "Schnyder Light",
+      "heading": "Neue Haas Grotesk Display"
+    }
+  },
   "evidence": [
+    {
+      "id": "branding",
+      "kind": "firecrawl-branding",
+      "source_url": "https://www.aquest.it/",
+      "captured_at": "2026-09-07",
+      "path": "library/evidence/aquest-branding.json",
+      "inspected": false
+    },
     {
       "id": "motion-audit",
       "kind": "browser",
@@ -110,7 +132,7 @@
     }
   ],
   "caveats": [
-    "Firecrawl branding failed twice with rate limits; no exact tokens fabricated. Browser observations supplied below.",
+    "Branding retry succeeded 2026-09-07 after earlier rate limits. Extracted h1=10px and conflicting body-family signals require visual verification; exact typography is not confirmed.",
     "Only the listed homepage states were inspected. Exact durations/easing, full hover behaviour and reduced-motion behaviour remain unverified."
   ],
   "review_coverage": {

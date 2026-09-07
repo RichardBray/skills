@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Search, validate and export the reference library using Python's standard library."""
 import argparse
+import hashlib
+from urllib.parse import urlparse
 import csv
 import json
 import re
@@ -15,6 +17,9 @@ def records(root):
 
 def all_tags(record):
     return [tag for values in record['tags'].values() for tag in values]
+
+def valid_url(value):
+    return isinstance(value, str) and urlparse(value).scheme in ("http", "https") and bool(urlparse(value).netloc)
 
 def validate(root):
     errors = []
@@ -33,7 +38,7 @@ def validate(root):
         require(path.stem == rid, 'filename must match id')
         require(r.get('status') in ('discovered', 'extracted', 'reviewed'), 'invalid status')
         require(isinstance(r.get('name'), str) and bool(r['name']), 'missing name')
-        require(isinstance(r.get('url'), str) and r['url'].startswith(('https://', 'http://')), 'invalid URL')
+        require(valid_url(r.get('url')), 'invalid URL')
         require(bool(re.fullmatch(r'\d{4}-\d{2}-\d{2}', r.get('collected_at', ''))), 'missing capture date')
         tags = r.get('tags', {})
         require(set(tags) == set(GROUPS), 'missing/unknown tag groups')
@@ -47,6 +52,12 @@ def validate(root):
             if e.get('path'):
                 target = (root / e['path']).resolve()
                 require(root.resolve() in target.parents and target.is_file(), 'missing or escaping evidence path')
+            if e.get('kind') == 'screenshot':
+                require(bool(e.get('path')) or (bool(e.get('unavailable_reason')) and e.get('inspected') is False), 'screenshot needs durable path or explicit unavailability')
+                if e.get('path') and e.get('sha256'):
+                    target = (root / e['path']).resolve()
+                    if root.resolve() in target.parents and target.is_file():
+                        require(hashlib.sha256(target.read_bytes()).hexdigest() == e['sha256'], 'screenshot checksum mismatch')
         element_ids = []
         for el in r.get('elements', []):
             element_ids.append(el.get('id'))
@@ -71,6 +82,60 @@ def validate(root):
         data = json.loads((root / 'library' / filename).read_text())
         if data.get('schema_version') != 1 or not isinstance(data.get(key), list):
             errors.append(f'{filename}: invalid container')
+    sites = {r['id']: r for _, r in rows}
+    discovery = json.loads((root / 'library/discovery.json').read_text())
+    for collection in discovery.get('collections', []):
+        if not valid_url(collection.get('url')):
+            errors.append('discovery.json: invalid collection URL')
+        for candidate in collection.get('candidates', []):
+            label = 'discovery.json: ' + str(candidate.get('name', '<unnamed>'))
+            status = candidate.get('status')
+            link = candidate.get('library_site_id')
+            url = candidate.get('url')
+            if not candidate.get('name') or status not in ('discovered', 'extracted', 'reviewed'):
+                errors.append(label + ': invalid name/status')
+            if not valid_url(url) and not (url is None and status == 'discovered' and not link):
+                errors.append(label + ': invalid candidate URL')
+            if link:
+                if link not in sites:
+                    errors.append(label + ': unknown library_site_id')
+                elif status != sites[link]['status'] or url != sites[link]['url']:
+                    errors.append(label + ': linked status/URL differs from site record')
+            elif status != 'discovered' or any(url and url == r['url'] for r in sites.values()):
+                errors.append(label + ': enriched or matching candidate requires library_site_id')
+    coverage = json.loads((root / 'library/coverage.json').read_text())
+    required = coverage.get('required_sites')
+    if coverage.get('schema_version') != 1 or not isinstance(required, list) or not required or len(required) != len(set(required)):
+        errors.append('coverage.json: invalid required_sites contract')
+        required = []
+    if coverage.get('required_evidence') != ['branding', 'motion-audit']:
+        errors.append('coverage.json: expected branding and motion-audit requirements')
+    for rid in required:
+        if rid not in sites:
+            errors.append(f'coverage.json: missing required site {rid}')
+            continue
+        evidence = sites[rid].get('evidence', [])
+        branding_ok = audit_ok = False
+        for e in evidence:
+            if not e.get('path'):
+                continue
+            path = (root / e['path']).resolve()
+            if root.resolve() not in path.parents or not path.is_file():
+                continue
+            if e.get('kind') == 'firecrawl-branding':
+                try:
+                    data = json.loads(path.read_text())
+                    branding_ok = isinstance(data.get('branding'), dict) and bool(data['branding'])
+                except (ValueError, UnicodeError, AttributeError):
+                    pass
+            if (e.get('kind') in ('browser', 'video') and e.get('inspected') and path.stat().st_size
+                    and any('motion' in el and e.get('id') in el.get('evidence_ids', []) for el in sites[rid].get('elements', []))):
+                # Seed audits are durable action logs; ids differ (Ali uses navigation).
+                audit_ok = True
+        if not branding_ok:
+            errors.append(f'{rid}: seed coverage requires durable nonempty branding JSON')
+        if not audit_ok:
+            errors.append(f'{rid}: seed coverage requires durable inspected motion audit')
     if errors:
         raise ValueError('\n'.join(errors))
     print(f'Validated {len(rows)} sites plus component and discovery inventories.')

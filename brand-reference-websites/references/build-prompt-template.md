@@ -51,7 +51,7 @@ Content editing requirements: [CMS/management needs or none].
 
 Signature interaction: [purpose, reference section, trigger, before/after states and effect on exploration; or a later explicit user override].
 Required assets: [cutouts, models, image sequences or other inputs].
-Multi-page requirement: If the site has multiple pages/routes, deliver impressive, reference-backed page transitions with deliberate exit/entry choreography and shared-element continuity where appropriate. Consider View Transitions when suitable; verify compatibility and provide functional fallbacks and reduced-motion behaviour. Test real route changes, back/forward, focus, scroll restoration and interrupted navigation.
+Multi-page requirement: If the site has multiple pages/routes, deliver reference-backed page transitions meeting the skill’s explicit acceptance criteria with deliberate exit/entry choreography and shared-element continuity where appropriate. Consider View Transitions when suitable; verify compatibility and provide functional fallbacks and reduced-motion behaviour. Test real route changes, back/forward, focus, scroll restoration and interrupted navigation.
 
 Supporting motion: [navigation/page transitions, product changes, drawers/dialogs, cart/forms and closing states relevant to the scope].
 Required scroll animations: [reference-backed effects, affected sections, trigger/start/end states and replay or reversal behaviour]. Every site must have a deliberate scroll animation sequence appropriate to its brand. Smooth scrolling alone, page-load entrances and hover effects do not fulfil this requirement. Preserve usable native scrolling unless a verified design requires otherwise.

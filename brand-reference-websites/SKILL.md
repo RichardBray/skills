@@ -7,6 +7,10 @@ description: Design and build professional client websites by selecting and adap
 
 Create a website specific to the client's brand using identifiable elements from existing designs. Different clients should get different visual directions. Keep coherence within each website without imposing a house style across projects. Prefer adapting proven references; create a new pattern only when the brief has a gap the references cannot reasonably fill, and explain that decision.
 
+## Available tools and portability
+
+This repository provides the workflow, reference library and catalog script. Firecrawl, Developer Index, image generation and Blender are optional host capabilities, not bundled dependencies. Discover available tools before invoking them. Prefer Firecrawl for extraction when available; otherwise use accessible browser tools, official pages or existing saved evidence and record the actual source. For missing image tools, use suitable supplied/licensed assets or report the specific asset gap. Do not silently install companion skills or block unrelated work because one is absent.
+
 ## Choose the task
 
 - Creating a build prompt, interviewing for a brief, or preparing a fresh-session handoff: read [prompt preparation](references/prompt-preparation.md) and fill [the build prompt template](references/build-prompt-template.md). Finish with the prompt; do not start implementation.
@@ -29,9 +33,13 @@ Keep project references isolated: do not inspect sibling projects unless the use
 
 ## Required multi-page transitions
 
-Every multi-page site, including client-side routed sites, must have impressive, reference-backed transitions between its primary pages. Treat route changes as part of the art direction, with a coherent outgoing/incoming sequence and purposeful continuity of shared elements, typography, imagery or colour. Match the chosen reference and brand; do not apply the same generic fade to every site. First-load entrances, menu animations and scroll effects do not fulfil this separate requirement.
+Every multi-page site, including client-side routed sites, must have reference-backed transitions meeting the acceptance criteria below between its primary pages. Treat route changes as part of the art direction, with a coherent outgoing/incoming sequence and purposeful continuity of shared elements, typography, imagery or colour. Match the chosen reference and brand; do not apply the same generic fade to every site. First-load entrances, menu animations and scroll effects do not fulfil this separate requirement.
 
 Read [page transitions and scroll control](references/page-transitions-scroll.md). Consider the browser View Transitions API when it suits the routing architecture and desired effect; verify current official documentation and target-browser support before choosing it. Use a compatible router/motion approach when needed. Keep navigation functional when the enhancement is unsupported, interrupted or reduced by user motion preferences. Carry the requirement into prompt preparation and final browser review for every multi-page brief.
+
+Page-transition acceptance: specify and observe at least one reference-derived visual continuity device (for example a matched image, directional mask or coordinated typography) across the primary route changes. Document exit, intermediate and entry states, the chosen timing, and the source element. Exercise forward/back, rapid navigation, focus/scroll restoration and reduced-motion/unsupported-browser fallbacks. All destinations must remain reachable with no stuck overlay, duplicated content or navigation lock. Visual QA must compare these states with the chosen reference and record deviations.
+
+The three motion requirements have different purposes: the signature interaction changes content exploration; scroll animation responds to scroll; page transitions connect routes. One implementation may satisfy multiple requirements only when its observed behaviour meets each criterion. Do not add redundant effects merely to count three features.
 
 ## Required scroll animations
 
@@ -54,7 +62,7 @@ During review, inspect computed font sizes in rendered desktop and mobile states
 Read the user's existing brief and project instructions. Ask one compact opening batch covering only missing information:
 1. Who is the client, who is the audience, and what should visitors do?
 2. What brand assets/constraints exist, and which references or elements do they like or dislike?
-3. What pages, functionality, platform, deadline, and level of motion/3D are appropriate?
+3. What pages, functionality, platform and deadline are needed; what character/intensity should the required scroll animation have, and would optional 3D serve the brand?
 
 Use these as topics, not a compulsory questionnaire. Honour answers already supplied. Give the user time to answer before committing to a visual direction; meanwhile inspect the project and reference inventory. If the user explicitly delegates choices, state reasonable assumptions and proceed. After the opening exchange, work autonomously without mandatory moodboard or implementation approval gates. Ask again only for a material unresolved choice or necessary missing access.
 
@@ -79,11 +87,11 @@ Inspect the full relevant page at desktop and mobile widths before planning the 
 
 ## Plan the technical approach
 
-Use Firecrawl Developer Index during initial technical planning, before selecting a new stack or committing to the signature interaction. Read the available firecrawl-developer-index skill. Research the specific rendering, scroll, 3D, accessibility and routing requirements that affect the approach. Prefer official documentation, repository READMEs and released fixes; check version compatibility, maintenance status, experimental warnings and licences. Record the selected approach, relevant source URLs and material tradeoffs in DESIGN.md. Visual references decide what to build; Developer Index informs how to build it.
+Prefer Firecrawl Developer Index when available during initial technical planning, before selecting a new stack or committing to the signature interaction. If installed, read the firecrawl-developer-index skill; otherwise use the research fallback below. Research the specific rendering, scroll, 3D, accessibility and routing requirements that affect the approach. Prefer official documentation, repository READMEs and released fixes; check version compatibility, maintenance status, experimental warnings and licences. Record the selected approach, relevant source URLs and material tradeoffs in DESIGN.md. Visual references decide what to build; Developer Index informs how to build it.
 
 Preserve a suitable existing stack. For a fresh project, prefer established, supported tools and the simplest architecture that meets the actual brief. Do not introduce an experimental framework or compatibility layer for novelty, a starter-template default or an unrelated reference site's stack. Select one only when the user explicitly requests it or a documented requirement justifies its limitations; explain that choice before implementation. Verify actual package names and versions rather than conflating similarly named tools. A local client-side demo does not by itself require server rendering or a full-stack framework.
 
-If Developer Index has insufficient coverage, inspect official documentation or source directly and record the gap. Identify returned web fallback results as such; do not present them as indexed primary-source passages. Routine code using already verified project APIs does not require repeated searches.
+If Developer Index or its companion skill is unavailable or has insufficient coverage, inspect official documentation or source directly and record the gap. Identify returned web fallback results as such; do not present them as indexed primary-source passages. Routine code using already verified project APIs does not require repeated searches.
 
 ## Make decisions concrete
 
@@ -98,13 +106,13 @@ Use licensed/user-owned assets or separately sourced replacements; a reference a
 
 ## Generate imagery when needed
 
-Use image generation when the composition needs brand-specific photography, illustrations, textures, backgrounds or cutouts that supplied assets do not cover. Read [image generation](references/image-generation.md) and the available imagegen skill. Proceed within the website brief without a separate approval for every image; preserve real client/product identity and any user restrictions.
+Use image generation when the composition needs brand-specific photography, illustrations, textures, backgrounds or cutouts that supplied assets do not cover. Read [image generation](references/image-generation.md) for the self-contained workflow; use a host-provided imagegen skill if available. Proceed within the website brief without a separate approval for every image; preserve real client/product identity and any user restrictions.
 
 ## Implement
 
 Follow the researched technical plan and existing deployment conventions. Revisit the plan when new evidence changes compatibility or feasibility; no universal framework is required by this skill.
 
-When researching implementation code, use Firecrawl Developer Index first. Read the available firecrawl-developer-index skill and use its developer search for library selection, API usage, animation/scroll/3D implementation examples, errors and known fixes. Search for the specific behaviour and relevant library/version; prefer official documentation, repository READMEs and merged pull requests. Inspect the source passages, version compatibility, dependencies and code licence before adopting an example. An issue report alone does not establish current behaviour or a released fix.
+When researching implementation code, prefer Firecrawl Developer Index when available; otherwise search current official documentation and public source directly. When available, read the firecrawl-developer-index skill and use its developer search for library selection, API usage, animation/scroll/3D implementation examples, errors and known fixes. Search for the specific behaviour and relevant library/version; prefer official documentation, repository READMEs and merged pull requests. Inspect the source passages, version compatibility, dependencies and code licence before adopting an example. An issue report alone does not establish current behaviour or a released fix.
 
 Keep implementation research tied to the initial plan; apply the same source and fallback rules when resolving new questions.
 
