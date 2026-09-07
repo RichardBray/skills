@@ -1,7 +1,7 @@
 # Motion and 3D decisions
 
-- Choose intensity for the brand and content: conventional with subtle motion; one signature scene; or an immersive sequence.
-- These are choices, not quality tiers.
+Choose intensity for the brand and content: conventional with subtle motion; one signature scene; or an immersive sequence. These are choices, not quality tiers.
+
 - Reference each selected effect to a verified source element.
 
 - Before implementation:
@@ -10,9 +10,9 @@
 - Choose the cheapest implementation that reproduces the needed behaviour.
 
 - Use the project's compatible tools.
-- CSS suits simple transforms.
-- A motion library may suit coordinated DOM animation.
-- A WebGL renderer may suit spatial scenes.
+
+CSS suits simple transforms. A motion library may suit coordinated DOM animation. A WebGL renderer may suit spatial scenes.
+
 - Verify current official APIs before adding a new dependency.
 - Don't add a heavyweight renderer merely because the brief says premium.
 
@@ -57,11 +57,7 @@
 - Do not require or install it as part of every website build.
 - A successful command-line version check does not establish that rendering, export or MCP connectivity has been tested.
 
-- Choose the asset route for the subject:
-  - supplied CAD/models for faithful products;
-  - scripted Blender geometry for controllable geometric subjects;
-  - licensed assets when suitable;
-  - optional image-to-3D generation for subjects that tolerate reconstruction.
+Choose the asset route for the subject: supplied CAD/models for faithful products; scripted Blender geometry for controllable geometric subjects; licensed assets when suitable; optional image-to-3D generation for subjects that tolerate reconstruction.
 - A possible route is supplied photo or generated concept → Replicate reconstruction → Blender inspection/refinement → optimized GLB → browser scene.
 - Skip stages that do not improve the result.
 

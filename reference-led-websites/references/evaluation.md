@@ -10,11 +10,7 @@ Suggested contrasting trials:
 2. A playful packaged product with several variants and licensed product renders, needing one coordinated signature interaction.
 3. A technical/industrial brand explaining a multi-stage process, with mixed desktop/mobile traffic.
 
-- Before running, keep fixed:
-  - the brief;
-  - available assets;
-  - time allowance;
-  - target stack.
+- Before running, keep fixed: the brief, available assets, time allowance, and target stack.
 - Compare a baseline build and a skill-assisted build under equivalent conditions when feasible.
 - Without revealing which is which, ask the user to judge:
   - brand fit;
@@ -28,6 +24,6 @@ Suggested contrasting trials:
 - Record the brief, observed defect, narrow correction and outcome in the relevant project.
 - Promote general reusable guidance only after it demonstrates value.
 
-- The initial skill is structurally validated and has a reference library.
-- It has not yet been benchmarked with full client builds.
+The initial skill is structurally validated and has a reference library. It has not yet been benchmarked with full client builds.
+
 - Do not describe it as proven best or guarantee award-level work.

@@ -9,8 +9,8 @@ Create brand-specific client websites by adapting identifiable elements from exi
 
 ## Ownership
 
-- This skill prepares prompts and builds client websites.
-- It reads the shared library owned by `website-reference-curator` but never updates that library, discovery records, CSVs or coverage contracts.
+This skill prepares prompts and builds client websites. It reads the shared library owned by `website-reference-curator` but never updates that library, discovery records, CSVs or coverage contracts.
+
 - Save research and design artifacts in the client project.
 - For an explicit shared-library update, use the curator skill as a separate task phase; do not require curation before finishing a build.
 

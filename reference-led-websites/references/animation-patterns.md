@@ -8,23 +8,18 @@ Read selected records and their inspection caveats through [library access](libr
 
 ## Motion contract
 
-- This is the canonical field list for documenting build effects in DESIGN.md.
-- Use it for signature interactions, scroll effects, route changes and supporting UI motion.
+This is the canonical field list for documenting build effects in DESIGN.md. Use it for signature interactions, scroll effects, route changes and supporting UI motion.
+
 For each effect, specify:
 
-- The business purpose.
-- Target element.
-- Source record.
-- Source section.
+- The business purpose, target element, source record and source section.
 - Trigger: load, viewport entry, scroll progress, hover/focus, pointer movement, click, drag or idle.
 - Start states.
 - Intermediate states.
 - End states.
 - Which elements move, reveal, swap, scale or change colour.
 - Which remain anchored.
-- Sequencing:
-  - simultaneous vs staggered;
-  - relationships between text, imagery, background and controls.
+- Sequencing: simultaneous vs staggered and relationships between text, imagery, background and controls.
 - Scroll model:
   - time-triggered on entry vs progress-scrubbed;
   - pinned range if applicable;
@@ -44,25 +39,15 @@ For each effect, specify:
 - Distinguish observed source behaviour from a proposed improvement.
 
 - For route effects, also identify:
-  - source/destination routes;
-  - clicked control;
-  - cover/mask;
-  - persistent/shared elements;
-  - direction;
-  - active-navigation treatment;
+  - source/destination routes, clicked control, cover/mask, persistent/shared elements, direction and active-navigation treatment;
   - when input unlocks;
   - focus/scroll restoration.
-- For 3D scenes, add:
-  - subject;
-  - framing;
-  - materials/lighting;
-  - camera/object states;
-  - relationship to live copy.
+- For 3D scenes, add subject, framing, materials/lighting, camera/object states, and relationship to live copy.
 - These are conditional extensions of this contract, not separate field lists.
 
 - Link source observations to the schema located through [library access](library-access.md).
-- Source records describe observed facts.
-- A client contract may add clearly labelled implementation decisions and accessibility improvements.
+
+Source records describe observed facts. A client contract may add clearly labelled implementation decisions and accessibility improvements.
 
 - A sentence such as 'smooth GSAP animation' is not a motion contract.
 - Describe what the visitor sees and controls before choosing a library.
@@ -82,12 +67,7 @@ For each effect, specify:
 - Prefer reusing a tested local motion recipe once it exists.
 - The current library contains observations and adaptation proposals, not a tested animation component package.
 - Promote a pattern into reusable code only after a real build proves it useful.
-- Preserve in the project:
-  - API;
-  - dependencies;
-  - asset needs;
-  - checks;
-  - limitations.
+- Preserve in the project: API, dependencies, asset needs, checks, and limitations.
 - Shared-library promotion requires a separate curation task.
 
 For route choreography, scroll interception and library evidence, read [page transitions and scroll control](page-transitions-scroll.md).

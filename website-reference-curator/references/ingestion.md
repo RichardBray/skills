@@ -11,10 +11,7 @@
    - Do not pass unsupported enum values.
    - Add markdown/links only when needed for structure/discovery.
 3. Save branding and capture metadata under library/evidence.
-   - Keep:
-     - source URL;
-     - capture date;
-     - viewport.
+   - Keep source URL, capture date, and viewport.
    - Apply the [durable screenshot contract](library-model.md#discovery-and-seed-coverage-contract).
    - Do not bypass media display restrictions.
    - Never assume a URL was visually inspected.
@@ -49,11 +46,7 @@
 - Start with https://www.awwwards.com/websites/sites_of_the_year/ or the provided collection.
 - Extract actual listing/detail links and distinguish entries from navigation, sponsors and promotions.
 - Follow each detail page to verify the destination URL.
-- Store:
-  - name;
-  - listing URL;
-  - award label/year as observed;
-  - collection date.
+- Store name, listing URL, award label/year as observed, and collection date.
 - Do not guess domains from titles.
 
 - For a large collection, create a discovery inventory first.
@@ -67,12 +60,7 @@
 ## Component suppliers
 
 - Read official repo/docs.
-- Record:
-  - component/demo/source links;
-  - framework;
-  - dependencies;
-  - asset needs;
-  - licence boundaries.
+- Record component/demo/source links, framework, dependencies, asset needs, and licence boundaries.
 - Inspect specific candidates before tagging their look or behaviour.
 - Keep untested suppliers labelled as such.
 - Avoid vendoring a full catalog just to use one component.

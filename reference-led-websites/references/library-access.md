@@ -2,8 +2,8 @@
 
 ## Locate and search
 
-- The companion `website-reference-curator` owns the only library.
-- Default to `../website-reference-curator` relative to this skill directory, or use an explicit user/project-supplied curator root.
+The companion `website-reference-curator` owns the only library. Default to `../website-reference-curator` relative to this skill directory, or use an explicit user/project-supplied curator root.
+
 - Verify the location.
 - Never assume a machine-specific path.
 - Companion skills are not automatically invoked by Markdown links.
@@ -15,15 +15,13 @@ python3 <curator-root>/scripts/catalog.py search --query 'editorial restrained h
 ```
 
 - Read matching `library/sites/<id>.json`, their linked evidence, and `library/components.json` for suitable suppliers such as ThreeUI.
-- Evidence paths are relative to the curator root.
-- The schema is at `<curator-root>/references/library-model.md`.
+
+Evidence paths are relative to the curator root. The schema is at `<curator-root>/references/library-model.md`.
+
 - A reviewed record covers only its documented observations; unknown timing, 3D and mobile behaviour remain unknown.
 
-Sibling-installation shortcuts:
+Sibling-installation shortcuts: [schema](../../website-reference-curator/references/library-model.md), [source audits](../../website-reference-curator/references/source-audits.md), [pattern examples](../../website-reference-curator/references/pattern-examples.md).
 
-- [schema](../../website-reference-curator/references/library-model.md);
-- [source audits](../../website-reference-curator/references/source-audits.md);
-- [pattern examples](../../website-reference-curator/references/pattern-examples.md).
 - If the curator is relocated, resolve these against its explicit root.
 - Generated prompts must use the resolved absolute record/evidence paths and source URLs.
 
@@ -39,11 +37,7 @@ Sibling-installation shortcuts:
 - Do not write into the shared library.
 
 - Inspect composition on desktop/mobile and interact to verify important motion states.
-- Preserve:
-  - source URL;
-  - capture date;
-  - viewport;
-  - actions.
+- Preserve source URL, capture date, viewport, and actions.
 - Distinguish measured/source-defined timing from proposed values.
 - Preserve unknowns and failed captures.
 - Apply the curator's source-audit guidance when available without running its writing workflow.

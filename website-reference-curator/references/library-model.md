@@ -1,47 +1,19 @@
 # Library model
 
-- JSON is the canonical store: one site per library/sites/<id>.json.
-- It supports nested elements and evidence, portable diffs, and selective reads.
-- CSV is a derived browsing view.
+JSON is the canonical store: one site per library/sites/<id>.json. It supports nested elements and evidence, portable diffs, and selective reads. CSV is a derived browsing view.
+
 - Consider SQLite only when scale, joins, or concurrent writes justify a migration.
 - Do not maintain two competing sources of truth.
 
 Each site record uses:
 
-- schema_version: 1.
-- Stable slug id.
-- name.
-- url (required HTTP(S) URL for site records).
-- status:
-  - discovered | extracted | reviewed.
-  - Reviewed means the relevant visual evidence was actually inspected; it does not automatically certify mobile or interactions.
-- collected_at: ISO date.
-- discovery_source.
-- user_notes (verbatim preference or null).
+- schema_version: 1; stable slug id; name; url (required HTTP(S) URL for site records).
+- status: discovered | extracted | reviewed. Reviewed means the relevant visual evidence was actually inspected; it does not automatically certify mobile or interactions.
+- collected_at: ISO date; discovery_source; user_notes (verbatim preference or null).
 - tags: industry, personality, layout, typography, imagery, motion, technology arrays.
-- tokens:
-  - source-extracted values, with evidence provenance and caveats.
-  - Null/empty means unknown, never absent.
-- evidence: entries with:
-  - id;
-  - kind;
-  - source_url;
-  - captured_at;
-  - path or url;
-  - inspected boolean.
-- elements: entries with:
-  - id;
-  - type;
-  - location;
-  - description;
-  - tags;
-  - evidence_ids;
-  - verification (extracted | observed | inferred);
-  - brand_fit;
-  - adaptation;
-  - effort (low | medium | high | unknown);
-  - mobile notes;
-  - reduced_motion notes.
+- tokens: source-extracted values, with evidence provenance and caveats. Null/empty means unknown, never absent.
+- evidence: entries with id, kind, source_url, captured_at, path or url, and inspected boolean.
+- elements: entries with id, type, location, description, tags, evidence_ids, verification (extracted | observed | inferred), brand_fit, adaptation, effort (low | medium | high | unknown), mobile notes, and reduced_motion notes.
 - caveats: unresolved extraction problems, changed site, unavailable old version, or missing checks.
 
 - Separate observations from proposed adaptations.
@@ -61,17 +33,13 @@ Suggested tag vocabulary (extend when necessary; use lowercase hyphenated tags):
 - Technology: only verified technology labels; otherwise leave empty.
 
 - Tag elements too: a subdued footer on an expressive site should remain retrievable.
-- A single record can fit multiple industries.
-- Use the fit notes to explain cross-industry transfer.
 
-- library/components.json holds implementation suppliers with:
-  - URL;
-  - scope;
-  - licences;
-  - integration caveats;
-  - verification state.
-- It is separate from visual site references.
-- library/discovery.json holds collections and unresolved candidates.
+A single record can fit multiple industries. Use the fit notes to explain cross-industry transfer.
+
+- library/components.json holds implementation suppliers with URL, scope, licences, integration caveats, and verification state.
+
+It is separate from visual site references. library/discovery.json holds collections and unresolved candidates.
+
 - Discovery records must not masquerade as analysed references.
 
 - Use catalog.py validate after changes.
@@ -83,17 +51,7 @@ Suggested tag vocabulary (extend when necessary; use lowercase hyphenated tags):
 ## Animation fields and browsing
 
 - This section defines stored evidence fields, distinct from the project-specific motion contract owned by the builder.
-- Elements may include a motion object with:
-  - trigger;
-  - start_state;
-  - end_state;
-  - scroll_relationship;
-  - repeat_reverse;
-  - duration_ms;
-  - easing;
-  - rendering_technology;
-  - implementation_status;
-  - evidence_actions.
+- Elements may include a motion object with trigger, start_state, end_state, scroll_relationship, repeat_reverse, duration_ms, easing, rendering_technology, implementation_status, and evidence_actions.
 - Null timing values are unknown.
 - Exact timing/easing needs:
   - measurement_evidence identifying runtime measurement or verified source code;
@@ -101,13 +59,7 @@ Suggested tag vocabulary (extend when necessary; use lowercase hyphenated tags):
 - Source-defined duration does not assert actual playback duration.
 - Use type animation for observed motion with an identified trigger, or visual-pattern when only appearance/state is established.
 
-- Review coverage belongs to each site:
-  - desktop;
-  - mobile;
-  - reduced_motion;
-  - hover;
-  - timing;
-  - recording.
+- Review coverage belongs to each site: desktop, mobile, reduced_motion, hover, timing, and recording.
 - Do not infer whole-site coverage from status reviewed.
 
 Generate the dedicated element-level table:
@@ -116,12 +68,9 @@ Generate the dedicated element-level table:
 python3 <skill-dir>/scripts/catalog.py export-motion-csv --output <skill-dir>/library/motion-catalog.csv
 ```
 
-- This includes visual candidates with unknown controls, explicitly labelled visual-pattern.
-- It is derived from the canonical JSON and must not be edited directly.
+This includes visual candidates with unknown controls, explicitly labelled visual-pattern. It is derived from the canonical JSON and must not be edited directly.
 
-- Site records may include scroll_control and technology_findings.
-- Unknown must remain explicit until evidence establishes the mechanism or library.
-- See [source audits](source-audits.md) for the inspection workflow.
+Site records may include scroll_control and technology_findings. Unknown must remain explicit until evidence establishes the mechanism or library. See [source audits](source-audits.md) for the inspection workflow.
 
 ## Discovery and seed coverage contract
 
