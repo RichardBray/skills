@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reference-Led Websites"
+  short_description: "Prepare prompts and build sites from design references"
+  default_prompt: "Use $reference-led-websites in prompt preparation mode to help me define a client website and produce a build prompt for a new session."

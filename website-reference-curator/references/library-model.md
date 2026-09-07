@@ -31,7 +31,7 @@ Use catalog.py validate after changes. Use catalog.py export-csv for a flat site
 
 ## Animation fields and browsing
 
-This section defines stored evidence fields, distinct from the client-build [motion contract](animation-patterns.md#motion-contract). Elements may include a motion object with trigger, start_state, end_state, scroll_relationship, repeat_reverse, duration_ms, easing, rendering_technology, implementation_status and evidence_actions. Null timing values are unknown. Exact timing/easing needs measurement_evidence identifying runtime measurement or verified source code, with timing_basis stating which. Source-defined duration does not assert actual playback duration. Use type animation for observed motion with an identified trigger, or visual-pattern when only appearance/state is established.
+This section defines stored evidence fields, distinct from the project-specific motion contract owned by the builder. Elements may include a motion object with trigger, start_state, end_state, scroll_relationship, repeat_reverse, duration_ms, easing, rendering_technology, implementation_status and evidence_actions. Null timing values are unknown. Exact timing/easing needs measurement_evidence identifying runtime measurement or verified source code, with timing_basis stating which. Source-defined duration does not assert actual playback duration. Use type animation for observed motion with an identified trigger, or visual-pattern when only appearance/state is established.
 
 Review coverage belongs to each site: desktop, mobile, reduced_motion, hover, timing and recording. Do not infer whole-site coverage from status reviewed.
 
@@ -43,7 +43,7 @@ python3 <skill-dir>/scripts/catalog.py export-motion-csv --output <skill-dir>/li
 
 This includes visual candidates with unknown controls, explicitly labelled visual-pattern. It is derived from the canonical JSON and must not be edited directly.
 
-Site records may include scroll_control and technology_findings. Unknown must remain explicit until evidence establishes the mechanism or library. See page-transitions-scroll.md for the audit.
+Site records may include scroll_control and technology_findings. Unknown must remain explicit until evidence establishes the mechanism or library. See [source audits](source-audits.md) for the inspection workflow.
 
 ## Discovery and seed coverage contract
 
