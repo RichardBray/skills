@@ -45,9 +45,7 @@ For each effect, specify:
 - For 3D scenes, add subject, framing, materials/lighting, camera/object states, and relationship to live copy.
 - These are conditional extensions of this contract, not separate field lists.
 
-- Link source observations to the schema located through [library access](library-access.md).
-
-Source records describe observed facts. A client contract may add clearly labelled implementation decisions and accessibility improvements.
+Link source observations to the schema located through [library access](library-access.md). Source records describe observed facts. A client contract may add clearly labelled implementation decisions and accessibility improvements.
 
 - A sentence such as 'smooth GSAP animation' is not a motion contract.
 - Describe what the visitor sees and controls before choosing a library.

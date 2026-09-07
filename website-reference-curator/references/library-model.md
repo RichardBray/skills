@@ -32,15 +32,9 @@ Suggested tag vocabulary (extend when necessary; use lowercase hyphenated tags):
 - Motion: subtle, scroll-linked, hover-reveal, page-transition, interactive-3d, shader.
 - Technology: only verified technology labels; otherwise leave empty.
 
-- Tag elements too: a subdued footer on an expressive site should remain retrievable.
+Tag elements too: a subdued footer on an expressive site should remain retrievable. A single record can fit multiple industries. Use the fit notes to explain cross-industry transfer.
 
-A single record can fit multiple industries. Use the fit notes to explain cross-industry transfer.
-
-- library/components.json holds implementation suppliers with URL, scope, licences, integration caveats, and verification state.
-
-It is separate from visual site references. library/discovery.json holds collections and unresolved candidates.
-
-- Discovery records must not masquerade as analysed references.
+library/components.json holds implementation suppliers with URL, scope, licences, integration caveats, and verification state. It is separate from visual site references. library/discovery.json holds collections and unresolved candidates. Discovery records must not masquerade as analysed references.
 
 - Use catalog.py validate after changes.
 - Use catalog.py export-csv for a flat site-level review table.

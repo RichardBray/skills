@@ -24,6 +24,4 @@ Suggested contrasting trials:
 - Record the brief, observed defect, narrow correction and outcome in the relevant project.
 - Promote general reusable guidance only after it demonstrates value.
 
-The initial skill is structurally validated and has a reference library. It has not yet been benchmarked with full client builds.
-
-- Do not describe it as proven best or guarantee award-level work.
+The initial skill is structurally validated and has a reference library. It has not yet been benchmarked with full client builds. Do not describe it as proven best or guarantee award-level work.

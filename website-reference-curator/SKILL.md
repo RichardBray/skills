@@ -9,9 +9,7 @@ Own the reusable website reference library. Turn source websites and component s
 
 ## Scope and storage
 
-Resolve paths relative to this skill directory. `library/` is the single canonical dataset: site records, evidence, discovery, component suppliers and seed coverage. CSVs are derived views. This skill owns `scripts/catalog.py` and its regression tests.
-
-- Do not duplicate the library into the builder or copy client-specific preferences into universal defaults.
+Resolve paths relative to this skill directory. `library/` is the single canonical dataset: site records, evidence, discovery, component suppliers and seed coverage. CSVs are derived views. This skill owns `scripts/catalog.py` and its regression tests. Do not duplicate the library into the builder or copy client-specific preferences into universal defaults.
 
 Accept URLs, award collections, component sources, existing record corrections or a request to audit library health. Clarify only missing scope that affects collection size or the requested result. Preserve existing verified captures and record version/date differences.
 
