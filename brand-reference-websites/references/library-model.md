@@ -31,7 +31,7 @@ Use catalog.py validate after changes. Use catalog.py export-csv for a flat site
 
 ## Animation fields and browsing
 
-Elements may include a motion object with trigger, start_state, end_state, scroll_relationship, repeat_reverse, duration_ms, easing, rendering_technology, implementation_status and evidence_actions. Null timing values are unknown. Exact timing/easing needs measurement_evidence identifying runtime measurement or verified source code, with timing_basis stating which. Source-defined duration does not assert actual playback duration. Use type animation for observed motion with an identified trigger, or visual-pattern when only appearance/state is established.
+This section defines stored evidence fields, distinct from the client-build [motion contract](animation-patterns.md#motion-contract). Elements may include a motion object with trigger, start_state, end_state, scroll_relationship, repeat_reverse, duration_ms, easing, rendering_technology, implementation_status and evidence_actions. Null timing values are unknown. Exact timing/easing needs measurement_evidence identifying runtime measurement or verified source code, with timing_basis stating which. Source-defined duration does not assert actual playback duration. Use type animation for observed motion with an identified trigger, or visual-pattern when only appearance/state is established.
 
 Review coverage belongs to each site: desktop, mobile, reduced_motion, hover, timing and recording. Do not infer whole-site coverage from status reviewed.
 

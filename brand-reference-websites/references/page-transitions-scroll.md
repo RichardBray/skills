@@ -9,17 +9,17 @@ Treat these as separate dimensions:
 
 ## Required implementation for multi-page sites
 
-Plan a distinctive route transition system for every multi-page build. In DESIGN.md, map primary route pairs to the reference, exit/cover/entry states, shared elements, direction, timing, navigation/focus/scroll behaviour, mobile treatment and reduced-motion fallback. Keep duration appropriate for repeated navigation; visual impact must not make visitors wait for essential actions. Use contextual differences when the reference calls for them, while preserving a coherent motion vocabulary.
+Plan a distinctive route transition system for every multi-page build. Use the canonical [motion contract](animation-patterns.md#motion-contract), including its route-specific extension, in DESIGN.md. Keep duration appropriate for repeated navigation; visual impact must not make visitors wait for essential actions. Use contextual differences when the reference calls for them, while preserving a coherent motion vocabulary.
 
 Consider View Transitions for shared-element continuity, image expansion, clipping or coordinated page changes when compatible with the chosen architecture. During implementation research, distinguish same-document route updates from cross-document navigation and verify the applicable official APIs, browser support and restrictions. Do not assume that a framework or browser automatically supplies the desired transition. Use an alternative motion implementation or immediate functional navigation when the enhancement is unavailable. Do not intercept external links or modified clicks merely to animate them.
 
-Inspect actual primary page changes, not just their settled screenshots. Test desktop/mobile, direct URLs, back/forward, scroll restoration, focus, rapid repeat clicks, loading/failure states and reduced motion. Check that shared-element matches are correct, old animation state is cleaned up and navigation never remains locked. Record observed results and limitations. Do not mark a multi-page build complete with route transitions left as a follow-up task.
+Apply the route checks in [motion verification](review.md#motion-verification), inspecting actual page changes rather than only settled screenshots. Record observed results and limitations. Do not mark a multi-page build complete with route transitions left as a follow-up task.
 
 ## Page-transition audit
 
-Inspect at least a primary route change and a work/detail route if relevant. Record source and destination URLs, clicked trigger, outgoing content, covering layer/mask, persistent/shared elements, incoming sequence, active navigation colour, and when input unlocks. Separate first-load entrances from route transitions and menus from actual route changes.
+Inspect at least a primary route change and a work/detail route if relevant. Collect observations for the [motion contract](animation-patterns.md#motion-contract), including the route-specific extension; leave unobserved source behaviour explicitly unknown. Separate first-load entrances from route transitions and menus from actual route changes.
 
-Check back/forward, scroll restoration, focus destination, interrupted/repeated clicks and direct entry. Mark untested paths explicitly. Source-code inspection can establish parameters when screenshot sampling misses the intermediate frames; label them source-defined rather than runtime-measured. Do not conclude a transition is absent because screenshots show only endpoints.
+Use the route cases in [motion verification](review.md#motion-verification) when auditing source behaviour too. Mark untested paths explicitly. Record source-code timing evidence according to the [library schema](library-model.md#animation-fields-and-browsing) when screenshot sampling misses intermediate frames. Do not conclude a transition is absent because screenshots show only endpoints.
 
 Ali Two Times has source-backed contextual header, contact, project, campaign and back transition branches. Read its site record and source-analysis evidence for the branches actually audited. Work/Bio uses horizontal clipping and counter-moving heading/mask; Contact/project use vertical outgoing clipping. Avoid assuming one universal fade covers the site.
 
