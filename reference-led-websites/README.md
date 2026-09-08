@@ -23,21 +23,21 @@ The builder resolves the library at `../website-reference-curator` relative to i
 
 ## Usage
 
-Two stages, deliberately in two sessions:
+Two stages, deliberately in two sessions.
+
+**Stage 1, write the prompt.** In any session:
 
 ```
 /reference-led-websites prepare a build prompt for <client>
 ```
 
-Stage 1 asks up to three questions, picks references from the library, and writes a self-contained build prompt. It stops there.
+It asks up to three questions, picks references from the library, and returns one complete copyable prompt in chat. Ask it to save the prompt to a file if you would rather not copy it out of the transcript. It stops there, before any implementation.
 
-```
-/reference-led-websites
-```
+**Stage 2, build.** Open a **new** session in the client project directory and paste that prompt as your first message. No slash command: the prompt already names the skill's absolute path, the resolved library root and the reference paths, so the fresh session loads the skill itself. It assumes no memory of stage 1, which is exactly why it is a separate session.
 
-Stage 2 starts when you paste that prompt into a **new** session. The brief comes from the prompt, so it does not re-ask what stage 1 already settled. It writes DESIGN.md, prototypes the anchor section and signature interaction, builds out the site, then verifies the rendered result at desktop, mobile and an intermediate width.
+Stage 2 writes DESIGN.md, prototypes the anchor section and signature interaction, builds out the site, then verifies the rendered result at desktop, mobile and an intermediate width.
 
-Ask for advice or a quality comparison instead and it runs its evaluation path rather than building.
+Ask for advice or a quality comparison instead and the skill runs its evaluation path rather than building.
 
 ## What it enforces
 
