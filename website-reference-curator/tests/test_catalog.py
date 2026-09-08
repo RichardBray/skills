@@ -1,5 +1,6 @@
 """Regression checks for evidence coverage and discovery consistency. No network calls."""
 import contextlib
+import hashlib
 import importlib.util
 import io
 import json
@@ -78,13 +79,26 @@ class CatalogContractTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'invalid URL'):
             self.validate()
 
+    def add_screenshot(self, **fields):
+        entry = {'id': 'capture', 'kind': 'screenshot', 'source_url': 'https://landonorris.com/',
+                 'captured_at': '2026-09-07', 'inspected': True}
+        entry.update(fields)
+        self.edit('library/sites/lando.json', lambda r: r['evidence'].append(entry))
+
+    def write_capture(self, payload=b'capture'):
+        path = self.root / 'library/evidence/capture.png'
+        path.write_bytes(payload)
+        return hashlib.sha256(payload).hexdigest()
+
     def test_remote_only_screenshot_is_caught(self):
-        self.edit('library/sites/lando.json', lambda r: next(e for e in r['evidence'] if e['id']=='desktop-capture').pop('path'))
+        self.add_screenshot(url='https://example.com/expiring.png')
         with self.assertRaisesRegex(ValueError, 'screenshot needs durable path'):
             self.validate()
 
     def test_screenshot_corruption_is_caught(self):
-        (self.root / 'library/evidence/lando-desktop.png').write_bytes(b'corrupt')
+        self.add_screenshot(path='library/evidence/capture.png', sha256=self.write_capture())
+        self.validate()
+        (self.root / 'library/evidence/capture.png').write_bytes(b'corrupt')
         with self.assertRaisesRegex(ValueError, 'screenshot checksum mismatch'):
             self.validate()
 
