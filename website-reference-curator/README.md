@@ -14,7 +14,7 @@ Install it as a sibling of `reference-led-websites` and the builder finds the li
 
 ## Prerequisites
 
-- Python 3 for `scripts/catalog.py` and its tests (standard library only).
+- Python 3 for `scripts/catalog.py` and its tests (standard library only). The commands below use `python3` because it is present everywhere; `uv run scripts/catalog.py ...` works identically if you prefer it.
 - A browser or web tool for inspecting sources. Firecrawl and its design-clone workflow are used when available; anything else works, and the skill records which was actually used.
 
 ## What ships with it
