@@ -59,12 +59,9 @@
         "width": 1440,
         "height": 1000
       },
-      "inspected": true,
-      "path": "library/evidence/lando-desktop.png",
-      "sha256": "a8b80ccdaba73ce754b48e6d444fa998e44317b2324a704aa517fae0729ae728",
-      "inspected_at": "2026-09-07",
-      "notes": "Preserved original full-page capture. Visually inspected: blank regions and partially revealed text make this unsuitable as a settled-state or animation reference.",
-      "remote_url_role": "historical provenance only; local path is canonical"
+      "inspected": false,
+      "notes": "Remote URL is historical provenance only and expires; no durable local copy exists.",
+      "unavailable_reason": "Full-page capture inspected on 2026-09-07 and judged unsuitable as a settled-state or animation reference: blank regions and partially revealed text. Not retained."
     },
     {
       "id": "motion-audit",
@@ -166,7 +163,7 @@
   "caveats": [
     "Extracted background and textPrimary both #282C20: global colour roles are ambiguous.",
     "Menu motion and hero composition observed in the motion audit; realtime 3D, timing and font sizes remain unverified.",
-    "Original desktop screenshot preserved locally; it contains blank/partial reveal states and does not establish settled layout or motion.",
+    "The original desktop screenshot showed blank/partial reveal states and did not establish settled layout or motion; it was not retained.",
     "Only the listed homepage states were inspected. Exact durations/easing, full hover behaviour and reduced-motion behaviour remain unverified."
   ],
   "review_coverage": {
