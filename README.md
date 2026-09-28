@@ -51,3 +51,27 @@ npx skills add https://github.com/RichardBray/skills --skill tweet
 ```
 
 Each skill directory has its own README covering usage, prerequisites and anything it needs beyond installation.
+
+## Usage telemetry (optional, Claude Code only)
+
+`scripts/log-skill-use.sh` is a hook that appends every skill use to `~/.claude/skill-usage.jsonl`, whether the agent loads the skill or you type `/skill-name`. Needs `jq`. Add it to `~/.claude/settings.json`:
+
+```json
+"hooks": {
+  "PostToolUse": [
+    { "matcher": "Skill", "hooks": [{ "type": "command", "command": "/path/to/skills/scripts/log-skill-use.sh" }] }
+  ],
+  "UserPromptSubmit": [
+    { "hooks": [{ "type": "command", "command": "/path/to/skills/scripts/log-skill-use.sh" }] }
+  ]
+}
+```
+
+Then see what you actually use:
+
+```sh
+python3 scripts/skill-stats.py            # all time
+python3 scripts/skill-stats.py --days 30  # recent only
+```
+
+It also backfills from existing Claude Code transcripts, which are only kept for about 30 days by default, so the log is what builds long-term history. Skills in this repo with no recorded use are listed at the end.
