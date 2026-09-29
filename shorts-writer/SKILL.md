@@ -20,3 +20,5 @@ Before writing, read all files in the `references/` directory inside this skill 
 ## Output
 
 Write the script directly. Create a new directory named after the topic inside the user's current working directory and save the script as a `.md` file inside it.
+
+After saving, if `~/.config/voice-clone/reference.wav` exists, offer once to voice the script with the `say-as-me` skill. Don't generate audio unless the user says yes; it costs a few cents.
