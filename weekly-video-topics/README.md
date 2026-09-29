@@ -29,4 +29,4 @@ It saves the report to `~/client-videos/firecrawl/topics/<date>.md`, keeps a `hi
 
 ## Internal data
 
-The skill also reads Firecrawl product usage (BigQuery and the product database) through scripts in `internal/`. That folder is gitignored and only exists on machines with warehouse access; without it, the skill skips the usage step and says so.
+The skill also reads Firecrawl product usage (BigQuery and the product database) and keeps private YouTube Studio numbers in `internal/`. That folder is gitignored here; it's a separate private repo cloned into place, and only exists on machines with access. Without it, the skill skips those steps and says so.

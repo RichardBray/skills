@@ -118,4 +118,5 @@ Before recommending a topic, open its primary sources (not just search snippets)
 
 - Write the report to `$OUT_DIR/<YYYY-MM-DD>.md` (create the folder if needed) with every source URL.
 - Append this week's pitched titles to `$OUT_DIR/history.md` as `- YYYY-MM-DD: <title>`.
+- If `$SKILL_DIR/internal/` is a git repo, commit what this run changed there (`channel-analytics.md`, `usage-notes.md`) with a message like `Weekly stats YYYY-MM-DD` and push it. That history is the only record of how the numbers moved week to week, since YouTube and the warehouse only report current totals. Never commit anything from the browser profile.
 - If the user picks a topic to make, create `$VIDEOS_DIR/<short-slug>/script.md` following the structure of the three latest scripts: several `#` title options, `## Intro`, `## Exp`, `## Demo`, `## Outro`, then `## Notes` with the caveats, key numbers, every source, HN threads and X posts. Match the user's voice: short spoken lines, lowercase, `[url]` or `[show ...]` cues for what's on screen, a mention of the 500 extra credits link. Leave demo results as placeholders; never fabricate them.
