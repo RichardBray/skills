@@ -11,6 +11,7 @@ A collection of AI agent skills for content creation and developer tooling. Comp
 | Tweet | `/tweet` | Generate 5 tweet options with character counts |
 | Shorts Writer | `/shorts-writer` | Write short video scripts for developer-focused tech shorts |
 | Say as Me | `/say-as-me` | Speak a script in your own cloned voice (Qwen3-TTS on Replicate) |
+| Short | `/short` | Make a vertical 9:16 YouTube Short from a topic or script: editable script, cloned or recorded voice, captions, motion graphics, music, sound effects |
 | Title Score | `/title-score` | Score a YouTube title 0-100 with a vidIQ-style heuristic breakdown |
 | Title Research | `/title-research` | Mine real top-performing YouTube titles for a topic, then generate and rank candidates |
 

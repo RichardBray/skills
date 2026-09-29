@@ -1,0 +1,45 @@
+{
+  "tail": 1.2,
+  "scenes": [
+    { "type": "logos", "logos": ["amtrak.com","benzinga","bestbuy","discogs","dominos","espn.com","fiscal","fred","github","hugging-face","shopify","spothero.com"], "pick": 8 },
+
+    { "type": "prompt", "from": "so i gave sonnet", "chip": "Claude Sonnet 5.5", "items": [
+      { "type": "type", "text": "Who else is building AI customer support?", "at": "who else is building", "to": "customer support" } ] },
+
+    { "type": "terminal", "from": "the first time it used", "title": "plain firecrawl search + scrape", "items": [
+      { "type": "line", "html": "<span class=\"o\">$</span> firecrawl search \"AI customer support startups\"", "at": "the first time it used" },
+      { "type": "line", "html": "<span class=\"o\">$</span> firecrawl scrape ycombinator.com/companies/…", "at": "search and scrape" },
+      { "type": "timer", "value": 40, "at": "it took forty", "to": "forty seconds" },
+      { "type": "line", "html": "<span class=\"r\">✗ one page: 404</span>", "at": "and one of the pages" },
+      { "type": "line", "html": "<span class=\"y\">⚠ gaps filled from model memory</span>", "at": "so it filled the gaps", "sfx": "tick" },
+      { "type": "stat", "value": "40s", "label": "time", "at": "forty seconds" },
+      { "type": "stat", "value": "$0.15", "label": "cost", "at": "fifteen cents" } ] },
+
+    { "type": "terminal", "accent": true, "from": "the second time i told", "title": "<span class=\"o\">●</span> firecrawl alexandria", "items": [
+      { "type": "line", "html": "<span class=\"o\">$</span> firecrawl find-tools \"AI customer support startups\"", "at": "the second time i told" },
+      { "type": "line", "html": "<span class=\"g\">146 providers · 1,006 tools</span>", "at": "which is a library" },
+      { "type": "line", "html": "<span class=\"g\">→ ycombinator-com/companies/search</span>", "at": "it found the y combinator" },
+      { "type": "line", "html": "<span class=\"o\">$</span> firecrawl scrape --alexandria …/search", "at": "made two" },
+      { "type": "line", "html": "<span class=\"o\">$</span> firecrawl scrape --alexandria …/search", "at": "two calls" },
+      { "type": "line", "html": "<span class=\"g\">✓ records: batch · team size · stage</span>", "at": "and got structured records" },
+      { "type": "timer", "value": 23, "at": "the second time i told", "to": "twenty three seconds" } ] },
+
+    { "type": "compare", "from": "twenty three seconds", "sides": [
+      { "name": "plain search + scrape", "color": "#bbb", "fill": "#666", "frac": 1.0, "value": 40, "unit": "seconds · $0.15" },
+      { "name": "alexandria", "color": "#FF4C00", "fill": "#FF4C00", "frac": 0.575, "value": 23, "unit": "seconds · $0.10" } ],
+      "items": [ { "at": "twenty three seconds" }, { "at": "seconds and ten cents" } ] },
+
+    { "type": "chips", "from": "now that's one run each", "items": [
+      { "tag": "SAMPLE", "text": "one run each", "at": "one run each" },
+      { "tag": "SCOPE", "text": "YC companies only", "at": "only covers yc" },
+      { "tag": "MISSING", "text": "no big incumbents", "at": "big incumbents" } ] },
+
+    { "type": "prompt", "from": "but here's the catch", "chip": "Claude Sonnet 5.5", "items": [
+      { "type": "type", "text": "Who else is building AI customer support?", "at": "but here's the", "to": "the catch" },
+      { "type": "note", "html": "<span class=\"r\">✗ 0 alexandria calls</span>", "at": "never touched alexandria" },
+      { "type": "append", "text": "use Firecrawl Alexandria", "at": "until i named it" },
+      { "type": "note", "html": "<span class=\"g\">✓ alexandria used</span>", "at": "you have to tell it", "sfx": "chime" } ] },
+
+    { "type": "cta", "from": "subscribe for more" }
+  ]
+}
