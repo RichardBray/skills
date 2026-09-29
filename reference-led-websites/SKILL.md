@@ -25,10 +25,13 @@ This skill prepares prompts and builds client websites. It reads the shared libr
 Carry these into both builds and generated prompts. Honour explicit user overrides; keep reduced-motion alternatives accessible.
 
 - Use the tagged JSON reference library and map selected source elements to client adaptations. Inspect actual behaviour; screenshots alone do not establish animation or live 3D.
+- **Derive the palette from evidence, not a house style.** Do not default to beige/cream backgrounds, muted pastels or a familiar accent combination. Inspect the selected references and supplied brand identity; record observed colours, their roles and approximate proportions in DESIGN.md before choosing tokens. Preserve the reference’s saturation, contrast and balance where appropriate. Beige and pastels are valid when supported by the reference or explicit brief, not automatic signs of tasteful design. Identify deliberate brand/accessibility adaptations and their reasons. Carry this requirement into generated prompts.
 - Deliver a reference-backed **signature interaction** that meaningfully changes content exploration. Basic fades, hover states or navigation alone are insufficient.
 - **Every site needs scroll animations:** a deliberate progression through the main page. Smooth scrolling and page-load effects alone do not count.
 - **Multi-page sites need page transitions:** reference-backed exit/entry choreography with visual continuity. Consider View Transitions when compatible with the project.
-- Keep readable copy at **16 CSS px minimum**, including mobile, navigation, controls, captions and footer; aim for **18px or larger body text**. Do not shrink roots or transforms to evade the floor.
+- Keep readable copy at **18 CSS px minimum**, including mobile, navigation, controls, captions and footer; aim for **20px or larger body text**. Do not shrink roots or transforms to evade the floor.
+- **Write less, make each line useful.** Keep marketing copy concise: one clear thought per section, short introductions and direct labels. Remove repeated reassurance, filler headings and descriptions already conveyed by imagery. In a verbose draft, aim to cut roughly 30–40% of nonessential copy while preserving facts, prices, eligibility, booking details, accessibility guidance and legal requirements. This is an editing target, not a quota for already concise or information-heavy sites. Carry this preference into generated prompts.
+- **No decorative diagonal arrows by default.** Do not append northeast arrows to buttons, cards, tabs or text links as a house style. Use clear labels and deliberate hover/focus treatment; add a directional icon only when explicitly requested or needed to explain an actual interaction. Carry this preference into generated prompts.
 - **No em dashes in authored copy**, including metadata, accessibility labels and text in generated imagery. Preserve raw reference evidence unchanged.
 - Use suitable supplied, licensed or generated assets. Reference URLs do not grant reuse rights. Preserve real client/product identity and distinguish real geometry from 3D-looking images.
 - Work autonomously after the brief, within existing authorization. Do not inspect sibling projects without permission or turn client-specific preferences into universal defaults.
@@ -78,7 +81,13 @@ Implement scroll choreography, required route transitions and supporting open/cl
 
 Compare reference and build at matching viewport sizes and scroll states. Fix the largest composition, typography, asset and interaction discrepancies before adding decoration. Record and explain changes to the defining direction.
 
-## 5. Verify and deliver
+## 5. Make a final design refinement pass
+
+After the primary flow works, revisit the selected reference sites and walk every built page at desktop, mobile and an intermediate width. Compare equivalent sections and states, then refine the smaller details that make the composition feel intentional: spacing and alignment, line breaks and text measure, image crops and lighting consistency, colour balance, borders, button proportions, and open/close/hover/focus states. Remove repeated decorative habits and visual clutter. Include a copy-reduction pass: read the whole journey for repetition, let images carry atmosphere, and keep only text that helps visitors understand, trust or act. Check the larger type floor on mobile instead of shrinking text to fit. Compare the finished palette against the reference evidence: remove unintentional beige/pastel substitutions and verify colour proportions and text contrast. Keep refinements specific to the client's identity; do not add ornaments just to make the page busier.
+
+Watch the build at ordinary browsing speed. Required motion must be visibly perceptible and coherent, not merely present in CSS or observable only in slow-motion inspection. Check scroll-entry triggers on individual elements, image/text sequencing, menu opening and closing, and route continuity. Keep useful controls immediately available and preserve reduced-motion and no-JavaScript alternatives. Record the meaningful refinements and recheck affected states before delivery.
+
+## 6. Verify and deliver
 
 Read [review criteria](references/review.md) for every build.
 

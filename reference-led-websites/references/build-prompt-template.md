@@ -45,6 +45,7 @@ Borrow and adapt: [specific defining elements to preserve and brand changes to m
 Supporting references: [URL + section + element + role; omit if unnecessary].
 Evidence: [what has actually been inspected, capture/report paths and what needs live verification].
 Reference fidelity: [close match or selective adaptation, plus approved deviations].
+Palette evidence: [observed reference/brand colours, their roles and proportions, plus justified adaptations]. Do not default to beige/cream or muted pastels without support from that evidence or the explicit brief.
 
 - Inspect the selected references through [project research](library-access.md#project-research).
 - Preserve their intended qualities using [build decisions](build-decisions.md#preserve-the-reference-direction).

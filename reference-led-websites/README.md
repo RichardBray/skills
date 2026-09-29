@@ -41,6 +41,6 @@ Ask for advice or a quality comparison instead and the skill runs its evaluation
 
 ## What it enforces
 
-Every build ships a reference-backed signature interaction, scroll choreography through the main page, and page transitions on multi-page sites. Body copy stays at 16 CSS px minimum. Completion means the criteria are met in the rendered build, not that it compiled.
+Every build ships a reference-backed signature interaction, scroll choreography through the main page, and page transitions on multi-page sites. Readable copy stays at 18 CSS px minimum, with a 20px body target. Keep marketing copy concise and remove repeated or nonessential text. Completion means the criteria are met in the rendered build, not that it compiled.
 
 The skill never writes to the shared library. To promote research it did in a client project, switch to the curator skill for that phase.
