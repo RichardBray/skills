@@ -1,9 +1,12 @@
 #!/bin/sh
 # Claude Code hook (PostToolUse on Skill, and UserPromptSubmit) that appends each skill use
-# to ~/.claude/skill-usage.jsonl. Typed /skill-name commands never go through the Skill
+# to <config-dir>/skill-usage.jsonl. Typed /skill-name commands never go through the Skill
 # tool, so they are only caught from the prompt.
 # Must print nothing: UserPromptSubmit stdout is injected into the conversation.
 
+# Usage: log-skill-use.sh [config-dir]   (default: ~/.claude)
+
+config=${1:-$HOME/.claude}
 input=$(cat)
 event=$(printf '%s' "$input" | jq -r '.hook_event_name // empty')
 cwd=$(printf '%s' "$input" | jq -r '.cwd // empty')
@@ -15,7 +18,7 @@ else
   skill=$(printf '%s' "$input" | jq -r '.prompt // "" | capture("^/(?<n>[A-Za-z0-9_-]+)").n // empty')
   source=command
   # Built-in and plugin commands (/model, /clear) share the syntax; keep only real skills.
-  [ -f "$HOME/.claude/skills/$skill/SKILL.md" ] || [ -f "$cwd/.claude/skills/$skill/SKILL.md" ] || skill=
+  [ -f "$config/skills/$skill/SKILL.md" ] || [ -f "$cwd/.claude/skills/$skill/SKILL.md" ] || skill=
 fi
 
 [ -n "$skill" ] || exit 0
@@ -23,5 +26,5 @@ fi
 jq -nc --arg skill "$skill" --arg cwd "$cwd" --arg source "$source" \
   --arg session "$(printf '%s' "$input" | jq -r '.session_id // empty')" \
   '{ts: (now | todate), skill: $skill, source: $source, cwd: $cwd, session: $session}' \
-  >> "$HOME/.claude/skill-usage.jsonl" 2>/dev/null
+  >> "$config/skill-usage.jsonl" 2>/dev/null
 exit 0
