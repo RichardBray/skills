@@ -4,7 +4,7 @@ Update this when a week's numbers change the picture. Views and comments come fr
 
 ## Scoring a pitch (use in Step 6)
 
-Score each candidate on the four signals below, then name the nearest past video from the table as a comparable and give an expected view range from it. Be honest when the nearest comparable is a low performer.
+Score each candidate on the five signals below, then name the nearest past video from the table as a comparable and give an expected view range from it. Be honest when the nearest comparable is a low performer.
 
 | Signal | Why | Evidence |
 |---|---|---|
@@ -12,13 +12,15 @@ Score each candidate on the four signals below, then name the nearest past video
 | **Claude Code / coding-agent audience**: it makes their daily tool better | The core audience; Claude Code titles land in the top half | Harness vs Claude 16.3k, Design Setup 8.4k, CLIProxy 11.2k, Mods 4.2k |
 | **Something new they haven't seen**: a new category or a viral open-source tool | Novelty beats benchmarks | Jev 9.2k, Harness (+150K stars) 16.3k, Alexandria intro 7.9k |
 | **A concrete, visual payoff or number** in title or thumbnail | Makes the promise believable | "200 PDFs in 3 seconds", "+150K Stars", "4 years" |
+| **Searchable pain**: something people type into YouTube ("claude code rate limit", "pdf to markdown") | The hits are the only videos with a real share of views from YouTube search, and search keeps paying after the launch spike | CLIProxy, Scrape ANY Website, Gauntlet Loop all get a quarter or more of their views from search |
 
 Penalties:
 - **A partner integration as the subject** stays around 1 to 2k: Convex 1.1k, Grok Bot 1.9k, Vercel Connect 2.2k. Use the partner inside a bigger payoff instead.
 - **A Firecrawl feature explained** caps around 2k: Parse vs Scrape 1.9k, Developer Index 1.8k, Connector 2.6k, Scrape ANY Website 2.7k. These get the highest likes per view (loyal viewers love them), so they suit shorts or docs, not main uploads.
 - **Company news** underperforms: Series B 1.8k.
-- **Model-launch reactions and benchmarks** plateau at 3 to 5k even when the launch is huge on HN: Opus 5.5 3.9k, Fable 5.1 cost 3.1k. They do better when paired with a build: Astra + Blender 5.1k.
-- **Big-picture fear or commentary** can work once in a while (Claude Kills EVERYONE By 2030: 7.6k) but has lower likes per view; don't lean on it.
+- **Model-launch reactions and benchmarks** are the weakest format: 3 to 4k views even when the launch is huge on HN (Opus 5.5 3.9k, Fable 5.1 cost 3.1k). Studio shows why: the lowest click-through on the channel, a small home-feed test that YouTube stopped, almost no search or suggested traffic (big channels own launch search within hours), low retention and almost no subscribers. Only pitch one when the angle is something no other channel can make (a Firecrawl-powered build or data nobody else has), and even then pair it with a build: Astra + Blender 5.1k got a fifth of its views from search.
+- **AI safety and "model escaped the sandbox" stories** get one home-feed spike and nothing after: Claude Kills EVERYONE By 2030 got 7.6k with decent retention, but almost no search traffic, very few subscribers and a low like rate, and the Firecrawl tie-in is thin. At most an occasional video, never a pillar.
+- Private per-video numbers (impressions, CTR, traffic sources) live in `internal/channel-analytics.md` when present; refresh them with `scripts/studio_pull.sh`.
 
 ## Channel data (YouTube Studio, 2026-09-29)
 

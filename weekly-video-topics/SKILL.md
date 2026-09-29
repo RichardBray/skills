@@ -32,7 +32,14 @@ Run the independent research steps (2 to 5) in parallel with subagents when avai
 python3 "$SKILL_DIR/scripts/channel_videos.py"     # latest 15 uploads: views, likes, likes per 1k views
 ```
 
-The RSS feed has no comment counts and only the last 15 uploads. If the user can share a YouTube Studio screenshot or CSV export (Content tab), use it for views and comments across more videos.
+The RSS feed has no comment counts and only the last 15 uploads. For impressions, click-through, retention, subscribers and traffic sources, read YouTube Studio (read-only) through agent-browser:
+
+```bash
+sh "$SKILL_DIR/scripts/studio_pull.sh" videos                 # per-video lifetime table
+sh "$SKILL_DIR/scripts/studio_pull.sh" traffic <video_id> ...  # browse / search / suggested / external split
+```
+
+If it reports "Not signed in", run `sh "$SKILL_DIR/scripts/studio_pull.sh" login` and ask the user to sign in in the window that opens. Get video IDs from `channel_videos.py`. Pull traffic for any video published since the last run, then update `internal/channel-analytics.md` (private numbers) and the rules in `references/what-performs.md` (no private numbers there: the repo is public). Never click, edit or save anything in Studio.
 
 If `$SKILL_DIR/internal/` exists, also run `sh "$SKILL_DIR/internal/product_stats.sh"`; its last section is the all-time top videos from the warehouse (check the snapshot date, it can be stale).
 
@@ -86,7 +93,7 @@ Then with the `firecrawl` CLI (search with `--tbs qdr:w`):
 Produce **10 Firecrawl-specific** and **10 general developer/AI** topics, ranked. Rank by (evidence of demand) x (fit with what performs) x (timeliness).
 
 Fit comes from the scoring table in `references/what-performs.md`. For every candidate:
-- score the four signals (pain or money hook, Claude Code / coding-agent audience, something new, a concrete visual payoff) and apply the penalties (partner integration as the subject, Firecrawl feature explained, company news, a bare model-launch reaction);
+- score the five signals (pain or money hook, Claude Code / coding-agent audience, something new, a concrete visual payoff, searchable pain) and apply the penalties (partner integration as the subject, Firecrawl feature explained, company news, a bare model-launch reaction);
 - name the nearest past video as a comparable and give an expected view range from it;
 - if a candidate scores low but the evidence of demand is strong (a heavily used feature, for example), reframe it until it hits at least two signals, and show the reframe. The Developer Index got 1.8k as "One Fix That Instantly Improves Claude's Coding"; the same feature as a pain story about Claude Code writing broken code against stale docs hits more signals.
 

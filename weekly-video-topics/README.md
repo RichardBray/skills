@@ -16,6 +16,7 @@ It saves the report to `~/client-videos/firecrawl/topics/<date>.md`, keeps a `hi
 - `firecrawl` CLI, authenticated (search and scrape)
 - `gh` CLI, authenticated (merged PRs and issues)
 - Python 3 (the scripts use the standard library only)
+- `agent-browser`, for the optional YouTube Studio pull
 
 ## Scripts
 
@@ -23,7 +24,8 @@ It saves the report to `~/client-videos/firecrawl/topics/<date>.md`, keeps a `hi
 |---|---|
 | `scripts/hn_top.py` | Top Hacker News stories for the last N days, optionally filtered by keywords |
 | `scripts/hf_papers.py` | Most-upvoted Hugging Face Daily Papers for the last N days |
-| `scripts/channel_videos.py` | Latest uploads and view counts for a channel from its public RSS feed |
+| `scripts/channel_videos.py` | Latest uploads, views and likes for a channel from its public RSS feed |
+| `scripts/studio_pull.sh` | Read-only YouTube Studio pull (impressions, CTR, retention, traffic sources) through agent-browser and a signed-in profile |
 
 ## Internal data
 
