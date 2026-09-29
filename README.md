@@ -78,9 +78,9 @@ scripts/link.sh
 Then see what you actually use:
 
 ```sh
-python3 scripts/skill-stats.py                      # ~/.claude and ~/.claude-work, all time
-python3 scripts/skill-stats.py --days 30            # recent only
-python3 scripts/skill-stats.py --config ~/.claude   # one config dir
+uv run scripts/skill-stats.py                      # ~/.claude and ~/.claude-work, all time
+uv run scripts/skill-stats.py --days 30            # recent only
+uv run scripts/skill-stats.py --config ~/.claude   # one config dir
 ```
 
 It also backfills from existing Claude Code transcripts, which are only kept for about 30 days by default, so the log is what builds long-term history. Skills in this repo with no recorded use are listed at the end.

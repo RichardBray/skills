@@ -1,7 +1,7 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
 """Count skill usage from the hook log, backfilled from Claude Code transcripts.
 
-Usage: python3 scripts/skill-stats.py [--days N] [--config DIR ...]
+Usage: uv run scripts/skill-stats.py [--days N] [--config DIR ...]
 """
 
 import argparse
