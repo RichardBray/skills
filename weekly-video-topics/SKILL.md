@@ -29,8 +29,10 @@ Run the independent research steps (2 to 5) in parallel with subagents when avai
 ## Step 2: Channel performance
 
 ```bash
-python3 "$SKILL_DIR/scripts/channel_videos.py"     # latest 15 uploads with live view counts
+python3 "$SKILL_DIR/scripts/channel_videos.py"     # latest 15 uploads: views, likes, likes per 1k views
 ```
+
+The RSS feed has no comment counts and only the last 15 uploads. If the user can share a YouTube Studio screenshot or CSV export (Content tab), use it for views and comments across more videos.
 
 If `$SKILL_DIR/internal/` exists, also run `sh "$SKILL_DIR/internal/product_stats.sh"`; its last section is the all-time top videos from the warehouse (check the snapshot date, it can be stale).
 
@@ -81,15 +83,25 @@ Then with the `firecrawl` CLI (search with `--tbs qdr:w`):
 
 ## Step 6: Pick and pitch
 
-Produce **10 Firecrawl-specific** and **10 general developer/AI** topics, ranked. Rank by (evidence of demand) x (fit with what performs) x (timeliness), and apply these rules:
+Produce **10 Firecrawl-specific** and **10 general developer/AI** topics, ranked. Rank by (evidence of demand) x (fit with what performs) x (timeliness).
+
+Fit comes from the scoring table in `references/what-performs.md`. For every candidate:
+- score the four signals (pain or money hook, Claude Code / coding-agent audience, something new, a concrete visual payoff) and apply the penalties (partner integration as the subject, Firecrawl feature explained, company news, a bare model-launch reaction);
+- name the nearest past video as a comparable and give an expected view range from it;
+- if a candidate scores low but the evidence of demand is strong (a heavily used feature, for example), reframe it until it hits at least two signals, and show the reframe. The Developer Index got 1.8k as "One Fix That Instantly Improves Claude's Coding"; the same feature as a pain story about Claude Code writing broken code against stale docs hits more signals.
+
+The channel's audience is people who use Claude Code and other coding agents every day. Topics outside that (lead generation, small business tools) can work, but say so, lean harder on the money hook, and expect a smaller comparable.
+
+Then apply these rules:
 
 - Firecrawl must be necessary to the video, not a mention. If the video works without Firecrawl, it goes in the general list.
-- Pitch through a hook (money, free, speed, a trending model or tool, a pain), never as "Feature X explained". Plain explainers underperform on this channel (see `references/what-performs.md`).
+- Pitch through a hook (money, free, speed, a trending model or tool, a pain), never as "Feature X explained".
+- Prefer topics with a debate in them (cost, "is X worth it", "you don't need X"): the comment-heavy videos all have one.
 - Timely topics (a launch this week) go first; note how long the window stays open.
 - Flag risk plainly: legal or optics (scraping a named company, security incidents: keep those at news level, never walk through exploits), unverified claims, flaky providers or known bugs.
 - Say when the evidence is thin (one source, snippet-only, no numbers).
 
-For each topic give: working title, the hook in one sentence, what gets built or shown on screen, the evidence (numbers plus links), and risks. End with a "make these three first" recommendation and the gaps in this week's data (sources that were blocked or stale).
+For each topic give: working title, the hook in one sentence, what gets built or shown on screen, the evidence (numbers plus links), signals hit, nearest comparable with expected range, and risks. End with a "make these three first" recommendation and the gaps in this week's data (sources that were blocked or stale).
 
 ## Step 7: Verify the top picks
 
