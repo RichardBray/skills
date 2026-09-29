@@ -52,17 +52,25 @@ npx skills add https://github.com/RichardBray/skills --skill tweet
 
 Each skill directory has its own README covering usage, prerequisites and anything it needs beyond installation.
 
+## Working on these skills locally
+
+`scripts/link.sh` symlinks every skill in this repo into `~/.claude/skills` and `~/.claude-work/skills` (or the config dirs you pass it), so edits here are live with no install or sync step. Rerun it after adding a skill. It also removes these skills from the `npx skills` lock file, so `npx skills update` won't overwrite the links with copies from GitHub.
+
+```sh
+scripts/link.sh
+```
+
 ## Usage telemetry (optional, Claude Code only)
 
-`scripts/log-skill-use.sh` is a hook that appends every skill use to `~/.claude/skill-usage.jsonl`, whether the agent loads the skill or you type `/skill-name`. Needs `jq`. Add it to `~/.claude/settings.json`:
+`scripts/log-skill-use.sh` is a hook that appends every skill use to `<config-dir>/skill-usage.jsonl`, whether the agent loads the skill or you type `/skill-name`. It takes the config dir as an argument (default `~/.claude`) and needs `jq`. Add it to each config dir's `settings.json`:
 
 ```json
 "hooks": {
   "PostToolUse": [
-    { "matcher": "Skill", "hooks": [{ "type": "command", "command": "/path/to/skills/scripts/log-skill-use.sh" }] }
+    { "matcher": "Skill", "hooks": [{ "type": "command", "command": "/path/to/skills/scripts/log-skill-use.sh ~/.claude" }] }
   ],
   "UserPromptSubmit": [
-    { "hooks": [{ "type": "command", "command": "/path/to/skills/scripts/log-skill-use.sh" }] }
+    { "hooks": [{ "type": "command", "command": "/path/to/skills/scripts/log-skill-use.sh ~/.claude" }] }
   ]
 }
 ```
@@ -70,8 +78,9 @@ Each skill directory has its own README covering usage, prerequisites and anythi
 Then see what you actually use:
 
 ```sh
-python3 scripts/skill-stats.py            # all time
-python3 scripts/skill-stats.py --days 30  # recent only
+python3 scripts/skill-stats.py                      # ~/.claude and ~/.claude-work, all time
+python3 scripts/skill-stats.py --days 30            # recent only
+python3 scripts/skill-stats.py --config ~/.claude   # one config dir
 ```
 
 It also backfills from existing Claude Code transcripts, which are only kept for about 30 days by default, so the log is what builds long-term history. Skills in this repo with no recorded use are listed at the end.
