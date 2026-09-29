@@ -1,0 +1,7 @@
+interface:
+  display_name: "Reddit Firecrawl Support"
+  short_description: "Find fresh Reddit support opportunities"
+  default_prompt: "Use $reddit-firecrawl-support to find the best unanswered Firecrawl discussions from the last three months and draft friendly replies."
+
+policy:
+  allow_implicit_invocation: true
