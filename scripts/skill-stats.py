@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Count skill usage from the hook log, backfilled from Claude Code transcripts.
 
-Usage: python3 scripts/skill-stats.py [--days N]
+Usage: python3 scripts/skill-stats.py [--days N] [--config DIR ...]
 """
 
 import argparse
@@ -11,9 +11,7 @@ from collections import Counter
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-CLAUDE_DIR = Path.home() / ".claude"
-LOG = CLAUDE_DIR / "skill-usage.jsonl"
-TRANSCRIPTS = CLAUDE_DIR / "projects"
+DEFAULT_CONFIGS = [Path.home() / ".claude", Path.home() / ".claude-work"]
 REPO = Path(__file__).resolve().parent.parent
 COMMAND = re.compile(r"<command-name>/([A-Za-z0-9_-]+)</command-name>")
 
@@ -31,21 +29,22 @@ def read_jsonl(path):
                 continue
 
 
-def from_log():
-    if not LOG.exists():
+def from_log(config):
+    log = config / "skill-usage.jsonl"
+    if not log.exists():
         return []
-    return [(parse_ts(e["ts"]), e["skill"]) for e in read_jsonl(LOG) if e.get("skill")]
+    return [(parse_ts(e["ts"]), e["skill"]) for e in read_jsonl(log) if e.get("skill")]
 
 
-def installed_skills():
-    dirs = [CLAUDE_DIR / "skills", REPO]
+def installed_skills(config):
+    dirs = [config / "skills", REPO]
     return {p.parent.name for d in dirs for p in d.glob("*/SKILL.md")}
 
 
-def from_transcripts():
-    known = installed_skills()
+def from_transcripts(config):
+    known = installed_skills(config)
     uses = []
-    for path in TRANSCRIPTS.rglob("*.jsonl"):
+    for path in (config / "projects").rglob("*.jsonl"):
         for entry in read_jsonl(path):
             if "timestamp" not in entry:
                 continue
@@ -71,37 +70,46 @@ def from_transcripts():
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--days", type=int, help="only count the last N days")
+    parser.add_argument("--config", type=Path, nargs="+", default=DEFAULT_CONFIGS,
+                        help="Claude config dirs to read (default: ~/.claude ~/.claude-work)")
     args = parser.parse_args()
+    configs = [c for c in args.config if c.is_dir()]
+    cutoff = args.days and datetime.now(timezone.utc) - timedelta(days=args.days)
 
-    logged = from_log()
-    # Transcripts overlap the log once the hook is installed, so only backfill before it.
-    log_start = min((ts for ts, _ in logged), default=None)
-    backfill = [u for u in from_transcripts() if log_start is None or u[0] < log_start]
+    uses, n_logged, n_backfill = [], 0, 0
+    for config in configs:
+        logged = from_log(config)
+        # Transcripts overlap the log once the hook is installed, so only backfill before it.
+        log_start = min((ts for ts, _ in logged), default=None)
+        backfill = [u for u in from_transcripts(config) if log_start is None or u[0] < log_start]
+        if cutoff:
+            logged = [u for u in logged if u[0] >= cutoff]
+            backfill = [u for u in backfill if u[0] >= cutoff]
+        n_logged += len(logged)
+        n_backfill += len(backfill)
+        uses += [(ts, skill, config.name) for ts, skill in logged + backfill]
 
-    if args.days:
-        cutoff = datetime.now(timezone.utc) - timedelta(days=args.days)
-        logged = [u for u in logged if u[0] >= cutoff]
-        backfill = [u for u in backfill if u[0] >= cutoff]
-    uses = logged + backfill
-
-    counts = Counter(skill for _, skill in uses)
+    counts = Counter(skill for _, skill, _ in uses)
+    per_config = Counter((skill, profile) for _, skill, profile in uses)
     last_used = {}
-    for ts, skill in uses:
+    for ts, skill, _ in uses:
         last_used[skill] = max(ts, last_used.get(skill, ts))
 
+    names = [c.name for c in configs]
     width = max((len(s) for s in counts), default=5)
-    print(f"{'skill':<{width}}  {'uses':>5}  last used")
+    print(f"{'skill':<{width}}  {'total':>5}  " + "  ".join(f"{n:>12}" for n in names) + "  last used")
     for skill, n in counts.most_common():
-        print(f"{skill:<{width}}  {n:>5}  {last_used[skill]:%Y-%m-%d}")
+        cols = "  ".join(f"{per_config[skill, name]:>12}" for name in names)
+        print(f"{skill:<{width}}  {n:>5}  {cols}  {last_used[skill]:%Y-%m-%d}")
 
     repo_skills = {p.parent.name for p in REPO.glob("*/SKILL.md")}
     unused = sorted(repo_skills - {s.split(":")[-1] for s in counts})
     if unused:
         print(f"\nNever used ({len(unused)}): {', '.join(unused)}")
 
-    oldest = min((ts for ts, _ in uses), default=None)
+    oldest = min((ts for ts, _, _ in uses), default=None)
     if oldest:
-        print(f"\nData since {oldest:%Y-%m-%d} ({len(logged)} logged, {len(backfill)} from transcripts)")
+        print(f"\nData since {oldest:%Y-%m-%d} ({n_logged} logged, {n_backfill} from transcripts)")
 
 
 if __name__ == "__main__":
