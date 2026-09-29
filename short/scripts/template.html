@@ -1,0 +1,196 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>short</title>
+<style>
+  :root { --orange:#FF4C00; --bg:#141414; --ink:#F9F9F9; --dim:#8a8a8a; --panel:#1b1b1b; --line:#2d2d2d; }
+  * { box-sizing:border-box; margin:0; }
+  html,body { width:1080px; height:1920px; overflow:hidden; background:var(--bg); }
+  body { font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; color:var(--ink); }
+  .mono { font-family:Menlo,Monaco,monospace; }
+  #stage { position:relative; width:1080px; height:1920px; overflow:hidden; }
+  .abs { position:absolute; will-change:transform,opacity; }
+  #glow { left:-200px; right:-200px; bottom:-500px; height:1400px; background:radial-gradient(closest-side, rgba(255,76,0,.20), rgba(255,76,0,0)); }
+  .panel { border-radius:28px; background:var(--panel); border:2px solid var(--line); overflow:hidden; }
+  .panel .hd { height:104px; display:flex; align-items:center; justify-content:space-between; padding:0 38px; font-size:46px; font-weight:700; border-bottom:2px solid var(--line); }
+  .panel .tm { font-family:Menlo,monospace; font-size:44px; font-weight:400; }
+  .log { font-family:Menlo,monospace; font-size:41px; line-height:1.4; padding:34px 38px; white-space:pre-wrap; color:#dcdcdc; }
+  .log div { margin-bottom:26px; }
+  .g{color:#5fd08a}.o{color:var(--orange)}.d{color:#7d7d7d}.r{color:#ff6b6b}.y{color:#f4c542}
+  .chip { display:inline-flex; align-items:center; gap:14px; padding:14px 28px; border-radius:999px; background:#232323; border:2px solid #333; font-size:34px; font-weight:600; }
+  .dot { width:16px; height:16px; border-radius:50%; background:var(--orange); }
+  .tile { width:210px; height:210px; border-radius:44px; background:#fff; display:flex; align-items:center; justify-content:center; overflow:hidden; box-shadow:0 12px 34px rgba(0,0,0,.4); }
+  .tile img { width:76%; height:76%; object-fit:contain; }
+  #caps { left:0; width:1080px; top:1180px; height:300px; display:flex; align-items:center; justify-content:center; text-align:center; padding:0 70px; }
+  #caps span { display:inline-block; font-size:104px; font-weight:800; letter-spacing:-.02em; line-height:1.08; color:#fff; margin:0 .14em; text-shadow:0 6px 0 rgba(0,0,0,.55), 0 0 40px rgba(0,0,0,.7); -webkit-text-stroke:2px rgba(0,0,0,.35); }
+  #caps span.on { color:var(--orange); }
+</style>
+<div id="stage">
+  <div id="glow" class="abs"></div>
+  <div id="scenes"></div>
+  <div id="caps" class="abs"></div>
+</div>
+
+<script>
+// ---------- helpers
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const ramp = (t, a, b) => clamp((t - a) / (b - a));
+const oc = x => 1 - Math.pow(1 - x, 3);
+const io = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const back = x => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+const typed = (str, t, a, b) => str.slice(0, Math.floor(str.length * ramp(t, a, b)));
+function S(el, o = {}) {
+  const op = o.o ?? 1;
+  el.style.opacity = op; el.style.visibility = op <= .001 ? 'hidden' : 'visible';
+  el.style.transform = `translate(${o.x || 0}px,${o.y || 0}px) scale(${o.s ?? 1})`;
+}
+const norm = w => w.toLowerCase().replace(/[^a-z0-9']/g, '');
+
+// ---------- data + anchors
+const D = window.DATA;                     // { words:[{w,start,end,line}], scenes:[...], duration }
+const W = D.words.map(w => ({ ...w, n: norm(w.w) })).filter(w => w.n);
+let cursor = 0;
+function anchor(phrase, which = 'start', from = 0) {
+  const toks = phrase.split(/\s+/).map(norm).filter(Boolean);
+  for (let i = Math.max(from, 0); i < W.length; i++) {
+    let ok = true;
+    for (let k = 0; k < toks.length; k++) if (!W[i + k] || W[i + k].n !== toks[k]) { ok = false; break; }
+    if (ok) return which === 'end' ? W[i + toks.length - 1].end : W[i].start;
+  }
+  throw new Error('anchor not found in voiceover: "' + phrase + '"');
+}
+// resolve every "at" field (phrase string) in the scene tree to seconds; keeps order so repeated phrases work
+function resolve(obj, floor) {
+  if (Array.isArray(obj)) return obj.forEach(x => resolve(x, floor));
+  if (obj && typeof obj === 'object') {
+    for (const k of Object.keys(obj)) {
+      if (k === 'at' || k === 'to') {
+        if (typeof obj[k] === 'string') {
+          const hit = W.findIndex(w => w.start >= floor - 1e-6);
+          const from = Math.max(0, hit);
+          obj[k + 'T'] = anchor(obj[k], k === 'to' ? 'end' : 'start', from);
+        }
+      } else resolve(obj[k], floor);
+    }
+  }
+}
+const scenes = D.scenes;
+scenes.forEach((s, i) => {
+  s.startT = i === 0 ? 0 : anchor(s.from, 'start', W.findIndex(w => w.start >= scenes[i - 1].startT + 0.05));
+});
+scenes.forEach((s, i) => { s.endT = i + 1 < scenes.length ? scenes[i + 1].startT : D.duration; s.dur = s.endT - s.startT; resolve(s.items || [], s.startT); });
+
+// ---------- scene builders. each returns {el, update(t), events()}
+const root = document.getElementById('scenes');
+const events = [];
+const ev = (t, type, gain = 1) => events.push({ t, type, gain });
+const mkscene = () => { const el = document.createElement('div'); el.className = 'abs'; el.style.cssText = 'left:0;top:0;width:1080px;height:1920px'; root.appendChild(el); return el; };
+const at = (it, key = 'at') => it[key + 'T'];
+
+const B = {
+  logos(sc) {
+    const el = mkscene(); const files = sc.logos; const tiles = [];
+    const grid = document.createElement('div'); grid.className = 'abs'; grid.style.cssText = 'left:60px;top:130px;width:960px;height:900px'; el.appendChild(grid);
+    files.forEach((f, i) => { const d = document.createElement('div'); d.className = 'tile abs'; d.style.left = (i % 4) * 250 + 'px'; d.style.top = Math.floor(i / 4) * 250 + 'px'; d.innerHTML = `<img src="${D.assets}/png/${f}.png" onerror="this.style.display='none'">`; grid.appendChild(d); tiles.push(d); });
+    const q = document.createElement('div'); q.className = 'abs'; q.style.cssText = 'left:0;width:1080px;top:930px;text-align:center;font-size:180px;font-weight:800;color:#FF4C00'; q.textContent = '?'; el.appendChild(q);
+    const pick = sc.pick ?? 5;
+    files.forEach((f, i) => ev(sc.startT + .12 + i * .05, 'pop', .5));
+    return { el, update(t) {
+      const lt = t - sc.startT;
+      tiles.forEach((d, i) => { const p = ramp(lt, .1 + i * .05, .6 + i * .05); const hi = i === pick ? clamp((lt - sc.dur * .55) * 3) : 0; const dim = lt > sc.dur * .55 && i !== pick ? .28 : 1;
+        S(d, { o: clamp(p * 3) * dim, s: (.3 + .7 * back(p)) * (1 + .16 * hi), y: (1 - oc(p)) * 40 }); });
+      S(q, { o: oc(ramp(lt, sc.dur * .35, sc.dur * .5)) * (1 - ramp(lt, sc.dur * .55, sc.dur * .65)), s: .8 + .2 * oc(ramp(lt, sc.dur * .35, sc.dur * .5)) });
+    } };
+  },
+  prompt(sc) {
+    const el = mkscene();
+    el.innerHTML = `<div class="abs" style="left:60px;top:300px"><span class="chip"><span class="dot"></span>${sc.chip || ''}</span></div>
+      <div class="abs" id="pb" style="left:60px;top:390px;width:960px;min-height:300px;border-radius:40px;background:#fff;box-shadow:0 40px 100px rgba(255,76,0,.25);padding:60px 64px">
+        <div id="pt" style="font-size:90px;font-weight:700;letter-spacing:-.02em;line-height:1.12;color:#141414"></div></div>
+      <div class="abs mono" id="pn" style="left:60px;top:800px;width:960px;font-size:50px;line-height:1.4"></div>`;
+    const pb = el.querySelector('#pb'), pt = el.querySelector('#pt'), pn = el.querySelector('#pn');
+    (sc.items || []).forEach(it => { if (it.type === 'type') { const a = at(it), b = at(it, 'to'); for (let k = 0; k < 10; k++) ev(a + (b - a) * k / 10, 'key', .5); } if (it.type === 'note') ev(at(it), it.sfx || 'pop', .6); if (it.type === 'append') ev(at(it), 'pop', .7); });
+    return { el, update(t) {
+      const lt = t - sc.startT; const a = oc(ramp(lt, 0, .4)); S(el.children[0], { o: a }); S(pb, { o: a, y: (1 - a) * 50, s: .97 + .03 * a });
+      let txt = '', extra = '', note = '';
+      (sc.items || []).forEach(it => {
+        if (it.type === 'type') txt = typed(it.text, t, at(it), at(it, 'to'));
+        if (it.type === 'append' && t >= at(it)) extra = `<span style="color:#FF4C00"> ${it.text}</span>`;
+        if (it.type === 'note' && t >= at(it)) note += `<div style="margin-bottom:14px;opacity:${oc(ramp(t, at(it), at(it) + .3))}">${it.html}</div>`;
+      });
+      pt.innerHTML = txt + extra; pn.innerHTML = note; pn.style.top = (pb.offsetTop + pb.offsetHeight + 34) + 'px';
+    } };
+  },
+  terminal(sc) {
+    const el = mkscene();
+    const border = sc.accent ? '#5a2a10' : 'var(--line)';
+    el.innerHTML = `<div class="abs panel" id="tp" style="left:60px;top:130px;width:960px;height:830px;border-color:${border}">
+        <div class="hd"><span>${sc.title}</span><span class="tm" id="tt"></span></div><div class="log" id="tl"></div></div>
+      <div class="abs" id="tbig" style="left:60px;top:985px;width:960px;display:flex;gap:30px"></div>`;
+    const tp = el.querySelector('#tp'), tt = el.querySelector('#tt'), tl = el.querySelector('#tl'), big = el.querySelector('#tbig');
+    const lines = (sc.items || []).filter(i => i.type === 'line'); tl.innerHTML = lines.map((l, i) => `<div id="l${sc.startT}_${i}">${l.html}</div>`).join('');
+    lines.forEach(l => ev(at(l), l.sfx || 'tick', .6));
+    const timer = (sc.items || []).find(i => i.type === 'timer'); const stats = (sc.items || []).filter(i => i.type === 'stat');
+    if (timer) { const a = at(timer), b = at(timer, 'to'); for (let k = 0; k < 14; k++) ev(a + (b - a) * k / 14, 'count', .35); }
+    stats.forEach(s => ev(at(s), 'chime', .7));
+    big.innerHTML = stats.map((s, i) => `<div id="s${sc.startT}_${i}" style="flex:1;padding:20px 30px;border-radius:26px;background:${sc.accent ? 'rgba(255,76,0,.14)' : '#1f1f1f'};border:2px solid ${sc.accent ? '#5a2a10' : '#2d2d2d'}"><div class="mono" style="font-size:100px;font-weight:700;letter-spacing:-.04em;color:${s.color || '#fff'}">${s.value}</div><div style="font-size:38px;color:#aaa;margin-top:4px">${s.label}</div></div>`).join('');
+    return { el, update(t) {
+      const lt = t - sc.startT; const a = oc(ramp(lt, 0, .4)); S(tp, { o: a, y: (1 - a) * 60 });
+      lines.forEach((l, i) => { const p = oc(ramp(t, at(l), at(l) + .22)); S(document.getElementById(`l${sc.startT}_${i}`), { o: p, x: (1 - p) * -24 }); });
+      if (timer) { const p = ramp(t, at(timer), at(timer, 'to')); const done = p >= 1; tt.innerHTML = done ? `<span class="g">✓ ${timer.value}s</span>` : (timer.value * io(p)).toFixed(0) + 's'; }
+      stats.forEach((s, i) => { const p = oc(ramp(t, at(s), at(s) + .35)); S(document.getElementById(`s${sc.startT}_${i}`), { o: p, y: (1 - p) * 40, s: .94 + .06 * p }); });
+    } };
+  },
+  compare(sc) {
+    const el = mkscene(); const [L, R] = sc.sides;
+    el.innerHTML = `<div class="abs" style="left:60px;top:220px;width:960px;font-size:44px;color:#aaa" class="mono">same model · same question</div>
+      <div class="abs" id="cA" style="left:60px;top:300px;width:960px"></div><div class="abs" id="cB" style="left:60px;top:640px;width:960px"></div>`;
+    const bar = (s, id) => `<div style="font-size:56px;font-weight:700;margin-bottom:20px;color:${s.color}">${s.name}</div>
+      <div style="height:120px;border-radius:24px;background:#222;overflow:hidden"><div id="${id}f" style="height:100%;width:0;background:${s.fill};border-radius:24px"></div></div>
+      <div class="mono" style="font-size:84px;font-weight:700;margin-top:18px;letter-spacing:-.03em"><span id="${id}n">0</span><span style="color:#888;font-size:48px"> ${s.unit}</span></div>`;
+    const A = el.querySelector('#cA'), Bx = el.querySelector('#cB'); A.innerHTML = bar(L, 'A'); Bx.innerHTML = bar(R, 'B');
+    const ta = at((sc.items || [])[0]), tb = at((sc.items || [])[1]); ev(ta, 'whoosh', .4); ev(tb, 'whoosh', .4); ev(tb + .9, 'chime', .8);
+    return { el, update(t) {
+      const pa = oc(ramp(t, ta, ta + .9)), pb = oc(ramp(t, tb, tb + .9));
+      S(A, { o: clamp(pa * 4), y: (1 - pa) * 40 }); S(Bx, { o: clamp(pb * 4), y: (1 - pb) * 40 });
+      document.getElementById('Af').style.width = (L.frac * 100 * pa) + '%'; document.getElementById('Bf').style.width = (R.frac * 100 * pb) + '%';
+      document.getElementById('An').textContent = (L.value * pa).toFixed(L.dec || 0); document.getElementById('Bn').textContent = (R.value * pb).toFixed(R.dec || 0);
+      const ex = sc.extra; if (ex) { const e = document.getElementById('cx'); }
+    } };
+  },
+  chips(sc) {
+    const el = mkscene(); const its = sc.items || [];
+    el.innerHTML = its.map((it, i) => `<div class="abs" id="c${sc.startT}_${i}" style="left:60px;top:${230 + i * 230}px;width:960px;padding:40px 46px;border-radius:30px;background:#1f1f1f;border:2px solid #333"><div class="mono" style="font-size:42px;color:#FF4C00;margin-bottom:12px">${it.tag}</div><div style="font-size:78px;font-weight:800;letter-spacing:-.03em;line-height:1.05">${it.text}</div></div>`).join('');
+    its.forEach(it => ev(at(it), 'pop', .8));
+    return { el, update(t) { its.forEach((it, i) => { const p = oc(ramp(t, at(it), at(it) + .4)); S(document.getElementById(`c${sc.startT}_${i}`), { o: p, y: (1 - p) * 60, s: .95 + .05 * p }); }); } };
+  },
+  cta(sc) {
+    const el = mkscene();
+    el.innerHTML = `<div class="abs" id="fl" style="left:390px;top:330px;width:300px;height:428px"><img src="${D.assets}/logos/firecrawl-logo.svg" style="width:100%;height:100%" onerror="this.style.display='none'"></div>
+      <div class="abs" id="ct" style="left:0;width:1080px;top:820px;text-align:center;font-size:150px;font-weight:800;letter-spacing:-.04em">Alexandria</div>
+      <div class="abs mono" id="cu" style="left:0;width:1080px;top:1010px;text-align:center;font-size:42px;color:#FF4C00">firecrawl.dev/alexandria</div>`;
+    ev(sc.startT + .1, 'impact', .8); ev(sc.startT + .25, 'pop', .7);
+    return { el, update(t) { const lt = t - sc.startT; const p = back(ramp(lt, .05, .7));
+      S(document.getElementById('fl'), { o: clamp(lt * 5), s: .6 + .4 * p, y: (1 - p) * 60 }); const q = oc(ramp(lt, .35, .9)); S(document.getElementById('ct'), { o: q, y: (1 - q) * 40 }); const u = oc(ramp(lt, .7, 1.2)); S(document.getElementById('cu'), { o: u }); } };
+  },
+};
+
+const built = scenes.map(sc => ({ sc, ...B[sc.type](sc) }));
+
+// ---------- captions: groups of up to 3 words, break on pauses and line ends
+const groups = []; { let g = []; W.forEach((w, i) => { const prev = W[i - 1]; if (g.length && (g.length >= 3 || w.start - prev.end > .35 || w.line !== prev.line || g.join(' ').length > 16)) { groups.push(g); g = []; } g.push(w); }); if (g.length) groups.push(g); }
+const capsEl = document.getElementById('caps');
+function captions(t) {
+  const g = groups.find(g => t >= g[0].start - .04 && t < g[g.length - 1].end + .12) || null;
+  if (!g) { capsEl.style.opacity = 0; return; }
+  const pop = oc(ramp(t, g[0].start - .04, g[0].start + .1));
+  capsEl.style.opacity = 1; capsEl.style.transform = `scale(${.94 + .06 * pop})`;
+  capsEl.innerHTML = g.map(w => `<span class="${t >= w.start && t < w.end + .02 ? 'on' : ''}">${w.w}</span>`).join('');
+}
+window.render = t => {
+  built.forEach(b => { const on = t >= b.sc.startT - .05 && t < b.sc.endT + .15; const f = on ? oc(ramp(t, b.sc.startT - .05, b.sc.startT + .2)) * (1 - ramp(t, b.sc.endT - .1, b.sc.endT + .15)) : 0; S(b.el, { o: b.sc.startT === 0 ? (t < b.sc.endT - .1 ? 1 : 1 - ramp(t, b.sc.endT - .1, b.sc.endT + .15)) : f }); if (on) b.update(t); });
+  captions(t);
+};
+window.events = () => events.slice().sort((a, b) => a.t - b.t);
+window.sceneTimes = () => scenes.map(s => [s.type, +s.startT.toFixed(2), +s.endT.toFixed(2)]);
+window.ready = Promise.all([...document.images].map(i => i.complete ? 1 : new Promise(r => { i.onload = i.onerror = r; }))).then(() => document.fonts.ready);
+</script>
