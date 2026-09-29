@@ -1,6 +1,5 @@
 __pycache__/
 .DS_Store
-weekly-video-topics/internal/
 
 # never commit a voice sample
 say-as-me/voice/
