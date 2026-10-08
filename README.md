@@ -39,6 +39,8 @@ These two are a pair: the curator owns the library, the builder reads it. Instal
 | Skill | Command | Description |
 |-------|---------|-------------|
 | wdyt | `/wdyt` | Give an honest opinion without implementing anything |
+| New Project | `/new-project` | Start a project on the usual stack (Astro, React, Electrobun, Rust, Bun) and set up agent-harness |
+| Verify | `/verify` | Check a change end to end in the running app with Agent Browser, or computer use for native parts |
 | Questions | (auto) | Ask casual clarifying questions before acting on an ambiguous or question-ended request |
 
 ## Installation
