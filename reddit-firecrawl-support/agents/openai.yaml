@@ -1,7 +1,7 @@
 interface:
   display_name: "Reddit Firecrawl Support"
-  short_description: "Find fresh Reddit support opportunities"
-  default_prompt: "Use $reddit-firecrawl-support to find the best unanswered Firecrawl discussions from the last three months and draft friendly replies."
+  short_description: "Find Reddit support and useful product fits"
+  default_prompt: "Use $reddit-firecrawl-support to find the best unanswered Reddit discussions from the last three months, including problems with no Firecrawl mention that Alexandria, scraping, search, or other verified features can help solve. Discover relevant subreddits and draft friendly replies."
 
 policy:
   allow_implicit_invocation: true
