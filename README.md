@@ -15,6 +15,7 @@ A collection of AI agent skills for content creation and developer tooling. Comp
 | Short | `/short` | Make a vertical 9:16 YouTube Short from a topic or script: editable script, cloned or recorded voice, captions, motion graphics, music, sound effects |
 | Title Score | `/title-score` | Score a YouTube title 0-100 with a vidIQ-style heuristic breakdown |
 | Title Research | `/title-research` | Mine real top-performing YouTube titles for a topic, then generate and rank candidates |
+| Video Script | `/video-script` | Write and check a YouTube script from the channel's retention data and the lessons from past scripts (needs the firecrawl-data repo) |
 
 ### Websites
 
