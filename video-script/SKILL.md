@@ -39,6 +39,8 @@ Create `$VIDEOS_DIR/<short-slug>/script.md`, or edit the existing one, in this s
 - **`## Exp`:** the explanation, kept short. Its first line names the product.
 - **`## Build your own`** (build videos only): one numbered step per tutorial branch, written from the real code.
 - **`## Demo`:** worked demos as numbered `### 1.`, `### 2.` subsections, or one live build. Leave results as placeholders like `[results]`; never invent them.
+  - Every demo must be something the user can run: a live site, a repo or branch, or an exact prompt in a named tool. Before writing one, find it (`$VIDEOS_DIR/<slug>/demo`, a tutorial repo, a deployed URL) or ask the user what they'll show. If it doesn't exist yet, say so and offer to build it rather than scripting around it.
+  - Run each demo once, or read its code, so the steps, button names and example inputs in the script match what's on screen.
 - **`## Outro`:** includes the 500 extra credits line.
 - **`## Notes`:**
   - for anything demoed or built on camera, "Recording the build" and "Recording the demo" blocks: how to run it, which examples are cached, per-demo gotchas and what to re-check on the day;

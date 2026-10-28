@@ -26,6 +26,7 @@ What the user has corrected or approved while writing scripts. Read this before 
 
 - **One build per video.** If a second build exists (an MCP server alongside the app), give it one teaser line in the Outro ("that's the next video") and decide later from how the video does. [adfinder]
 - **Order: Intro, Exp, Build your own, Demo, Outro.** The build comes first and the finished app is the payoff. Keep the Demo on the UI: what to click, with numbered `### 1.` beats. [adfinder]
+- **Every demo in the script needs a real, runnable demo behind it**: an app, a tutorial branch, or an exact prompt. Map each `### n.` beat to what the user will run, and list how to run it in the Notes so they can go through the demos before recording. [adfinder]
 - **Write the build section from the real repo.** Read every tutorial branch before writing: what each one adds, the exact calls and options, line counts. Each branch becomes a numbered step with `[checkout <branch>, highlight ...]` cues and a `[results]` placeholder for the run. [adfinder]
 
 ## Voice
