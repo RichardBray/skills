@@ -5,6 +5,8 @@ description: The full edit for a vertical talking-head Short / Reel / TikTok —
 
 # Short edit
 
+If the short is a Beacon project (`.beproj`), use `short-edit-beacon` instead; come back here only for §6 (titles and descriptions).
+
 Pipeline: **speed up → transcribe → detect layout → green panel → config → generate → lint → render → verify frames → titles & descriptions**.
 "The usual" = all of it. Approved on `fake-reviews`, `harness-tax-2`, `firecrawl-trends`
 and `firecrawl-jobs` (configs in `configs/<slug>-captions.json`, panels in

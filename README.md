@@ -12,6 +12,7 @@ A collection of AI agent skills for content creation and developer tooling. Comp
 | Shorts Writer | `/shorts-writer` | Write short video scripts for developer-focused tech shorts |
 | Say as Me | `/say-as-me` | Speak a script in your own cloned voice (Qwen3-TTS on Replicate) |
 | Short Edit | `/short-edit` | Edit a recorded talking-head short: 1.2x speed-up, green-screen paper-cutout animation, phrase captions with logo pops, Shorts title research, descriptions and thumbnails |
+| Short Edit (Beacon) | `/short-edit-beacon` | Dress a short inside a Beacon project: rough cut, half/full-screen camera with punch-ins, 400px screenshots with highlighter wipes, motion graphics, B-roll, real logos, middle captions, Auphonic |
 | Short | `/short` | Make a vertical 9:16 YouTube Short from a topic or script: editable script, cloned or recorded voice, captions, motion graphics, music, sound effects |
 | Title Score | `/title-score` | Score a YouTube title 0-100 with a vidIQ-style heuristic breakdown |
 | Title Research | `/title-research` | Mine real top-performing YouTube titles for a topic, then generate and rank candidates |
