@@ -5,3 +5,6 @@ __pycache__/
 say-as-me/voice/
 reference.wav
 reference.txt
+
+# research scratch (scraped Reddit dumps)
+.rd/
