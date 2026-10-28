@@ -5,7 +5,7 @@ def api(m, u, b=None):
 def uri(p):
     return "data:image/png;base64," + base64.b64encode(open(p, "rb").read()).decode()
 frame, ref, out, prompt = sys.argv[1:5]
-model = sys.argv[5] if len(sys.argv) > 5 else "flux-2-max"
+model = sys.argv[5] if len(sys.argv) > 5 else "flux-3-image"
 inp = ({"prompt": prompt, "images": [uri(frame), uri(ref)], "aspect_ratio": "1:1", "resolution": "2k", "grounding": False,
         "output_format": "png", "safety_tolerance": 2} if model == "flux-3-image" else
        {"prompt": prompt, "input_images": [uri(frame), uri(ref)], "aspect_ratio": "1:1", "resolution": "4 MP",

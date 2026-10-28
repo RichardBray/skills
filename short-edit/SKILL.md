@@ -1,6 +1,6 @@
 ---
 name: short-edit
-description: The full edit for a vertical talking-head Short / Reel / TikTok — speed it up 1.2x, cover any green placeholder plate with a paper-cutout animation, add Reels-style phrase captions (2-4 words, white bold on a flat black box, no bounce) with pop-in logo tiles for brands mentioned, render, then research Shorts titles (real view counts, ranked with title-score) and write titles + descriptions for YouTube, Instagram and TikTok. Use when the user says "do the usual", hands over a new short (.mov/.mp4 in Downloads), asks to caption / subtitle a short, or asks for titles and descriptions for one.
+description: The full edit for a vertical talking-head Short / Reel / TikTok — speed it up 1.2x, cover any green placeholder plate with a paper-cutout animation, add Reels-style phrase captions (2-4 words, white bold on a flat black box, no bounce, no logo tiles), render, then research Shorts titles (real view counts, ranked with title-score) and write titles + descriptions for YouTube, Instagram and TikTok. Use when the user says "do the usual", hands over a new short (.mov/.mp4 in Downloads), asks to caption / subtitle a short, or asks for titles and descriptions for one.
 ---
 
 # Short edit
@@ -64,10 +64,7 @@ Fallback when OpenAI fails: Replicate `vaibhavs10/incredibly-fast-whisper` (see 
   "phrases": "Everyone thinks | changing a model | ...",
   "display": {"Py": "Pi", "1 33": "$1.33", "27 000": "27,000", "5 star": "5-star"},
   "subcomps": [{"id": "x-panel", "src": "compositions/x-panel.html", "start": 17.63, "duration": 10.97, "top": 0, "height": 852}],
-  "logos": [
-    {"id": "lg-ai", "start": 3.84, "end": 5.07, "pos": "full", "stagger": [0, 0.68],
-     "items": [["assets/icons/openai.svg", "ChatGPT"], ["assets/icons/claude.svg", "Claude"]]}
-  ]
+  "logos": []
 }
 ```
 
@@ -86,31 +83,25 @@ Fallback when OpenAI fails: Replicate `vaibhavs10/incredibly-fast-whisper` (see 
   word lists, and re-run `detect_layout.py`. Cuts usually shift by a frame or
   two (move `splits` and subcomp `start`), and trimmed endings mean dropping
   trailing phrases.
-- **logos.pos**: `full` puts the row below a centred caption (on the chest);
-  `split` puts smaller 150px tiles just below the split line, right-aligned over
-  the speaker's background. Never above the line: there they covered the very UI
-  the narration points at (install buttons, the prompt text). Logos `style`: `""` white rounded tile,
-  `"wide"` for wordmarks, `"bare"` for no tile (e.g. a red-flag icon).
-- A tile's entrance takes 0.44s and its exit starts at `end - 0.1`, so keep
-  `start + stagger + 0.44 < end - 0.1` or lint flags overlapping tweens.
+- **logos**: always `[]`. The user dropped the pop-in logo tiles that
+  appeared with captions; only add them back if asked (older configs such as
+  `fake-reviews-captions.json` show the `pos`/`style`/`stagger` fields).
 
 ## Locked style (user-approved)
 
 - Captions: Poppins 800, 76px, white, no quotes, no highlighted words, on a
   flat black rounded box (`rgba(0,0,0,.9)`, radius 24px). No gradient on the box.
 - No caption animation: each phrase hard-cuts in and out with its clip. The
-  bounce pop-in was dropped at the user's request. Logo tiles still pop.
+  bounce pop-in was dropped at the user's request.
 - Position: centred at y 900-1140 (just under the chin) on full-frame shots and
   full-screen recordings; in split sections the caption's bottom sits 20px above
   the split line.
 - Position follows majority overlap with the split windows, and a caption is
   cut short at a layout boundary so it never sits in the wrong place after a cut.
-- Logos: real logos only (`assets/icons/`, `assets/leadgen/logos/`, simple-icons
+- No logo tiles over the captions (user request). Brand logos inside panels
+  are still fine: real logos only (`assets/icons/`, `assets/leadgen/logos/`, simple-icons
   via `cdn.jsdelivr.net/npm/simple-icons@latest/icons/<name>.svg`, Wikimedia
-  Commons API for anything else, e.g. `File:Benzinga Wordmark.png`). White
-  wordmarks need a dark copy for the white tile. Several wordmarks in one row:
-  `"style": "wide", "img_h": 52` so they fit 1080px. Never hand-draw a brand. Skip anything the user excludes
-  (e.g. Google Maps).
+  Commons API for anything else, e.g. `File:Benzinga Wordmark.png`). Never hand-draw a brand.
 - **No SFX.**
 
 ## Green placeholder sections → paper-cutout panel
@@ -141,6 +132,41 @@ graphic), cover exactly that rect and time window with a sub-composition in the
   number + logo card + chip) and two story panels. Copy it and edit the world/
   css/js per plate. Ink chips vanish on the dark ground: use fire or cream for
   the payoff chip.
+- **Read the plate's label first.** The editor often types a note on the green
+  ("Motion busy people near subway", "Typing in claude desktop input"): build
+  what it says. Unlabelled plates get a paper-cutout panel from the narration.
+  Exception: when the line under an unlabelled plate describes a person in a
+  real-life moment ("makes better trades while you sleep"), the user preferred
+  realistic footage of it (someone asleep while a rising chart glows on the
+  nightstand) over a cutout. Use the REALISTIC flow below for those.
+- **Mockup plates** ("typing in claude desktop input"): recreate that app's UI
+  as a plain sub-comp instead of paper-cutout, and type the spoken prompt into it
+  char by char inside each word's Whisper window (`scripts/panel_coffee_claude.py`,
+  Claude.ai dark home screen, 1080x1920).
+- **Plate cover check:** a sub-comp can start one frame late and leak a green
+  frame. Start each panel ~0.02s before the plate, and after rendering scan the
+  final for green frames (any frame >3% `#2x7x2x`-ish green must be fixed).
+
+### REALISTIC plates → generated footage
+
+If the plate's label contains **REALISTIC** (any case, e.g. "REALISTIC crowd
+near a subway", or "realistic footage of ..."), don't build a cutout. Generate
+real-looking footage with Seedance 1 Pro on Replicate and mount it as a muted
+`<video>` in a tiny sub-comp (`compositions/coffee-subway-video-panel.html`):
+
+```bash
+python3 ~/skills/short-edit/scripts/gen_footage.py <slug>-<scene> 1080 960 3.9 \
+  "Morning rush hour in Williamsburg: commuters with coffee cups stream along a sidewalk toward a subway staircase with green railings, seen from behind and slightly above, soft early sunlight." 71
+```
+
+- Write the scene from the label plus the narration under it. No on-screen
+  text: the script appends a hard no-text clause, but Seedance still paints
+  gibberish on signs it draws, so frame the scene away from signage (a
+  wide street view, not a station entrance close-up) and check a contact sheet.
+- Generate 2 takes (different framing or seed) and pick the cleanest; keep the
+  others in `assets/clips/` for the user.
+- The script cover-crops the 1440x1440 square to the plate (trimming sky) and
+  trims to the plate duration.
 
 ## 4. Lint, render, verify
 
@@ -154,18 +180,28 @@ Project-wide lint is noisy from older files, so filter to yours. Expected
 warnings: `timeline_track_too_dense`, `google_fonts_import`.
 Render takes ~6 min for 45s, so run it in the background.
 
-Verify by frames: one per layout section, plus every logo moment and panel
-beat, tiled with `hstack`. Check caption legibility on light frames, that no
-logo covers the key UI the narration points at, and the panel beats.
+Verify by frames: one per layout section, plus every panel beat, tiled with
+`hstack`. Check caption legibility on light frames and the panel beats.
 
 Whisper squashes fast words, so re-check the printed caption list: merge any
 caption under ~0.4s into a neighbour (5 words is fine for a merge).
 
 ## 5. Deliver the video
 
-- Sped-up file path, captioned final path, and the caption/logo/panel timings.
+- Once the final render is verified, reveal it in Finder (user request):
+  `open -R final/videos/<slug>-captions.mp4` (opens `final/videos/` with the
+  file selected). Do it again for the `-nocta` cut if one was rendered.
+- Sped-up file path, captioned final path, and the caption/panel timings.
 - Flag anything only partly solved (low-contrast frames, brief captions,
   captions straddling a cut, names Whisper may have misspelt).
+- **"Comment WORD" endings:** that CTA only works on Instagram (ManyChat DM
+  auto-reply). Always also render a cut without it for YouTube Shorts and
+  TikTok: copy the config to `<slug>-nocta-captions.json`, truncate the
+  transcript JSON before the CTA's first word (`<slug>-fast-nocta.json`), set
+  `duration` to just before that word (in the pause after the last line), drop
+  the CTA phrases, and clamp the last split/subcomp to the new end. Output
+  `final/videos/<slug>-nocta-captions.mp4`. Then write the YouTube and TikTok
+  descriptions without the "Comment WORD" line.
 
 ## 6. Titles and descriptions (YouTube, Instagram, TikTok)
 
@@ -175,33 +211,70 @@ The user asks for these right after every edit, so do it as part of "the usual".
    The generic title-research skill searches long-form, which is the wrong
    pattern pool. Note the formulas of the top 3-5 by views ("The Best Way to
    Find X 😱" 167K, "Use ChatGPT To Get Any Job" 1.5M).
-2. **Generate 8-12 clickbait-but-true candidates** that borrow those formulas:
-   bold promise / accusation / secret / "this X just", 3-8 words, an emoji is
-   fine. The user rejected explanatory titles ("not clickbait enough").
-3. **Rank with title-research's scorer**, and show the score in the table:
+2. **Pick one search phrase first** (how people would type it, e.g. "how to
+   check insider trades", "where to open a coffee shop"). It leads the title and
+   the first line on every platform. One video, one phrase.
+3. **Generate 8-12 title candidates**, 4-10 words. Most should LEAD with the
+   search phrase and add a payoff ("How to Check Insider Trades Before You Buy
+   Any Stock (Claude)"). Include 2-3 hook-style titles borrowing the researched
+   formulas or the spoken hook ("Hedge Funds Pay Thousands For This Data, Claude
+   Gets It Free") as backups. Clickbait-but-true; no emoji in titles.
+4. **Rank with title-research's scorer**, and show the score in the table:
    `printf '%s\n' "T1" "T2" ... | python3 ~/skills/title-score/scripts/score.py -`
    (same script as `~/.claude-work/skills/title-score`). Iterate once on the top
    half (tweak the weakest sub-score) and re-score.
-4. Report a table: `# | Score | Title | Borrows from (real Short, views)`, sorted
-   by score. Recommend 1-2 picks; it's fine to recommend a lower-scored title.
-   The scorer is fitted on long-form vidIQ data and under-rates short punchy
-   Shorts titles, so say so.
-5. **YouTube description**: hook line, 1-2 lines of what the video shows, numbered
-   steps with `https://firecrawl.dev`, the exact prompt if one is on screen, then
-   5 hashtags including `#shorts`. Never invent a link; say what's missing.
-6. **Instagram caption**: emotional hook line, 2-3 line story with the key
-   number, optional "Comment WORD" CTA (only if they run a DM auto-reply,
-   otherwise "Prompt in the comments 👇"), 5 hashtags.
-7. **TikTok caption**: one line, keyword-first for search, an emoji or two,
-   5 hashtags.
-8. Skip any title whose claim the video doesn't back (invented stats like
+5. Report a table: `# | Score | Title | Borrows from (real Short, views)`, sorted
+   by score. Recommend one search-led pick plus one hook backup; it's fine to
+   recommend a lower-scored title. The scorer is fitted on long-form vidIQ data
+   and under-rates short Shorts titles, so say so.
+6. **YouTube description**: line 1 = search phrase + hook; 1-2 lines of what the
+   video shows with the real number/example; numbered steps in the right order
+   (1. Sign up for a free Firecrawl account: https://firecrawl.dev, 2. Connect
+   Firecrawl to Claude, 3. the prompt); the exact prompt if one is on screen;
+   then exactly 3 hashtags: `#shorts` + 2 topic tags. Never invent a link.
+7. **Instagram caption** (Reels):
+   - Line 1: search-phrase hook under 125 chars ("How to see insider trades
+     before you buy a stock"). Never a vague or keyword-free clever line.
+   - 2-3 lines of story with the real number/example from the video.
+   - One CTA only ("Comment WORD and I'll send you the exact prompt" only if a
+     DM auto-reply runs, otherwise "Prompt in the comments").
+   - Blank line, then exactly 3 hashtags: 1 broad, 1 mid, 1 niche. No #viral,
+     #fyp, or brand tags (#firecrawl) and no tags too broad to rank (#ai).
+8. **TikTok caption**: 150-225 chars, one paragraph. Search phrase in the first
+   3-5 words, one line of payoff with the number, one CTA, then exactly 3 tags.
+9. **No emoji/icons anywhere** in titles or captions (user request).
+   **Finance/trading/investing videos:** end every description and caption
+   (before the hashtags) with a short disclaimer line: "Not financial advice.
+   Firecrawl doesn't give trading or investment advice." Same idea for legal,
+   medical or tax topics ("Not legal/medical/tax advice").
+10. **Double-check with a subagent before showing the user.** Spawn a fresh
+   subagent with the transcript, the titles and the three captions, and have it
+   check: search phrase leads each title/caption, every claim and number is in
+   the video, steps are in the right order, exactly one CTA, exactly 3 hashtags,
+   no emoji, no generic tags, and no invented links. Fix whatever it flags, then
+   show the result.
+11. **Make every description copy-paste ready (user request):** give each
+   platform its own fenced code block (```` ```text ````) under a plain
+   "YouTube" / "Instagram" / "TikTok" heading. Inside the block: plain text
+   only, with no `>` quote markers, no markdown bold or links, real line breaks,
+   and the hashtags included. Notes (a missing link, an alternate prompt) go
+   outside the block, never inside it.
+12. Skip any title whose claim the video doesn't back (invented stats like
    "95% of creators", "Fake X Are Over"), and say why.
 
 Thumbnails on request. Preferred (user-picked) style: **pop-out**,
 `thumbnails/thumb-pop.css` (example `thumb-pop-harness-tax-lime.html`): pixel
 meter, 2-line uppercase Poppins 800 headline, italic line + highlight box
 (lime default, `class="orange"` for brand), then the video frame in a rounded
-card with the head breaking out over its top edge. Pick a reaction frame from a
+card with the head breaking out over its top edge.
+**Layout (user feedback):** big app/logo tiles across the top (`.apps` in
+`thumb-pop.css` is now 260px tiles with 160px logos; don't shrink them), and the
+text stack pushed down so it sits close above the photo, not floating under
+the icons with a big gap before the head. With the wide-frame vars below, a
+two-line headline at 370px works at `.stack { top: 600px; }`, leaving ~240px
+(of 3840) between the subline and the cap. Re-check that gap on every
+render and nudge `top` by headline length. Example:
+`thumb-pop-f-football-flux3.html`. Pick a reaction frame from a
 full-face shot, save it to `assets/hero/<slug>-frame.png`, cut it out with
 `npx hyperframes remove-background` to `<slug>-cutout.png`, then tune
 `--img-top`/`--card-top` so the cap clears the card edge. Render with
@@ -216,9 +289,8 @@ shadows, orange bokeh), asking for that exact style and his identity from both
 images. **First choice: `black-forest-labs/flux-3-image` on Replicate** (best
 likeness so far; `images: [frame, reference]`, `resolution: 2k`, `grounding:
 false`) via `scripts/flux_edit.py <frame> <ref> <out> '<prompt>' flux-3-image`.
-Also run `flux-2-max` (most dramatic light, some drift) and the OpenAI
-`gpt-image-2.5-flare` / `gpt-image-2.5-sunburst` / `gpt-image-2` edits side by
-side and let the user pick. (`black-forest-labs/flux-3` is video-only.) **Use a wide frame** (user preference):
+Never use `flux-2-max` (user ban). Alternatives to show side by side: the OpenAI
+`gpt-image-2.5-flare` / `gpt-image-2.5-sunburst` / `gpt-image-2` edits. (`black-forest-labs/flux-3` is video-only.) **Use a wide frame** (user preference):
 the bottom-half camera of a split section, where he takes up ~50% of the frame
 with mic, boom arm and desk visible (`crop=1080:1060:0:<split_y>`), not a
 cropped close-up; ask the model to keep the mic setup and swap the wall for
