@@ -44,7 +44,16 @@ Titles and descriptions afterwards: `short-edit` §6.
   once, and swallows pauses into words): dump `transcript_get` words, flag any
   word over ~2x its expected length, check its loudness from the `.brec`'s
   `microphone.wav` (Beacon's ffmpeg has no silencedetect: raw PCM + Python RMS),
-  and ripple-delete what's left.
+  and ripple-delete what's left. To hear what a stretched word hides, cut that
+  stretch out with Beacon's ffmpeg and run Beacon's `whisper-cli -ml 1 -sow`
+  on it alone (model in `~/Library/Caches/Beacon/models`); captions over it
+  need re-splitting and `caption_setText` by hand.
+- A screen recording with voice-over (no camera) plays full screen; zoom the
+  screen clip onto each item as it is named (scale and move about the point:
+  pos' = P + k(pos - P)).
+- A typed prompt (ChatGPT etc.) is a hand-written full-screen `motion_code`
+  graphic of the app's home page, the text typed per word as it's said, input
+  box in the middle of the screen, no captions over it.
 
 ## 2. Camera
 
@@ -81,6 +90,11 @@ list the top-half clips and check for gaps: a 3-frame gap showed black.
   above any cookie banner: `scripts/crop_panel.py <in> <top_px> <out>` (save into the project's `media/screens/`).
   Place with `media_import` (`at`, a Screenshots track), `clip_trim` to the
   line, transform x 0, y 480, scale 1.35, and a slow push-in to 1.42.
+- News sites dim the page under a cookie wall, and some (USA Today) block
+  headless Chromium. Capture with the page's banners and full-screen fixed
+  layers removed before the shot (a small CDP script), or pick another
+  outlet. ChatGPT's plugin pages render blank without a login; use the
+  vendor's own announcement page.
 - Check a reused screenshot is what it claims (a "Firecrawl plugin in Grok
   Bot" shot was ChatGPT's apps page).
 
@@ -119,7 +133,13 @@ removed the others (hook, Slack).
 `captions_create` with `from`/`to` = the short's range, `maxWords` 3, style:
 Montserrat 800, size 72, uppercase, white, highlight `[1, 0.84, 0.1, 1]`,
 background `[0, 0, 0, 0.75]`, radius 18, maxWidth 0.9, **anchorY middle,
-offset 0** (on the seam between the halves; user choice). Then fix Whisper's
+offset 0** (on the seam between the halves; user choice). Captions over a
+**full-screen camera** shot go lower: `caption_place` each one (one clip per
+call; `clips` is refused) to middle, offsetY **101**, and give them a **blue**
+label (`selection_set`, then `edit_label`). The track's highlight stays off
+(alpha 0): `captions_create`'s `style` changes the whole track, so never pass
+a visible highlight. Leave a full-screen motion graphic with no captions:
+create captions on either side of it. Then fix Whisper's
 spellings with `caption_setText` (GrokBot, paywall, FullEnrich), and after
 any re-cut look for one-frame sliver captions.
 
