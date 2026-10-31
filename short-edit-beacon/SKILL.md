@@ -75,6 +75,13 @@ the top half is y +480 and the bottom half y -480.
 - A slow push-in (0.45 → 0.5, x -44, y -500, easeInOut) on any take over ~8 s.
 - Set the framing on one clip, `frame_at`, then apply it to the rest in one
   `clip_set`.
+- **Intro and outro moves** (user request): a slow zoom in across the whole
+  full-screen hook (scale 0.92 → ~1.06, linear, split across its clips so the
+  speed carries over a cut) and a slow zoom out over the CTA (start zoomed,
+  easeOut back to 0.92). Zoom about the face: pos' = P + k(pos - P).
+- A small pop-in prop on a line about the speaker ("I'm not an American" got a
+  waving US flag beside the cap): hand-drawn `motion_code` canvas, about 1 s,
+  kept clear of the face and the frame edge at the backOut overshoot.
 
 ## 3. The top half (y +480, 1080x960): never empty while the camera is halved
 
@@ -92,7 +99,7 @@ list the top-half clips and check for gaps: a 3-frame gap showed black.
   line, transform x 0, y 480, scale 1.35, and a slow push-in to 1.42.
 - News sites dim the page under a cookie wall, and some (USA Today) block
   headless Chromium. Capture with the page's banners and full-screen fixed
-  layers removed before the shot (a small CDP script), or pick another
+  layers removed before the shot (`scripts/shot-clean.ts`), or pick another
   outlet. ChatGPT's plugin pages render blank without a login; use the
   vendor's own announcement page.
 - Check a reused screenshot is what it claims (a "Firecrawl plugin in Grok
@@ -119,6 +126,27 @@ channels collapsing into a Summary card, chat bubbles labelled per word.
 me a lot of time"): `broll_add` region `[0, 0, 1080, 960]` with a written
 prompt, `broll_estimate`, then `broll_generate` (Seedance 2.5, ~$0.22/s;
 the user allows as many as are best). Flag generic stock-person shots.
+
+**Full-page beats** (user favourite, 2-4 s, hide the camera): a full-screen
+screenshot on the product's name (the vendor's home page, 400 CSS px x 711
+tall, scale 1.35 at y 0), a logo wall on a list of categories ("travel to
+sports to finance and much more": a row of real provider app icons per word,
+then a zoom out into a wall and "+ much more"), a data graphic on a hook about
+a topic (a US map coloured by party with seat bars and counts under it). No
+captions over them; remove the caption clips in the span. Real data only:
+check the numbers that week and footnote what they mean. For Firecrawl,
+providers come from the Alexandria catalogue (`firecrawl_find_tools`,
+`categories`, level providers).
+
+Beacon's motion graphics load nothing from outside the page, and a page with
+embedded icons or map paths is too big for one `motion_code` call. Render
+those yourself: write the page with `window.__frame(t)`, then
+`bun scripts/render-html.ts <page.html> <frames dir> <seconds>` (headless
+Chromium, 1080x1920, 30 fps) and encode with Beacon's ffmpeg
+(`-c:v hevc_videotoolbox -q:v 80 -tag:v hvc1 -pix_fmt yuv420p`) into the
+project's `media/`, then `media_import` onto the Motion graphics track. Check a
+contact sheet of the frames first. To replace one, import a new file name
+(Beacon keeps the old asset).
 
 **Logos**: real ones only. App icons: the iTunes Search API
 (`https://itunes.apple.com/search?term=<app>&entity=software`, swap
