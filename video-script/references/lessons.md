@@ -14,6 +14,8 @@ What the user has corrected or approved while writing scripts. Read this before 
 - **Name the big, familiar companies in line 1.** "meta, google and tiktok all have the same problem" beat "this is X" and "if you want to find ads you'd have to go to multiple places". Familiar names, then the shared problem. [adfinder]
 - **Line 2 states the problem plainly**, then the intro shows the thing working on a real example with a real number ("hellofresh, who've had the same google ad running for three years"). [adfinder]
 - **The last line of the Intro has to promise what Exp delivers.** If the Intro ends "let me show you where the data comes from, and how to build your own", Exp must open by naming that data source. [adfinder]
+- **A bigger-picture thesis beats a "what changes for you" news opener.** The user rewrote a deals-recap intro into "ai companies aren't just selling you the models anymore, they're buying the tools around them". Keep that kind of thesis, but pay it off in Exp, and never promise "exactly what their end goal is" when the sources don't say. [openai-meta-coding-tools]
+- **Describe every named company in the intro in a few words**, the least-known one first in line. Don't defer with "if you don't know these companies I'll explain later". [openai-meta-coding-tools]
 - **Size claims must be true of what you'll show.** "Under 60 lines of code" applies to the tutorial server, not the full app; say "the core of it". Check with `wc -l` before writing the number. [adfinder]
 
 ## Exp
