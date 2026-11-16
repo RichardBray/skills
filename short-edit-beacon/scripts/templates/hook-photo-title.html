@@ -1,0 +1,36 @@
+<html><head><meta charset="utf-8"><link rel=stylesheet href=base.css><style>
+body{background:#000}
+#photo{position:absolute;left:0;top:0;width:1080px;height:1000px;overflow:hidden}
+#ph{position:absolute;left:0;top:-20px;width:1080px;transform-origin:250px 300px}
+#sh{position:absolute;left:0;right:0;top:560px;height:460px;background:linear-gradient(transparent,rgba(0,0,0,.7) 45%,rgba(0,0,0,.7) 75%,transparent)}
+#t{position:absolute;left:40px;right:40px;top:610px;text-align:center;font-weight:900;font-size:118px;line-height:.98;color:#fff;letter-spacing:-3px;text-transform:uppercase;text-shadow:0 6px 24px rgba(0,0,0,.6)}
+.k{display:inline-block;background:#FFD400;color:#111;padding:4px 22px 10px;border-radius:16px;transform:rotate(-3deg);text-shadow:none}
+#wh{position:absolute;inset:0;background:#fff;display:none}
+.lg{position:absolute;left:50%;opacity:0;transform-origin:50% 50%}
+#rs{position:absolute;left:40px;top:50px;width:1000px;box-shadow:0 30px 90px rgba(0,0,0,.7);opacity:0;border-radius:6px}
+</style></head><body>
+<div id=photo><img id=ph src="raw/gates1984.jpg"><div id=sh></div></div>
+<div id=t><span class=k id=k>3 job offers</span><br>one resume<br>age 18</div>
+<div id=wh>
+ <img class=lg id=l1 src="raw/logo_dec.png" style="width:600px;margin-left:-300px;top:110px">
+ <img class=lg id=l2 src="raw/logo_ge.png" style="width:260px;margin-left:-130px;top:350px">
+ <img class=lg id=l3 src="raw/logo_honeywell.png" style="width:600px;margin-left:-300px;top:670px">
+</div>
+<img id=rs src="raw/resume.png">
+<svg class=over id=sv></svg>
+<script src=lib.js></script><script>
+const SC=1000/1278, OX=40, OY=50;
+addRing(sv,'r1',418,66,60,34);
+addRing(sv,'r2',667,295,112,32);
+window.__frame=t=>{
+ const photoOn=t<2.5;
+ document.getElementById('photo').style.display=photoOn?'block':'none';
+ document.getElementById('t').style.display=photoOn?'block':'none';
+ ph.style.transform=`scale(${1+0.12*clamp(t/2.5)})`;
+ k.style.transform=`rotate(-3deg) scale(${0.3+0.7*back(prog(t,0.02,0.4))})`;
+ const wh=document.getElementById('wh');wh.style.display=(t>=2.5&&t<4.2)?'block':'none';
+ [['l1',2.55],['l2',3.0],['l3',3.35]].forEach(([id,t0])=>{const e=document.getElementById(id);const p=back(prog(t,t0,t0+0.35));e.style.opacity=t>=t0?1:0;e.style.transform=`scale(${0.3+0.7*p})`;});
+ const rp=back(prog(t,4.4,4.8));rs.style.opacity=t>=4.4?1:0;rs.style.transform=`scale(${0.7+0.3*rp}) rotate(${(-3*(1-rp))}deg)`;
+ ring('r1',t,6.0);ring('r2',t,7.4);
+};
+</script></body></html>

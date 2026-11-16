@@ -1,0 +1,4 @@
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#fff;font-family:-apple-system,"SF Pro Display","Helvetica Neue",Helvetica,Arial,sans-serif}
+svg.over{position:absolute;left:0;top:0;width:1080px;height:1920px;pointer-events:none}
+.ring{fill:none;stroke:#e5322d;stroke-width:9;stroke-linecap:round;stroke-linejoin:round;opacity:0}
+.layer{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0}

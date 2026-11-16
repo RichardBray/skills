@@ -1,0 +1,12 @@
+body{background:#141413;color:#e8e6e3;font-family:Menlo,"SF Mono",monospace;font-size:46px;line-height:1.36}
+#w{position:absolute;left:40px;right:40px;top:90px}
+.box{border:2px solid #D97757;border-radius:16px;padding:22px 28px;margin-bottom:34px}
+.box .h{color:#e8e6e3}.box .h b{color:#D97757}
+.dim{color:#8a8782}
+.ln{white-space:pre-wrap;margin:0 0 10px}
+.in{border:2px solid #5d5a55;border-radius:14px;padding:16px 22px;margin:22px 0}
+.in .c{display:inline-block;width:18px;height:36px;background:#e8e6e3;vertical-align:-6px;margin-left:2px}
+.dot{color:#e8e6e3}.ok{color:#7fd28d}.or{color:#D97757}
+.tool b{color:#e8e6e3}
+.hl{color:#fff;font-weight:700}
+.row{white-space:pre-wrap;font-size:38px;color:#e8e6e3}

@@ -22,6 +22,8 @@ Record in DESIGN.md:
 - Palette colours, their semantic roles and approximate proportions; typography scale and spacing rhythm.
 - Asset provenance, motion intentions and material evidence gaps.
 
+**Make every palette and type choice explainable.** When the client names a reference site, scrape its branding (colours, fonts, radii, section backgrounds) and derive from it. Render four to six heading/body pairings side by side before choosing, and record in DESIGN.md why the winner beat the others. A client who cannot tell why a colour or font was chosen will distrust the whole direction.
+
 **No automatic beige or pastel palette.** Derive colours from observed references and the client's brand. Preserve saturation, contrast and colour balance deliberately instead of muting everything into a familiar model-generated style. Cream and pastels remain valid when supported by the brief or references. Treat a palette experiment as reversible: record the baseline, change only the intended variables, and compare the full journey before choosing.
 
 ## Build the useful structure first
@@ -36,17 +38,23 @@ Use shared components for wordmarks, navigation, closing invitations and footer.
 
 Default readable copy to at least 18 CSS px, including mobile navigation, controls and footer; aim for 20px body text. Honour explicit project constraints. Make a larger hero's headline and CTA proportionate to its area. Keep supporting copy subordinate to the headline and consistent with comparable introductions elsewhere.
 
+Keep the hero to a headline, one supporting line and the actions. Move trust badges into the proof strip below rather than repeating them. When the reference uses a full-viewport split hero, do not cap its height (tall screens expose the cap), measure the reference's stacking breakpoint and mobile image height in the browser rather than guessing, and centre the copy against the visible hero, not an intrinsic image height.
+
 Balance the entire hero, not individual elements. Check optical vertical centring, text measure, line breaks and the distance between imagery and copy. Cap oversized viewport-based heroes on tall displays. Keep decorative art close enough to frame the content without crowding it. Remove decoration that does not earn its space. Do not add diagonal arrows to every link or button by default.
 
-Use whitespace as a shared rhythm. Inspect adjacent sections together: their combined padding may double an intended gap. Curved edges can soften a playful brand, but use them only when supported by its direction. Account for their painted bounds when spacing nearby text and footers. Do not prescribe curves for every site.
+Use whitespace as a shared rhythm. Inspect adjacent sections together: their combined padding may double an intended gap. Round buttons, cards and contained photographs; keep full-bleed background bands and edge-to-edge photos square. Curved edges can soften a playful brand, but use them only when supported by its direction. Account for their painted bounds when spacing nearby text and footers. Do not prescribe curves for every site.
 
 A short page's footer should reach the viewport bottom through normal document layout; a long page's footer follows its content. Avoid fixed positioning that obscures content. Preserve comfortable space above footer columns and below the final line.
 
 ## Make imagery and motion intentional
 
+Audit the client's photographs before choosing a layout: count usable images per room and check pixel sizes. Small phone photos cannot carry a full-bleed, image-led design as they are. See the image pipeline in [refinement patterns](references/refinement-patterns.md#image-pipeline) for splitting composites, faithful upscaling, edge expansion, re-rendering and reframing, and always keep the unedited version so the client can revert.
+
 Use the client's authentic imagery where suitable. When image improvement is requested, preserve identity and activity while making restrained lighting, exposure, crop or depth-of-field changes. Keep originals and record edits. Do not silently fabricate documentary details. Better photographs may justify more prominent placement; decorative illustrations should support the brand rather than replace useful evidence.
 
 Check real rendered image bounds. Border radius around a letterboxed `object-fit: contain` element can leave the actual photo's corners square. Match the element to the image's aspect ratio or use an intentional cropped container. Review all four corners, masks, responsive crops and compositing against the actual background.
+
+Motion must be noticeable at ordinary scrolling speed; a client who cannot see it will report that there is none. Reveal readable blocks (headings, paragraphs, list items, buttons) as they arrive, staggered within each group. Keep large photographs still: do not parallax, zoom or clip-expand image grids, sticky images or full-bleed bands unless the client asks, and remove such effects first when they object.
 
 Plan motion as a coherent system: initial hero entrance, scroll progression, component state changes and route continuity. Match intensity to the brief and reference evidence. Make motion perceptible at ordinary browsing speed without delaying access to the main action. Sequence text and images where it adds hierarchy; do not repeatedly hide every line on every scroll.
 

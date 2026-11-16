@@ -1,6 +1,6 @@
 ---
 name: short-edit-beacon
-description: Edit a vertical talking-head Short inside Beacon (a .beproj, through the Beacon MCP tools) the way the user does - rough cut (retakes, silences, chatter), camera in the bottom half with full-screen hook and CTA, the top half filled with 400px-wide screenshots, highlighter wipes, motion graphics, B-roll and real logos, punch-in zooms, middle captions, then Auphonic. Use when the user asks to rough-cut, lay out, dress or finish a short in Beacon, or says "do the usual" on a Beacon project. For HyperFrames renders of a downloaded .mp4, use short-edit instead.
+description: Edit a vertical talking-head Short inside Beacon (a .beproj, through the Beacon MCP tools) the way the user does - rough cut (retakes, silences, chatter), camera in the bottom half with full-screen hook and CTA (or the Hormozi-style cutout over full-bleed screens), the top half filled with 400px-wide screenshots, highlighter wipes, motion graphics, B-roll and real logos, punch-in zooms, captions, then Auphonic. Also covers working through the user's section comments, checking every claim shown on screen, and thumbnail text. Use when the user asks to rough-cut, lay out, dress or finish a short in Beacon, or says "do the usual" on a Beacon project. For HyperFrames renders of a downloaded .mp4, use short-edit instead.
 ---
 
 # Short edit in Beacon
@@ -9,8 +9,14 @@ Approved on the Grok plugins short in `~/Movies/Beacon/3-shorts-new.beproj`
 (2026-10-28; the user: "Done an amazing job"). Earlier hand-made shorts in
 `~/Movies/Beacon/3-shorts.beproj` set the layout. Open either to copy from.
 
-Order: **plan → rough cut → camera → top half → highlights → logos → zooms → captions → audio → verify**.
+Order: **plan → rough cut → layout → top half → highlights → logos → zooms → captions → audio → verify**.
 Titles and descriptions afterwards: `short-edit` §6.
+
+Supporting files, read when the step needs them:
+- `layout-cutout.md`: the Hormozi layout (presenter cut out bottom-right over full-bleed screens).
+- `claims-and-assets.md`: check what a graphic states, and where photos, logos and screenshots come from.
+- `gotchas.md`: Beacon and tooling traps that cost time.
+- `scripts/templates/`: HTML screens to copy (terminal, hook, logos, scrolling page, brand numbers).
 
 ## 0. Before anything
 
@@ -25,6 +31,11 @@ Titles and descriptions afterwards: `short-edit` §6.
 - For anything beyond the rough cut, **write the plan first and wait for the
   go** (user request): a table of time → what fills the top half, the
   highlights, the B-roll count, caption placement, and the open questions.
+- Pick the layout with the user: **halves** (camera bottom half, screens top
+  half, §2-§3) is the default; **cutout** (`layout-cutout.md`) when they point
+  at the Hormozi short or ask for the presenter over full-screen screens.
+- Recordings may be consecutive sections of one video rather than retakes of
+  all of it: read all transcripts before deciding what a "take" is.
 
 ## 1. Rough cut (shorts are tighter than long videos)
 
@@ -171,13 +182,15 @@ create captions on either side of it. Then fix Whisper's
 spellings with `caption_setText` (GrokBot, paywall, FullEnrich), and after
 any re-cut look for one-frame sliver captions.
 
-## 5. Audio (last, once the picture is locked)
+## 5. Audio (last, once the picture and every spoken line are locked)
 
 `auphonic_review` with **only the short's audio clips** and the **Usual-5**
-preset (`auphonic_presets`; Polish on, de-esser 0.2), then `auphonic_apply`.
-The cleaned file is one clip on a new Auphonic track, not linked to the
-camera, and the originals are muted. Re-cutting later means cutting that clip
-too (the user splits it along), or cleaning again.
+preset (look its uuid up with `auphonic_presets`, never hard-code it; Polish
+on, de-esser 0.2), then `auphonic_apply` when the user has asked for the
+clean. The cleaned file is one clip on a new Auphonic track, not linked to the
+camera, and the originals are muted. A 60 s short cleans in about 20 s.
+Re-cutting later means cutting that clip too (the user splits it along), or
+cleaning again, so settle any cut or re-recorded line first.
 
 ## 6. Verify
 
@@ -188,3 +201,49 @@ too (the user splits it along), or cleaning again.
   a recording's audio 35 frames late from its camera on another track.
 - Report: what fills each time range, the costs (B-roll dollars, motion
   graphics on OpenAI), and the spots worth a look.
+
+## 7. Feedback rounds: the user's comments are sections
+
+The user reviews in Beacon and leaves each comment on a **section**: its
+`comment` (shown "(open)" by `project_describe`) says what to change, its range
+is where it applies. Older projects have the comment as the section's name
+(a long name, no `comment`).
+
+- Start every round with `project_describe` and read the sections. They are
+  on the **current** timeline: the user trims and ripples between rounds, so
+  re-read `transcript_get` and the clip times and never reuse times from an
+  earlier round. A clip they name by id is the one to change.
+- Do what each open comment says, look at the result (`frames_sheet` over its
+  range), then `section_set` with `reply`: one line on what you did. Don't
+  remove the section; the user reads the reply and clears it. Reply only to
+  what was actually fixed, and tell the user when one is left open. For an
+  old-style comment typed as a name, move it into `comment` (name "") and
+  reply the same way.
+- An instruction that would put something false or misleading on screen is
+  not carried out silently: do the closest honest version, or do it and flag
+  it (see `claims-and-assets.md`).
+- Keep overlays on their own Motion graphics track so they ripple with the
+  cut, and replace a screen by removing the old clip and importing a new
+  file name (Beacon keeps the old asset).
+- The user may hide the Captions track while editing: do not unhide it, and
+  say when the captions no longer match a re-trimmed cut.
+
+## 8. Thumbnail and hook text
+
+- The face names the person: do not spend the text on a name a viewer can
+  see. The title carries the name for search.
+- Three to five words, one idea, curiosity or a consequence for the viewer
+  ("Would this get you hired?") rather than a caption of the footage.
+- Never pair an age, date or number with a photo from a different one (a
+  1984 portrait under "age 18"): change the text or the photo.
+- Check the first frame at phone size: the text must not sit under the
+  presenter's head or the bottom-half camera.
+- The first frame is the thumbnail: title, tag and logo are fully formed at
+  t 0 (no pop-in that starts small); animate only what follows.
+- When the only photo is not the face people know (a young or unusual one),
+  add a recognition cue the viewer knows: for Gates the Windows logo. The
+  1992-2001 flag (`Windows Logo (1992-2001).svg`, Commons, public domain) has
+  no text and sits straight on the photo with a thin white glow; the 1985-89
+  wordmark version is black text on transparent and needs a white card. The
+  user chose the flag without any lettering, with the title text ("18 years
+  old / 3 job offers") kept: "no text" meant no text on the logo.
