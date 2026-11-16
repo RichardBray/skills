@@ -1,3 +1,5 @@
+import type { Cfg } from "../scripts/lib.ts";
+
 const css = `
 .tb{position:absolute;left:0;right:0;top:0;height:92px;display:flex;align-items:center;gap:20px;padding:0 36px;font-size:34px;font-weight:700}
 .rw{position:absolute;left:36px;right:36px;border:2px solid #e5e7eb;border-radius:16px;padding:0 26px;display:flex;align-items:center;justify-content:space-between;font-size:31px;font-weight:600;color:#1f2937}
@@ -6,7 +8,7 @@ const css = `
 .ms{position:absolute;left:36px;right:36px;bottom:26px;border-radius:20px;padding:18px 26px;font-size:28px;line-height:1.38;color:#1f2937;border:2px solid}
 .ms .k{font-family:M;font-size:20px;letter-spacing:1px;margin-bottom:6px}
 `;
-export default {
+const cfg: Cfg = {
   fcPos: 2, hookRadius: 30,
   css, L: ['logo-orange.svg', 'postman.svg', 'salesforce.svg', 'quickbooks.svg', 'dynatrace.svg'], NAMES: ['Firecrawl', 'Postman', 'Salesforce', 'QuickBooks', 'Dynatrace'],
   harness: 'Gemini CLI', hookLogo: 'gemini.svg', noun: 'extensions',
@@ -19,3 +21,5 @@ export default {
     { chip: 'Dynatrace', prompt: 'why did latency spike at 3 PM?', win: `<div data-layer=result class=win><div class=tb style="background:#1b2a4e;color:#fff"><img src=dynatrace.svg style="width:44px;filter:brightness(0) invert(1);"><span>Response time</span></div><svg style="position:absolute;left:36px;top:112px" width="912" height="260" viewBox="0 0 912 260"><rect width="912" height="260" rx="14" fill="#f4f7ff"/><polyline fill="none" stroke="#1496ff" stroke-width="5" points="20,200 120,190 220,195 320,185 420,190 520,60 560,40 620,150 720,185 820,190 892,188"/><line x1="520" y1="20" x2="520" y2="240" stroke="#e5484d" stroke-width="3" stroke-dasharray="8 6"/><text x="532" y="34" font-size="22" fill="#b42318" font-family="Helvetica">3 PM spike</text></svg><div class=rw style="top:396px;height:96px;"><div>Likely cause<em>Deploy at 2:58 PM added slow database calls</em></div><span class=ch style="background:#dafbe1;color:#116329">Rolled back</span></div><div class=ms style="background:#eef5ff;border-color:#bcd6ff;height:140px"><div class=k style="color:#1067c9">GEMINI CLI - ILLUSTRATIVE</div>Latency jumped right after the 2:58 PM deploy. Want me to open the ticket?</div></div>` },
   ],
 };
+
+export default cfg;
