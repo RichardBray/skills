@@ -1,0 +1,17 @@
+
+const MUTED = '#6b6556';
+const scenes = [];
+const grokIcon = (s) => `<div style="width:${s}px;height:${s}px;border-radius:${s / 4}px;background:${INK};color:#fff;font:700 ${s * 0.6}px S;display:flex;align-items:center;justify-content:center;flex:none">G</div>`;
+const promptCard = (hl, skill, rest) => `<div style="padding:28px 36px"><div style="display:flex;align-items:center;gap:16px;${hl ? 'visibility:hidden' : ''}">${grokIcon(44)}<b style="font:600 30px S">Grok</b></div><div style="font:500 42px S;letter-spacing:-1.2px;line-height:1.25;margin-top:18px;width:720px">Use the <span class=hi style="${hl ? `background:${ORANGE};color:#fff;` : ''}padding:0 10px;border-radius:8px;-webkit-box-decoration-break:clone;box-decoration-break:clone">${skill}</span> skill${rest}</div></div><div style="position:absolute;right:28px;bottom:24px;width:64px;height:64px;border-radius:32px;background:${INK};color:#fff;font:600 36px S;display:flex;align-items:center;justify-content:center;${hl ? 'visibility:hidden' : ''}">↑</div>`;
+const hookCard = (icon, lab, big) => L('a', 'left:120px;top:330px;width:840px;height:290px;transform:rotate(-1.5deg)', 'card', `<div style="display:flex;align-items:center;gap:40px;height:100%;padding:0 46px"><div style="width:150px;height:150px;border-radius:30px;background:linear-gradient(135deg,#ff6fa8,#fa5d19);color:#fff;font:700 96px S;display:flex;align-items:center;justify-content:center;padding-bottom:6px;flex:none">${icon}</div><div><div class=lab>${lab}</div><div class=big style="font-size:62px;position:relative;margin-top:10px;letter-spacing:-2.5px;white-space:nowrap">${big}<i style="position:absolute;left:-12px;right:-12px;top:52%;height:14px;background:${RED};border-radius:7px;transform:rotate(-2deg)"></i></div></div></div>`);
+const setupScene = () => ({ tab: 0, layers: [
+  { d: 0.1, html: head('head', 1, 'SETUP', 270) },
+  { d: 0.4, html: L('c1', 'left:120px;top:470px;width:840px;height:300px;transform:rotate(-.8deg)', 'card', `<div style="padding:28px 36px"><div class=lab>Add the Firecrawl app</div><div style="display:flex;align-items:center;gap:26px;margin-top:30px"><div style="width:120px;height:120px;border-radius:26px;background:${ORANGE};display:flex;align-items:center;justify-content:center;flex:none"><img src=logo-orange.svg style="width:74px;filter:brightness(0) invert(1)"></div><div style="flex:1"><div class=big style="font-size:50px;letter-spacing:-1px">Firecrawl</div><div style="font:500 22px M;color:#6b6556;margin-top:8px">Firecrawl Alexandria · app for Grok</div></div><div style="background:${INK};color:#fff;font:600 32px S;padding:16px 30px;border-radius:14px">Add</div></div></div>`) },
+] });
+const askScene = (skill, rest, sources, cardStart) => ({ tab: 1, layers: [
+  { d: 0.1, html: head('head', 2, 'ASK', 270) },
+  { d: 0.3, html: L('b', 'left:120px;top:470px;width:840px;height:330px', 'card', promptCard(false, skill, rest)) },
+  { d: 0.35, html: L('hl', 'left:120px;top:470px;width:840px;height:330px', 'card hlmode', promptCard(true, skill, rest)) },
+  ...sources.map((c, i) => ({ d: cardStart + i * 0.3, html: L('k' + i, `left:${120 + (i % 2) * 430}px;top:${830 + Math.floor(i / 2) * 170}px;width:410px;height:148px;transform:rotate(${[-1.2, 1, 1, -1][i]}deg)`, 'co', `<h3 style="font-size:36px;letter-spacing:-.8px;white-space:nowrap">${c[0]}</h3><div class=sub style="margin-top:12px;font-size:22px">${c[1]}</div>`) })),
+] });
+const sticker = (txt) => L('d', 'left:650px;top:640px;transform:rotate(-4deg)', 'stk', txt);

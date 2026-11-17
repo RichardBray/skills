@@ -22,6 +22,12 @@ Videos in the series so far, all in `jobs-hunt-v6.beproj` one after another, eac
 | Hook swipe file (pet supplies) | `jobs-hunt/hooks/` | 210 to 249.4 s | Out of Order (The Fly Guy Five, `9ef318f2-2fd7-42db-9785-b8d3b8214f59`) |
 
 | Sports card buy-low (Trevor Lawrence), **Grok** | `jobs-hunt/cards/` | 260 to 294.4 s | Liberty City (DonVayei, `34b72f66-f0d1-4298-9a54-0d717f322d67`) |
+| Offer salary benchmark (software engineer, Chicago), **Grok** | `jobs-hunt/salary/` | 300 to 333.7 s | Moving Up (Origo, `72ead9c2-60c5-4e9f-9f5d-bbdb4aeaaca3`) |
+| Interview prep pack (Duolingo Senior PM, Growth), **Grok** | `jobs-hunt/interview/` | 345 to 384.2 s | STYLE (Ballpoint, `03e71f7f-ad6f-4845-9fbd-9fce110cfa5e`) |
+
+Salary benchmark notes: ZipRecruiter `salary` 502s for some titles ("software engineer") but works for others ("software developer"); its `search_jobs` failed every time, so take live posted pay from Firecrawl `jobs_search` (Indeed plus employer boards; most rows unverified) and report the median range midpoint of non-senior rows. BLS OEWS series ids can be built by hand (`OEUM` + 7-digit MSA + `000000` + SOC without the dash + datatype 04 mean, 12 25th, 13 median, 14 75th); pick a title with a clean SOC match (software developers 15-1252; "data analyst" has none). Age BLS with CPIAUCSL levels from FRED. Label the offer on screen as an example.
+
+Interview prep notes: Benzinga news needs a paid plan, so use `firecrawl_search` with `sources: ["news"]`. Particle podcast mentions by `company_id` with `role: guest` can return nothing; search by the executive's person slug instead (`entity_id`, e.g. `luis-von-ahn`). Fiscal.ai transcripts come with speaker names and timestamps; flatten them to a text file and grep for the role's metric. Keep breaking leadership news out of the video and in the prep notes.
 
 Researched but not built (owner said no): fantasy football start or sit, in ChatGPT (`jobs-hunt/fantasy/`, Week 11 data, stale after 22 Nov 2026).
 
@@ -44,7 +50,7 @@ Start a new video from the newest folder's `gen/build.mjs` (`example/gen/build-c
    - Check prices first (`firecrawl_find_tools` with `includeCosts: true`) and ask the owner before an expensive step. Upspring is cheap (50 a page, 100 an ad or a brand lookup). Similarweb charges per row returned: 550 per channel, 330 per referrer, 110 per metric, so the funnel teardown's traffic half cost about 4,700 credits.
    - Similarweb with `country: "us"` returned 502 on every call (not charged); `ww` worked. Say on screen that the figures are worldwide.
    - Large results land in a file: copy it into the video folder (`raw/`) and read it with `jq`.
-   - The assistant varies per video (Claude, ChatGPT or Grok; the owner picks). It changes the hook and setup lines, the setup card and the prompt card; with Claude, reuse the setup take. For Grok the setup says "app" and the prompt card uses a plain ink "G" tile, not the Grok logo (`example/gen/build-cards.mjs`).
+   - The assistant varies per video (Claude, ChatGPT or Grok; the owner picks). It changes the hook and setup lines, the setup card and the prompt card; with Claude, reuse the setup take. For Grok the setup says "app" and the prompt card uses a plain ink "G" tile, not the Grok logo (`example/gen/build-cards.mjs`). `example/gen/grok-common.part` holds the shared Grok helpers (hook card, setup scene, ask scene with the skill wipe and 2 to 4 source cards, sticker); build a video as `head.part + grok-common.part + mid.part + tail.part`, and reuse one Grok setup take ("Add the Firecrawl app to Grok.", `cards/voices/t_setup.mp3`). Long stickers (more than about 12 characters) need a left of about 520 px to stay inside the 960 px safe edge.
 2. **Script it** (see Script shape). Show the script to the owner before spending voice credits.
 3. **Voice.** Record each line as its own take. Check lengths with `silencedetect` to time the reveals.
 4. **Build layers.** Copy `example/gen/` to a new folder, edit `build.mjs`, run `render.sh`. It writes `s{i}.html`, `s{i}-base.png`, one transparent PNG per `data-layer` (`s{i}-{id}.png`), `rects-s{i}.json` and `scenes.json`.
