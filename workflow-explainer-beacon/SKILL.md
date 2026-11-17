@@ -21,7 +21,11 @@ Videos in the series so far, all in `jobs-hunt-v6.beproj` one after another, eac
 | Winning funnel teardown (Comfrt) | `jobs-hunt/funnel/` | 160 to 197.5 s | Keep Your Focus on Me, instrumental (Basixx, `66ac3725-ba78-4559-81e5-4e1db6663eba`) |
 | Hook swipe file (pet supplies) | `jobs-hunt/hooks/` | 210 to 249.4 s | Out of Order (The Fly Guy Five, `9ef318f2-2fd7-42db-9785-b8d3b8214f59`) |
 
-Researched but not built (owner said no): fantasy football start or sit, in ChatGPT (`jobs-hunt/fantasy/`, Week 11 data, stale after 22 Nov 2026). Next idea the owner liked: sports card buy-low screen, in Grok.
+| Sports card buy-low (Trevor Lawrence), **Grok** | `jobs-hunt/cards/` | 260 to 294.4 s | Liberty City (DonVayei, `34b72f66-f0d1-4298-9a54-0d717f322d67`) |
+
+Researched but not built (owner said no): fantasy football start or sit, in ChatGPT (`jobs-hunt/fantasy/`, Week 11 data, stale after 22 Nov 2026).
+
+Sports card buy-low notes: PSA's public football price guide stops at 2021 (and only some 2021 sets list rookies), so pick a 2020 or 2021 rookie. Check several players' ESPN seasons first; the cheap cards marked "down" usually belong to declining players. The buy-low case is a player whose stats jumped while his base rookie card has no change marker; a peer whose cards are already marked up makes a good "hold". Every 2021 sealed box at Steel City was sold out. Each call costs 5 credits. On screen say "guide value", not "sells for", and add "Not financial advice".
 
 Ideas: Alexandria has about 250 skills (`ls /library/skills/firecrawl`, descriptions in `/library/skills/INDEX`), mostly for businesses. The consumer and side-hustle ones that fit this format: used car, offer salary benchmark, startup offer runway check, interview prep pack, campsite booking, fantasy football start or sit, sports card buy-low screen, Turo host fleet pick, and for online sellers winning funnel teardown and hook swipe file. There is no dropshipping or consumer coupon skill; the owner wants existing skills only, not new team skills.
 
@@ -40,7 +44,7 @@ Start a new video from the newest folder's `gen/build.mjs` (`example/gen/build-c
    - Check prices first (`firecrawl_find_tools` with `includeCosts: true`) and ask the owner before an expensive step. Upspring is cheap (50 a page, 100 an ad or a brand lookup). Similarweb charges per row returned: 550 per channel, 330 per referrer, 110 per metric, so the funnel teardown's traffic half cost about 4,700 credits.
    - Similarweb with `country: "us"` returned 502 on every call (not charged); `ww` worked. Say on screen that the figures are worldwide.
    - Large results land in a file: copy it into the video folder (`raw/`) and read it with `jq`.
-   - The assistant varies per video (Claude, ChatGPT or Grok; the owner picks). It changes the hook and setup lines, the setup card and the prompt card; with Claude, reuse the setup take.
+   - The assistant varies per video (Claude, ChatGPT or Grok; the owner picks). It changes the hook and setup lines, the setup card and the prompt card; with Claude, reuse the setup take. For Grok the setup says "app" and the prompt card uses a plain ink "G" tile, not the Grok logo (`example/gen/build-cards.mjs`).
 2. **Script it** (see Script shape). Show the script to the owner before spending voice credits.
 3. **Voice.** Record each line as its own take. Check lengths with `silencedetect` to time the reveals.
 4. **Build layers.** Copy `example/gen/` to a new folder, edit `build.mjs`, run `render.sh`. It writes `s{i}.html`, `s{i}-base.png`, one transparent PNG per `data-layer` (`s{i}-{id}.png`), `rects-s{i}.json` and `scenes.json`.
@@ -98,6 +102,7 @@ Pixel recruiter (16-bit, 26 x 40 grid, brown bun, red glasses, pink blazer, oran
 - Frame snapping can leave a layer one frame past its scene end, so it shows over the next scene for a frame. After placing, trim every image clip that ends past its scene end with `clip_trim`. `example/beacon/place-body.js` does this at the end of the same script.
 - **Several videos at once:** import all their files in one `media_import` (asset ids come back in file order), then place them all in one `script`. `example/beacon/gen-place.py` turns each video's `scenes.json`, rects and timings (voice lengths, wipe ends, marker, chime, character and jingle times) into the data that `place-body.js` reads. Two videos, about 260 commands, ran inside the 30 s limit.
 - Don't put `rm` in a compound shell command (a safety check blocks it). Leave the generator's `.part` files where they are.
+- In zsh, `set -- $pair` does not split words, so a loop over "name id" pairs silently downloads nothing. Write one `curl` per take.
 - Each layer: image clip at scale 0.85, opacity 0, with a `backOut` 0.24 s animation to scale 1 and opacity 1. Centre transform from the layer rect: `x = rx + rw/2 - 540`, `y = 960 - (ry + rh/2)`.
 - Music: give it its **own new track**, props `audio {gain 1, volume 0.15, normalize false, muted false}` (all four fields, or the project is rejected).
 - `media_replace` can keep showing the old image the second time you use the same path: copy the new file to a fresh name and replace from that.
