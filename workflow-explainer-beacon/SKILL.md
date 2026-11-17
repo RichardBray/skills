@@ -18,6 +18,12 @@ Videos in the series so far, all in `jobs-hunt-v6.beproj` one after another, eac
 | Find your next job (LinkedIn) | `jobs-hunt/` | 0 to 30 s | Reaching Out (Dovetail) |
 | Find creators (Instagram) | `jobs-hunt/creators/` | 60 to 96.6 s | `creators/music.mp3` |
 | Used car (dealer's price) | `jobs-hunt/car/` (`script.md`, `data.md`) | 110 to 146.7 s | Cheetah Print (Cushy, `f031ac3b-1858-424a-9890-a2ba10487daf`) |
+| Winning funnel teardown (Comfrt) | `jobs-hunt/funnel/` | 160 to 197.5 s | Keep Your Focus on Me, instrumental (Basixx, `66ac3725-ba78-4559-81e5-4e1db6663eba`) |
+| Hook swipe file (pet supplies) | `jobs-hunt/hooks/` | 210 to 249.4 s | Out of Order (The Fly Guy Five, `9ef318f2-2fd7-42db-9785-b8d3b8214f59`) |
+
+Researched but not built (owner said no): fantasy football start or sit, in ChatGPT (`jobs-hunt/fantasy/`, Week 11 data, stale after 22 Nov 2026). Next idea the owner liked: sports card buy-low screen, in Grok.
+
+Ideas: Alexandria has about 250 skills (`ls /library/skills/firecrawl`, descriptions in `/library/skills/INDEX`), mostly for businesses. The consumer and side-hustle ones that fit this format: used car, offer salary benchmark, startup offer runway check, interview prep pack, campsite booking, fantasy football start or sit, sports card buy-low screen, Turo host fleet pick, and for online sellers winning funnel teardown and hook swipe file. There is no dropshipping or consumer coupon skill; the owner wants existing skills only, not new team skills.
 
 Start a new video from the newest folder's `gen/build.mjs` (`example/gen/build-car.mjs` is the latest copy): it has the prompt highlight, the tab cell and the DY offsets the older `example/gen/build.mjs` lacks.
 
@@ -30,7 +36,11 @@ Start a new video from the newest folder's `gen/build.mjs` (`example/gen/build-c
 
 ## Steps
 
-1. **Pick the workflow.** `firecrawl find-tools` or `alexandria_library_search`, read the skill and provider contracts, then **run it for real** and keep the numbers you show (names, amounts, counts). Anything inferred (for example "0 open jobs" from guessed board names) is an inference; keep the on-screen claim to what the run returned, and say so to the owner.
+1. **Pick the workflow.** `firecrawl find-tools` or `alexandria_library_search`, read the skill and provider contracts, then **run it for real** and keep the numbers you show (names, amounts, counts). Anything inferred (for example "0 open jobs" from guessed board names) is an inference; keep the on-screen claim to what the run returned, and say so to the owner. Save each run's raw results and a `data.md` next to the `script.md`.
+   - Check prices first (`firecrawl_find_tools` with `includeCosts: true`) and ask the owner before an expensive step. Upspring is cheap (50 a page, 100 an ad or a brand lookup). Similarweb charges per row returned: 550 per channel, 330 per referrer, 110 per metric, so the funnel teardown's traffic half cost about 4,700 credits.
+   - Similarweb with `country: "us"` returned 502 on every call (not charged); `ww` worked. Say on screen that the figures are worldwide.
+   - Large results land in a file: copy it into the video folder (`raw/`) and read it with `jq`.
+   - The assistant varies per video (Claude, ChatGPT or Grok; the owner picks). It changes the hook and setup lines, the setup card and the prompt card; with Claude, reuse the setup take.
 2. **Script it** (see Script shape). Show the script to the owner before spending voice credits.
 3. **Voice.** Record each line as its own take. Check lengths with `silencedetect` to time the reveals.
 4. **Build layers.** Copy `example/gen/` to a new folder, edit `build.mjs`, run `render.sh`. It writes `s{i}.html`, `s{i}-base.png`, one transparent PNG per `data-layer` (`s{i}-{id}.png`), `rects-s{i}.json` and `scenes.json`.
@@ -74,7 +84,7 @@ Rules: **mention Firecrawl Alexandria from step 1 on screen, never in the hook.*
 - Marker for the highlight wipe: "Marker Pen, Scribble On Cardboard Sheet, Short" (`e55a339f-f8dd-4143-b7c5-110aeb7a4cf7`).
 - Jingle after "Follow for more": "User Interface, Alert, Game, Points, Jingle 01" (`9906413b-7c6c-4b9a-ae58-be464cc8c14e`, 3.3 s). Extend the last scene about 2 s so it plays out.
 - Music bed: "Reaching Out" (Dovetail, recording `1a2fa0a8-c84f-3aa7-8092-6d3f6048e881`); pick a new track for each new video.
-- Downloads return a signed `assetUrl`; fetch with `curl`. Put pops and swishes on a dedicated `SFX` track and the marker, jingle and character swishes on `SFX 2` (clips on a track may not overlap).
+- Downloads return a signed `assetUrl` that **expires within minutes**: run `curl` in the very next call (a later fetch gets HTTP 401; ask for a new link). Check the size with `ffprobe` afterwards. Put pops and swishes on a dedicated `SFX` track and the marker, jingle and character swishes on `SFX 2` (clips on a track may not overlap).
 
 ## Character
 
@@ -85,7 +95,9 @@ Pixel recruiter (16-bit, 26 x 40 grid, brown bun, red glasses, pink blazer, oran
 - Create the project 1080 x 1920 at 30 fps. Import everything at `at: 1000`, then **remove the staging clips**, add a `Voice` track at index 0, and place the clips.
 - **Place everything in one `script` call** (`example/beacon/place-car.js`): it removes the staging clips, then adds voice, base, layers with their pop animations, highlight wipes, the music track, both character clips and the SFX (shared out over `SFX` and `SFX 2` so none overlap), as one undo step that runs in under 30 s. `beacon.run` returns the new clip id, so there are no ids to copy between calls. Generate the JS from `scenes.json`, `rects-s{i}.json` and the import result (asset ids come back in file order). The older way, `transaction` batches of at most 20 that you read ids from, also works but takes about six round trips.
 - To add a video to an existing project, start it after the last one with a gap (the car video went at 110 s after the creators video ended at 96.6 s), reuse the existing `Voice`, `Highlight`, `Character`, `SFX` and `SFX 2` tracks and SFX assets, and give the music a new `Music N` track.
-- Frame snapping can leave a layer one frame past its scene end, so it shows over the next scene for a frame. After placing, trim every image clip that ends past its scene end (a short `script` with `clip_trim`).
+- Frame snapping can leave a layer one frame past its scene end, so it shows over the next scene for a frame. After placing, trim every image clip that ends past its scene end with `clip_trim`. `example/beacon/place-body.js` does this at the end of the same script.
+- **Several videos at once:** import all their files in one `media_import` (asset ids come back in file order), then place them all in one `script`. `example/beacon/gen-place.py` turns each video's `scenes.json`, rects and timings (voice lengths, wipe ends, marker, chime, character and jingle times) into the data that `place-body.js` reads. Two videos, about 260 commands, ran inside the 30 s limit.
+- Don't put `rm` in a compound shell command (a safety check blocks it). Leave the generator's `.part` files where they are.
 - Each layer: image clip at scale 0.85, opacity 0, with a `backOut` 0.24 s animation to scale 1 and opacity 1. Centre transform from the layer rect: `x = rx + rw/2 - 540`, `y = 960 - (ry + rh/2)`.
 - Music: give it its **own new track**, props `audio {gain 1, volume 0.15, normalize false, muted false}` (all four fields, or the project is rejected).
 - `media_replace` can keep showing the old image the second time you use the same path: copy the new file to a fresh name and replace from that.
@@ -98,6 +110,7 @@ Pixel recruiter (16-bit, 26 x 40 grid, brown bun, red glasses, pink blazer, oran
 
 - Frame checks of the hook, one middle step and the last step (and any scene you changed).
 - Say which scenes you did not look at, that you have not listened to the audio, and what on screen is an inference.
-- Check the export with `ffprobe` (size, length, an audio stream) and `volumedetect` (the car video: mean -15.3 dB, peak -1.0 dB). That proves sound is there, not that the mix is right.
+- Check the export with `ffprobe` (size, length, an audio stream) and `volumedetect` (car, funnel and hooks videos: mean about -15.5 dB, peak about -1.0 dB). That proves sound is there, not that the mix is right.
+- When the owner says go on several scripts, "done" means exported. Researching and drafting a script is not a built video, so say clearly which stage each one is at.
 - An approved `script.md` often comes with wording rules (for example "say an insurer, never name it", "no dealer name", "no full VIN", "never say salvage title"). Check every card against them before importing.
 - Voice is on a paid Fish plan (commercial use), and no tool or logo is shown that is not an official Alexandria provider.
