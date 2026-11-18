@@ -29,6 +29,8 @@ Salary benchmark notes: ZipRecruiter `salary` 502s for some titles ("software en
 
 Interview prep notes: Benzinga news needs a paid plan, so use `firecrawl_search` with `sources: ["news"]`. Particle podcast mentions by `company_id` with `role: guest` can return nothing; search by the executive's person slug instead (`entity_id`, e.g. `luis-von-ahn`). Fiscal.ai transcripts come with speaker names and timestamps; flatten them to a text file and grep for the role's metric. Keep breaking leadership news out of the video and in the prep notes.
 
+Reviewer feedback (18 Nov 2026): "good new angles", but the voice and music were distracting. What people would resonate with most is repeated "top 3 Claude connectors / top 3 ChatGPT plugins" videos: swap tools 1 and 3 each time, keep Firecrawl as tool 2 with a bigger middle mention (about 5 s per other tool, 10 s for Firecrawl). That format belongs in `plugin-roundup-beacon` (cut to 3 tools), not this skill; this skill's workflow videos are the "new angles".
+
 Researched but not built (owner said no): fantasy football start or sit, in ChatGPT (`jobs-hunt/fantasy/`, Week 11 data, stale after 22 Nov 2026).
 
 Sports card buy-low notes: PSA's public football price guide stops at 2021 (and only some 2021 sets list rookies), so pick a 2020 or 2021 rookie. Check several players' ESPN seasons first; the cheap cards marked "down" usually belong to declining players. The buy-low case is a player whose stats jumped while his base rookie card has no change marker; a peer whose cards are already marked up makes a good "hold". Every 2021 sealed box at Steel City was sold out. Each call costs 5 credits. On screen say "guide value", not "sells for", and add "Not financial advice".
@@ -69,7 +71,7 @@ Rules: **mention Firecrawl Alexandria from step 1 on screen, never in the hook.*
 
 ## Look
 
-- Paper `#efe9dd` with dot grid, 4 px ink borders, hard offset shadows, orange `#fa5d19`, pink `#ff6fa8` for stickers (ink text), green and red for results.
+- Paper `#efe9dd` with dot grid, 4 px ink borders, hard offset shadows, orange `#fa5d19`, green and red for results. **Stickers and pills are orange `#fa5d19` with white text**; the owner asked to replace every pink (`#ff6fa8`) with dark text. The pink-to-orange gradient icon tiles have white text and stay. The `.stk` class in `example/gen/*.mjs` is already orange. To recolor a layer already in a project, `example/gen/recolor-pink.sh <folder> <scene> <layer>` re-renders it as `s<scene>-<layer>-orange.png`, then `media_replace` the asset with that new file: every clip keeps its place, timing and animation.
 - Tab bar at the top: five cells showing **"?"**; the current cell reveals its label with a pop layer (`tab`), finished cells keep their label. The `tab` layer is `fixed` so the per-scene vertical offset (`DY`) is not applied.
 - Safe area (Instagram and TikTok): x 120 to 960, y 250 to 1440; keep key content there. The tab bar sits just above it by design.
 - To animate a highlight (marker wipe) split the card into a plain card plus a transparent `hl` layer that has only the highlight, then animate `crop.right` from the layer width to 0 (`clip_set` crop right first, then `animation_add` `to: {"crop.right": 0}`). The `hlmode` class in the generator draws that layer. A highlight that wraps onto two lines needs `box-decoration-break: clone` on the span; the wipe then reveals both lines together, which reads fine. Any card can get one (the car video wipes the skill name in Ask and "0 accidents" in Listing).
@@ -78,15 +80,21 @@ Rules: **mention Firecrawl Alexandria from step 1 on screen, never in the hook.*
 
 ## Voice
 
-- **Fish Audio voice 1, "Friendly Young Female" (`1b1286fcf2f44d8ba1405e0b71abca22`), model `drama-3`**, tag `[casual, natural, like talking to a friend]`. Earlier male voice 7 (Explainer, `3e8a237e7b5d4eaab50bd9e05053d70e`) was rejected as too stiff.
+- **Voice is being re-chosen (Nov 2026).** A reviewer found Friendly Young Female and the music distracting and preferred "the voice we used before". The owner moved the first three videos (jobs, creators, car) to **Explainer** (`3e8a237e7b5d4eaab50bd9e05053d70e`, model `drama-3`, same tag) and sent the reviewer a shortlist page: https://claude.ai/artifact/1DTYYNi8mqbg76pVEGdeC6 (12 voices, all reading the same top-3 line; files in `jobs-hunt/voice-picker/`). Use the voice they pick; until then ask which voice before recording.
+- Voice history, so you don't re-suggest a rejected one: Slax (`c5f56a6c…`) was the first try and was called "horrible". Explainer was next. Friendly Young Female (`1b1286fcf2f44d8ba1405e0b71abca22`, tag `[casual, natural, like talking to a friend]`) voiced the next nine videos. Sarah (`933563129e564b19a115bedd57b7406a`) is the plugin-roundup voice. Energetic Crowd and Slax were removed from the shortlist.
+- Past sessions are searchable: `grep -rhoE 'voice_id\\?":\s*\\?"[0-9a-f]{32}' ~/.claude-work/projects` counts every Fish voice used, and the session `.jsonl` files hold the exact `text_to_speech` texts (for re-voicing a video word for word).
+- To re-voice a finished video: regenerate every line with the same text and tag, trim the tails, check each take fits the gap before the next line (speed up with `atempo` only if it overruns, at most about 8%), import, then remove the old voice clips and add the new ones at the same starts in one `script`.
 - **Needs the Plus plan** for commercial use and credits (the free plan's terms say non-commercial, and the MCP only bills package credits; pay-as-you-go API credit is a separate balance the MCP does not spend). 1 credit per UTF-8 byte; a line costs about 80 to 130.
 - `output_path` does not save files: download each take from the returned `audio_url` with `curl`. Never re-call a line (it is charged again).
 - Trim the tail silence of each take (`-t` with a 0.06 s fade) and use that length as the voice clip.
 - Reuse a take when the line is word for word the same: "Add the Firecrawl plugin to Claude." is `creators/voices/t_setup.mp3` (2.5 s).
-- Time the reveals from the pauses: `silencedetect=n=-35dB:d=0.1` on the trimmed take finds the gaps between sentences. Inside one sentence, estimate words by position.
+- Time the reveals from the pauses: `silencedetect=n=-35dB:d=0.1` on the trimmed take finds the gaps between sentences. Inside one sentence, estimate words by position. After placing, `transcript_get` on the range gives word times on the timeline.
+- **No gaps between voice lines.** The owner wants each line to follow the last one directly, and every reveal (sticker, card, badge, chime) to land on the words it belongs to, such as "5 STEPS" on "Five steps". Make each scene as long as its line, and put any reveal that would sit in a pause inside the line instead. To tighten a finished video: first `clip_move` every reveal that starts inside a gap onto its words (otherwise the cut deletes it, or leaves a sliver under 0.5 s that gets removed), then one `timeline_rippleDelete` with all the gaps (`exact: true`), then replace the cut-up music with one continuous clip from `mediaStart` 0. Everything later on the timeline moves left by the total cut, sections included.
 - Reusing old audio: cut with `ffmpeg -ss/-t` from the pauses `silencedetect` finds; write through wav then mp3 to avoid encoder errors.
 
-## SFX and jingle (Epidemic Sound, volume 0.4 to 0.5, music 0.15)
+## SFX and jingle (Epidemic Sound, volume 0.4 to 0.5, music 0.075)
+
+The reviewer found the music distracting, so the music bed is 0.075 (it was 0.15). Every video in `jobs-hunt-v6.beproj` was halved to 0.075.
 
 - Pop on every card, tab and step reveal: "User Interface, Click, UI Buttons, Bubbly, Select" (`7cce069c-4a3a-4746-b5c8-94a653fab587`).
 - Swish on hook cards, stickers and the character: "Swooshes, Swish, Stick, Fast Swipe Through Air 02" (`66d23571-4b85-49e4-a0e0-4966a6d60034`).
@@ -110,8 +118,11 @@ Pixel recruiter (16-bit, 26 x 40 grid, brown bun, red glasses, pink blazer, oran
 - Don't put `rm` in a compound shell command (a safety check blocks it). Leave the generator's `.part` files where they are.
 - In zsh, `set -- $pair` does not split words, so a loop over "name id" pairs silently downloads nothing. Write one `curl` per take.
 - Each layer: image clip at scale 0.85, opacity 0, with a `backOut` 0.24 s animation to scale 1 and opacity 1. Centre transform from the layer rect: `x = rx + rw/2 - 540`, `y = 960 - (ry + rh/2)`.
-- Music: give it its **own new track**, props `audio {gain 1, volume 0.15, normalize false, muted false}` (all four fields, or the project is rejected).
-- `media_replace` can keep showing the old image the second time you use the same path: copy the new file to a fresh name and replace from that.
+- Music: give it its **own new track**, props `audio {gain 1, volume 0.075, normalize false, muted false}` (all four fields, or the project is rejected). The owner may consolidate music onto one track later; find music clips by track name (`/^Music/`) rather than by id.
+- `media_replace` can keep showing the old image the second time you use the same path: copy the new file to a fresh name and replace from that. It is a tool of its own and cannot run inside a `transaction`; call it once per asset (calls can run in parallel).
+- In `script`, `beacon.query("project_get")` returns `assets` (and sometimes `sections`) as an object map, so wrap it in `Object.values(...)`. Section times there are in ticks (705,600,000 per second); `project_describe` prints them in seconds.
+- Give every video a **section** (`section_add`, named with number, topic, assistant and voice, e.g. "3 Used car · Claude · Explainer"). Sections move with ripple edits, but their starts can drift from the content. Before exporting, read each video's real first and last clip and export that range, not the section's.
+- The owner edits between requests (trims ends, moves music, shifts clips). Re-read the range with `timeline_clips` and `transcript_get` before every change, and never reuse earlier ids or times. If Beacon closes the connection, `project_open` the same path again.
 - `timeline_insertSpace` splits clips that cross the point: afterwards remove the right-hand halves of image clips and `clip_trim` the left halves forward; fix the music by trimming the left piece's end and moving the right piece back with its `mediaStart` in step.
 - The owner edits in the Beacon app and leaves comments (`project_describe` lists them with times). Re-open the project and re-read the timeline before changing anything; their edits shift clips.
 - Export `export_start` at 1.0x (the owner did not want 1.2x here), with `from`/`to` set to the video's range when the project holds several, then `open -R <file>` so it shows in Finder. A 37 s export takes about 5 s.

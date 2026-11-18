@@ -16,7 +16,7 @@ body{width:1080px;height:1920px;font-family:S,sans-serif;color:${INK};position:r
 .card{position:absolute;background:#fff;border:4px solid ${INK};border-radius:26px;box-shadow:10px 10px 0 ${INK};overflow:hidden}
 .lab{font:600 22px M;letter-spacing:1.6px;text-transform:uppercase;color:#6b6556}
 .big{font-weight:500;letter-spacing:-3px;line-height:1}
-.stk{position:absolute;background:#ff6fa8;color:${INK};border:4px solid ${INK};border-radius:14px;font:700 40px S;padding:12px 24px;box-shadow:7px 7px 0 ${INK};white-space:nowrap;letter-spacing:-.5px}
+.stk{position:absolute;background:${ORANGE};color:#fff;border:4px solid ${INK};border-radius:14px;font:700 40px S;padding:12px 24px;box-shadow:7px 7px 0 ${INK};white-space:nowrap;letter-spacing:-.5px}
 .pill{position:absolute;display:flex;align-items:center;gap:16px;background:#fff;border:4px solid ${INK};border-radius:999px;box-shadow:6px 6px 0 ${INK};padding:12px 28px 12px 16px;font:600 24px M;letter-spacing:.5px;white-space:nowrap}
 .pill img{width:48px;height:48px;border-radius:12px}
 .badge{position:absolute;display:flex;align-items:center;gap:22px;background:#fff;border:4px solid ${INK};border-radius:22px;box-shadow:8px 8px 0 ${INK};padding:0 26px}

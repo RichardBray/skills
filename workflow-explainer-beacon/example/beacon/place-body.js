@@ -23,7 +23,7 @@ for(const name of Object.keys(P.videos)){
     }
   }
   const mt=id(beacon.run("track_add",{name:D.track}));
-  beacon.run("clip_add",{type:"audio",assetId:D.music,start:D.T0,duration:r3(E-D.T0),track:mt,props:AUD(0.15)});
+  beacon.run("clip_add",{type:"audio",assetId:D.music,start:D.T0,duration:r3(E-D.T0),track:mt,props:AUD(0.075)});
   const t0=r3(D.T0+0.6);
   const ch=id(beacon.run("clip_add",{type:"image",assetId:CHW,start:t0,duration:r3(S[1]-t0),track:CHT,props:{transform:tf(-319,-330,0.85,0)}}));
   [[0.24,0.24,"backOut",POPTO],[2.0,0.15,"easeOut",{"transform.y":-300}],[2.2,0.2,"easeIn",{"transform.y":-330}],[4.0,0.15,"easeOut",{"transform.y":-300}],[4.2,0.2,"easeIn",{"transform.y":-330}]].forEach(([e,d,ea,to])=>beacon.run("animation_add",{clip:ch,end:r3(t0+e),duration:d,easing:ea,to}));
