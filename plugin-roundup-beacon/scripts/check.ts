@@ -68,7 +68,7 @@ if (opt('post')) {
     if (!bar || !pl) fail('hook rects lack bar or plugins layer');
     else {
       const gap = bar[1] + bar[3] - (pl[1] + pl[3]);
-      if (gap < 30 || gap > 55) fail(`hook bar ends ${Math.round(gap)}px past the text (want ~41): re-run render.ts`);
+      if (gap < 30 || gap > 55) fail(`hook bar ends ${Math.round(gap)}px past the text (want ~33): re-run render.ts`);
       else console.log(`bar ends ${Math.round(gap)}px past the text`);
     }
   }

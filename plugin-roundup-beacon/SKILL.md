@@ -24,6 +24,7 @@ One video is one folder holding a `cfg.ts`. The scripts in `scripts/` turn it in
 - **Two spoken sentences per other tool**, a different typed prompt per video, and any made-up app content in the result window labelled "Illustrative".
 - **Number scenes fill the whole 1080 x 1920 page with colour.** No "?" slot row shows during them.
 - **No counter pill, tag or top-left header.**
+- **Everything sits in the Reels/TikTok safe zone** (x 120-960, y 250-1440): the "?" slot row is at the top, result windows are 840 px wide (so `win` content must fit 840, not 984). `core.ts` holds this layout; check each prompt ends clear of the send button.
 - **Voice:** Fish Audio Sarah (`933563129e564b19a115bedd57b7406a`), model `drama-3`, tag `[warm, upbeat, like telling a friend]`, `<emphasis>` on the name.
 - **Music:** Epidemic Sound, instrumental, a different track from every earlier video, clip volume 0.15. **No sound effects at all.**
 - **Export at speed 1.2**, 1080 x 1920.
