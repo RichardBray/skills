@@ -43,6 +43,13 @@ Run scripts as `bun scripts/<name>.ts <video-dir> ...` (paths relative to this s
 8. **Music.** `SearchRecordings` (instrumental, upbeat, about the video length) and pick a track no earlier video used, `DownloadRecording` (MP3, FULL), `media_import` it at a high `at`, `clip_remove` the staging clip, pass the asset id as `--music-asset` in step 7 and submit `music.json`. Volume goes in `props.audio.volume` (0.15); a top-level `volume` prop is rejected.
 9. **Export.** Submit `export.json` to `export_start` (speed 1.2, overwrite true) and wait with `job_status`. Then `bun scripts/verify.ts <video.mp4>`: length, 1080 x 1920, loudness (expect -23 to -20 LUFS) and `<video>-sheet.png`. Open the sheet and look at it, including the hook bar and the Firecrawl scene.
 
+## Variants
+
+`cfg.variant` picks the opening, for testing what holds viewers. Everything after the hook stays the same.
+
+- `control` (default): the five "?" tiles.
+- `payoff`: a finished result window (`cfg.payoff`, HTML for a 660 x 540 window at x 120, y 900, labelled Illustrative) is on screen from the first frame, settles in over 0.6 s and drops away with the hook. Use the video's most impressive result, usually Firecrawl's.
+
 ## Changing an existing video
 
 - **Swap a tool:** edit `cfg.ts`, re-run `voices.ts lines` (only that line is stale), regenerate it, `measure`, re-render, restage with a new prefix, remove the old section's clips, rebuild at a new `T0`, re-add the music, export. Voice durations shift everything after the swap, so rebuild the whole section.

@@ -28,7 +28,10 @@ const blockT = (sc: string) => { const r = rect(sc, 'block'); return tf(r.cx, r.
 const HE = T0 + 5.2;
 C('v0', 'v0', T0, Math.min(T0 + D[0]!, HE - .03), null, [], 'audio');
 C('hook-base', 'hook-base', T0, HE, tf(0, 0));
-for (let i = 0; i < N; i++) {
+if (cfg.variant === 'payoff') {
+  const r = rect('hook', 'pay');
+  C('hook-pay', 'hook-pay', T0, HE, tf(r.cx, r.cy, 1.04, 1.04, 1), [{ end: r3(T0 + .6), dur: .6, ease: 'easeOut', to: { 'transform.scaleX': 1, 'transform.scaleY': 1 } }, { end: r3(HE - .2), dur: .6, ease: 'easeIn', to: { 'transform.y': -1150, 'transform.scaleX': .8, 'transform.scaleY': .8 } }]);
+} else for (let i = 0; i < N; i++) {
   const r = rect('hook', 't' + i), s = T0 + 0.2 + i * 0.12;
   C('hook-t' + i, 'hook-t' + i, T0, HE, tf(r.cx, r.cy, .8, .8, 0), [pop(s), { end: r3(HE - .2), dur: .6, ease: 'easeIn', to: { 'transform.y': -1150, 'transform.scaleX': .8, 'transform.scaleY': .8 } }]);
 }

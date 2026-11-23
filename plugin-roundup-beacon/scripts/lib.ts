@@ -16,6 +16,9 @@ export type Cfg = {
   subs: string[];
   tools: Tool[];
   say?: Record<string, string>;
+  // "payoff": the hook opens on a finished result window (`payoff`, HTML) instead of the "?" tiles.
+  variant?: "control" | "payoff";
+  payoff?: string;
 };
 
 export async function loadCfg(dir: string): Promise<Cfg> {

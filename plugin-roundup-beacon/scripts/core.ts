@@ -70,7 +70,9 @@ const barW = textRight ? Math.round(nounLeft + textRight[3] * k + 33 - 120) : (c
 const TW = 132;
 const hookTiles = [0,1,2,3,4].map(i=>`<div data-layer=t${i} style="position:absolute;left:${120+i*TW}px;top:${[960,1050,940,1030,980][i]!}px;width:${TW}px;height:190px;background:#f9f9f9"><div style="position:absolute;left:10px;top:14px;width:112px;height:112px;border-radius:28px;background:#111;box-shadow:0 14px 20px rgba(0,0,0,.30);display:flex;align-items:center;justify-content:center;color:#fff;font-size:74px;font-weight:500;line-height:1">?</div></div>`).join('');
 const F = 120, LS = 'letter-spacing:-4px';
-const hook = page(`${hookTiles}
+// Payoff variant: a finished result, on screen from the first frame, where the "?" tiles sit (x 120-780 keeps it inside the safe zone below y 840).
+const payoff = `<div data-layer=pay class=win style="left:120px!important;top:900px!important;width:660px!important;height:540px!important">${cfg.payoff ?? ''}</div>`;
+const hook = page(`${cfg.variant === 'payoff' ? payoff : hookTiles}
 <div data-layer=stop class=w style="left:136px;top:270px;font-size:${F}px;${LS}">Stop</div>
 <div data-layer=using class=w style="left:422px;top:270px;font-size:${F}px;${LS}">using</div>
 <img data-layer=hlogo src=${cfg.hookLogo} style="position:absolute;left:136px;top:426px;width:96px;height:96px;border-radius:${Math.round((cfg.hookRadius||30)*.8)}px;background:#f9f9f9">

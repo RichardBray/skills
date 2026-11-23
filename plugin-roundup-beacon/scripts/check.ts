@@ -41,6 +41,8 @@ for (const f of [...(cfg.L ?? []), cfg.hookLogo].filter(Boolean)) if (!existsSyn
   if (cfg.NAMES && t.chip && norm(t.chip) !== norm(cfg.NAMES[i + 1])) warn(`chip "${t.chip}" differs from NAMES[${i + 1}] "${cfg.NAMES[i + 1]}"`);
 });
 
+if (cfg.variant === 'payoff' && !/illustrative/i.test(cfg.payoff ?? '')) fail('cfg.payoff is missing or not labelled Illustrative');
+
 const listFile = opt('alexandria-list');
 if (!listFile || listFile === true) warn('no --alexandria-list given: tools were NOT checked against Alexandria providers (run with --print-alexandria-command)');
 else {
