@@ -58,11 +58,16 @@ sc.forEach(s => { const K = 's' + s.n, R = (l: string) => rect(K, l);
   } else { r = R('result'); C(K + '-result', K + '-result', s.r!, s.ce, tf(r.cx, r.cy - 30, 1, 1, 0), [rise(s.r!, r.cy)]); }
   C(K + '-block', K + '-block', s.c, s.e, blockT(K), blockAnims(s.c, s.e));
 });
-{ const E = c, f1 = rect('end', 'f1'), f2 = rect('end', 'f2'), tl = rect('end', 'tiles');
+{ const E = c, f1 = rect('end', 'f1'), f2 = rect('end', 'f2');
   C('v6', 'v6', E + .05, E + .05 + D[6]!, null, [], 'audio');
   C('end-base', 'end-base', E, E + 3.63, tf(0, 0));
   C('end-f1', 'end-f1', E + .08, E + 3.63, tf(f1.cx, f1.cy - 30, 1, 1, 0), [rise(E + .08, f1.cy)]);
   C('end-f2', 'end-f2', E + 1.35, E + 3.63, tf(f2.cx, f2.cy - 30, 1, 1, 0), [rise(E + 1.35, f2.cy)]);
-  C('end-tiles', 'end-tiles', E + 2.27, E + 3.63, tf(tl.cx, tl.cy, .7, .7, 0), [pop(E + 2.27, .25)]);
+  // Tiles arrive in list order: left column from the left, right column from the right, the last one from below.
+  for (let i = 0; i < N; i++) {
+    const r = rect('end', 'tile' + i), s = E + 0.45 + i * 0.2;
+    const dx = i === N - 1 ? 0 : i % 2 === 0 ? -760 : 760, dy = i === N - 1 ? -700 : 0;
+    C('end-tile' + i, 'end-tile' + i, s, E + 3.63, tf(r.cx + dx, r.cy + dy, 1, 1, 0), [{ end: r3(s + .45), dur: .45, ease: 'backOut', to: { 'transform.x': r2(r.cx), 'transform.y': r2(r.cy), 'transform.opacity': 1 } }]);
+  }
   END_AT = E + 3.63; }
 export const END = END_AT;

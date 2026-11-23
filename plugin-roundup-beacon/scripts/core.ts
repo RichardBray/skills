@@ -83,10 +83,10 @@ const hook = page(`${cfg.variant === 'payoff' ? payoff : hookTiles}
 <div data-layer=three class=w style="left:146px;top:${textTop}px;font-size:${fs}px;${LSk};background:#000;color:#fff;padding-right:${Math.round(10 * k)}px;padding-bottom:${Math.round(29 * k)}px">${N}</div>
 <div data-layer=plugins class=w style="left:${nounLeft}px;top:${textTop}px;font-size:${fs}px;${LSk};background:#000;color:#fff;padding:0 ${Math.round(10 * k)}px ${Math.round(29 * k)}px">${cfg.noun}.</div>`);
 const epos = [[0,0],[440,0],[0,310],[440,310],[220,620]] as const;
-const tiles = L.map((n,i)=>`<div class=etile style="left:${epos[i]![0]}px;top:${epos[i]![1]}px;width:400px;height:280px;border-radius:56px"><img src=${n} style="width:170px;height:170px"></div>`).join('');
+const tiles = L.map((n,i)=>`<div data-layer=tile${i} class=etile style="left:${120+epos[i]![0]}px;top:${500+epos[i]![1]}px;width:400px;height:280px;border-radius:56px"><img src=${n} style="width:170px;height:170px"></div>`).join('');
 const end = page(`<div data-layer=f1 class=head style="top:270px!important"><span class=t style="font-size:90px;letter-spacing:-3px;padding-bottom:24px">Follow for more</span></div>
 <div data-layer=f2 class=head style="top:370px!important"><span class=t style="font-size:76px;letter-spacing:-3px;color:#fa5d19;padding-bottom:24px">plugin suggestions.</span></div>
-<div data-layer=tiles class=abs style="left:120px;top:500px;width:840px;height:900px">${tiles}</div>`);
+${tiles}`);
 const frames: Record<string, string> = { hook };
 items.forEach((it,i)=>{ frames['s'+(i+1)] = prod(i+1,it.sub,it.chip,it.prompt,it.bc,it.win||(fcRows+wall)); });
 frames.end = end;
