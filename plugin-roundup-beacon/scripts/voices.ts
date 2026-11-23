@@ -1,12 +1,16 @@
 // usage: bun voices.ts <dir> lines      write lines.json: the 7 voice lines, flagging which need (re)generating
+//        bun voices.ts <dir> tighten    trim the dead air in v1..v5 (originals kept as vN.raw.mp3); run measure after
 //        bun voices.ts <dir> done       record the current line texts as generated (after the Fish calls)
 //        bun voices.ts <dir> measure    ffprobe voices/v0..v6.mp3 into voices.json (D) and the Firecrawl cue shift (sh)
 import { createHash } from 'node:crypto';
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { copyFileSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { resolve } from 'node:path';
 import { loadCfg } from './lib.ts';
 
+type Keep = { from: number; to: number; at: number };
+// Where a time in the untrimmed take lands after tighten (a time inside a cut lands where the cut closed).
+const mapTime = (keep: Keep[], t: number) => { let out = 0; for (const k of keep) { if (t < k.from) return out; out = k.at + Math.min(t, k.to) - k.from; } return out; };
 type Line = { i: number; key: string; file: string; text: string; reusable?: string; hash?: string; stale?: boolean };
 
 const [d, mode] = process.argv.slice(2);
@@ -49,13 +53,42 @@ if (mode === 'measure') {
   const out: { D: number[]; sh: Record<number, number> } = { D, sh: {} };
   // The scene's use-case rows were authored against a reference Firecrawl line in which "Live data on people..."
   // started 4.69s in; the FC_CUE_PAUSE-th pause of 0.4s or more ends where that phrase starts.
-  const r = spawnSync('ffmpeg', ['-nostats', '-i', resolve(DIR, `voices/v${cfg.fcPos}.mp3`), '-af', 'silencedetect=noise=-30dB:d=0.12', '-f', 'null', '-'], { encoding: 'utf8' });
+  const raw = resolve(DIR, `voices/v${cfg.fcPos}.raw.mp3`);
+  const r = spawnSync('ffmpeg', ['-nostats', '-i', existsSync(raw) ? raw : resolve(DIR, `voices/v${cfg.fcPos}.mp3`), '-af', 'silencedetect=noise=-30dB:d=0.12', '-f', 'null', '-'], { encoding: 'utf8' });
   const longEnds = [...r.stderr.matchAll(/silence_end: ([0-9.]+) \| silence_duration: ([0-9.]+)/g)].filter(m => Number(m[2]) >= 0.4).map(m => Number(m[1]));
   const fcD = D[cfg.fcPos]!;
-  const cue = longEnds[FC_CUE_PAUSE - 1];
+  // The cue is found in the untrimmed take, where the pauses are still long, then moved to where it lands after tighten.
+  const mapPath = resolve(DIR, `voices/v${cfg.fcPos}.map.json`);
+  const rawCue = longEnds[FC_CUE_PAUSE - 1];
+  const cue = rawCue !== undefined && existsSync(mapPath) ? mapTime(JSON.parse(readFileSync(mapPath, 'utf8')) as Keep[], rawCue) : rawCue;
   console.log(`long pauses end at ${longEnds.join(', ')}; "Live data" cue ${cue}`);
   if (cue !== undefined && cue < fcD - 1) out.sh[cfg.fcPos] = Math.round((cue - 4.69) * 100) / 100;
   else console.warn(`WARN could not find the "Live data" pause (long pauses: ${longEnds.join(', ')}); spec falls back to D-11.6766, check the rows by eye`);
   writeFileSync(resolve(DIR, 'voices.json'), JSON.stringify(out));
   console.log('voices.json', JSON.stringify(out));
+}
+if (mode === 'tighten') {
+  const LEAD = 0.05, TAIL = 0.15, CAP = 0.3;
+  for (let i = 1; i <= 5; i++) {
+    const cur = resolve(DIR, `voices/v${i}.mp3`), raw = resolve(DIR, `voices/v${i}.raw.mp3`);
+    if (!existsSync(raw)) copyFileSync(cur, raw);
+    const d = Number(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', raw]).toString().trim());
+    const r = spawnSync('ffmpeg', ['-nostats', '-i', raw, '-af', 'silencedetect=noise=-35dB:d=0.12', '-f', 'null', '-'], { encoding: 'utf8' });
+    const starts = [...r.stderr.matchAll(/silence_start: ([0-9.]+)/g)].map(m => Number(m[1]));
+    const ends = [...r.stderr.matchAll(/silence_end: ([0-9.]+)/g)].map(m => Number(m[1]));
+    const cuts: Array<[number, number]> = [];
+    starts.forEach((a, k) => {
+      const b = ends[k] ?? d;
+      if (a < 0.01) { if (b > LEAD) cuts.push([0, b - LEAD]); }
+      else if (b >= d - 0.01) { if (b - a > TAIL) cuts.push([a + TAIL, d]); }
+      else if (b - a > CAP) cuts.push([a + CAP / 2, b - CAP / 2]);
+    });
+    const keep: Keep[] = []; let t = 0, at = 0;
+    for (const [a, b] of cuts) { if (a > t) { keep.push({ from: t, to: a, at }); at += a - t; } t = b; }
+    if (t < d) keep.push({ from: t, to: d, at });
+    const filt = keep.map((k, n) => `[0:a]atrim=${k.from.toFixed(4)}:${k.to.toFixed(4)},asetpts=PTS-STARTPTS[a${n}]`).join(';') + ';' + keep.map((_, n) => `[a${n}]`).join('') + `concat=n=${keep.length}:v=0:a=1[o]`;
+    execFileSync('ffmpeg', ['-y', '-v', 'error', '-i', raw, '-filter_complex', filt, '-map', '[o]', '-b:a', '192k', cur]);
+    writeFileSync(resolve(DIR, `voices/v${i}.map.json`), JSON.stringify(keep));
+    console.log(`v${i} ${d.toFixed(2)}s -> ${(keep.at(-1)!.at + keep.at(-1)!.to - keep.at(-1)!.from).toFixed(2)}s`);
+  }
 }
