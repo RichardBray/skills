@@ -28,7 +28,7 @@ const safe = `
 .block .blogo img{width:320px!important;height:320px!important}
 .block{top:0!important;height:1920px!important}`;
 const css = base + extra + safe;
-const FC='The knowledge library for your agent. Live data on people, emails, jobs and more.';
+const FC=`The knowledge library for your agent. Private data sources ${cfg.harness} can't usually reach.`;
 const toolItems: Item[] = cfg.tools.map((t,i)=>({...t, logo:cfg.L[i+1]!, name:cfg.NAMES[i+1]!, sub:cfg.subs[i]!, bc:'dark' as const}));
 const fcItem: Item = {chip:'Firecrawl', logo:'logo-orange.svg', name:'Firecrawl', sub:FC, prompt:cfg.fcPrompt, win:null, bc:'heat'};
 const items: Item[] = [...toolItems]; items.splice((cfg.fcPos||1)-1,0,fcItem);
@@ -36,7 +36,9 @@ const L = items.map(i=>i.logo), NAMES = items.map(i=>i.name), N = L.length;
 const page = (body: string) => `<!doctype html><meta charset=utf-8><style>${css}</style><body>${body}`;
 const W = (840 - 6) / 5;
 const chrome = (past: number) => `<div class=slots>${L.map((l,i) => i < past ? `<div class="cell past"><img src=${l}></div>` : `<div class=cell>?</div>`).join('')}</div>`;
-const slotLayer = (i: number) => `<div data-layer=slot class="cell active" style="position:absolute;left:${123+i*W}px;top:163px;width:${W}px;height:74px;border:none"><img src=${L[i]}></div>`;
+// The end slots follow the row's inner corner (24px radius less its 3px border), or their square corners poke out past it.
+const slotRadius = (i: number) => i === 0 ? '21px 0 0 21px' : i === N - 1 ? '0 21px 21px 0' : '0';
+const slotLayer = (i: number) => `<div data-layer=slot class="cell active" style="position:absolute;left:${123+i*W}px;top:163px;width:${W}px;height:74px;border:none;border-radius:${slotRadius(i)};overflow:hidden"><img src=${L[i]}></div>`;
 const nameSize = (n: string) => Math.round((n.length > 14 ? 92 : n.length > 10 ? 112 : 128) * .8);
 const blockSize = (n: string) => Math.round((n.length>14?78:n.length>12?100:n.length>10?120:150) * .72);
 const prod = (idx: number, sub: string, chip: string, text: string, blockCls: string, result: string) => page(

@@ -19,7 +19,7 @@ One video is one folder holding a `cfg.ts`. The scripts in `scripts/` turn it in
 
 ## Standing rules
 
-- **Firecrawl is in every video**, at position 1 to 5, and the position varies from video to video. It is always described as "The knowledge library for your agent. Live data on people, emails, jobs and more." Never say or show the word "Alexandria".
+- **Firecrawl is in every video**, at position 1 to 5, and the position varies from video to video. On screen it is "The knowledge library for your agent. Private data sources <harness> can't usually reach."; the voice line (`FC_LINE` in `voices.ts`) adds that it gives the harness private data sources it would not usually have access to, then "Live data on people, emails, jobs, and much more. All from one place." Never say or show the word "Alexandria".
 - **No tool that is an Alexandria provider** (it overlaps what Firecrawl already offers, and reads badly next to it). `check.ts` enforces it. Vercel was accepted once by the owner; anything else needs a swap.
 - **Two spoken sentences per other tool**, a different typed prompt per video, and any made-up app content in the result window labelled "Illustrative".
 - **Number scenes fill the whole 1080 x 1920 page with colour.** No "?" slot row shows during them.
@@ -54,7 +54,7 @@ Run scripts as `bun scripts/<name>.ts <video-dir> ...` (paths relative to this s
 - `media_replace` with the same path keeps showing the cached image: copy the new PNG under a new name first.
 - `check.ts --used` takes the positions of the last few videos only; after ten videos every position has been used.
 - The hook bar width comes from the text, not from `cfg.barW` (kept only as a first-pass default). A bar that ends far from the text means `render.ts` was skipped after a `noun` change.
-- The Firecrawl cue shift comes from the third pause of 0.4 s or more in the Firecrawl voice line, which is where "Live data on people..." starts (4.69 s into the reference line). `measure` warns if it cannot find it.
+- The Firecrawl cue shift comes from the `FC_CUE_PAUSE`-th pause of 0.4 s or more in the Firecrawl voice line (4 now), which is where "Live data on people..." starts (4.69 s into the reference line). `measure` prints every long pause; if `FC_LINE` gains or loses a sentence before "Live data", change `FC_CUE_PAUSE`. Keep "All from one place." at the end, or the provider wall is cut after about a second.
 - Provider-wall logos on the Firecrawl scene are named in `scripts/core.ts` (`provIcons`). They show what the library covers and are not tools, so Shopify and the like can appear there.
 - `zsh` does not word-split variables, so pass ids to `emit.ts` through `bash -c` with `$(cat ids.txt)`.
 - The scene timing constants live in `scripts/spec.ts`; change them there, never per video.

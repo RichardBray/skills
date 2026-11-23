@@ -16,7 +16,9 @@ const cfg = await loadCfg(DIR);
 const TAG = '[warm, upbeat, like telling a friend]';
 const VOICE = { voice_id: '933563129e564b19a115bedd57b7406a', model: 'drama-3', note: 'Fish Audio Sarah. Pass `text` to the fish-audio text_to_speech MCP tool with these two fields, then download the mp3 URL to `file`.' };
 const ORD = ['One', 'Two', 'Three', 'Four', 'Five'], NUM = ['', 'one', 'two', 'three', 'four', 'five'];
-const FC_LINE = '<emphasis>Firecrawl</emphasis>. The <emphasis>knowledge library</emphasis> for your agent. Live data on people, emails, jobs, and <emphasis>much more</emphasis>. All from one place.';
+const FC_LINE = `<emphasis>Firecrawl</emphasis>. The <emphasis>knowledge library</emphasis> for your agent. It gives ${cfg.harness} <emphasis>private data sources</emphasis> it wouldn't usually have access to. Live data on people, emails, jobs, and <emphasis>much more</emphasis>. All from one place.`;
+// Long pauses in FC_LINE before "Live data on people...": after "Four,", "Firecrawl.", "agent." and "access to.".
+const FC_CUE_PAUSE = 4;
 const say = (n: string) => cfg.say?.[n] ?? n;
 
 const lines: Line[] = [{ i: 0, key: 'hook', file: 'voices/v0.mp3', text: `${TAG} <emphasis>Stop</emphasis> using ${cfg.harness} without these <emphasis>${NUM[5]!}</emphasis> ${cfg.noun}.` }];
@@ -45,13 +47,14 @@ if (mode === 'measure') {
   const dur = (f: string) => Number(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', f]).toString().trim());
   const D = lines.map(l => dur(resolve(DIR, l.file)));
   const out: { D: number[]; sh: Record<number, number> } = { D, sh: {} };
-  // The scene's use-case rows were authored against a reference Firecrawl line: the third pause of 0.4s or more
-  // ends where "Live data on people..." starts, which sat 4.69s into the reference.
+  // The scene's use-case rows were authored against a reference Firecrawl line in which "Live data on people..."
+  // started 4.69s in; the FC_CUE_PAUSE-th pause of 0.4s or more ends where that phrase starts.
   const r = spawnSync('ffmpeg', ['-nostats', '-i', resolve(DIR, `voices/v${cfg.fcPos}.mp3`), '-af', 'silencedetect=noise=-30dB:d=0.12', '-f', 'null', '-'], { encoding: 'utf8' });
   const longEnds = [...r.stderr.matchAll(/silence_end: ([0-9.]+) \| silence_duration: ([0-9.]+)/g)].filter(m => Number(m[2]) >= 0.4).map(m => Number(m[1]));
   const fcD = D[cfg.fcPos]!;
-  const third = longEnds[2];
-  if (third !== undefined && third < fcD - 1) out.sh[cfg.fcPos] = Math.round((third - 4.69) * 100) / 100;
+  const cue = longEnds[FC_CUE_PAUSE - 1];
+  console.log(`long pauses end at ${longEnds.join(', ')}; "Live data" cue ${cue}`);
+  if (cue !== undefined && cue < fcD - 1) out.sh[cfg.fcPos] = Math.round((cue - 4.69) * 100) / 100;
   else console.warn(`WARN could not find the "Live data" pause (long pauses: ${longEnds.join(', ')}); spec falls back to D-11.6766, check the rows by eye`);
   writeFileSync(resolve(DIR, 'voices.json'), JSON.stringify(out));
   console.log('voices.json', JSON.stringify(out));
