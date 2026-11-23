@@ -40,7 +40,11 @@ const more = `<div class=pwall style="left:688px;top:0;background:#fa5d19;border
 const wall = [0,1].map(r => `<div data-layer=wall${r} class=wrow style="top:${820+r*268}px">${provIcons.slice(r*3, r*3+3).map((n,i)=>tile(n,i)).join('')}</div>`).join('') + `<div data-layer=wall2 class=wrow style="top:${820+2*268}px">${provIcons.slice(6,8).map((n,i)=>tile(n,i)).join('')}${more}</div>`;
 const hookRects: Rect[] | null = existsSync(resolve(DIR, 'rects-hook.json')) ? JSON.parse(readFileSync(resolve(DIR, 'rects-hook.json'), 'utf8')) as Rect[] : null;
 const textRight = hookRects?.find(a => a[0] === 'plugins');
-const barW = textRight ? Math.round(textRight[1] + textRight[3] + 41 - 52) : (cfg.barW || 690);
+const numRect = hookRects?.find(a => a[0] === 'three');
+// A long noun ("marketing plugins") overflows the frame at 128px: shrink the number and noun together so the bar ends inside it.
+const k = textRight ? Math.min(1, 787 / textRight[3]) : 1;
+const fs = Math.round(128 * k), nounLeft = Math.round(84 + ((numRect?.[3] ?? 84.3) + 31.7) * k), textTop = Math.round(665 + 82 * (1 - k));
+const barW = textRight ? Math.round(nounLeft + textRight[3] * k + 41 - 52) : (cfg.barW || 690);
 const hookTiles = [0,1,2,3,4].map(i=>`<div data-layer=t${i} style="position:absolute;left:${48+i*W}px;top:${[1000,1110,980,1090,1020][i]!}px;width:${W}px;height:240px;background:#f9f9f9"><div style="position:absolute;left:18px;top:20px;width:160px;height:160px;border-radius:40px;background:#111;box-shadow:0 20px 28px rgba(0,0,0,.30);display:flex;align-items:center;justify-content:center;color:#fff;font-size:104px;font-weight:500;line-height:1">?</div></div>`).join('');
 const hook = page(`${hookTiles}
 <div data-layer=stop class=w style="left:72px;top:140px;font-size:150px">Stop</div>
@@ -50,8 +54,8 @@ const hook = page(`${hookTiles}
 <div data-layer=without class=w style="left:72px;top:490px;font-size:150px">without</div>
 <div data-layer=these class=w style="left:610px;top:490px;font-size:150px">these</div>
 <div data-layer=bar class=abs style="left:52px;top:651px;width:${barW}px;height:190px;background:#000;border-radius:34px"></div>
-<div data-layer=three class=w style="left:84px;top:665px;font-size:128px;background:#000;color:#fff;padding-right:12px;padding-bottom:36px">${N}</div>
-<div data-layer=plugins class=w style="left:200px;top:665px;font-size:128px;background:#000;color:#fff;padding:0 12px 36px">${cfg.noun}.</div>`);
+<div data-layer=three class=w style="left:84px;top:${textTop}px;font-size:${fs}px;letter-spacing:${Math.round(-5 * k * 10) / 10}px;background:#000;color:#fff;padding-right:${Math.round(12 * k)}px;padding-bottom:${Math.round(36 * k)}px">${N}</div>
+<div data-layer=plugins class=w style="left:${nounLeft}px;top:${textTop}px;font-size:${fs}px;letter-spacing:${Math.round(-5 * k * 10) / 10}px;background:#000;color:#fff;padding:0 ${Math.round(12 * k)}px ${Math.round(36 * k)}px">${cfg.noun}.</div>`);
 const tiles = L.map((n,i)=>`<div class=etile style="left:${i*196.4}px;top:0;width:176px;height:176px;border-radius:40px"><img src=${n} style="width:100px;height:100px"></div>`).join('');
 const end = page(`${chrome(5)}
 <div data-layer=f1 class=head style="top:150px"><span class=t style="font-size:112px;letter-spacing:-4px;padding-bottom:30px">Follow for more</span></div>

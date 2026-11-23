@@ -49,6 +49,9 @@ Run scripts as `bun scripts/<name>.ts <video-dir> ...` (paths relative to this s
 
 ## Gotchas
 
+- A long noun ("marketing plugins") is shrunk with the number so the bar ends inside the frame; `render.ts` does it from its first pass.
+- `media_replace` with the same path keeps showing the cached image: copy the new PNG under a new name first.
+- `check.ts --used` takes the positions of the last few videos only; after ten videos every position has been used.
 - The hook bar width comes from the text, not from `cfg.barW` (kept only as a first-pass default). A bar that ends far from the text means `render.ts` was skipped after a `noun` change.
 - The Firecrawl cue shift comes from the third pause of 0.4 s or more in the Firecrawl voice line, which is where "Live data on people..." starts (4.69 s into the reference line). `measure` warns if it cannot find it.
 - Provider-wall logos on the Firecrawl scene are named in `scripts/core.ts` (`provIcons`). They show what the library covers and are not tools, so Shopify and the like can appear there.
