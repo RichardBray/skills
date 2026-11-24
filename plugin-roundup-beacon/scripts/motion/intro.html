@@ -1,0 +1,40 @@
+<style>
+:root{--accent:{{ACCENT}};--soft:{{SOFT}};--ink:{{INK}};--pill:{{PILL}}}
+#floor{position:absolute;left:0;top:850px;width:1080px;height:1070px;background:#f9f9f9}
+#scene{position:absolute;left:0;top:0;width:1080px;height:1920px;perspective:1500px;perspective-origin:450px 1150px}
+#deck{position:absolute;left:120px;top:900px;width:660px;height:560px;transform-style:preserve-3d}
+.card{position:absolute;left:0;width:660px;height:128px;box-sizing:border-box;border-radius:26px;background:#fff;border:3px solid #ececec;box-shadow:0 26px 44px rgba(17,17,17,.16);display:flex;align-items:center;justify-content:space-between;padding:0 28px;font-family:"Helvetica Neue",Helvetica,sans-serif;color:#1f2937;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.card b{display:block;font-size:31px;font-weight:700;letter-spacing:-.5px}
+.card i{display:block;font-style:normal;font-size:21px;font-weight:500;color:#6b7280;margin-top:6px}
+.chip{font-size:24px;font-weight:800;color:var(--ink);background:var(--soft);border-radius:16px;padding:8px 16px;white-space:nowrap}
+#head{position:absolute;left:0;top:0;height:92px;display:flex;align-items:center;gap:16px;padding:0 28px 0 18px;border-radius:46px;background:var(--pill);color:#fff;font-family:"Helvetica Neue",Helvetica,sans-serif;font-size:34px;font-weight:800;letter-spacing:-.5px;box-shadow:0 20px 36px rgba(0,0,0,.25)}
+#head .ic{width:60px;height:60px;border-radius:30px;background:#fff;display:flex;align-items:center;justify-content:center}
+#head .ic svg,#head .ic img{width:38px;height:38px;object-fit:contain}
+#head .n{color:var(--accent)}
+#ring{position:absolute;left:450px;top:1150px;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;border:3px solid var(--accent);box-sizing:border-box;opacity:0}
+#ring2{position:absolute;left:450px;top:1150px;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;background:var(--soft);opacity:0}
+</style>
+<div id=floor></div>
+<div id=scene>
+  <div id=ring2></div><div id=ring></div>
+  <div id=deck>
+    <div id=head><div class=ic>{{ICON}}</div><span><span class="n count" data-from=0 data-to={{COUNT}} data-t=0.55 data-for=0.9>0</span> {{LABEL}}</span></div>
+{{CARDS}}
+  </div>
+</div>
+<script>
+const tl = gsap.timeline();
+gsap.set('#deck', { rotationX: 14, rotationY: -10, rotationZ: -2 });
+['#c0', '#c1', '#c2'].forEach((c, i) => {
+  tl.fromTo(c, { z: -2600, rotationY: 80, rotationX: -40, y: -260, opacity: 0 },
+    { z: 0, rotationY: 0, rotationX: 0, y: 0, opacity: 1, duration: 0.42, ease: 'back.out(1.6)' }, i * 0.09);
+});
+tl.fromTo('#ring', { scale: 1, opacity: 1 }, { scale: 15, opacity: 0, duration: 0.5, ease: 'power2.out' }, 0.32);
+tl.fromTo('#ring2', { scale: 1, opacity: 1 }, { scale: 12, opacity: 0, duration: 0.4, ease: 'power2.out' }, 0.32);
+tl.to('#scene', { keyframes: [{ x: -14, y: 8, duration: 0.04 }, { x: 11, y: -6, duration: 0.04 }, { x: -6, y: 4, duration: 0.04 }, { x: 0, y: 0, duration: 0.05 }] }, 0.32);
+tl.fromTo('#deck', { scale: 1.08 }, { scale: 1, duration: 0.35, ease: 'power3.out' }, 0.32);
+tl.fromTo('#head', { z: 400, y: -120, rotationX: 70, opacity: 0 }, { z: 0, y: 0, rotationX: 0, opacity: 1, duration: 0.4, ease: 'back.out(2)' }, 0.42);
+tl.fromTo('.chip', { scale: 0.2, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: 'back.out(3)', stagger: 0.08 }, 0.7);
+tl.to('#deck', { rotationY: 8, rotationX: 8, rotationZ: 1, duration: 3.1, ease: 'sine.inOut' }, 1.0);
+tl.to('#deck', { y: 1100, rotationX: 55, opacity: 0, duration: 0.5, ease: 'power3.in' }, {{EXIT}});
+</script>

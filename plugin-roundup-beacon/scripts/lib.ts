@@ -1,5 +1,9 @@
 import { resolve } from "node:path";
 
+// The payoff intro's deck: the topic's own icon and colours (never the Firecrawl logo), a count and three result cards.
+// icon: an .svg/.png file in the video folder, inlined as a data URI (the page loads nothing from outside).
+export type Intro = { icon: string; accent: string; soft: string; ink: string; pill?: string; count: number; label: string; cards: Array<[string, string, string]> };
+
 export type Tool = { chip: string; prompt: string; win: string };
 
 export type Cfg = {
@@ -16,9 +20,9 @@ export type Cfg = {
   subs: string[];
   tools: Tool[];
   say?: Record<string, string>;
-  // "payoff": the hook opens on a finished result window (`payoff`, HTML) instead of the "?" tiles.
+  // "payoff": the hook opens on a 3D deck of result cards (`intro`, drawn by motion.ts) instead of the "?" tiles.
   variant?: "control" | "payoff";
-  payoff?: string;
+  intro?: Intro;
 };
 
 export async function loadCfg(dir: string): Promise<Cfg> {

@@ -1,5 +1,5 @@
 // usage: bun voices.ts <dir> lines      write lines.json: the 7 voice lines, flagging which need (re)generating
-//        bun voices.ts <dir> tighten    trim the dead air in v1..v5 (originals kept as vN.raw.mp3); run measure after
+//        bun voices.ts <dir> tighten    trim the dead air in v1..v6 (originals kept as vN.raw.mp3); run measure after
 //        bun voices.ts <dir> done       record the current line texts as generated (after the Fish calls)
 //        bun voices.ts <dir> measure    ffprobe voices/v0..v6.mp3 into voices.json (D) and the Firecrawl cue shift (sh)
 import { createHash } from 'node:crypto';
@@ -50,7 +50,10 @@ if (mode === 'done') {
 if (mode === 'measure') {
   const dur = (f: string) => Number(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', f]).toString().trim());
   const D = lines.map(l => dur(resolve(DIR, l.file)));
-  const out: { D: number[]; sh: Record<number, number> } = { D, sh: {} };
+  const out: { D: number[]; sh: Record<number, number>; hookEnd?: number } = { D, sh: {} };
+  const h = spawnSync('ffmpeg', ['-nostats', '-i', resolve(DIR, 'voices/v0.mp3'), '-af', 'silencedetect=noise=-35dB:d=0.1', '-f', 'null', '-'], { encoding: 'utf8' });
+  const tailStart = [...h.stderr.matchAll(/silence_start: ([0-9.]+)/g)].map(m => Number(m[1])).filter(t => t > D[0]! - 1).at(-1);
+  if (tailStart !== undefined) out.hookEnd = Math.round((tailStart + 0.03) * 1000) / 1000;
   // The scene's use-case rows were authored against a reference Firecrawl line in which "Live data on people..."
   // started 4.69s in; the FC_CUE_PAUSE-th pause of 0.4s or more ends where that phrase starts.
   const raw = resolve(DIR, `voices/v${cfg.fcPos}.raw.mp3`);
@@ -69,7 +72,8 @@ if (mode === 'measure') {
 }
 if (mode === 'tighten') {
   const LEAD = 0.05, TAIL = 0.15, CAP = 0.3;
-  for (let i = 1; i <= 5; i++) {
+  // v6 (the CTA) only loses its lead-in and tail; the hook (v0) is never touched because its words are timed to it.
+  for (let i = 1; i <= 6; i++) {
     const cur = resolve(DIR, `voices/v${i}.mp3`), raw = resolve(DIR, `voices/v${i}.raw.mp3`);
     if (!existsSync(raw)) copyFileSync(cur, raw);
     const d = Number(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', raw]).toString().trim());

@@ -1,48 +1,36 @@
-// usage: bun plan.ts <dir> --t0 <seconds> [--voice-track track-id]
-//          writes plan-1.json.. : transactions of at most 20 clip_add commands (Beacon only returns the first 20 ids)
-//        bun plan.ts <dir> --t0 <seconds> --anims [--music-asset asset-id --music-track track-id --out file.mp4]
-//          reads ids.txt (every clip id from the adds, in order) and writes anims.json, music.json and export.json
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+// usage: bun plan.ts <dir> --t0 <seconds> --voice-track <track-id> --music-asset <asset-id> --music-track <track-id> [--out file.mp4]
+//   writes build.js, one Beacon `script` that adds the music, every clip and every animation in one undo step,
+//   and export.json for export_start
+import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { loadCfg, opt as optIn, r3 } from './lib.ts';
-import type { Clip } from './spec.ts';
 
 const argv = process.argv.slice(2);
 const opt = (n: string) => optIn(argv, n);
 const DIR = resolve(argv[0] || '.');
 const T0 = Number(opt('t0'));
-if (!(T0 >= 0)) { console.error('--t0 <timeline seconds> is required'); process.exit(1); }
+const VOICE = opt('voice-track'), MUSIC = opt('music-asset'), MTRACK = opt('music-track');
+if (!(T0 >= 0) || typeof VOICE !== 'string' || typeof MUSIC !== 'string' || typeof MTRACK !== 'string') {
+  console.error('need --t0, --voice-track, --music-asset and --music-track'); process.exit(1);
+}
 process.env.VDIR = DIR; process.env.T0 = String(T0);
-const VOICE = opt('voice-track') || 'track-c99ce6e2';
 const { clips, END } = await import('./spec.ts');
 const cfg = await loadCfg(DIR);
-const dur = (c: Clip) => r3((c.trimEnd || c.end) - c.start);
-const add = (c: Clip) => c.type === 'audio'
-  ? { command: 'clip_add', args: { type: 'audio', assetId: c.asset, start: c.start, duration: dur(c), track: VOICE } }
-  : { command: 'clip_add', args: { type: 'image', assetId: c.asset, start: c.start, duration: r3(c.end - c.start), props: { transform: c.t } } };
-const w = (f: string, o: unknown) => writeFileSync(resolve(DIR, f), JSON.stringify(o));
-
-if (!opt('anims')) {
-  const n = Math.ceil(clips.length / 20);
-  for (let i = 0; i < n; i++) w(`plan-${i + 1}.json`, clips.slice(i * 20, i * 20 + 20).map(add));
-  console.log(`${clips.length} clips -> plan-1..${n}.json, section ${T0} to ${r3(END)}.`);
-  console.log(`Submit each as a Beacon transaction in order. Append every returned id (the "result" array, in order) to ${DIR}/ids.txt, space separated, ${clips.length} ids in all. Then re-run with --anims.`);
-} else {
-  if (!existsSync(resolve(DIR, 'ids.txt'))) { console.error('ids.txt missing'); process.exit(1); }
-  const ids = readFileSync(resolve(DIR, 'ids.txt'), 'utf8').split(/\s+/).filter(Boolean);
-  if (ids.length !== clips.length) { console.error(`ids.txt has ${ids.length} ids, expected ${clips.length}`); process.exit(1); }
-  const cmds: Array<{ command: string; args: Record<string, unknown> }> = [];
-  clips.forEach((c, i) => {
-    const id = ids[i] ?? '';
-    for (const an of c.anims) cmds.push({ command: 'animation_add', args: { clip: id.startsWith('clip-') ? id : 'clip-' + id, end: an.end, duration: an.dur, easing: an.ease, to: an.to } });
-  });
-  w('anims.json', cmds);
-  console.log(`anims.json: ${cmds.length} animation_add commands (one transaction).`);
-  if (opt('music-asset')) {
-    w('music.json', [{ command: 'clip_add', args: { type: 'audio', assetId: opt('music-asset'), start: T0, duration: r3(END - T0), track: opt('music-track'), props: { audio: { gain: 1, volume: 0.15, normalize: true, muted: false } } } }]);
-    console.log('music.json: volume 0.15 via props.audio (a top-level volume prop is rejected).');
-  }
-  const out = opt('out') || resolve(dirname(DIR), `stop-using-${cfg.harness.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-without-these-5-${cfg.noun}.mp4`);
-  w('export.json', { output: out, from: T0, to: r3(END), speed: 1.2, overwrite: true });
-  console.log('export.json:', readFileSync(resolve(DIR, 'export.json'), 'utf8'));
+const data = clips.map(c => [c.type === 'audio' ? 1 : 0, c.asset, c.start, r3((c.trimEnd || c.end) - c.start), c.t ? [c.t.x, c.t.y, c.t.scaleX, c.t.scaleY, c.t.opacity] : 0, c.anims.map(a => [a.end, a.dur, a.ease, a.to])]);
+// The music goes on first: clip_add puts images on the lowest free track, which is the music track until it is filled.
+const js = `const B = ${JSON.stringify({ T0, END: r3(END), C: data })};
+beacon.run("clip_add", { type: "audio", assetId: ${JSON.stringify(MUSIC)}, start: B.T0, duration: Math.round((B.END - B.T0) * 1000) / 1000, track: ${JSON.stringify(MTRACK)}, props: { audio: { gain: 1, volume: 0.12, normalize: true, muted: false } } });
+let n = 0;
+for (const [audio, asset, start, duration, t, anims] of B.C) {
+  const id = audio
+    ? beacon.run("clip_add", { type: "audio", assetId: asset, start, duration, track: ${JSON.stringify(VOICE)} })
+    : beacon.run("clip_add", { type: "image", assetId: asset, start, duration, props: { transform: { x: t[0], y: t[1], scaleX: t[2], scaleY: t[3], rotation: 0, rotationX: 0, rotationY: 0, opacity: t[4] } } });
+  for (const [end, dur, easing, to] of anims) { beacon.run("animation_add", { clip: id, end, duration: dur, easing, to }); n++; }
 }
+return { clips: B.C.length, anims: n, end: B.END };
+`;
+writeFileSync(resolve(DIR, 'build.js'), js);
+const out = opt('out') || resolve(dirname(DIR), `stop-using-${cfg.harness.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-without-these-5-${cfg.noun.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}.mp4`);
+writeFileSync(resolve(DIR, 'export.json'), JSON.stringify({ output: out, from: T0, to: r3(END), speed: 1.2, overwrite: true }));
+console.log(`build.js: ${clips.length} clips, section ${T0} to ${r3(END)}. Run its text with the Beacon script tool (seconds: 30).`);
+console.log('export.json:', readFileSync(resolve(DIR, 'export.json'), 'utf8'));

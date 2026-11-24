@@ -6,7 +6,7 @@ export type Transform = { x: number; y: number; scaleX: number; scaleY: number; 
 export type Anim = { end: number; dur: number; ease: string; to: Record<string, number> };
 export type Clip = { key: string; asset: string; start: number; end: number; t: Transform | null; anims: Anim[]; type: 'image' | 'audio'; trimEnd?: number };
 type Rect = [string, number, number, number, number];
-type Scene = { n: number; c: number; e: number; ps: number; t0: number; d: number; ce: number; r?: number; vend?: number; sh: number };
+type Scene = { n: number; c: number; e: number; ps: number; t0: number; d: number; ce: number; r?: number; sh: number };
 
 const ROOT = path.resolve(process.env.VDIR || process.cwd()) + '/';
 const cfg = await loadCfg(ROOT);
@@ -15,7 +15,7 @@ const rect = (sc: string, l: string) => { const j = JSON.parse(fs.readFileSync(R
 const r2 = (n: number) => Math.round(n * 100) / 100;
 const tf = (x: number, y: number, sx = 1, sy = 1, op = 1): Transform => ({ x: r2(x), y: r2(y), scaleX: sx, scaleY: sy, rotation: 0, rotationX: 0, rotationY: 0, opacity: op });
 const T0 = Number(process.env.T0), N = 5;
-const VJ = JSON.parse(fs.readFileSync(ROOT + 'voices.json', 'utf8')) as { D: number[]; sh?: Record<string, number> }; const D = VJ.D; const FCPOS = +(process.env.FCPOS || cfg.fcPos || 1);
+const VJ = JSON.parse(fs.readFileSync(ROOT + 'voices.json', 'utf8')) as { D: number[]; sh?: Record<string, number>; hookEnd?: number }; const D = VJ.D; const FCPOS = +(process.env.FCPOS || cfg.fcPos || 1);
 if (!(T0 >= 0)) throw new Error('set T0 (timeline start, seconds)');
 export const clips: Clip[] = [];
 let END_AT = 0;
@@ -25,13 +25,12 @@ const fade = (s: number, d = .15): Anim => ({ end: r3(s + d), dur: d, ease: 'eas
 const rise = (s: number, y: number): Anim => ({ end: r3(s + .3), dur: .3, ease: 'easeOut', to: { 'transform.y': r2(y), 'transform.opacity': 1 } });
 const blockAnims = (c: number, e: number): Anim[] => [{ end: r3(c + .15), dur: .15, ease: 'easeOut', to: { 'transform.scaleX': 1, 'transform.scaleY': 1, 'transform.opacity': 1 } }, { end: r3(e), dur: .3, ease: 'easeIn', to: { 'transform.scaleY': 0, 'transform.y': 960 } }];
 const blockT = (sc: string) => { const r = rect(sc, 'block'); return tf(r.cx, r.cy, 1.06, 1.06, 0); };
-const HE = T0 + 5.2;
+// The hook ends where its speech does (voices.ts measure), never later than the 5.2s its animation was built for.
+const HE = T0 + Math.min(5.2, VJ.hookEnd ?? 5.2);
 C('v0', 'v0', T0, Math.min(T0 + D[0]!, HE - .03), null, [], 'audio');
 C('hook-base', 'hook-base', T0, HE, tf(0, 0));
-if (cfg.variant === 'payoff') {
-  const r = rect('hook', 'pay');
-  C('hook-pay', 'hook-pay', T0, HE, tf(r.cx, r.cy, 1.04, 1.04, 1), [{ end: r3(T0 + .6), dur: .6, ease: 'easeOut', to: { 'transform.scaleX': 1, 'transform.scaleY': 1 } }, { end: r3(HE - .2), dur: .6, ease: 'easeIn', to: { 'transform.y': -1150, 'transform.scaleX': .8, 'transform.scaleY': .8 } }]);
-} else for (let i = 0; i < N; i++) {
+// The payoff variant's card deck is a motion graphic (motion.ts intro), added over the hook after the build.
+if (cfg.variant !== 'payoff') for (let i = 0; i < N; i++) {
   const r = rect('hook', 't' + i), s = T0 + 0.2 + i * 0.12;
   C('hook-t' + i, 'hook-t' + i, T0, HE, tf(r.cx, r.cy, .8, .8, 0), [pop(s), { end: r3(HE - .2), dur: .6, ease: 'easeIn', to: { 'transform.y': -1150, 'transform.scaleX': .8, 'transform.scaleY': .8 } }]);
 }
@@ -41,8 +40,8 @@ if (cfg.variant === 'payoff') {
   q = rect('hook', 'plugins'); C('hook-plugins', 'hook-plugins', T0 + 4.03, HE, tf(q.cx, q.cy, .8, .8, 0), [pop(T0 + 4.03)]); }
 const sc: Scene[] = []; let c = HE;
 for (let n = 1; n <= 5; n++) {
-  const d = D[n]!; const s: Scene = n === FCPOS ? { n, c, e: c + 2.3, ps: c + 2.5, t0: c + 3.0, d: 2.6, ce: c + d - .27, vend: d - .37, sh: VJ.sh?.[n] ?? d - 11.6766 } : { n, c, e: c + 1.8, ps: c + 2.0, t0: c + 2.3, d: 2.2, r: c + Math.max(4.4, d * .55), ce: c + d + .3, sh: 0 };
-  sc.push(s); C('v' + n, 'v' + n, c, c + d, null, [], 'audio', s.vend !== undefined ? { trimEnd: c + s.vend } : {}); c = s.ce;
+  const d = D[n]!; const s: Scene = n === FCPOS ? { n, c, e: c + 2.3, ps: c + 2.5, t0: c + 3.0, d: 2.6, ce: c + d, sh: VJ.sh?.[n] ?? d - 11.6766 } : { n, c, e: c + 1.8, ps: c + 2.0, t0: c + 2.3, d: 2.2, r: c + Math.max(4.4, d * .55), ce: c + d, sh: 0 };
+  sc.push(s); C('v' + n, 'v' + n, c, c + d, null, [], 'audio'); c = s.ce;
 }
 sc.forEach(s => { const K = 's' + s.n, R = (l: string) => rect(K, l);
   C(K + '-base', K + '-base', s.c, s.ce, tf(0, 0));
@@ -58,16 +57,19 @@ sc.forEach(s => { const K = 's' + s.n, R = (l: string) => rect(K, l);
   } else { r = R('result'); C(K + '-result', K + '-result', s.r!, s.ce, tf(r.cx, r.cy - 30, 1, 1, 0), [rise(s.r!, r.cy)]); }
   C(K + '-block', K + '-block', s.c, s.e, blockT(K), blockAnims(s.c, s.e));
 });
-{ const E = c, f1 = rect('end', 'f1'), f2 = rect('end', 'f2');
-  C('v6', 'v6', E + .05, E + .05 + D[6]!, null, [], 'audio');
-  C('end-base', 'end-base', E, E + 3.63, tf(0, 0));
-  C('end-f1', 'end-f1', E + .08, E + 3.63, tf(f1.cx, f1.cy - 30, 1, 1, 0), [rise(E + .08, f1.cy)]);
-  C('end-f2', 'end-f2', E + 1.35, E + 3.63, tf(f2.cx, f2.cy - 30, 1, 1, 0), [rise(E + 1.35, f2.cy)]);
+{ const E = c, f1 = rect('end', 'f1'), f2 = rect('end', 'f2'), EL = Math.max(2.6, D[6]! + .1);
+  C('v6', 'v6', E, E + D[6]!, null, [], 'audio');
+  C('end-base', 'end-base', E, E + EL, tf(0, 0));
+  C('end-f1', 'end-f1', E + .08, E + EL, tf(f1.cx, f1.cy - 30, 1, 1, 0), [rise(E + .08, f1.cy)]);
+  C('end-f2', 'end-f2', E + 1.35, E + EL, tf(f2.cx, f2.cy - 30, 1, 1, 0), [rise(E + 1.35, f2.cy)]);
   // Tiles arrive in list order: left column from the left, right column from the right, the last one from below.
   for (let i = 0; i < N; i++) {
     const r = rect('end', 'tile' + i), s = E + 0.45 + i * 0.2;
     const dx = i === N - 1 ? 0 : i % 2 === 0 ? -760 : 760, dy = i === N - 1 ? -700 : 0;
-    C('end-tile' + i, 'end-tile' + i, s, E + 3.63, tf(r.cx + dx, r.cy + dy, 1, 1, 0), [{ end: r3(s + .45), dur: .45, ease: 'backOut', to: { 'transform.x': r2(r.cx), 'transform.y': r2(r.cy), 'transform.opacity': 1 } }]);
+    C('end-tile' + i, 'end-tile' + i, s, E + EL, tf(r.cx + dx, r.cy + dy, 1, 1, 0), [{ end: r3(s + .45), dur: .45, ease: 'backOut', to: { 'transform.x': r2(r.cx), 'transform.y': r2(r.cy), 'transform.opacity': 1 } }]);
   }
-  END_AT = E + 3.63; }
+  END_AT = E + EL; }
 export const END = END_AT;
+const fc = sc.find(s => s.n === FCPOS)!;
+// Where the Firecrawl scene starts and its use-case rows arrive: motion.ts fits the private-data graphic between them.
+export const marks = { fcStart: r3(fc.c), rowsAt: r3(fc.c + 5.97 + fc.sh) };
