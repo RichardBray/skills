@@ -32,3 +32,15 @@ Pick a pattern that has done well, write it for the video's audience, and keep i
 | Claude finance | Most people don't realize Claude can run their finances. You only need these 5 connectors. | ledger | |
 
 Fill in Result (views, average view duration) once a video has been up a week, and lean toward what wins.
+
+## TikTok titles and captions (research, Nov 2026)
+
+From 136 English TikTok posts across eight AI-tool searches (`scrapecreators tiktok/search-videos`, most-liked, last six months), the 113 about ChatGPT, Claude or AI tools with 150K+ views:
+
+- **Open with the claim the video makes,** in the same words as the hook. "Claude can now..." opened five posts with 200K-808K views; "Still using Claude without these settings? You're missing out." had 2.26M; "Everybody's installing the same Claude skills. Here are 5 that almost nobody knows about" had 1.43M.
+- **Then list the five, numbered, one short line each** (what it does for you). List captions were saved at 5.8% of views against 4.0% for the rest of the top 30.
+- **End with one ask:** a question ("Which one are you using already?") or "save this for later". Only 7 of the top 30 had an explicit CTA, so keep it to one.
+- **About five hashtags,** broad then niche: `#ai #aitools` plus `#chatgpt` or `#claude #claudeai`, plus one for the audience (`#jobsearch`, `#smallbusinessowner`). Skip `#fyp`.
+- The caption before the list runs about 150 characters (median).
+
+Vary the closing ask between videos and note which one each used, so it can be compared later.
