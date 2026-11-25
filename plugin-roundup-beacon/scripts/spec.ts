@@ -26,16 +26,18 @@ const rise = (s: number, y: number): Anim => ({ end: r3(s + .3), dur: .3, ease: 
 const blockAnims = (c: number, e: number): Anim[] => [{ end: r3(c + .15), dur: .15, ease: 'easeOut', to: { 'transform.scaleX': 1, 'transform.scaleY': 1, 'transform.opacity': 1 } }, { end: r3(e), dur: .3, ease: 'easeIn', to: { 'transform.scaleY': 0, 'transform.y': 960 } }];
 const blockT = (sc: string) => { const r = rect(sc, 'block'); return tf(r.cx, r.cy, 1.06, 1.06, 0); };
 // The hook ends where its speech does (voices.ts measure), never later than the 5.2s its animation was built for.
-const HE = T0 + Math.min(5.2, VJ.hookEnd ?? 5.2);
+// A custom intro runs on a little past the speech so its last move (tiles flying to the slot row) lands before scene 1.
+const HE = T0 + (cfg.variant === 'custom' ? r3((VJ.hookEnd ?? 4.6) + 0.4) : Math.min(5.2, VJ.hookEnd ?? 5.2));
 C('v0', 'v0', T0, Math.min(T0 + D[0]!, HE - .03), null, [], 'audio');
 C('hook-base', 'hook-base', T0, HE, tf(0, 0));
-// The payoff variant's card deck is a motion graphic (motion.ts intro), added over the hook after the build.
-if (cfg.variant !== 'payoff') for (let i = 0; i < N; i++) {
+// The payoff variant's card deck and a custom intro are motion graphics, added over the hook after the build.
+const stdHook = cfg.variant !== 'custom';
+if (cfg.variant !== 'payoff' && stdHook) for (let i = 0; i < N; i++) {
   const r = rect('hook', 't' + i), s = T0 + 0.2 + i * 0.12;
   C('hook-t' + i, 'hook-t' + i, T0, HE, tf(r.cx, r.cy, .8, .8, 0), [pop(s), { end: r3(HE - .2), dur: .6, ease: 'easeIn', to: { 'transform.y': -1150, 'transform.scaleX': .8, 'transform.scaleY': .8 } }]);
 }
-([['stop', .08], ['using', 1.03], ['hlogo', 1.29], ['hname', 1.29], ['without', 2.29], ['these', 2.61]] as Array<[string, number]>).forEach(([n, s]) => { const r = rect('hook', n); C('hook-' + n, 'hook-' + n, T0 + s, HE, tf(r.cx, r.cy, .8, .8, 0), [pop(T0 + s)]); });
-{ const r = rect('hook', 'bar'); C('hook-bar', 'hook-bar', T0 + 3.21, HE, tf(r.x - 540, r.cy, 0, 1, 1), [{ end: r3(T0 + 3.91), dur: .7, ease: 'easeOut', to: { 'transform.x': r2(r.cx), 'transform.scaleX': 1 } }]);
+if (stdHook) ([['stop', .08], ['using', 1.03], ['hlogo', 1.29], ['hname', 1.29], ['without', 2.29], ['these', 2.61]] as Array<[string, number]>).forEach(([n, s]) => { const r = rect('hook', n); C('hook-' + n, 'hook-' + n, T0 + s, HE, tf(r.cx, r.cy, .8, .8, 0), [pop(T0 + s)]); });
+if (stdHook) { const r = rect('hook', 'bar'); C('hook-bar', 'hook-bar', T0 + 3.21, HE, tf(r.x - 540, r.cy, 0, 1, 1), [{ end: r3(T0 + 3.91), dur: .7, ease: 'easeOut', to: { 'transform.x': r2(r.cx), 'transform.scaleX': 1 } }]);
   let q = rect('hook', 'three'); C('hook-three', 'hook-three', T0 + 3.21, HE, tf(q.cx, q.cy, .8, .8, 0), [pop(T0 + 3.21)]);
   q = rect('hook', 'plugins'); C('hook-plugins', 'hook-plugins', T0 + 4.03, HE, tf(q.cx, q.cy, .8, .8, 0), [pop(T0 + 4.03)]); }
 const sc: Scene[] = []; let c = HE;

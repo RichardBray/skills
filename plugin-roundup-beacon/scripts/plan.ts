@@ -16,7 +16,10 @@ if (!(T0 >= 0) || typeof VOICE !== 'string' || typeof MUSIC !== 'string' || type
 process.env.VDIR = DIR; process.env.T0 = String(T0);
 const { clips, END } = await import('./spec.ts');
 const cfg = await loadCfg(DIR);
-const data = clips.map(c => [c.type === 'audio' ? 1 : 0, c.asset, c.start, r3((c.trimEnd || c.end) - c.start), c.t ? [c.t.x, c.t.y, c.t.scaleX, c.t.scaleY, c.t.opacity] : 0, c.anims.map(a => [a.end, a.dur, a.ease, a.to])]);
+// Beacon snaps a clip's start to a frame and keeps its duration, so back-to-back voice lines whose start and end
+// round differently overlap by a frame; snap both edges here so each clip ends exactly where the next begins.
+const fps = Number(opt('fps') || 30), snap = (t: number) => Math.round(t * fps) / fps;
+const data = clips.map(c => { const s = snap(c.start), e = snap(c.trimEnd || c.end); return [c.type === 'audio' ? 1 : 0, c.asset, r3(s), Math.floor((e - s) * 1000) / 1000, c.t ? [c.t.x, c.t.y, c.t.scaleX, c.t.scaleY, c.t.opacity] : 0, c.anims.map(a => [a.end, a.dur, a.ease, a.to])]; });
 // The music goes on first: clip_add puts images on the lowest free track, which is the music track until it is filled.
 const js = `const B = ${JSON.stringify({ T0, END: r3(END), C: data })};
 beacon.run("clip_add", { type: "audio", assetId: ${JSON.stringify(MUSIC)}, start: B.T0, duration: Math.round((B.END - B.T0) * 1000) / 1000, track: ${JSON.stringify(MTRACK)}, props: { audio: { gain: 1, volume: 0.12, normalize: true, muted: false } } });

@@ -21,7 +21,10 @@ export type Cfg = {
   tools: Tool[];
   say?: Record<string, string>;
   // "payoff": the hook opens on a 3D deck of result cards (`intro`, drawn by motion.ts) instead of the "?" tiles.
-  variant?: "control" | "payoff";
+  // "custom": the whole hook is a hand-made motion graphic over a blank page; none of the standard hook layers are built.
+  variant?: "control" | "payoff" | "custom";
+  // The spoken (and shown) hook, replacing "Stop using <harness> without these five <noun>." Fish tags allowed.
+  hookLine?: string;
   intro?: Intro;
 };
 

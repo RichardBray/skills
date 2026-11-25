@@ -64,7 +64,8 @@ if (/alexandria/i.test(everything)) fail('the word "Alexandria" appears in cfg t
 
 if (opt('post')) {
   const rp = resolve(DIR, 'rects-hook.json');
-  if (!existsSync(rp)) fail('rects-hook.json missing (render first)');
+  if (cfg.variant === 'custom') console.log('custom intro: no hook bar to check');
+  else if (!existsSync(rp)) fail('rects-hook.json missing (render first)');
   else {
     const r = JSON.parse(readFileSync(rp, 'utf8')) as Rect[], g = (n: string) => r.find(a => a[0] === n);
     const bar = g('bar'), pl = g('plugins');

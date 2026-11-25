@@ -25,7 +25,7 @@ const FC_LINE = `<emphasis>Firecrawl</emphasis>. The <emphasis>knowledge library
 const FC_CUE_PAUSE = 4;
 const say = (n: string) => cfg.say?.[n] ?? n;
 
-const lines: Line[] = [{ i: 0, key: 'hook', file: 'voices/v0.mp3', text: `${TAG} <emphasis>Stop</emphasis> using ${cfg.harness} without these <emphasis>${NUM[5]!}</emphasis> ${cfg.noun}.` }];
+const lines: Line[] = [{ i: 0, key: 'hook', file: 'voices/v0.mp3', text: `${TAG} ${cfg.hookLine ?? `<emphasis>Stop</emphasis> using ${cfg.harness} without these <emphasis>${NUM[5]!}</emphasis> ${cfg.noun}.`}` }];
 let ti = 0;
 for (let p = 1; p <= 5; p++) {
   const isFc = p === cfg.fcPos, name = isFc ? 'Firecrawl' : cfg.NAMES[ti + 1]!;
