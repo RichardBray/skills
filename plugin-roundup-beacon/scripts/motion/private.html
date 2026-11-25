@@ -49,4 +49,6 @@ names.forEach((_, i) => {
   tl.to('#t' + i, { borderColor: '#ffc6ad', duration: 0.2 }, s);
 });
 tl.to(['#badge', '#grid'], { y: 80, opacity: 0, duration: 0.35, ease: 'power2.in' }, {{EXIT}});
+// Beacon draws a page's first frame without GSAP's from-states (everything shows finished), so hide the scene for it.
+window.__frame = t => { document.getElementById('scene').style.visibility = t < 0.02 ? 'hidden' : ''; };
 </script>

@@ -37,4 +37,6 @@ tl.fromTo('#head', { z: 400, y: -120, rotationX: 70, opacity: 0 }, { z: 0, y: 0,
 tl.fromTo('.chip', { scale: 0.2, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: 'back.out(3)', stagger: 0.08 }, 0.7);
 tl.to('#deck', { rotationY: 8, rotationX: 8, rotationZ: 1, duration: 3.1, ease: 'sine.inOut' }, 1.0);
 tl.to('#deck', { y: 1100, rotationX: 55, opacity: 0, duration: 0.5, ease: 'power3.in' }, {{EXIT}});
+// Beacon draws a page's first frame without GSAP's from-states (everything shows finished), so hide the scene for it.
+window.__frame = t => { document.getElementById('scene').style.visibility = t < 0.02 ? 'hidden' : ''; };
 </script>

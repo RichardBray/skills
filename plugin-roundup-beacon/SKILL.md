@@ -3,13 +3,13 @@ name: plugin-roundup-beacon
 scope: org:firecrawl
 default_scope: org:firecrawl
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 description: Make a 1080 x 1920 "Stop using X without these 5 plugins" roundup video in Beacon: Firecrawl look, Fish voice, new Epidemic Sound track each, no sound effects; scripts build layers, checks, voice tightening, one Beacon build script and the motion graphics (3D card intro, private-data padlock). Use for another harness or audience in the series, a tool swap, a test variant, or a hook, voice or music fix. HyperFrames Reel: chatgpt-plugins-reel.
 ---
 
 # plugin-roundup-beacon
 
-One video is one folder holding a `cfg.ts`. The scripts in `scripts/` turn it into PNG layers, voice-line texts, checked timing, one Beacon build script and two motion-graphic pages; you do the judgment steps and run the MCP calls (Beacon, Fish Audio, Epidemic Sound and Firecrawl are MCP tools, so no script can call them). `example/` is a finished control config (Gemini CLI); `~/fc/videos/plugins-3/chatgpt-marketing` and `chatgpt-jobs` are finished payoff configs, approved by the owner.
+One video is one folder holding a `cfg.ts`. The scripts in `scripts/` turn it into PNG layers, voice-line texts, checked timing, one Beacon build script and two motion-graphic pages; you do the judgment steps and run the MCP calls (Beacon, Fish Audio, Epidemic Sound and Firecrawl are MCP tools, so no script can call them). `example/` is a finished control config (Gemini CLI); `~/fc/videos/plugins-3/chatgpt-marketing` and `chatgpt-jobs` are finished payoff configs, approved by the owner; `chatgpt-business` and `claude-recruiting` are custom-hook configs with hand-made intros (`intro-local.html`, `intro-src.html`).
 
 ## What you need
 
@@ -53,6 +53,7 @@ Run scripts as `bun scripts/<name>.ts <video-dir> ...` (paths relative to this s
 
 - `control` (default): the five "?" tiles.
 - `payoff`: a 3D deck of three result cards is dealt in from the first frame (spin from depth, shockwave, count-up, chips popping), sways under the hook and whips away as it ends. Use the video's most impressive result, usually Firecrawl's. `cfg.intro` sets it: `icon` (an .svg or .png in the folder: the topic's own icon, such as the Meta logo for ads or a briefcase for jobs, never the Firecrawl logo), `accent`, `soft` and `ink` (count, chip background and chip text colours, in the topic's colours), optional `pill` (the header pill, default `#111`), `count`, `label` ("active Meta ads") and three `cards` of `[title, subtitle, chip]`.
+- `custom`: a new spoken hook (`cfg.hookLine`, with `<emphasis>` tags; the default hook is "Stop using...") and a hand-made motion graphic over a blank hook page. The hook runs to where its speech ends plus 0.4 s. Get the hook's word times from Fish `speech_to_text` (with timestamps) on `voices/v0.mp3`, time each word's entrance to them, give each video its own colours and moves, and end on the regular "?" slot row (`left:120px;top:160px;840x80`, cells at `123 + j*166.8`) so the cut to the first number card matches the other variants. `motion_add` at `T0` for the hook's length, then `motion_code`. Research hooks first (YouTube Shorts transcripts through Alexandria: `youtube-com/videos/search_videos`, `video_transcript`); "Claude can now..." and "doesn't need every... just these five" patterns beat "Stop using".
 
 ## Changing an existing video
 
@@ -66,6 +67,7 @@ Run scripts as `bun scripts/<name>.ts <video-dir> ...` (paths relative to this s
 - `media_replace` with the same path keeps showing the cached image: copy the new file under a new name first.
 - `clip_add` without a track puts an image on the lowest free track, the music track included, so the music must be added before the images (`build.js` does).
 - Motion graphics: Beacon draws half-transparent pixels light, so soft shadows turn into white halos and tinted fills go pale. Give the part of the page behind the graphic a solid `#f9f9f9` floor. The page loads nothing from outside (no CDN, no external images): Beacon inlines GSAP 3.15 and Three.js when the HTML uses them, and images must be data URIs. Keep 3D spins under 90 degrees: past that the card's text shows mirrored, `backface-visibility` notwithstanding.
+- Motion pages: Beacon gives every `.w` and `.in` element its own CSS word-in animation, which overrides GSAP, so name word classes something else (`.wd`). Its renderer draws the page's first frame (t = 0) without GSAP's from-states, so everything shows finished for one frame: hide the scene in `window.__frame = t => ...` while `t < 0.02` (both templates do). Installed fonts work by name (`"Suisse Intl"`), which keeps a page small enough to paste into `motion_code`.
 - `check.ts --used` takes the positions of the last few videos only; after ten videos every position has been used.
 - The hook bar width comes from the text, not from `cfg.barW` (kept only as a first-pass default). A bar that ends far from the text means `render.ts` was skipped after a `noun` change.
 - The Firecrawl cue comes from the `FC_CUE_PAUSE`-th pause of 0.4 s or more in the untrimmed Firecrawl take (4 now), which is where "Live data on people..." starts, carried across `tighten`'s cuts by `vN.map.json`. `measure` prints every long pause; if `FC_LINE` gains or loses a sentence before "Live data", change `FC_CUE_PAUSE`. Keep "All from one place." at the end, or the provider wall is cut after about a second.
