@@ -1,0 +1,85 @@
+<style>
+#bg{position:absolute;inset:0;background:#f9f9f9}
+#scene{position:absolute;inset:0;--k:1}
+.ln{position:absolute;left:136px;display:flex;align-items:center;gap:calc(30px*var(--k))}
+.wd{display:inline-block;font-family:"Suisse Intl","Helvetica Neue",sans-serif;font-weight:500;font-size:calc(108px*var(--k));letter-spacing:calc(-4px*var(--k));line-height:1;color:#262626;white-space:nowrap}
+.logo{width:calc(100px*var(--k));height:calc(100px*var(--k));display:block;flex:none}
+#hl{position:absolute;border-radius:14px;transform-origin:0 50%}
+#bar{position:absolute;left:120px;border-radius:28px;transform-origin:0 50%}
+#tiles{position:absolute;inset:0}
+.t{position:absolute;width:112px;height:112px;margin:-56px 0 0 -56px;border-radius:30px;display:flex;align-items:center;justify-content:center;font-size:60px;box-shadow:0 14px 22px rgba(0,0,0,.18)}
+.q{position:absolute;width:112px;height:112px;margin:-56px 0 0 -56px;border-radius:30px;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;font-family:"Suisse Intl","Helvetica Neue",sans-serif;font-weight:500;font-size:74px;box-shadow:0 14px 22px rgba(0,0,0,.25)}
+#slots{position:absolute;left:120px;top:160px;width:840px;height:80px;border:3px solid #e5e5e5;background:#fff;border-radius:24px;box-sizing:border-box;opacity:0}
+</style>
+<div id=bg></div>
+<div id=scene>
+  <div id=slots></div>
+  <div id=tiles></div>
+  <div id=hl></div>
+  <div id=bar></div>
+</div>
+<script>
+const H = {{DATA}};
+const S = document.getElementById('scene');
+const el = (tag, cls, parent, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; parent.appendChild(e); return e; };
+const row = (words, i, white) => {
+  const r = el('div', 'ln', S);
+  return { r, ws: words.map((w, j) => {
+    if (!white && H.logoAt && H.logoAt[0] === i && H.logoAt[1] === j) { const img = el('img', 'logo', r); img.src = H.logo; img.id = 'logo'; }
+    const s = el('span', 'wd', r, w.text); if (white) s.style.color = '#fff'; return s;
+  }) };
+};
+const rows = H.lines.map((l, i) => row(l, i, false));
+const barRow = row(H.bar, -1, true);
+const widest = Math.max(...rows.map(o => o.r.getBoundingClientRect().width));
+const k = Math.min(1, 824 / widest);
+S.style.setProperty('--k', k);
+rows.forEach((o, i) => { o.r.style.top = (300 + i * 146 * k) + 'px'; });
+const barTop = 300 + H.lines.length * 146 * k - 4 * k, barH = 152 * k;
+const bar = document.getElementById('bar');
+const bk = Math.min(1, 780 / barRow.r.getBoundingClientRect().width);
+barRow.r.style.setProperty('--k', k * bk); barRow.r.style.left = '150px'; barRow.r.style.top = (barTop + (barH - 108 * k * bk) / 2 - 4 * k) + 'px';
+Object.assign(bar.style, { top: barTop + 'px', height: barH + 'px', width: (barRow.r.getBoundingClientRect().width + 60) + 'px', background: H.accent });
+const m = rows[H.mark[0]].ws[H.mark[1]].getBoundingClientRect(), hl = document.getElementById('hl');
+Object.assign(hl.style, { left: (m.left - 10) + 'px', top: (m.top - 4) + 'px', width: (m.width + 20) + 'px', height: (m.height + 8) + 'px', background: H.second });
+
+const emo = H.tiles, keep = [3, 11, 17, 22, 28];
+const col = ['#ff6b6b','#ffa94d','#ffd43b','#69db7c','#38d9a9','#4dabf7','#748ffc','#da77f2','#f783ac','#20c997','#fab005','#5c7cfa'];
+let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+const T = document.getElementById('tiles');
+const cy = Math.min(1330, barTop + barH + 300), keepY = barTop + barH + 228;
+const tiles = emo.map((e, i) => {
+  const d = el('div', 't', T, e); d.style.background = col[i % col.length];
+  const a = rnd() * Math.PI * 2, r = 260 + rnd() * 380;
+  const x = Math.max(150, Math.min(930, 540 + Math.cos(a) * r * 1.1)), y = Math.max(barTop + barH + 60, Math.min(1720, cy + Math.sin(a) * r * 0.75));
+  d.style.left = '540px'; d.style.top = cy + 'px';
+  return { d, x, y, rot: (rnd() - .5) * 50 };
+});
+const qs = keep.map((_, j) => { const q = el('div', 'q', T, '?'); q.style.left = (192 + j * 174) + 'px'; q.style.top = keepY + 'px'; q.style.transform = 'scaleX(0)'; return q; });
+
+const tl = gsap.timeline(), L = H.len;
+const slam = (e, t) => tl.fromTo(e, { scale: 1.9, opacity: 0, y: -30 }, { scale: 1, opacity: 1, y: 0, duration: 0.28, ease: 'back.out(2.2)' }, t);
+H.lines.forEach((l, i) => l.forEach((w, j) => slam(rows[i].ws[j], w.t)));
+const mt = H.lines[H.mark[0]][H.mark[1]].t;
+tl.fromTo(hl, { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: 'power3.out' }, mt - 0.02);
+if (H.logoAt) tl.fromTo('#logo', { scale: 0, rotation: -60 }, { scale: 1, rotation: 0, duration: 0.35, ease: 'back.out(2.5)' }, H.lines[H.logoAt[0]][H.logoAt[1]].t - 0.04);
+tiles.forEach((o, i) => tl.fromTo(o.d, { left: 540, top: cy, scale: 0.2, rotation: 0, opacity: 0 }, { left: o.x, top: o.y, scale: 1, rotation: o.rot, opacity: 1, duration: 0.55, ease: 'back.out(1.4)' }, mt + 0.04 + (i % 10) * 0.025));
+const b0 = H.bar[0].t;
+tiles.forEach((o, i) => {
+  const j = keep.indexOf(i);
+  if (j < 0) tl.to(o.d, { left: 540, top: cy, scale: 0, rotation: 0, opacity: 0, duration: 0.32, ease: 'power3.in' }, b0 - 0.02 + (i % 6) * 0.02);
+  else tl.to(o.d, { left: 192 + j * 174, top: keepY, rotation: 0, scale: 1.1, duration: 0.42, ease: 'back.out(1.6)' }, b0 + 0.03);
+});
+tl.fromTo(bar, { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: 'power3.out' }, b0 - 0.06);
+H.bar.forEach((w, j) => slam(barRow.ws[j], w.t));
+tl.fromTo(S, { scale: 1.06 }, { scale: 1, duration: 0.3, ease: 'power2.out' }, H.bar[H.bar.length - 1].t);
+keep.forEach((kk, j) => {
+  tl.to(tiles[kk].d, { scaleX: 0, duration: 0.1, ease: 'power1.in' }, L - 0.8 + j * 0.04);
+  tl.to(qs[j], { scaleX: 1, duration: 0.12, ease: 'power1.out' }, L - 0.7 + j * 0.04);
+});
+tl.to('#slots', { opacity: 1, duration: 0.15 }, L - 0.44);
+tl.to(['.ln', hl, bar], { y: -60, opacity: 0, duration: 0.22, ease: 'power2.in' }, L - 0.46);
+qs.forEach((q, j) => tl.to(q, { left: 123 + j * 166.8 + 83.4, top: 200, scale: 0.62, backgroundColor: '#ffffff', color: '#c9c9c9', boxShadow: '0 0 0 rgba(0,0,0,0)', duration: 0.3, ease: 'power3.inOut' }, L - 0.42 + j * 0.02));
+// Beacon draws a page's first frame without GSAP's from-states (everything shows finished), so hide the scene for it.
+window.__frame = t => { S.style.visibility = t < 0.02 ? 'hidden' : ''; };
+</script>

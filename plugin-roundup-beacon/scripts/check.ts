@@ -42,6 +42,7 @@ for (const f of [...(cfg.L ?? []), cfg.hookLogo].filter(Boolean)) if (!existsSyn
 });
 
 if (cfg.variant === 'payoff' && (!cfg.intro || cfg.intro.cards?.length !== 3 || !cfg.intro.icon)) fail('payoff variant needs cfg.intro with an icon and 3 cards');
+if (cfg.variant === 'custom' && (!cfg.hookLine || !cfg.hook)) fail('custom variant needs cfg.hookLine and cfg.hook (its intro)');
 if (cfg.intro && /firecrawl|logo-orange/i.test(cfg.intro.icon)) fail('cfg.intro.icon is the Firecrawl logo: use the topic\'s own icon');
 
 const listFile = opt('alexandria-list');

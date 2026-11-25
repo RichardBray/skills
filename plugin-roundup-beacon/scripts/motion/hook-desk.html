@@ -1,0 +1,117 @@
+<style>
+#bg{position:absolute;inset:0;background:#f9f9f9}
+#scene{position:absolute;inset:0}
+#top,#bot{position:absolute;inset:0;--k:1}
+.ln{position:absolute;left:136px;display:flex;align-items:center;gap:calc(28px*var(--k))}
+.wd{display:inline-block;font-family:"Suisse Intl","Helvetica Neue",sans-serif;font-weight:500;font-size:calc(108px*var(--k));letter-spacing:calc(-4px*var(--k));line-height:1;color:#262626;white-space:nowrap}
+.logo{width:calc(88px*var(--k));height:calc(88px*var(--k));display:block;flex:none}
+.c{display:none}
+#cur{display:inline-block;width:8px;height:calc(84px*var(--k));border-radius:3px;margin-left:6px}
+#ul{position:absolute;height:14px;border-radius:7px;transform-origin:0 50%}
+.card{position:absolute;left:160px;width:760px;height:180px;box-sizing:border-box;border-radius:30px;background:#fff;border:3px solid #e5e5e5;display:flex;align-items:center;gap:28px;padding:0 34px;font-family:"Suisse Intl","Helvetica Neue",sans-serif;color:#262626}
+.av{width:104px;height:104px;border-radius:52px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:42px;font-weight:500;flex:none}
+.card b{display:block;font-size:46px;font-weight:500;letter-spacing:-1.5px;white-space:nowrap}
+.card i{display:block;font-style:normal;font-size:28px;color:#737373;margin-top:6px;white-space:nowrap}
+#stamp{position:absolute;left:640px;padding:10px 22px;border:8px solid;border-radius:18px;font-family:"Suisse Intl","Helvetica Neue",sans-serif;font-weight:500;font-size:62px;letter-spacing:2px;background:#fff;opacity:0;z-index:9}
+#bar{position:absolute;left:120px;height:152px;border-radius:28px;transform-origin:0 50%}
+#tiles{position:absolute;inset:0}
+.t{position:absolute;width:112px;height:112px;margin:-56px 0 0 -56px;border-radius:30px;display:flex;align-items:center;justify-content:center;font-size:58px}
+.q{position:absolute;width:112px;height:112px;margin:-56px 0 0 -56px;border-radius:30px;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;font-family:"Suisse Intl","Helvetica Neue",sans-serif;font-weight:500;font-size:74px}
+#slots{position:absolute;left:120px;top:160px;width:840px;height:80px;border:3px solid #e5e5e5;background:#fff;border-radius:24px;box-sizing:border-box;opacity:0}
+</style>
+<div id=bg></div>
+<div id=scene>
+  <div id=slots></div>
+  <div id=top></div>
+  <div id=bot><div id=bar></div></div>
+  <div id=tiles></div>
+</div>
+<script>
+const H = {{DATA}};
+const S = document.getElementById('scene'), TOP = document.getElementById('top'), BOT = document.getElementById('bot');
+const el = (tag, cls, parent, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; parent.appendChild(e); return e; };
+const fit = (r, max) => Math.min(1, max / r.getBoundingClientRect().width);
+
+// Line 1 types out letter by letter, the logo first; line 2 slams in. Both at 92px at most so the card stack fits under them.
+const r0 = el('div', 'ln', TOP), r1 = H.lines[1] ? el('div', 'ln', TOP) : null;
+if (H.logo) { const img = el('img', 'logo', r0); img.src = H.logo; img.id = 'logo'; }
+const typed = el('div', 'wd', r0); typed.style.display = 'flex';
+const chars = [];
+H.lines[0].forEach((w, j) => [...(j ? ' ' : '') + w.text].forEach(ch => chars.push(el('span', 'c', typed, ch === ' ' ? ' ' : ch))));
+const cur = el('span', null, r0); cur.id = 'cur'; cur.style.background = H.accent;
+const w1 = r1 ? H.lines[1].map((w, j) => { const s = el('span', 'wd', r1, w.text); if (j === H.mark[1] && H.mark[0] === 1) s.style.color = H.accent; return s; }) : [];
+chars.forEach(c => c.style.display = 'inline-block');
+const kTop = Math.min(92 / 108, ...[r0, r1].filter(Boolean).map(r => fit(r, 824)));
+chars.forEach(c => c.style.display = '');
+TOP.style.setProperty('--k', kTop);
+r0.style.top = '300px'; if (r1) r1.style.top = (300 + 126 * kTop / (92 / 108)) + 'px';
+const ul = el('div', null, TOP); ul.id = 'ul'; ul.style.background = H.second;
+const markEl = H.mark[0] === 1 ? w1[H.mark[1]] : null;
+if (markEl) { const m = markEl.getBoundingClientRect(); Object.assign(ul.style, { left: m.left + 'px', top: (m.bottom + 10) + 'px', width: (m.width - 20) + 'px' }); }
+const cardTop = (r1 ? r1 : r0).getBoundingClientRect().bottom + 122;
+const cards = (H.cards || []).map(([name, detail, colour], i) => {
+  const c = el('div', 'card', TOP); c.style.top = cardTop + 'px'; c.style.zIndex = i + 1;
+  const av = el('div', 'av', c, name.split(/\s+/).map(p => p[0]).join('').slice(0, 2).toUpperCase()); av.style.background = colour;
+  const tx = el('div', null, c); el('b', null, tx, name); el('i', null, tx, detail);
+  return c;
+});
+let stamp = null;
+if (cards.length) { stamp = el('div', null, TOP, H.stamp); stamp.id = 'stamp'; Object.assign(stamp.style, { top: (cardTop + 28) + 'px', color: H.second, borderColor: H.second }); }
+
+// The remaining lines rise in once the top block has gone, then five tiles drop and the bar sweeps in.
+const rest = H.lines.slice(2).map((l, i) => { const r = el('div', 'ln', BOT); r.style.top = (330 + i * 146) + 'px'; return { r, ws: l.map(w => el('span', 'wd', r, w.text)) }; });
+const kBot = Math.min(1, ...rest.map(o => fit(o.r, 824)));
+BOT.style.setProperty('--k', kBot);
+rest.forEach((o, i) => { o.r.style.top = (330 + i * 146 * kBot) + 'px'; });
+const restBottom = rest.length ? 330 + rest.length * 146 * kBot - 38 * kBot : 330;
+const tileY = restBottom + 176, barTop = tileY + 182;
+const bar = document.getElementById('bar'), br = el('div', 'ln', BOT);
+const bw = H.bar.map(w => { const s = el('span', 'wd', br, w.text); s.style.color = '#fff'; return s; });
+br.style.setProperty('--k', kBot * fit(br, 780));
+br.style.left = '150px'; br.style.top = (barTop + 18) + 'px';
+Object.assign(bar.style, { top: barTop + 'px', width: (br.getBoundingClientRect().width + 60) + 'px', background: H.accent });
+
+const T = document.getElementById('tiles'), X = j => 192 + j * 174;
+const tiles = H.tiles.map((e, j) => { const d = el('div', 't', T, e); d.style.background = j % 2 ? H.second : H.accent; d.style.left = X(j) + 'px'; d.style.top = tileY + 'px'; return d; });
+const qs = H.tiles.map((e, j) => { const q = el('div', 'q', T, '?'); q.style.left = X(j) + 'px'; q.style.top = tileY + 'px'; q.style.transform = 'scaleX(0)'; return q; });
+
+const tl = gsap.timeline(), L = H.len;
+const slam = (e, t) => tl.fromTo(e, { scale: 1.9, opacity: 0, y: -30 }, { scale: 1, opacity: 1, y: 0, duration: 0.28, ease: 'back.out(2.2)' }, t);
+const rise = (e, t) => tl.fromTo(e, { y: 70, opacity: 0 }, { y: 0, opacity: 1, duration: 0.26, ease: 'power3.out' }, t);
+if (H.logo) tl.fromTo('#logo', { scale: 0, rotation: -180 }, { scale: 1, rotation: 0, duration: 0.45, ease: 'back.out(2)' }, 0);
+let ci = 0;
+H.lines[0].forEach((w, j) => {
+  const next = H.lines[0][j + 1]?.t ?? (H.lines[1]?.[0].t ?? w.t + 0.5), n = w.text.length + (j ? 1 : 0), step = Math.min(0.07, (next - w.t) / n);
+  for (let c = 0; c < n; c++) tl.set(chars[ci++], { display: 'inline-block' }, Math.max(0.001, w.t - (j ? step : 0) + c * step));
+});
+const l1 = H.lines[1]?.[0].t ?? H.bar[0].t;
+tl.fromTo(cur, { opacity: 1 }, { opacity: 0, duration: 0.2, repeat: Math.max(1, Math.floor(l1 / 0.2) - 1), yoyo: true, ease: 'steps(1)' }, 0);
+tl.set(cur, { display: 'none' }, l1);
+if (r1) H.lines[1].forEach((w, j) => slam(w1[j], w.t));
+const mt = H.lines[H.mark[0]][H.mark[1]].t;
+if (markEl) tl.fromTo(ul, { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: 'power3.out' }, mt + 0.1);
+cards.forEach((c, i) => tl.fromTo(c, { x: 900, rotation: 18, opacity: 0 }, { x: 0, rotation: [-3, 2.5, -1.5, 2][i % 4], opacity: 1, duration: 0.36, ease: 'back.out(1.3)' }, l1 + 0.02 + i * 0.14));
+cards.slice(1).reverse().forEach((c, i) => tl.to(c, { x: i % 2 ? 1000 : -1000, y: -50, rotation: i % 2 ? 26 : -28, duration: 0.3, ease: 'power3.in' }, mt + 0.02 + i * 0.12));
+if (cards.length) {
+  tl.to(cards[0], { rotation: 0, duration: 0.2, ease: 'power2.out' }, mt + 0.26);
+  tl.fromTo(stamp, { scale: 2.6, rotation: 8, opacity: 0 }, { scale: 1, rotation: -12, opacity: 1, duration: 0.22, ease: 'power4.in' }, mt + 0.36);
+  tl.to(cards[0], { keyframes: [{ x: -14, duration: 0.04 }, { x: 12, duration: 0.05 }, { x: -8, duration: 0.05 }, { x: 5, duration: 0.05 }, { x: 0, duration: 0.05 }] }, mt + 0.58);
+}
+const after = (rest[0] ? H.lines[2][0] : H.bar[0]).t;
+tl.to(TOP, { y: -520, opacity: 0, duration: 0.34, ease: 'power3.in' }, after - 0.28);
+rest.forEach((o, i) => H.lines[i + 2].forEach((w, j) => rise(o.ws[j], w.t)));
+const b0 = H.bar[0].t, sweep = (H.bar[1] ?? H.bar[0]).t - 0.08;
+tiles.forEach((d, j) => tl.fromTo(d, { y: -900, rotation: -40 }, { y: 0, rotation: 0, duration: 0.42, ease: 'bounce.out' }, b0 + j * 0.07));
+tl.fromTo(bar, { scaleX: 0 }, { scaleX: 1, duration: 0.36, ease: 'power3.out' }, sweep);
+bw.forEach((s, j) => slam(s, sweep + 0.06 + j * 0.06));
+tl.fromTo(S, { scale: 1.05 }, { scale: 1, duration: 0.3, ease: 'power2.out' }, sweep + 0.12);
+tiles.forEach((d, j) => {
+  tl.to(d, { scaleX: 0, duration: 0.1, ease: 'power1.in' }, L - 0.82 + j * 0.04);
+  tl.to(qs[j], { scaleX: 1, duration: 0.12, ease: 'power1.out' }, L - 0.72 + j * 0.04);
+});
+tl.to('#slots', { opacity: 1, duration: 0.15 }, L - 0.46);
+tl.to(BOT, { y: -60, opacity: 0, duration: 0.22, ease: 'power2.in' }, L - 0.48);
+qs.forEach((q, j) => tl.to(q, { left: 123 + j * 166.8 + 83.4, top: 200, scale: 0.62, backgroundColor: '#ffffff', color: '#c9c9c9', duration: 0.3, ease: 'power3.inOut' }, L - 0.44 + j * 0.02));
+// Beacon draws a page's first frame without GSAP's from-states (everything shows finished), so hide the scene for it.
+window.__frame = t => { S.style.visibility = t < 0.02 ? 'hidden' : ''; };
+</script>

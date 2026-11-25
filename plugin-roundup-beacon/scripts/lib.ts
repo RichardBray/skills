@@ -4,7 +4,28 @@ import { resolve } from "node:path";
 // icon: an .svg/.png file in the video folder, inlined as a data URI (the page loads nothing from outside).
 export type Intro = { icon: string; accent: string; soft: string; ink: string; pill?: string; count: number; label: string; cards: Array<[string, string, string]> };
 
-export type Tool = { chip: string; prompt: string; win: string };
+// The custom variant's intro, drawn by `motion.ts hook` and timed from hook-words.json (Fish speech_to_text of v0).
+// Shown words are matched in order to the spoken ones ("5" matches "five"; up to two spoken words may go unshown).
+// burst: words slam in, a highlighter hits `mark`, emoji app tiles explode and shrink to five on the bar.
+// desk: line 1 types out, line 2 slams in with `mark` coloured, a stack of cards is dealt and the first is stamped,
+//   the remaining lines rise in, five tiles drop and the bar sweeps in.
+// Both end on the regular "?" slot row. The harness logo (cfg.hookLogo) sits before the first shown harness name.
+export type Hook = {
+  style: "burst" | "desk";
+  lines: string[];
+  bar: string;
+  mark: string;
+  accent: string;
+  // burst: the highlighter (default #ffe14d); desk: underline, stamp and every other tile (default #14b8a6).
+  second?: string;
+  // Emoji: burst 30 (the 4th, 12th, 18th, 23rd and 29th stay), desk 5 hinting at the tools in scene order.
+  tiles?: string[];
+  // desk: [name, detail, avatar colour]; the first is kept and stamped, the others are flicked away.
+  cards?: Array<[string, string, string]>;
+  stamp?: string;
+};
+
+export type Tool ={ chip: string; prompt: string; win: string };
 
 export type Cfg = {
   fcPos: number;
@@ -25,6 +46,7 @@ export type Cfg = {
   variant?: "control" | "payoff" | "custom";
   // The spoken (and shown) hook, replacing "Stop using <harness> without these five <noun>." Fish tags allowed.
   hookLine?: string;
+  hook?: Hook;
   intro?: Intro;
 };
 
