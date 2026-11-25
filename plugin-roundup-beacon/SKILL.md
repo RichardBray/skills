@@ -9,7 +9,7 @@ description: Make a 1080 x 1920 "Stop using X without these 5 plugins" roundup v
 
 # plugin-roundup-beacon
 
-One video is one folder holding a `cfg.ts`. The scripts in `scripts/` turn it into PNG layers, voice-line texts, checked timing, one Beacon build script and two motion-graphic pages; you do the judgment steps and run the MCP calls (Beacon, Fish Audio, Epidemic Sound and Firecrawl are MCP tools, so no script can call them). `example/` is a finished control config (Gemini CLI); `~/fc/videos/plugins-3/chatgpt-marketing` and `chatgpt-jobs` are finished payoff configs, approved by the owner; `chatgpt-business` and `claude-recruiting` are custom-hook configs (burst and desk intros), approved by the owner with no notes.
+One video is one folder holding a `cfg.ts`. The scripts in `scripts/` turn it into PNG layers, voice-line texts, checked timing, one Beacon build script and two motion-graphic pages; you do the judgment steps and run the MCP calls (Beacon, Fish Audio, Epidemic Sound and Firecrawl are MCP tools, so no script can call them). `example/` is a finished control config (Gemini CLI); `~/fc/videos/plugins-3/chatgpt-marketing` and `chatgpt-jobs` are finished payoff configs, approved by the owner; `chatgpt-business` and `claude-recruiting` are custom-hook configs (burst and desk intros), approved by the owner with no notes; `claude-finance` uses the ledger intro.
 
 ## What you need
 
@@ -56,6 +56,8 @@ Run scripts as `bun scripts/<name>.ts <video-dir> ...` (paths relative to this s
 - `custom`: a new spoken hook (`cfg.hookLine`, with `<emphasis>` tags) and a motion intro over a blank hook page, from `cfg.hook` (see `Hook` in `scripts/lib.ts`). The hook runs to where its speech ends plus 0.4 s, and every word lands as it is spoken. Research and log the hook in `references/hooks.md` first. Two styles, both ending on the regular "?" slot row so the cut to number card 1 matches the other variants:
   - `burst` (`chatgpt-business`): words slam in, a highlighter hits `mark`, 30 emoji app tiles explode and shrink to five as the closing `bar` sweeps in. Suits "you don't need all of them, just these".
   - `desk` (`claude-recruiting`): line 1 types out after the logo, line 2 slams in with `mark` in the accent, a stack of `cards` is dealt and the first is stamped (`stamp`), the other lines rise in, five `tiles` drop and the bar sweeps in. Suits "<harness> can now <job>", with cards from the job's world.
+  - `ledger` (`claude-finance`): lines 1-2 over a crowd of dots, most fading and a few lighting up; lines 3-4 with the logo over a ledger card (`ledger`) whose rows count up and whose revenue line draws on `mark`; then as desk. Suits "Most people don't realize <harness> can <job>".
+  A hook over about 5 s spoken drags: shorten its mid-sentence pause with ffmpeg (and shift the later word times in `hook-words.json` to match), or rewrite it.
   Give each video its own `accent` (the harness or topic colour) and `second`. For a new style, copy a template in `scripts/motion/` and keep its data contract.
 
 ## Changing an existing video

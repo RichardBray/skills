@@ -18,6 +18,7 @@ Pick a pattern that has done well, write it for the video's audience, and keep i
 |---|---|---|
 | Too many options, you only need five | "Claude has over 100,000 skills, but honestly you only need five" | 852K |
 | "<Harness> can now <job>" | several top Claude Shorts open this way | |
+| "Most people don't realize..." | "Most people don't realize that there's over 60,000 Claude skills. I tested over 100..." | |
 | "Don't use <harness> without these" (our control) | | 81K, the weakest |
 
 ## Hooks used
@@ -28,5 +29,6 @@ Pick a pattern that has done well, write it for the video's audience, and keep i
 | ChatGPT job search | Stop using ChatGPT without these 5 job search plugins. | payoff deck | |
 | ChatGPT small business | Your business doesn't need every ChatGPT app. Just these 5. | burst | |
 | Claude recruiting | Claude can now handle your hiring. You just need these 5 connectors. | desk | |
+| Claude finance | Most people don't realize Claude can run their finances. You only need these 5 connectors. | ledger | |
 
 Fill in Result (views, average view duration) once a video has been up a week, and lean toward what wins.
