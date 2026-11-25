@@ -1,4 +1,5 @@
-// usage: bun plan.ts <dir> --t0 <seconds> --voice-track <track-id> --music-asset <asset-id> --music-track <track-id> [--out file.mp4]
+// usage: bun plan.ts <dir> --t0 <seconds> --voice-track <track-id> --music-asset <asset-id> --music-track <track-id>
+//          [--section <section-id> --name <section name>] [--out file.mp4]
 //   writes build.js, one Beacon `script` that adds the music, every clip and every animation in one undo step,
 //   and export.json for export_start
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -10,6 +11,7 @@ const opt = (n: string) => optIn(argv, n);
 const DIR = resolve(argv[0] || '.');
 const T0 = Number(opt('t0'));
 const VOICE = opt('voice-track'), MUSIC = opt('music-asset'), MTRACK = opt('music-track');
+const SECTION = typeof opt('section') === 'string' ? opt('section') : undefined, NAME = opt('name');
 if (!(T0 >= 0) || typeof VOICE !== 'string' || typeof MUSIC !== 'string' || typeof MTRACK !== 'string') {
   console.error('need --t0, --voice-track, --music-asset and --music-track'); process.exit(1);
 }
@@ -30,10 +32,14 @@ for (const [audio, asset, start, duration, t, anims] of B.C) {
     : beacon.run("clip_add", { type: "image", assetId: asset, start, duration, props: { transform: { x: t[0], y: t[1], scaleX: t[2], scaleY: t[3], rotation: 0, rotationX: 0, rotationY: 0, opacity: t[4] } } });
   for (const [end, dur, easing, to] of anims) { beacon.run("animation_add", { clip: id, end, duration: dur, easing, to }); n++; }
 }
-return { clips: B.C.length, anims: n, end: B.END };
+${SECTION ? `beacon.run("section_set", { section: ${JSON.stringify(SECTION)}, start: B.T0, end: B.END${typeof NAME === 'string' ? `, name: ${JSON.stringify(NAME)}` : ''} });
+` : ''}return { clips: B.C.length, anims: n, end: B.END };
 `;
 writeFileSync(resolve(DIR, 'build.js'), js);
-const out = opt('out') || resolve(dirname(DIR), `stop-using-${cfg.harness.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-without-these-5-${cfg.noun.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}.mp4`);
+const slug = (t: string) => t.toLowerCase().replace(/'/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+// A custom hook names the file after its first sentence, so videos with different hooks don't share a name.
+const stem = cfg.hookLine ? slug(cfg.hookLine.replace(/<[^>]+>/g, '').split(/[.!?]/)[0]) : `stop-using-${slug(cfg.harness)}-without-these-5-${slug(cfg.noun)}`;
+const out = opt('out') || resolve(dirname(DIR), `${stem}.mp4`);
 writeFileSync(resolve(DIR, 'export.json'), JSON.stringify({ output: out, from: T0, to: r3(END), speed: 1.2, overwrite: true }));
 console.log(`build.js: ${clips.length} clips, section ${T0} to ${r3(END)}. Run its text with the Beacon script tool (seconds: 30).`);
 console.log('export.json:', readFileSync(resolve(DIR, 'export.json'), 'utf8'));
