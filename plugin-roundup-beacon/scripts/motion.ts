@@ -63,6 +63,7 @@ if (mode === 'intro') {
   const mark = find(h.mark);
   if (!mark) { console.error(`mark "${h.mark}" isn't one of the shown words`); process.exit(1); }
   if (h.style === 'desk' && (lines.length < 2 || mark[0] !== 1)) { console.error('desk needs at least two lines, with the mark on line 2'); process.exit(1); }
+  if (h.style === 'ledger' && (lines.length < 4 || mark[0] < 2 || mark[0] > 3 || !h.ledger?.rows.length)) { console.error('ledger needs at least four lines, the mark on line 3 or 4, and cfg.hook.ledger rows'); process.exit(1); }
   const tiles = h.tiles ?? (h.style === 'burst' ? BURST_TILES : undefined);
   const want = h.style === 'burst' ? 30 : 5;
   if (!tiles || tiles.length !== want) { console.error(`${h.style} needs ${want} tiles`); process.exit(1); }
@@ -72,9 +73,9 @@ if (mode === 'intro') {
   const v = JSON.parse(readFileSync(resolve(DIR, 'voices.json'), 'utf8')) as { hookEnd?: number };
   const len = r3((v.hookEnd ?? 4.6) + 0.4);
   const data = {
-    lines, bar, mark, len, accent: h.accent, second: h.second ?? (h.style === 'burst' ? '#ffe14d' : '#14b8a6'), tiles,
-    logo: h.style === 'desk' ? logo : find(cfg.harness) && logo, logoAt: h.style === 'burst' && logo ? find(cfg.harness) : null,
-    cards: h.cards ?? [], stamp: h.stamp ?? '',
+    lines, bar, mark, len, accent: h.accent, second: h.second ?? { burst: '#ffe14d', desk: '#14b8a6', ledger: '#16a34a' }[h.style], tiles,
+    logo: h.style === 'burst' ? find(cfg.harness) && logo : logo, logoAt: h.style === 'burst' && logo ? find(cfg.harness) : null,
+    cards: h.cards ?? [], stamp: h.stamp ?? '', ledger: h.ledger ?? null,
   };
   writeFileSync(resolve(DIR, 'motion-hook.html'), tpl(`hook-${h.style}.html`).replace('{{DATA}}', JSON.stringify(data).replace(/</g, '\\u003c')));
   console.log(`motion-hook.html (${h.style}): motion_add at T0 for ${len}s, then motion_code with the file's text`);

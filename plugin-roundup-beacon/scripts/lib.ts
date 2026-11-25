@@ -9,9 +9,11 @@ export type Intro = { icon: string; accent: string; soft: string; ink: string; p
 // burst: words slam in, a highlighter hits `mark`, emoji app tiles explode and shrink to five on the bar.
 // desk: line 1 types out, line 2 slams in with `mark` coloured, a stack of cards is dealt and the first is stamped,
 //   the remaining lines rise in, five tiles drop and the bar sweeps in.
-// Both end on the regular "?" slot row. The harness logo (cfg.hookLogo) sits before the first shown harness name.
+// ledger: a crowd of dots on lines 1-2, most fading and a few lighting up; lines 3-4 with the logo over a ledger card
+//   whose rows count up and whose revenue line draws on `mark`; then as desk.
+// All end on the regular "?" slot row. The harness logo (cfg.hookLogo) sits before the first shown harness name.
 export type Hook = {
-  style: "burst" | "desk";
+  style: "burst" | "desk" | "ledger";
   lines: string[];
   bar: string;
   mark: string;
@@ -23,6 +25,8 @@ export type Hook = {
   // desk: [name, detail, avatar colour]; the first is kept and stamped, the others are flicked away.
   cards?: Array<[string, string, string]>;
   stamp?: string;
+  // ledger: the card's title, period and rows of [label, amount, prefix such as "+$"]; a negative amount shows red.
+  ledger?: { title: string; period: string; rows: Array<[string, number, string]> };
 };
 
 export type Tool ={ chip: string; prompt: string; win: string };

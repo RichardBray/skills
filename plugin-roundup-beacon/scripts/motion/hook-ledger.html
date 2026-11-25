@@ -1,0 +1,128 @@
+<style>
+#bg{position:absolute;inset:0;background:#f9f9f9}
+#scene{position:absolute;inset:0}
+#A,#B,#C{position:absolute;inset:0;--k:1}
+.ln{position:absolute;left:136px;display:flex;align-items:center;gap:calc(28px*var(--k))}
+.wd{display:inline-block;font-family:"Suisse Intl","Helvetica Neue",sans-serif;font-weight:500;font-size:calc(108px*var(--k));letter-spacing:calc(-4px*var(--k));line-height:1;color:#262626;white-space:nowrap}
+.logo{width:calc(88px*var(--k));height:calc(88px*var(--k));display:block;flex:none}
+.dot{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:22px;background:#a3a3a3}
+.ring{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:22px;border:4px solid;box-sizing:border-box;opacity:0}
+#card{position:absolute;left:120px;width:840px;box-sizing:border-box;border-radius:30px;background:#fff;border:3px solid #e5e5e5;font-family:"Suisse Intl","Helvetica Neue",sans-serif;color:#262626;overflow:hidden}
+#card .hd{display:flex;justify-content:space-between;align-items:center;padding:26px 34px 0;font-size:34px;font-weight:500}
+#card .hd span{font-size:24px;color:#737373}
+#card svg{display:block;margin:6px 34px 10px;width:772px;height:130px;overflow:visible}
+.row{display:flex;justify-content:space-between;align-items:center;margin:0 34px;height:76px;border-top:2px solid #f0f0f0;font-size:32px;font-weight:500}
+.row .count{font-variant-numeric:tabular-nums}
+#bar{position:absolute;left:120px;height:152px;border-radius:28px;transform-origin:0 50%}
+#tiles{position:absolute;inset:0}
+.t{position:absolute;width:112px;height:112px;margin:-56px 0 0 -56px;border-radius:30px;display:flex;align-items:center;justify-content:center;font-size:58px}
+.q{position:absolute;width:112px;height:112px;margin:-56px 0 0 -56px;border-radius:30px;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;font-family:"Suisse Intl","Helvetica Neue",sans-serif;font-weight:500;font-size:74px}
+#slots{position:absolute;left:120px;top:160px;width:840px;height:80px;border:3px solid #e5e5e5;background:#fff;border-radius:24px;box-sizing:border-box;opacity:0}
+</style>
+<div id=bg></div>
+<div id=scene>
+  <div id=slots></div>
+  <div id=A></div>
+  <div id=B></div>
+  <div id=C><div id=bar></div></div>
+  <div id=tiles></div>
+</div>
+<script>
+const H = {{DATA}};
+const S = document.getElementById('scene'), A = document.getElementById('A'), B = document.getElementById('B'), C = document.getElementById('C');
+const el = (tag, cls, parent, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; parent.appendChild(e); return e; };
+const fit = (r, max) => Math.min(1, max / r.getBoundingClientRect().width);
+const block = (parent, lines, top, step, cap, logoFirst) => {
+  const rows = lines.map(() => el('div', 'ln', parent));
+  const ws = lines.map((l, i) => {
+    if (logoFirst && i === 0 && H.logo) { const img = el('img', 'logo', rows[0]); img.src = H.logo; img.className = 'logo blogo'; }
+    return l.map(w => el('span', 'wd', rows[i], w.text));
+  });
+  const k = Math.min(cap, ...rows.map(r => fit(r, 824)));
+  parent.style.setProperty('--k', k);
+  rows.forEach((r, i) => { r.style.top = (top + i * step * k) + 'px'; });
+  return { rows, ws, bottom: top + (lines.length - 1) * step * k + 108 * k };
+};
+
+// A: a crowd of people dots, most of them fade on the first two lines, a few light up.
+const a = block(A, H.lines.slice(0, 2), 300, 146, 1, false);
+const COLS = 10, ROWS = 6, GAP = 76, x0 = 540 - (COLS - 1) * GAP / 2, y0 = a.bottom + 120;
+const few = [7, 22, 38, 51];
+const dots = [], rings = [];
+for (let i = 0; i < COLS * ROWS; i++) {
+  const d = el('div', 'dot', A); d.style.left = (x0 + (i % COLS) * GAP) + 'px'; d.style.top = (y0 + Math.floor(i / COLS) * GAP) + 'px'; dots.push(d);
+  if (few.includes(i)) { const r = el('div', 'ring', A); r.style.left = d.style.left; r.style.top = d.style.top; r.style.borderColor = H.accent; rings.push(r); }
+}
+
+// B: the harness line with its logo, the mark in the second colour, and a ledger card that fills in.
+const b = block(B, H.lines.slice(2, 4), 300, 137, 92 / 108, true);
+const mi = H.mark[0] - 2;
+if (mi >= 0) b.ws[mi][H.mark[1]].style.color = H.second;
+const card = el('div', null, B); card.id = 'card'; card.style.top = (b.bottom + 70) + 'px';
+const hd = el('div', 'hd', card, H.ledger.title); el('span', null, hd, H.ledger.period);
+const NS = 'http://www.w3.org/2000/svg', svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', '0 0 772 130'); card.appendChild(svg);
+const pts = [8, 22, 18, 40, 34, 58, 52, 76, 70, 96, 118].map((v, i, all) => `${i * 772 / (all.length - 1)},${130 - v}`).join(' ');
+const area = document.createElementNS(NS, 'polygon'); area.setAttribute('points', `0,130 ${pts} 772,130`); area.setAttribute('fill', H.second); area.setAttribute('fill-opacity', '1'); svg.appendChild(area);
+area.style.opacity = 0;
+const line = document.createElementNS(NS, 'polyline'); line.setAttribute('points', pts); line.setAttribute('fill', 'none'); line.setAttribute('stroke', H.second); line.setAttribute('stroke-width', '7'); line.setAttribute('stroke-linecap', 'round'); line.setAttribute('stroke-linejoin', 'round'); svg.appendChild(line);
+const len = line.getTotalLength(); line.style.strokeDasharray = len; line.style.strokeDashoffset = len;
+const rowAt = H.lines[2][Math.min(2, H.lines[2].length - 1)].t;
+const rowEls = H.ledger.rows.map(([label, value, prefix], i) => {
+  const r = el('div', 'row', card); el('span', null, r, label);
+  const n = el('span', 'count', r, prefix + '0');
+  Object.assign(n.dataset, { from: 0, to: Math.abs(value), t: rowAt + 0.1 + i * 0.12, for: 0.9, prefix });
+  n.style.color = value < 0 ? '#b42318' : H.second;
+  return r;
+});
+
+// C: the remaining lines rise in, five tiles drop and the bar sweeps in, as in the desk intro.
+const rest = H.lines.slice(4);
+const c = rest.length ? block(C, rest, 330, 146, 1, false) : { rows: [], ws: [], bottom: 330 };
+const tileY = c.bottom + 138, barTop = tileY + 182;
+const bar = document.getElementById('bar'), br = el('div', 'ln', C);
+const bw = H.bar.map(w => { const s = el('span', 'wd', br, w.text); s.style.color = '#fff'; return s; });
+br.style.setProperty('--k', getComputedStyle(C).getPropertyValue('--k') * fit(br, 780));
+br.style.left = '150px'; br.style.top = (barTop + 18) + 'px';
+Object.assign(bar.style, { top: barTop + 'px', width: (br.getBoundingClientRect().width + 60) + 'px', background: H.accent });
+const T = document.getElementById('tiles'), X = j => 192 + j * 174;
+const tiles = H.tiles.map((e, j) => { const d = el('div', 't', T, e); d.style.background = j % 2 ? H.second : H.accent; d.style.left = X(j) + 'px'; d.style.top = tileY + 'px'; return d; });
+const qs = H.tiles.map((e, j) => { const q = el('div', 'q', T, '?'); q.style.left = X(j) + 'px'; q.style.top = tileY + 'px'; q.style.transform = 'scaleX(0)'; return q; });
+
+const tl = gsap.timeline(), L = H.len;
+const slam = (e, t) => tl.fromTo(e, { scale: 1.9, opacity: 0, y: -30 }, { scale: 1, opacity: 1, y: 0, duration: 0.28, ease: 'back.out(2.2)' }, t);
+const rise = (e, t) => tl.fromTo(e, { y: 70, opacity: 0 }, { y: 0, opacity: 1, duration: 0.26, ease: 'power3.out' }, t);
+H.lines.slice(0, 2).forEach((l, i) => l.forEach((w, j) => slam(a.ws[i][j], w.t)));
+const a0 = H.lines[0][0].t, dim = H.lines[1][0].t, lit = H.lines[1][H.lines[1].length - 1].t, b0 = H.lines[2][0].t;
+dots.forEach((d, i) => tl.fromTo(d, { scale: 0 }, { scale: 1, duration: 0.25, ease: 'back.out(2)' }, a0 + 0.02 + (i % COLS + Math.floor(i / COLS)) * 0.035));
+dots.forEach((d, i) => few.includes(i)
+  ? tl.to(d, { backgroundColor: H.accent, scale: 1.3, duration: 0.25, ease: 'back.out(3)' }, lit)
+  : tl.to(d, { backgroundColor: '#e7e7e7', scale: 0.7, duration: 0.3, ease: 'power2.out' }, dim + (i % 7) * 0.02));
+rings.forEach(r => tl.fromTo(r, { scale: 1, opacity: 1 }, { scale: 2.6, opacity: 0, duration: 0.45, ease: 'power2.out', immediateRender: false }, lit + 0.05));
+tl.to(A, { y: -420, opacity: 0, duration: 0.26, ease: 'power3.in' }, b0 - 0.24);
+
+if (H.logo) tl.fromTo('.blogo', { scale: 0, rotation: -180 }, { scale: 1, rotation: 0, duration: 0.4, ease: 'back.out(2)' }, b0 - 0.06);
+H.lines.slice(2, 4).forEach((l, i) => l.forEach((w, j) => slam(b.ws[i][j], w.t)));
+tl.fromTo(card, { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: 'power3.out' }, (H.lines[2][1] ?? H.lines[2][0]).t);
+rowEls.forEach((r, i) => tl.fromTo(r, { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.25, ease: 'power3.out' }, rowAt + i * 0.12));
+const mt = H.lines[H.mark[0]][H.mark[1]].t;
+tl.to(line, { strokeDashoffset: 0, duration: 0.8, ease: 'power2.inOut' }, mt);
+tl.to(area, { opacity: 0.12, duration: 0.5 }, mt + 0.4);
+const c0 = (rest[0] ? rest[0][0] : H.bar[0]).t;
+tl.to(B, { y: -520, opacity: 0, duration: 0.3, ease: 'power3.in' }, c0 - 0.28);
+
+rest.forEach((l, i) => l.forEach((w, j) => rise(c.ws[i][j], w.t)));
+const f0 = H.bar[0].t, sweep = (H.bar[1] ?? H.bar[0]).t - 0.08;
+tiles.forEach((d, j) => tl.fromTo(d, { y: -900, rotation: -40 }, { y: 0, rotation: 0, duration: 0.42, ease: 'bounce.out' }, f0 + j * 0.07));
+tl.fromTo(bar, { scaleX: 0 }, { scaleX: 1, duration: 0.36, ease: 'power3.out' }, sweep);
+bw.forEach((s, j) => slam(s, sweep + 0.06 + j * 0.06));
+tl.fromTo(S, { scale: 1.05 }, { scale: 1, duration: 0.3, ease: 'power2.out' }, sweep + 0.12);
+tiles.forEach((d, j) => {
+  tl.to(d, { scaleX: 0, duration: 0.1, ease: 'power1.in' }, L - 0.82 + j * 0.04);
+  tl.to(qs[j], { scaleX: 1, duration: 0.12, ease: 'power1.out' }, L - 0.72 + j * 0.04);
+});
+tl.to('#slots', { opacity: 1, duration: 0.15 }, L - 0.46);
+tl.to(C, { y: -60, opacity: 0, duration: 0.22, ease: 'power2.in' }, L - 0.48);
+qs.forEach((q, j) => tl.to(q, { left: 123 + j * 166.8 + 83.4, top: 200, scale: 0.62, backgroundColor: '#ffffff', color: '#c9c9c9', duration: 0.3, ease: 'power3.inOut' }, L - 0.44 + j * 0.02));
+// Beacon draws a page's first frame without GSAP's from-states (everything shows finished), so hide the scene for it.
+window.__frame = t => { S.style.visibility = t < 0.02 ? 'hidden' : ''; };
+</script>
