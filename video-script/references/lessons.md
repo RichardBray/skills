@@ -24,6 +24,7 @@ What the user has corrected or approved while writing scripts. Read this before 
 - **For "why build your own" videos, the thesis is focus:** a general agent with search, scrape and hundreds of Alexandria providers has to choose every time, whereas your own app calls only the providers you picked. The "things to consider" lines should argue for whatever the video actually builds (an app or an MCP server, not both). [adfinder]
 - **Show a claim about agent behaviour on camera instead of asserting it**, and give a fallback line in case the recording doesn't show it ("it works, but that's a lot of tools to choose from"). [adfinder]
 - **A view count does not mean the video uses the product.** Check the video before citing it as an example. "I Challenged Claude To Build A Profitable Service Business In 15 Minutes" is Claude writing a plan, then the creator running the business by hand. It is not Claude for Small Business. [claude-small-business]
+- **If the user says a product isn't worth mentioning, cut it everywhere.** Titles, thumb, Exp, a later callback, and sources. Don't leave the frame hiding in a line about QuickBooks or HubSpot. [claude-small-business]
 
 ## Structure of build videos
 
