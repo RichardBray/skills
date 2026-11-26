@@ -25,6 +25,8 @@ What the user has corrected or approved while writing scripts. Read this before 
 - **Show a claim about agent behaviour on camera instead of asserting it**, and give a fallback line in case the recording doesn't show it ("it works, but that's a lot of tools to choose from"). [adfinder]
 - **A view count does not mean the video uses the product.** Check the video before citing it as an example. "I Challenged Claude To Build A Profitable Service Business In 15 Minutes" is Claude writing a plan, then the creator running the business by hand. It is not Claude for Small Business. [claude-small-business]
 - **If the user says a product isn't worth mentioning, cut it everywhere.** Titles, thumb, Exp, a later callback, and sources. Don't leave the frame hiding in a line about QuickBooks or HubSpot. [claude-small-business]
+- **Name the real Alexandria skill on each step.** Read the skill file first. If none fits, say so and name the closest, including the part it does not cover. Don't leave a step as "the maps provider" when a skill exists, and don't pretend a US skill checked Companies House. [claude-small-business]
+- **When the user says the script is fluffy, cut the asides.** Keep the step, the skill, the limit, and the result. Usage stats and provider counts can sit in Sources until they're needed on camera. [claude-small-business]
 
 ## Structure of build videos
 
