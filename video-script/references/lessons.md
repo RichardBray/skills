@@ -27,6 +27,7 @@ What the user has corrected or approved while writing scripts. Read this before 
 - **If the user says a product isn't worth mentioning, cut it everywhere.** Titles, thumb, Exp, a later callback, and sources. Don't leave the frame hiding in a line about QuickBooks or HubSpot. [claude-small-business]
 - **Name the real Alexandria skill on each step.** Read the skill file first. If none fits, say so and name the closest, including the part it does not cover. Don't leave a step as "the maps provider" when a skill exists, and don't pretend a US skill checked Companies House. [claude-small-business]
 - **When the user says the script is fluffy, cut the asides.** Keep the step, the skill, the limit, and the result. Usage stats and provider counts can sit in Sources until they're needed on camera. [claude-small-business]
+- **A site prompt names the real build path.** Higgsfield: stills before the builder, behaviour rather than a section list, `--type website --template scroll-scrub`. Firecrawl: `scrape --format branding,images` plus a full-page screenshot. Alexandria has no design-system skill, so the prompt says the facts come from the skills already run and forbids invented specs. [claude-small-business]
 
 ## Structure of build videos
 
