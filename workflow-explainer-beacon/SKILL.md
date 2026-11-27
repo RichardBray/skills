@@ -37,6 +37,8 @@ Sports card buy-low notes: PSA's public football price guide stops at 2021 (and 
 
 Ideas: Alexandria has about 250 skills (`ls /library/skills/firecrawl`, descriptions in `/library/skills/INDEX`), mostly for businesses. The consumer and side-hustle ones that fit this format: used car, offer salary benchmark, startup offer runway check, interview prep pack, campsite booking, fantasy football start or sit, sports card buy-low screen, Turo host fleet pick, and for online sellers winning funnel teardown and hook swipe file. There is no dropshipping or consumer coupon skill; the owner wants existing skills only, not new team skills.
 
+Series in progress (Nov 2026): eight new videos testing new hooks and eye-catching intros (an AI 3D-character clip for the creatine one); plan and status in `~/fc/videos/jobs-hunt/explainer-series-plan.md`, hook research and the hooks log in `references/hooks.md`.
+
 Start a new video from the newest folder's `gen/build.mjs` (`example/gen/build-car.mjs` is the latest copy): it has the prompt highlight, the tab cell and the DY offsets the older `example/gen/build.mjs` lacks.
 
 ## What you need
